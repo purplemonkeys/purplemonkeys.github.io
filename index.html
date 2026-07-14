@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- ================================================================
+     EN CLAIR — a small French A1/A2 reader for real news, simplified.
+     THIS IS THE SHELL (template). It holds all CSS + logic. The story
+     data is injected by build.py at the marked line near the top of the
+     script (search for STORIES_DATA_SENTINEL). Do NOT paste story data
+     here or mention that sentinel text anywhere else in this file — the
+     build replaces it, and a second copy would be duplicated in. Edit the
+     stories/*.json files, never this file, to change content.
+
+     ARCHITECTURE (why it is split):
+       - Runtime must be ONE self-contained HTML file (artifacts can't
+         fetch external files), so build.py bundles everything.
+       - Authoring is split: shell.html (stable) + stories/NN-id.json
+         (one per story) + build.py. Adding a story = write ONE new JSON
+         file and re-run build.py; existing stories are never reprocessed,
+         so edit cost stays flat as the archive grows.
+
+     TO ADD A STORY (instructions for the assistant):
+       1. Simplify the article with the `news-to-french-a1` skill (real
+          judgement: what to cut, how to pitch the level). Default A1.
+       2. Write each sentence's breakdown with the SELF-CONTAINED recipe
+          below (the french-sentence-breakdown skill is optional backup
+          for tricky sentences). Match the existing stories exactly.
+       3. Save as stories/NN-id.json (next number); run build.py.
+
+     BREAKDOWN RECIPE (reproduce the existing style exactly):
+       meaning - ONE natural-English sentence for the whole line. Plain.
+       chunks  - the sentence in order, one [French chunk, English gloss]
+                 pair per MEANINGFUL UNIT (group words that work together,
+                 e.g. "aller au tribunal", the verb inside "n'ont pas").
+                 Not every word; ~2-5 per sentence. English side = short
+                 gloss PLUS an optional micro-note in parentheses/after a
+                 dash, e.g. "a lawyer (un becomes de after a negative)".
+       key     - exactly ONE takeaway: bold pattern-name lead, then one
+                 plain sentence, French set in italic via
+                 <span class='bd-fr-i'>...</span>. Tie to the learner's
+                 known keys: aller+verb future, avoir/etre past, ne...pas
+                 (and ne...plus) sandwich, adjective after/agreeing with
+                 the noun, helper+plain verb, little words (le/la/les/des),
+                 a+city, on = people/you/we, c'est / il y a. One key only.
+                 Tone: concise, phone-tight, jargon-light; standard French.
+
+     STORY JSON SHAPE:
+       { "id","chip","kicker","title","level",        (level "A1"/"A2")
+         "gist": "English, 2-3 sentences",
+         "body": [ [ { "fr":"text with {{french|english}} marks",
+                       "bd": { "meaning":"...",
+                               "chunks":[["fr","en"], ...],
+                               "key":"..." } }, ... ], ... ],
+         "grammar": [ { "fr":"example", "en":"plain explanation" }, ... ],
+         "quiz": { "q":"French question", "a":"French answer (English)" },
+         "flag": "honesty note(s) about uncertain phrasing"   (optional) }
+       Light inline HTML allowed in meaning/key/en/flag/gloss.
+       {{french|english}} marks feed the (hidden) word-highlight layer.
+     ================================================================ -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F5F2; --card:#FBFBF9; --ink:#232A2C; --muted:#6C7476; --faint:#9AA0A0;
+    --rule:#E3E4DD; --accent:#12706A; --accent-deep:#0C534F;
+    --hl:rgba(244,201,93,.42); --hl-strong:rgba(240,186,58,.6); --gloss:#0C534F;
+    --maxw:680px;
+    --font-read:'Spectral',Georgia,'Times New Roman',serif;
+    --font-ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --font-display:'Fraunces',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:20px 18px 72px}
+
+  .masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .brand{font-family:var(--font-display);font-weight:600;font-size:30px;letter-spacing:-.01em;line-height:1;cursor:pointer}
+  .brand .clair{color:var(--accent)}
+  .tagline{font-size:13px;color:var(--muted);font-style:italic;font-family:var(--font-read)}
+
+  .view{display:none}
+  .view.active{display:block}
+
+  .index-intro{font-size:13px;color:var(--muted);letter-spacing:.02em;margin:18px 2px 12px}
+  .cards{display:grid;grid-template-columns:1fr;gap:12px}
+  @media (min-width:560px){ .cards{grid-template-columns:1fr 1fr} }
+  .empty{font-size:13.5px;color:var(--muted);font-style:italic;padding:6px 2px}
+
+  /* card = container with a main open-button + a corner mark-button */
+  .card{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:14px;transition:border-color .15s,transform .12s,box-shadow .15s,opacity .15s}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(18,112,106,.09)}
+  .card-open{display:flex;flex-direction:column;gap:8px;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;font-family:var(--font-ui);color:var(--ink);padding:16px 46px 14px 16px;border-radius:14px}
+  .card-open:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .card .k{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+  .card .ttl{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.2;color:var(--ink)}
+  .card .meta{display:flex;align-items:center;gap:8px;margin-top:2px}
+  .card .lvl{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;padding:2px 8px;background:rgba(18,112,106,.06)}
+  .card .tag{font-size:12px;color:var(--muted);font-style:italic;font-family:var(--font-read)}
+  .card .go{font-size:12.5px;font-weight:600;color:var(--accent)}
+
+  /* corner mark control */
+  .card-mark{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:1.6px solid var(--rule);background:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;color:transparent;font-size:15px;line-height:1;z-index:2;transition:border-color .15s,background .15s,color .15s}
+  .card-mark:hover{border-color:var(--accent);color:var(--faint)}
+  .card-mark:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* read state */
+  .card.read{opacity:.58}
+  .card.read:hover{opacity:.9}
+  .card.read .card-mark{background:var(--accent);border-color:var(--accent);color:#fff}
+  .card.read .card-mark:hover{color:#fff}
+
+  /* "already read" collapsible section */
+  .read-section{margin-top:22px;border-top:1px solid var(--rule)}
+  .read-section summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:12px 2px 10px;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .read-section summary::-webkit-details-marker{display:none}
+  .read-section summary:hover{color:var(--ink)}
+  .read-section .chev{transition:transform .2s;color:var(--accent);font-size:11px}
+  .read-section[open] .chev{transform:rotate(90deg)}
+  .read-section .cards{margin-top:4px}
+
+  /* story view */
+  .back{display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--accent-deep);font-family:var(--font-ui);font-size:13px;font-weight:600;padding:16px 2px 6px;margin-left:-2px}
+  .back:hover{color:var(--accent)}
+  .back:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 2px}
+  .btn{font-size:12.5px;font-weight:500;color:var(--accent-deep);background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:7px 12px;cursor:pointer;transition:background .15s,border-color .15s}
+  .btn:hover{border-color:var(--accent)}
+  .btn[aria-pressed="true"]{background:rgba(18,112,106,.1);border-color:var(--accent)}
+  .btn.done{color:var(--accent-deep)}
+  .btn.done[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .legend{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0}
+  .legend .ls{color:var(--ink);border-bottom:1px dotted var(--accent)}
+
+  article{margin-top:14px}
+  .kicker{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+  .title-row{display:flex;align-items:flex-start;gap:12px}
+  .title{font-family:var(--font-display);font-weight:600;font-size:26px;line-height:1.15;letter-spacing:-.01em;margin:0 0 4px;flex:1}
+  .story-lvl{flex:0 0 auto;margin-top:4px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;padding:3px 9px;background:rgba(18,112,106,.06)}
+  .gist{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;padding:12px 14px;margin:14px 0 6px;font-size:14.5px;line-height:1.55;color:#3d4547}
+  .gist .gist-label{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px}
+  .gist.hidden{display:none}
+
+  .body{font-family:var(--font-read);font-size:19px;line-height:1.72;margin-top:18px}
+  .body .para{margin:0 0 1.05em}
+
+  .sentence{cursor:pointer;border-radius:3px;padding:0 1px;transition:background .12s}
+  .sentence:hover{background:rgba(18,112,106,.07)}
+  .sentence.active{background:rgba(18,112,106,.06)}
+  .sentence:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .term-wrap{position:relative}
+  .term{background:linear-gradient(180deg,transparent 14%,var(--hl) 14%,var(--hl) 86%,transparent 86%);-webkit-box-decoration-break:clone;box-decoration-break:clone;border-bottom:1.5px solid transparent;border-radius:2px;cursor:pointer;padding:0 1px;transition:background .15s,border-color .15s;color:inherit;font:inherit}
+  .term:hover{background:linear-gradient(180deg,transparent 14%,var(--hl-strong) 14%,var(--hl-strong) 86%,transparent 86%)}
+  .term-wrap.is-open .term{border-bottom-color:var(--accent)}
+  .term:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .gloss{display:none;font-family:var(--font-ui);font-size:.62em;font-weight:500;color:var(--gloss);white-space:nowrap;margin:0 .12em;vertical-align:.15em}
+  .gloss::before{content:"→ ";color:var(--faint)}
+  .term-wrap.is-open .gloss,.body.show-all .gloss{display:inline}
+
+  .breakdown{display:none;margin:9px 0 13px;padding:13px 15px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;font-family:var(--font-ui)}
+  .breakdown.open{display:block;animation:bd .22s ease}
+  @keyframes bd{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .bd-meaning{font-family:var(--font-read);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:11px}
+  .bd-chunks{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}
+  .bd-row{display:flex;gap:12px;align-items:baseline;font-size:13.5px;line-height:1.45}
+  .bd-fr{font-family:var(--font-read);font-style:italic;color:var(--accent-deep);flex:0 0 40%;min-width:0}
+  .bd-en{color:#41494b;flex:1;min-width:0}
+  .bd-key{font-size:12.5px;line-height:1.55;color:#41494b;border-top:1px solid var(--rule);padding-top:9px}
+  .bd-key-label{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+  .bd-fr-i{font-family:var(--font-read);font-style:italic;color:var(--ink)}
+
+  .section{margin-top:26px;border-top:1px solid var(--rule);padding-top:8px}
+  summary{list-style:none}
+  .section summary{cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 0;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+  .section summary::-webkit-details-marker{display:none}
+  .section summary .chev{transition:transform .2s;color:var(--accent);font-size:12px}
+  .section details[open] summary .chev,details.section[open] summary .chev{transform:rotate(90deg)}
+  .note{margin:6px 0 14px;padding-left:14px;border-left:2px solid var(--hl-strong)}
+  .note h4{font-family:var(--font-read);font-style:italic;font-weight:500;font-size:16px;margin:0 0 3px;color:var(--accent-deep)}
+  .note p{font-size:13.5px;line-height:1.55;color:#41494b;margin:0}
+  .note code,.fr{font-family:var(--font-read);font-style:italic;color:var(--ink)}
+  .quiz{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px}
+  .quiz .q{font-family:var(--font-read);font-size:17px;color:var(--ink);margin:0 0 10px}
+  .quiz .answer{font-family:var(--font-read);font-size:15.5px;color:#3d4547;margin:8px 0 0;display:none}
+  .quiz .answer.show{display:block}
+  .reveal-btn{font-size:12.5px;font-weight:500;color:var(--accent-deep);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:6px 12px;cursor:pointer}
+  .reveal-btn:hover{background:rgba(18,112,106,.08)}
+  .flag{margin-top:22px;font-size:12px;line-height:1.5;color:var(--muted);background:rgba(240,186,58,.12);border-radius:8px;padding:10px 12px}
+  .flag b{color:var(--accent-deep);font-weight:600}
+  .foot{margin-top:28px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.5}
+
+  @media (max-width:480px){
+    .brand{font-size:26px}.body{font-size:18px;line-height:1.7}.title{font-size:23px}
+    .bd-row{flex-direction:column;gap:1px}.bd-fr{flex-basis:auto}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<title>En Clair</title>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand" id="brand" role="button" tabindex="0" title="Retour à l'accueil">En&nbsp;<span class="clair">clair</span></div>
+    <div class="tagline">l'actualité en français simple</div>
+  </header>
+
+  <!-- INDEX VIEW -->
+  <main id="view-index" class="view">
+    <p class="index-intro">Choisissez une histoire :</p>
+    <div class="cards" id="cards"></div>
+    <details class="read-section" id="readSection">
+      <summary><span class="chev">▶</span>Déjà lu (<span id="readCount">0</span>)</summary>
+      <div class="cards" id="readCards"></div>
+    </details>
+  </main>
+
+  <!-- STORY VIEW -->
+  <main id="view-story" class="view">
+    <button class="back" id="backBtn">← Toutes les histoires</button>
+    <div class="toolbar">
+      <button class="btn" id="toggleGist" aria-pressed="true" title="Show / hide the English summary">Résumé</button>
+      <button class="btn done" id="toggleRead" aria-pressed="false" title="Mark this story read / unread">Marquer comme lu</button>
+    </div>
+    <p class="legend">Tap any <span class="ls">sentence</span> to see what it means and how it's built.</p>
+    <article id="article"></article>
+  </main>
+
+  <div class="foot">En clair · lecture douce · standard French</div>
+</div>
+
+<script>
+/* ---- visible error log: Kobo's browser has no dev console, so surface
+        any runtime error on-screen instead of failing silently ---- */
+window.onerror = function (msg, url, line, col, err) {
+  try {
+    var dbg = document.getElementById('debugBox');
+    if (!dbg) {
+      dbg = document.createElement('div');
+      dbg.id = 'debugBox';
+      dbg.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#fee;color:#900;font:11px monospace;padding:8px;z-index:9999;max-height:35%;overflow:auto;white-space:pre-wrap;border-top:2px solid #900';
+      document.body.appendChild(dbg);
+    }
+    dbg.style.display = 'block';
+    dbg.textContent += 'ERROR: ' + msg + ' (line ' + line + ')\n';
+  } catch (e) {}
+  return false;
+};
+
+/* ---- tap helper: old/limited touch browsers don't reliably synthesize a
+        'click' from a touch, so listen for touchend directly. Guards
+        against the element ALSO receiving a delayed synthetic click
+        afterward (which would toggle twice). ---- */
+function addTap(el, handler) {
+  var lastTouch = 0;
+  el.addEventListener('touchend', function (e) {
+    lastTouch = Date.now();
+    e.preventDefault();
+    handler(e);
+  }, {
+    passive: false
+  });
+  el.addEventListener('click', function (e) {
+    if (Date.now() - lastTouch < 600) return;
+    handler(e);
+  });
+}
+var STORIES = [{
+  "id": "vibe-lawyering",
+  "chip": "Le « vibe lawyering »",
+  "kicker": "Technologie · Justice",
+  "title": "Des gens utilisent l'IA au lieu d'un avocat",
+  "level": "A1",
+  "gist": "More and more people are using AI chatbots instead of lawyers to fight their own court cases — a trend called “vibe lawyering.” The problem is the AI often invents fake legal cases, which gets their claims thrown out and can cost them money. Used carefully it can help, but for now human lawyers still matter.",
+  "body": [[{
+    "fr": "Beaucoup de gens {{utilisent|use (from utiliser)}} l'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}} pour {{aller au tribunal|go to court}}.",
+    "bd": {
+      "meaning": "Lots of people use AI to go to court.",
+      "chunks": [["Beaucoup de gens", "lots of people (beaucoup de = a lot of)"], ["utilisent", "use — the -ent ending marks a plural subject"], ["l'intelligence artificielle", "artificial intelligence — note the adjective comes AFTER the noun"], ["pour aller", "to go / in order to go"], ["au tribunal", "to the court (au = à + le)"]],
+      "key": "<b>pour + plain verb = “in order to.”</b> The verb after <span class='bd-fr-i'>pour</span> stays plain (<span class='bd-fr-i'>aller</span>, not conjugated)."
+    }
+  }, {
+    "fr": "Ils n'ont pas d'{{avocat|lawyer}}.",
+    "bd": {
+      "meaning": "They don't have a lawyer.",
+      "chunks": [["Ils", "they"], ["n'ont pas", "don't have — the ne…pas sandwich around the verb 'ont'; ne → n' before a vowel"], ["d'avocat", "a lawyer (un → de after a negative; de → d')"]],
+      "key": "<b>Negation sandwich:</b> <span class='bd-fr-i'>ne … pas</span> wraps the verb, and after it <span class='bd-fr-i'>un avocat</span> becomes <span class='bd-fr-i'>d'avocat</span>."
+    }
+  }, {
+    "fr": "C'est {{moins cher|cheaper}}.",
+    "bd": {
+      "meaning": "It's cheaper.",
+      "chunks": [["C'est", "it is / that's — the set phrase c'est"], ["moins cher", "less expensive (moins = less, cher = expensive)"]],
+      "key": "<b>moins + adjective = “less ___.”</b> The everyday way to say “cheaper” without a special word."
+    }
+  }, {
+    "fr": "{{On appelle ça|it's called / people call it}} le « vibe lawyering ».",
+    "bd": {
+      "meaning": "This is called “vibe lawyering.”",
+      "chunks": [["On appelle", "one calls / people call (on = the general 'you / people / we')"], ["ça", "that / this"], ["le « vibe lawyering »", "kept in English — there's no settled French term"]],
+      "key": "<b>“On” is the workhorse</b> for “people / you / we” in general. <span class='bd-fr-i'>On appelle ça…</span> = “this is called…”"
+    }
+  }], [{
+    "fr": "Mais il y a un problème.",
+    "bd": {
+      "meaning": "But there is a problem.",
+      "chunks": [["Mais", "but"], ["il y a", "there is / there are — a fixed phrase"], ["un problème", "a problem"]],
+      "key": "<b>il y a = “there is / are.”</b> A set phrase — don't read it literally as “he has there.”"
+    }
+  }, {
+    "fr": "L'IA {{invente|invents, makes up}} parfois des {{choses fausses|false things}}.",
+    "bd": {
+      "meaning": "AI sometimes invents false things.",
+      "chunks": [["L'IA", "the AI"], ["invente", "invents / makes up"], ["parfois", "sometimes"], ["des choses fausses", "false things — 'fausses' comes after the noun"]],
+      "key": "<b>Adjective after the noun, and agreeing with it:</b> <span class='bd-fr-i'>choses</span> is feminine plural, so <span class='bd-fr-i'>faux</span> becomes <span class='bd-fr-i'>fausses</span>."
+    }
+  }, {
+    "fr": "Elle invente des {{affaires de justice|court cases}} {{qui n'existent pas|that don't exist}}.",
+    "bd": {
+      "meaning": "It invents court cases that don't exist.",
+      "chunks": [["Elle invente", "it invents ('elle' stands in for l'IA, which is feminine)"], ["des affaires de justice", "court cases (affaire = case/matter)"], ["qui n'existent pas", "that don't exist (qui = that/which; then the ne…pas sandwich again)"]],
+      "key": "<b>“qui” hooks a description onto a noun</b> (“cases THAT don't exist”), and inside it the <span class='bd-fr-i'>ne … pas</span> sandwich shows up once more."
+    }
+  }], [{
+    "fr": "Par exemple, Omar Rafique a un restaurant.",
+    "bd": {
+      "meaning": "For example, Omar Rafique has a restaurant.",
+      "chunks": [["Par exemple", "for example — a fixed phrase"], ["a", "has (from avoir, the il/elle form)"], ["un restaurant", "a restaurant"]],
+      "key": "<b>“a” (from avoir) = “has.”</b> A tiny word that does a lot — you'll meet it again as the past helper."
+    }
+  }, {
+    "fr": "Il a un problème avec les {{impôts|taxes}}.",
+    "bd": {
+      "meaning": "He has a problem with taxes.",
+      "chunks": [["Il a", "he has"], ["un problème", "a problem"], ["avec les impôts", "with taxes (les = 'the', where English drops it)"]],
+      "key": "<b>French keeps “the” where English drops it:</b> <span class='bd-fr-i'>les impôts</span> = just “taxes.”"
+    }
+  }, {
+    "fr": "Il va au tribunal, mais ses documents sont {{faux|fake, false}}.",
+    "bd": {
+      "meaning": "He goes to court, but his documents are fake.",
+      "chunks": [["Il va", "he goes (from aller)"], ["au tribunal", "to court"], ["mais", "but"], ["ses documents", "his documents (ses = his/her, plural)"], ["sont faux", "are fake"]],
+      "key": "<b>“ses” = his OR her.</b> French doesn't mark the owner's gender — context tells you which."
+    }
+  }, {
+    "fr": "Un chatbot IA {{a inventé|invented (past tense)}} ces documents.",
+    "bd": {
+      "meaning": "An AI chatbot invented these documents.",
+      "chunks": [["Un chatbot IA", "an AI chatbot"], ["a inventé", "invented (a = has + inventé = past form)"], ["ces documents", "these documents (ces = these/those)"]],
+      "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a inventé</span> = “invented.” The <span class='bd-fr-i'>a</span> is the same little word as “has.”"
+    }
+  }, {
+    "fr": "Le {{juge|judge}} {{refuse|rejects, refuses}} son affaire.",
+    "bd": {
+      "meaning": "The judge rejects his case.",
+      "chunks": [["Le juge", "the judge"], ["refuse", "rejects / refuses"], ["son affaire", "his/her case"]],
+      "key": "<b>“son affaire” = his/her case</b> — again, <span class='bd-fr-i'>son</span> doesn't reveal the owner's gender."
+    }
+  }], [{
+    "fr": "Dans {{plusieurs pays|several countries}}, {{de plus en plus de gens|more and more people}} vont au tribunal {{sans|without}} avocat.",
+    "bd": {
+      "meaning": "In several countries, more and more people go to court without a lawyer.",
+      "chunks": [["Dans plusieurs pays", "in several countries (pays is spelled the same singular and plural)"], ["de plus en plus de gens", "more and more people — a ready-made phrase"], ["vont", "go (from aller, plural)"], ["sans avocat", "without a lawyer — note: no 'un' after sans"]],
+      "key": "<b>“de plus en plus de ___” = “more and more ___.”</b> And <span class='bd-fr-i'>sans avocat</span> drops the article — “without lawyer.”"
+    }
+  }], [{
+    "fr": "L'IA dit souvent aux gens : « Allez au tribunal ! Vous {{allez gagner|are going to win}} ! »",
+    "bd": {
+      "meaning": "AI often tells people: “Go to court! You're going to win!”",
+      "chunks": [["L'IA dit souvent", "the AI often says/tells"], ["aux gens", "to people (aux = à + les)"], ["Allez au tribunal", "go to court! — a command"], ["Vous allez gagner", "you're going to win"]],
+      "key": "<b>Vous allez gagner = the aller + plain verb future.</b> Only <span class='bd-fr-i'>allez</span> changes; <span class='bd-fr-i'>gagner</span> stays plain."
+    }
+  }, {
+    "fr": "Mais {{ce n'est pas toujours vrai|it's not always true}}.",
+    "bd": {
+      "meaning": "But it's not always true.",
+      "chunks": [["Mais", "but"], ["ce n'est pas", "it is not (c'est with the ne…pas sandwich)"], ["toujours vrai", "always true"]],
+      "key": "<b>“c'est” negates to “ce n'est pas”</b> — the same <span class='bd-fr-i'>ne … pas</span> sandwich, wrapped around <span class='bd-fr-i'>est</span>."
+    }
+  }], [{
+    "fr": "Utiliser l'IA peut {{coûter cher|be expensive (cost a lot)}}.",
+    "bd": {
+      "meaning": "Using AI can be expensive.",
+      "chunks": [["Utiliser l'IA", "using AI / to use AI (plain verb used as 'using')"], ["peut", "can (from pouvoir)"], ["coûter cher", "cost a lot / be expensive"]],
+      "key": "<b>peut coûter = “can cost”</b> — pouvoir + plain verb, the helper-plus-plain-verb shape. Only <span class='bd-fr-i'>peut</span> conjugates."
+    }
+  }, {
+    "fr": "Une {{étudiante|student (female)}} {{doit payer|has to pay}} 7 000 dollars, parce qu'elle a {{mal utilisé|used badly}} l'IA.",
+    "bd": {
+      "meaning": "A student has to pay 7,000 dollars, because she used AI badly.",
+      "chunks": [["Une étudiante", "a (female) student — the -e ending marks her as female"], ["doit payer", "has to pay (devoir + plain verb)"], ["parce qu'elle", "because she (que → qu' before a vowel)"], ["a mal utilisé", "used badly (a…utilisé = past; mal sits in the middle)"]],
+      "key": "<b>doit payer = “has to pay”</b> (devoir + plain verb). And the <b>-e</b> on <span class='bd-fr-i'>étudiante</span> is what tells you the student is a woman."
+    }
+  }, {
+    "fr": "{{Même|even}} les {{vrais avocats|real lawyers}} font des {{erreurs|mistakes}} avec l'IA.",
+    "bd": {
+      "meaning": "Even real lawyers make mistakes with AI.",
+      "chunks": [["Même", "even"], ["les vrais avocats", "real lawyers — 'vrais' comes BEFORE the noun"], ["font", "make / do (from faire)"], ["des erreurs", "mistakes"]],
+      "key": "<b>“vrais” goes BEFORE the noun.</b> A handful of everyday adjectives (vrai, bon, grand, petit) break the usual “after the noun” rule."
+    }
+  }], [{
+    "fr": "Mais l'IA peut aussi {{aider|help}}.",
+    "bd": {
+      "meaning": "But AI can also help.",
+      "chunks": [["Mais", "but"], ["l'IA peut", "AI can"], ["aussi", "also / too"], ["aider", "help (plain verb after 'peut')"]],
+      "key": "<b>Again pouvoir + plain verb:</b> <span class='bd-fr-i'>peut aider</span> = “can help.”"
+    }
+  }, {
+    "fr": "À Londres, une femme utilise une IA et {{récupère|gets back, recovers}} son argent.",
+    "bd": {
+      "meaning": "In London, a woman uses an AI and gets her money back.",
+      "chunks": [["À Londres", "in London (à before a city = 'in')"], ["une femme utilise une IA", "a woman uses an AI"], ["récupère son argent", "gets her money back (récupérer = get back/recover)"]],
+      "key": "<b>“à” before a city = “in”:</b> <span class='bd-fr-i'>à Londres</span> = “in London.”"
+    }
+  }, {
+    "fr": "Mais un vrai avocat {{parle pour elle|speaks for her}} au tribunal.",
+    "bd": {
+      "meaning": "But a real lawyer speaks for her in court.",
+      "chunks": [["Mais un vrai avocat", "but a real lawyer"], ["parle", "speaks"], ["pour elle", "for her (elle = her, after the little word 'pour')"], ["au tribunal", "in court"]],
+      "key": "<b>After a little word like “pour,” “she” becomes “elle”:</b> <span class='bd-fr-i'>pour elle</span> = “for her.”"
+    }
+  }], [{
+    "fr": "{{Pour le moment|for now}}, les avocats humains {{restent|remain, stay}} importants.",
+    "bd": {
+      "meaning": "For now, human lawyers remain important.",
+      "chunks": [["Pour le moment", "for now / for the moment — a fixed phrase"], ["les avocats humains", "human lawyers ('humains' after the noun, plural)"], ["restent importants", "remain important ('importants' takes -s to agree)"]],
+      "key": "<b>Adjectives echo the noun's number:</b> both <span class='bd-fr-i'>humains</span> and <span class='bd-fr-i'>importants</span> take a plural -s to match “avocats.”"
+    }
+  }]],
+  "grammar": [{
+    "fr": "Vous allez gagner",
+    "en": "<b>aller + plain verb = the near future.</b> Only <span class='fr'>aller</span> changes with the subject; the second verb (<span class='fr'>gagner</span>) stays plain. Your “future = aller + verb” key."
+  }, {
+    "fr": "Un chatbot a inventé",
+    "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>avoir</span> changes with the subject (<span class='fr'>a</span>) and the main verb takes its past form. Your “past = avoir/être + verb” key."
+  }, {
+    "fr": "Ils n'ont pas d'avocat",
+    "en": "<b>the ne … pas sandwich.</b> It wraps the verb, and it turns up all over this story: <span class='fr'>n'ont pas</span>, <span class='fr'>qui n'existent pas</span>, <span class='fr'>ce n'est pas</span>."
+  }],
+  "quiz": {
+    "q": "Pourquoi le juge refuse l'affaire d'Omar Rafique ?",
+    "a": "Parce que ses documents sont faux — l'IA les a inventés. (Because his documents are fake — the AI made them up.)"
+  },
+  "flag": "Two honesty flags: <b>“vibe lawyering”</b> stays in English — there's no settled French term, and a French writer would likely do the same. And <span class='fr'>affaires de justice qui n'existent pas</span> is clear and correct, but a native might say <span class='fr'>décisions qui n'existent pas</span> (“rulings that don't exist”); I chose <span class='fr'>affaires</span> as the higher-frequency word for you."
+}, {
+  "id": "burnham-economy",
+  "chip": "Burnham et l'économie",
+  "kicker": "Royaume-Uni · Économie",
+  "title": "Andy Burnham gagne et veut diriger le pays",
+  "level": "A1",
+  "gist": "Andy Burnham won a big election and wants to become Britain's prime minister, replacing Keir Starmer. He wants to spend on public services, but investors worry he'll spend too much when the UK's finances are already tight — so many think taxes may have to rise. Business leaders just want a stable government.",
+  "body": [[{
+    "fr": "Andy Burnham {{gagne|wins}} une {{élection importante|big / important election}} au Royaume-Uni.",
+    "bd": {
+      "meaning": "Andy Burnham wins a big election in the United Kingdom.",
+      "chunks": [["Andy Burnham gagne", "Andy Burnham wins — present tense, used for fresh news"], ["une élection importante", "a big election ('importante' comes AFTER the noun and takes -e to agree)"], ["au Royaume-Uni", "in the United Kingdom (au = à + le)"]],
+      "key": "<b>Adjective after the noun, and agreeing with it:</b> <span class='bd-fr-i'>importante</span> follows <span class='bd-fr-i'>élection</span> (feminine), so it takes an -e."
+    }
+  }, {
+    "fr": "Il {{veut|wants}} {{devenir|to become}} Premier ministre.",
+    "bd": {
+      "meaning": "He wants to become Prime Minister.",
+      "chunks": [["Il veut", "he wants (from vouloir)"], ["devenir", "to become — plain verb after 'veut'"], ["Premier ministre", "Prime Minister"]],
+      "key": "<b>Helper + plain verb:</b> <span class='bd-fr-i'>veut devenir</span> = 'wants to become'. Only <span class='bd-fr-i'>veut</span> changes; <span class='bd-fr-i'>devenir</span> stays plain."
+    }
+  }, {
+    "fr": "Il veut {{remplacer|replace}} Keir Starmer.",
+    "bd": {
+      "meaning": "He wants to replace Keir Starmer.",
+      "chunks": [["Il veut remplacer", "he wants to replace"], ["Keir Starmer", "Keir Starmer (the outgoing PM)"]],
+      "key": "<b>Same helper shape again:</b> <span class='bd-fr-i'>veut remplacer</span> — vouloir + plain verb. You'll meet this pattern constantly."
+    }
+  }], [{
+    "fr": "Avant, Burnham {{a été|was / has been}} {{maire|mayor}} de Manchester.",
+    "bd": {
+      "meaning": "Before, Burnham was mayor of Manchester.",
+      "chunks": [["Avant", "before / previously"], ["a été maire", "was mayor (a été = avoir + été, the past)"], ["de Manchester", "of Manchester"]],
+      "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a été</span> = 'was / has been' — the same avoir-past you know (a gagné, a inventé). Note: no 'un' before a job."
+    }
+  }, {
+    "fr": "Il est {{populaire|popular}}.",
+    "bd": {
+      "meaning": "He is popular.",
+      "chunks": [["Il est", "he is"], ["populaire", "popular — an easy cognate"]],
+      "key": "<b>populaire</b> already ends in -e, so it looks the same for a man or a woman — no extra -e to add."
+    }
+  }], [{
+    "fr": "Burnham veut {{dépenser|spend}} de l'argent pour les {{services publics|public services}}.",
+    "bd": {
+      "meaning": "Burnham wants to spend money on public services.",
+      "chunks": [["Burnham veut dépenser", "Burnham wants to spend (vouloir + plain verb)"], ["de l'argent", "money (de l' = 'some')"], ["pour les services publics", "for public services ('publics' after the noun, plural)"]],
+      "key": "<b>The 'some' word:</b> <span class='bd-fr-i'>de l'argent</span> = 'money'. French adds <span class='bd-fr-i'>de l' / du / des</span> where English says nothing."
+    }
+  }, {
+    "fr": "Mais les {{investisseurs|investors}} {{ont peur|are afraid}}.",
+    "bd": {
+      "meaning": "But investors are afraid.",
+      "chunks": [["Mais", "but"], ["les investisseurs", "the investors"], ["ont peur", "are afraid (literally 'have fear')"]],
+      "key": "<b>An avoir idiom:</b> French 'has fear' = 'is afraid'. <span class='bd-fr-i'>avoir peur</span>, like <span class='bd-fr-i'>avoir faim</span> (be hungry) — it uses avoir, not être."
+    }
+  }, {
+    "fr": "Ils pensent qu'il va {{dépenser trop|spend too much}}.",
+    "bd": {
+      "meaning": "They think he's going to spend too much.",
+      "chunks": [["Ils pensent que", "they think that (que becomes qu' before a vowel)"], ["il va dépenser", "he's going to spend (aller + plain verb = future)"], ["trop", "too much"]],
+      "key": "<b>aller + plain verb = the future:</b> <span class='bd-fr-i'>va dépenser</span> = 'is going to spend'. Only <span class='bd-fr-i'>va</span> changes."
+    }
+  }], [{
+    "fr": "Le problème : le Royaume-Uni {{a emprunté|borrowed}} beaucoup d'argent.",
+    "bd": {
+      "meaning": "The problem: the UK has borrowed a lot of money.",
+      "chunks": [["Le problème", "the problem"], ["a emprunté", "borrowed / has borrowed (avoir + past form)"], ["beaucoup d'argent", "a lot of money (beaucoup de becomes d' before a vowel)"]],
+      "key": "<b>Past again:</b> <span class='bd-fr-i'>a emprunté</span> = 'borrowed'. And <span class='bd-fr-i'>beaucoup d'argent</span> — 'de' shrinks to 'd'' before the vowel."
+    }
+  }, {
+    "fr": "Il y a {{peu de place|little room}} pour dépenser plus.",
+    "bd": {
+      "meaning": "There is little room to spend more.",
+      "chunks": [["Il y a", "there is (a fixed phrase)"], ["peu de place", "little room / not much room"], ["pour dépenser plus", "to spend more (pour + plain verb)"]],
+      "key": "<b>Two set pieces:</b> <span class='bd-fr-i'>il y a</span> = 'there is/are', and <span class='bd-fr-i'>pour + plain verb</span> = 'in order to' (pour dépenser = 'to spend')."
+    }
+  }, {
+    "fr": "Sur les {{marchés|markets}}, les {{taux|rates}} {{montent|go up}}.",
+    "bd": {
+      "meaning": "On the markets, rates go up.",
+      "chunks": [["Sur les marchés", "on the markets"], ["les taux", "the (interest) rates — 'taux' is spelled the same singular and plural"], ["montent", "go up / rise"]],
+      "key": "<b>Present tense for live action:</b> <span class='bd-fr-i'>les taux montent</span> = 'rates are rising' — the simplest way to report what's happening now."
+    }
+  }], [{
+    "fr": "Burnham est un homme {{de gauche|left-wing / on the left}}.",
+    "bd": {
+      "meaning": "Burnham is a left-wing man.",
+      "chunks": [["Burnham est", "Burnham is"], ["un homme de gauche", "a man of the left / a left-wing man"]],
+      "key": "<b>'de + noun' builds a description:</b> <span class='bd-fr-i'>un homme de gauche</span> = 'a left-wing man' (the opposite is <span class='bd-fr-i'>de droite</span>, right-wing)."
+    }
+  }, {
+    "fr": "Il {{n'aime pas|doesn't like}} {{l'austérité|austerity (spending cuts)}}.",
+    "bd": {
+      "meaning": "He doesn't like austerity.",
+      "chunks": [["Il n'aime pas", "he doesn't like (the ne...pas sandwich around 'aime')"], ["l'austérité", "austerity — cuts to public spending"]],
+      "key": "<b>Negation sandwich:</b> <span class='bd-fr-i'>ne ... pas</span> wraps the verb <span class='bd-fr-i'>aime</span>; ne becomes n' before the vowel."
+    }
+  }, {
+    "fr": "Alors, beaucoup pensent que les {{impôts|taxes}} vont {{augmenter|go up, rise}}.",
+    "bd": {
+      "meaning": "So, many people think taxes are going to rise.",
+      "chunks": [["Alors", "so / therefore"], ["beaucoup pensent que", "many (people) think that"], ["les impôts vont augmenter", "taxes are going to rise (aller + plain verb)"]],
+      "key": "<b>Future with aller, plural:</b> <span class='bd-fr-i'>vont augmenter</span> = 'are going to rise'. Plural subject, so <span class='bd-fr-i'>aller</span> becomes <span class='bd-fr-i'>vont</span>."
+    }
+  }], [{
+    "fr": "Burnham {{promet|promises}} de {{baisser|lower}} les {{factures d'énergie|energy bills}}.",
+    "bd": {
+      "meaning": "Burnham promises to lower energy bills.",
+      "chunks": [["Burnham promet", "Burnham promises"], ["de baisser", "to lower (promettre de + verb)"], ["les factures d'énergie", "energy bills (une facture = a bill)"]],
+      "key": "<b>Some verbs link with 'de':</b> <span class='bd-fr-i'>promet de baisser</span> = 'promises to lower' — the linking word is 'de', then the plain verb."
+    }
+  }, {
+    "fr": "Les {{entreprises|businesses}} {{veulent|want}} un gouvernement {{stable|stable}}.",
+    "bd": {
+      "meaning": "Businesses want a stable government.",
+      "chunks": [["Les entreprises", "businesses / companies"], ["veulent", "want (from vouloir, plural)"], ["un gouvernement stable", "a stable government ('stable' sits after the noun)"]],
+      "key": "<b>vouloir = 'to want':</b> plural is <span class='bd-fr-i'>veulent</span>. And the adjective <span class='bd-fr-i'>stable</span> comes after the noun."
+    }
+  }]],
+  "grammar": [{
+    "fr": "il va dépenser / vont augmenter",
+    "en": "<b>aller + plain verb = the near future.</b> It recurs all through this story. Only <span class='fr'>aller</span> changes (va, vont); the second verb stays plain."
+  }, {
+    "fr": "a été / a emprunté",
+    "en": "<b>avoir + past form = the past.</b> <span class='fr'>a été</span> = 'was', <span class='fr'>a emprunté</span> = 'borrowed'. Same shape as the vibe-lawyering story."
+  }, {
+    "fr": "les investisseurs ont peur",
+    "en": "<b>avoir idioms.</b> French says 'has fear' for 'is afraid' (<span class='fr'>avoir peur</span>) — like <span class='fr'>avoir faim</span> (be hungry). Uses avoir, not être."
+  }],
+  "quiz": {
+    "q": "Pourquoi les investisseurs ont peur ?",
+    "a": "Parce qu'ils pensent que Burnham va dépenser trop d'argent. (Because they think Burnham is going to spend too much money.)"
+  },
+  "flag": "This was a dense economics piece compressed hard to A1: I dropped the specialist terms (deficit, bond yields, fiscal rules, the chancellor race, the named advisers). <span class='fr'>Les taux montent</span> stands in for 'bond yields pushed up' — close enough at this level, not a literal match. It's a neutral retelling of your article, not my own view on UK politics."
+}, {
+  "id": "starmer-resigns",
+  "chip": "Le charisme ne suffit pas",
+  "kicker": "Royaume-Uni · Politique",
+  "title": "Starmer démissionne, Burnham arrive",
+  "level": "A1",
+  "gist": "Keir Starmer stepped down as prime minister after Nigel Farage's Reform party overtook Labour and voters turned against him. Andy Burnham, a popular, charismatic former mayor, is expected to take over — but Britain's deep problems (big debt, weak growth) remain, and his policies may not differ much. The article's point: charisma alone won't be enough.",
+  "body": [[{
+    "fr": "Keir Starmer {{démissionne|resigns, steps down}}.",
+    "bd": {
+      "meaning": "Keir Starmer resigns.",
+      "chunks": [["Keir Starmer démissionne", "Keir Starmer resigns — present tense for a fresh event"]],
+      "key": "<b>démissionner = 'to resign'.</b> The present tense is the simplest way to report news: 'Starmer resigns'."
+    }
+  }, {
+    "fr": "Il {{n'est plus|is no longer}} Premier ministre.",
+    "bd": {
+      "meaning": "He is no longer Prime Minister.",
+      "chunks": [["Il n'est plus", "he is no longer (the ne...plus sandwich)"], ["Premier ministre", "Prime Minister"]],
+      "key": "<b>A new sandwich filling:</b> <span class='bd-fr-i'>ne ... plus</span> = 'no longer / not anymore' — same shape as ne...pas, different word. ne becomes n' before the vowel."
+    }
+  }], [{
+    "fr": "Le parti de Nigel Farage, {{Reform|Reform (a party)}}, est très {{populaire|popular}}.",
+    "bd": {
+      "meaning": "Nigel Farage's party, Reform, is very popular.",
+      "chunks": [["Le parti de Nigel Farage", "Nigel Farage's party (French: 'the party OF Farage')"], ["est très populaire", "is very popular"]],
+      "key": "<b>Possession with 'de':</b> French has no 's. 'Farage's party' becomes <span class='bd-fr-i'>le parti de Nigel Farage</span>, 'the party of Farage'."
+    }
+  }, {
+    "fr": "C'est un parti {{contre l'immigration|against immigration}}.",
+    "bd": {
+      "meaning": "It's a party against immigration.",
+      "chunks": [["C'est", "it is / that's (a fixed phrase)"], ["un parti contre l'immigration", "a party against immigration"]],
+      "key": "<b>c'est = 'it is / this is'</b> — the go-to set phrase for describing or identifying something."
+    }
+  }, {
+    "fr": "{{Beaucoup de gens|many people}} {{ne veulent plus|no longer want}} de Starmer.",
+    "bd": {
+      "meaning": "Many people no longer want Starmer.",
+      "chunks": [["Beaucoup de gens", "many people"], ["ne veulent plus de", "no longer want (ne...plus around 'veulent')"], ["Starmer", "Starmer"]],
+      "key": "<b>ne ... plus once more:</b> <span class='bd-fr-i'>ne veulent plus</span> = 'don't want anymore'. The sandwich wraps the verb <span class='bd-fr-i'>veulent</span>."
+    }
+  }], [{
+    "fr": "Le Royaume-Uni {{a beaucoup de problèmes|has many problems}}.",
+    "bd": {
+      "meaning": "The UK has many problems.",
+      "chunks": [["Le Royaume-Uni a", "the UK has"], ["beaucoup de problèmes", "many problems (beaucoup de = a lot of)"]],
+      "key": "<b>beaucoup de = 'a lot of / many'</b> — always with 'de', never 'des': <span class='bd-fr-i'>beaucoup de problèmes</span>."
+    }
+  }, {
+    "fr": "La {{croissance|growth}} est {{faible|weak}}.",
+    "bd": {
+      "meaning": "Growth is weak.",
+      "chunks": [["La croissance", "growth (French keeps 'the': la croissance)"], ["est faible", "is weak"]],
+      "key": "<b>French keeps 'the' for general ideas:</b> <span class='bd-fr-i'>la croissance</span> = just 'growth', not 'the growth'."
+    }
+  }, {
+    "fr": "La {{dette|debt}} est très {{grande|big}}.",
+    "bd": {
+      "meaning": "The debt is very big.",
+      "chunks": [["La dette", "the debt"], ["est très grande", "is very big ('grande' takes -e because 'dette' is feminine)"]],
+      "key": "<b>Adjective agreement:</b> <span class='bd-fr-i'>dette</span> is feminine, so <span class='bd-fr-i'>grand</span> becomes <span class='bd-fr-i'>grande</span>."
+    }
+  }], [{
+    "fr": "En dix ans, le pays {{a eu|had}} six Premiers ministres.",
+    "bd": {
+      "meaning": "In ten years, the country has had six prime ministers.",
+      "chunks": [["En dix ans", "in ten years"], ["le pays a eu", "the country has had (a eu = avoir + the past form of avoir itself)"], ["six Premiers ministres", "six prime ministers"]],
+      "key": "<b>Even 'to have' has a past:</b> <span class='bd-fr-i'>a eu</span> = 'has had / had' (avoir + eu)."
+    }
+  }, {
+    "fr": "Bientôt, il va {{avoir|have}} un {{septième|seventh}} Premier ministre.",
+    "bd": {
+      "meaning": "Soon, it's going to have a seventh prime minister.",
+      "chunks": [["Bientôt", "soon"], ["il va avoir", "it's going to have (aller + plain verb)"], ["un septième Premier ministre", "a seventh prime minister"]],
+      "key": "<b>aller + plain verb future:</b> <span class='bd-fr-i'>va avoir</span> = 'is going to have'. <span class='bd-fr-i'>septième</span> = 'seventh' (numbers add -ième)."
+    }
+  }], [{
+    "fr": "Le {{nouveau chef|new leader}} va probablement {{être|be}} Andy Burnham.",
+    "bd": {
+      "meaning": "The new leader will probably be Andy Burnham.",
+      "chunks": [["Le nouveau chef", "the new leader ('nouveau' comes BEFORE the noun)"], ["va probablement être", "is probably going to be (aller + plain verb, with 'probablement' slipped in)"], ["Andy Burnham", "Andy Burnham"]],
+      "key": "<b>'nouveau' goes before the noun</b> — one of the small group that do. And the future is <span class='bd-fr-i'>va être</span> = 'is going to be'."
+    }
+  }, {
+    "fr": "Il est {{ancien maire|former mayor}} de Manchester.",
+    "bd": {
+      "meaning": "He is the former mayor of Manchester.",
+      "chunks": [["Il est", "he is"], ["ancien maire", "former mayor ('ancien' before the noun = 'former')"], ["de Manchester", "of Manchester"]],
+      "key": "<b>Position changes meaning:</b> <span class='bd-fr-i'>ancien maire</span> (before) = 'former mayor'; <span class='bd-fr-i'>un bâtiment ancien</span> (after) = 'an old building'."
+    }
+  }, {
+    "fr": "Il est populaire et {{charismatique|charismatic}}.",
+    "bd": {
+      "meaning": "He is popular and charismatic.",
+      "chunks": [["Il est populaire", "he is popular"], ["et charismatique", "and charismatic"]],
+      "key": "<b>Two easy cognates:</b> <span class='bd-fr-i'>populaire</span>, <span class='bd-fr-i'>charismatique</span> — both end in -e and don't change for gender."
+    }
+  }], [{
+    "fr": "Mais les problèmes {{restent|stay, remain}}.",
+    "bd": {
+      "meaning": "But the problems remain.",
+      "chunks": [["Mais", "but"], ["les problèmes restent", "the problems remain / stay"]],
+      "key": "<b>rester = 'to stay / remain'</b> — a false friend: it does NOT mean 'to rest'. Plural subject, so <span class='bd-fr-i'>restent</span>."
+    }
+  }, {
+    "fr": "Sa {{politique|policy}} {{ne va peut-être pas|maybe won't}} beaucoup changer.",
+    "bd": {
+      "meaning": "His policy may not change much.",
+      "chunks": [["Sa politique", "his policy (sa = his/her)"], ["ne va peut-être pas", "is maybe not going to (ne...pas around 'va', with 'peut-être' = maybe inside)"], ["beaucoup changer", "change much"]],
+      "key": "<b>Negating the aller-future:</b> the <span class='bd-fr-i'>ne ... pas</span> wraps <span class='bd-fr-i'>va</span> (the helper), not the plain verb: <span class='bd-fr-i'>ne va pas changer</span> = 'is not going to change'."
+    }
+  }], [{
+    "fr": "Le {{charisme|charisma}} {{ne suffit pas|is not enough}}.",
+    "bd": {
+      "meaning": "Charisma is not enough.",
+      "chunks": [["Le charisme", "charisma"], ["ne suffit pas", "is not enough (ne...pas around 'suffit', from suffire = to be enough)"]],
+      "key": "<b>The ne ... pas sandwich</b> once more, around <span class='bd-fr-i'>suffit</span>: 'is not enough'. Learn the shape once, spot it everywhere."
+    }
+  }, {
+    "fr": "Burnham {{doit|must}} {{obtenir des résultats|deliver results}}.",
+    "bd": {
+      "meaning": "Burnham must deliver results.",
+      "chunks": [["Burnham doit", "Burnham must / has to (from devoir)"], ["obtenir des résultats", "get results (obtenir = to get / obtain)"]],
+      "key": "<b>devoir + plain verb = must / have to:</b> <span class='bd-fr-i'>doit obtenir</span> = 'must get'. The helper conjugates; the second verb stays plain."
+    }
+  }]],
+  "grammar": [{
+    "fr": "ne ... pas  /  ne ... plus",
+    "en": "<b>The negation sandwich and its cousin.</b> <span class='fr'>ne ... pas</span> = 'not'; <span class='fr'>ne ... plus</span> = 'no longer'. Both wrap the verb (n'est plus, ne veulent plus, ne suffit pas)."
+  }, {
+    "fr": "va être / va avoir / va changer",
+    "en": "<b>aller + plain verb = the near future</b>, used all through this story to talk about what's coming. Only <span class='fr'>aller</span> changes."
+  }, {
+    "fr": "nouveau chef / ancien maire",
+    "en": "<b>A few adjectives go BEFORE the noun</b> (nouveau, ancien, grand, bon). And <span class='fr'>ancien</span> even shifts meaning by position: before = 'former', after = 'old / ancient'."
+  }],
+  "quiz": {
+    "q": "Pourquoi le charisme ne suffit pas ?",
+    "a": "Parce que les problèmes du Royaume-Uni (la dette, la croissance faible) restent. (Because the UK's problems — debt, weak growth — remain.)"
+  },
+  "flag": "Also compressed hard from a long opinion piece: I dropped Reform's poll numbers, the debt figure (94% of GDP), the nicknames and the magazine jab at Starmer, and kept it neutral rather than carrying the article's editorial tone. One register note: <span class='fr'>ne veulent plus de Starmer</span> is natural but a touch colloquial; <span class='fr'>ne soutiennent plus Starmer</span> ('no longer support') is the more standard news phrasing."
+}, {
+  "id": "prediction-markets",
+  "chip": "Parier sur le futur",
+  "kicker": "Économie · Marchés",
+  "title": "Des applications pour parier sur le futur",
+  "level": "A1",
+  "gist": "On prediction-market apps, people bet real money on future events like politics and sport — and they're booming, with even Meta building one. But they're controversial: some people bet using secret information, and others say it's really just gambling. The economist Al Roth, a Nobel Prize winner, argues that insider betting matters less here than on the stock market, worries most about powerful Washington insiders betting, and suggests apps let users cap their own losses.",
+  "body": [[{
+    "fr": "Sur les {{marchés de prédiction|prediction markets}}, les gens {{parient|bet (from parier)}} de l'argent.",
+    "bd": {
+      "meaning": "On prediction markets, people bet money.",
+      "chunks": [["Sur les marchés de prédiction", "on prediction markets (un marché = a market)"], ["les gens parient", "people bet (parier = to bet)"], ["de l'argent", "money (de l' = 'some', before a vowel)"]],
+      "key": "<b>The little words: <span class='bd-fr-i'>de l'</span> = 'some'.</b> Before <span class='bd-fr-i'>argent</span> (money) French slips in <span class='bd-fr-i'>de l'</span> where English says nothing."
+    }
+  }, {
+    "fr": "Ils parient sur le {{futur|future}} : la {{politique|politics}}, le {{sport|sport}}.",
+    "bd": {
+      "meaning": "They bet on the future: politics, sport.",
+      "chunks": [["Ils parient sur", "they bet on"], ["le futur", "the future"], ["la politique, le sport", "politics, sport — le / la still tag each noun"]],
+      "key": "<b>le / la = 'the'.</b> French keeps <span class='bd-fr-i'>le</span> or <span class='bd-fr-i'>la</span> even for general ideas: <span class='bd-fr-i'>la politique</span>, <span class='bd-fr-i'>le sport</span>."
+    }
+  }, {
+    "fr": "Ces {{applications|apps}} sont très {{populaires|popular}} aujourd'hui.",
+    "bd": {
+      "meaning": "These apps are very popular today.",
+      "chunks": [["Ces applications", "these apps"], ["sont très populaires", "are very popular — populaires takes -s to match applications"], ["aujourd'hui", "today"]],
+      "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>applications</span> is plural, so <span class='bd-fr-i'>populaires</span> adds an -s to match."
+    }
+  }, {
+    "fr": "{{Meta veut|Meta wants}} faire une application comme ça aussi.",
+    "bd": {
+      "meaning": "Meta wants to make an app like that too.",
+      "chunks": [["Meta veut", "Meta wants (vouloir = to want)"], ["faire une application", "to make an app — faire stays plain after veut"], ["comme ça aussi", "like that too"]],
+      "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veut</span> (wants) changes with the subject; the next verb <span class='bd-fr-i'>faire</span> stays plain."
+    }
+  }], [{
+    "fr": "Mais il y a un {{problème|problem}}.",
+    "bd": {
+      "meaning": "But there is a problem.",
+      "chunks": [["Mais", "but"], ["il y a", "there is / there are — a fixed phrase"], ["un problème", "a problem"]],
+      "key": "<b>il y a = 'there is / are'.</b> A set phrase — don't read it word for word as 'he has there'."
+    }
+  }, {
+    "fr": "Parfois, les gens parient avec des {{informations secrètes|secret information}}.",
+    "bd": {
+      "meaning": "Sometimes people bet with secret information.",
+      "chunks": [["Parfois", "sometimes"], ["les gens parient avec", "people bet with"], ["des informations secrètes", "secret information — secrètes comes AFTER the noun and takes -s"]],
+      "key": "<b>Adjective after the noun, and agreeing.</b> <span class='bd-fr-i'>informations secrètes</span>: the describing word follows the noun and adds -s for the plural."
+    }
+  }, {
+    "fr": "D'autres personnes disent que c'est seulement un {{jeu d'argent|gambling ('a money game')}}.",
+    "bd": {
+      "meaning": "Other people say it's just gambling.",
+      "chunks": [["D'autres personnes disent que", "other people say that (dire = to say)"], ["c'est seulement", "it's only / just"], ["un jeu d'argent", "gambling (literally 'a money game')"]],
+      "key": "<b>c'est = 'it is / that's'.</b> The everyday set phrase for pointing at something: <span class='bd-fr-i'>c'est seulement un jeu</span>."
+    }
+  }], [{
+    "fr": "Un {{économiste|economist}} parle de ce problème.",
+    "bd": {
+      "meaning": "An economist talks about this problem.",
+      "chunks": [["Un économiste", "an economist"], ["parle de", "talks about (parler de = to talk about)"], ["ce problème", "this problem"]],
+      "key": "<b>parler <span class='bd-fr-i'>de</span> = 'to talk <span class='bd-fr-i'>about</span>'.</b> Many French verbs pin on a small word like <span class='bd-fr-i'>de</span> — learn the pair together."
+    }
+  }, {
+    "fr": "Il s'appelle Al Roth et il a {{gagné|won (from gagner)}} un prix Nobel.",
+    "bd": {
+      "meaning": "His name is Al Roth and he won a Nobel Prize.",
+      "chunks": [["Il s'appelle Al Roth", "his name is Al Roth (literally 'he calls himself')"], ["il a gagné", "he won"], ["un prix Nobel", "a Nobel Prize"]],
+      "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a gagné</span> = 'won': <span class='bd-fr-i'>a</span> (from avoir) + the past form <span class='bd-fr-i'>gagné</span>. Your 'past = avoir/être + verb' key."
+    }
+  }, {
+    "fr": "Pour lui, certains marchés {{choquent|shock}} les gens.",
+    "bd": {
+      "meaning": "For him, some markets shock people.",
+      "chunks": [["Pour lui", "for him"], ["certains marchés", "some / certain markets"], ["choquent les gens", "shock people — the -ent ending marks a plural subject"]],
+      "key": "<b>-ent = a plural subject.</b> <span class='bd-fr-i'>certains marchés</span> is plural, so the verb ends in silent <span class='bd-fr-i'>-ent</span> (it sounds the same as the singular)."
+    }
+  }], [{
+    "fr": "Dans la {{bourse|stock market}}, ce problème est très grave.",
+    "bd": {
+      "meaning": "On the stock market, this problem is very serious.",
+      "chunks": [["Dans la bourse", "on / in the stock market"], ["ce problème est", "this problem is"], ["très grave", "very serious"]],
+      "key": "<b>Two ways to say 'is': c'est vs est.</b> With a named subject (<span class='bd-fr-i'>ce problème</span>) use <span class='bd-fr-i'>est</span>; the bare 'it is' set phrase is <span class='bd-fr-i'>c'est</span>."
+    }
+  }, {
+    "fr": "Mais pour ces applications, Al Roth pense que c'est {{moins grave|less serious}}.",
+    "bd": {
+      "meaning": "But for these apps, Al Roth thinks it's less serious.",
+      "chunks": [["Mais pour ces applications", "but for these apps"], ["Al Roth pense que", "Al Roth thinks that (penser que = to think that)"], ["c'est moins grave", "it's less serious"]],
+      "key": "<b>moins + adjective = 'less ___'.</b> <span class='bd-fr-i'>moins grave</span> = 'less serious' — the easy way to compare with no special word."
+    }
+  }], [{
+    "fr": "Al Roth a peur d'une autre chose.",
+    "bd": {
+      "meaning": "Al Roth is afraid of another thing.",
+      "chunks": [["Al Roth a peur de", "Al Roth is afraid of (avoir peur de = to be afraid of)"], ["une autre chose", "another thing (de → d' before a vowel)"]],
+      "key": "<b>avoir peur de = 'to be afraid of'.</b> French says 'has fear of' — <span class='bd-fr-i'>a peur de</span> — using avoir where English uses 'to be'."
+    }
+  }, {
+    "fr": "Il n'aime pas quand les gens {{puissants|powerful}} de Washington parient.",
+    "bd": {
+      "meaning": "He doesn't like it when powerful people from Washington bet.",
+      "chunks": [["Il n'aime pas", "he doesn't like — the ne…pas sandwich around aime; ne → n' before a vowel"], ["quand les gens puissants", "when the powerful people — puissants comes after the noun"], ["de Washington parient", "from Washington bet"]],
+      "key": "<b>Negation sandwich: ne … pas.</b> It wraps the verb: <span class='bd-fr-i'>n'aime pas</span> = 'does not like'."
+    }
+  }], [{
+    "fr": "Al Roth a une idée pour {{aider|help}} les gens.",
+    "bd": {
+      "meaning": "Al Roth has an idea to help people.",
+      "chunks": [["Al Roth a une idée", "Al Roth has an idea"], ["pour aider les gens", "to help / in order to help people"]],
+      "key": "<b>pour + plain verb = 'in order to'.</b> After <span class='bd-fr-i'>pour</span> the verb stays plain: <span class='bd-fr-i'>aider</span>, not conjugated."
+    }
+  }, {
+    "fr": "L'application peut {{fixer une limite|set a limit}}.",
+    "bd": {
+      "meaning": "The app can set a limit.",
+      "chunks": [["L'application peut", "the app can (pouvoir = can / to be able to)"], ["fixer une limite", "set a limit — fixer stays plain after peut"]],
+      "key": "<b>Helper + plain verb, again.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>fixer</span> stays in its plain form."
+    }
+  }, {
+    "fr": "Par exemple : « Quand je {{perds|lose (from perdre)}} cent dollars, arrête. »",
+    "bd": {
+      "meaning": "For example: “When I lose a hundred dollars, stop.”",
+      "chunks": [["Par exemple", "for example"], ["quand je perds cent dollars", "when I lose a hundred dollars (perdre = to lose)"], ["arrête", "stop! (a command)"]],
+      "key": "<b>Giving an order: the bare verb.</b> <span class='bd-fr-i'>arrête</span> = 'stop!' — a command drops the subject and just uses the verb form."
+    }
+  }, {
+    "fr": "C'est comme un {{barman|bartender}} : il arrête de servir une personne qui a {{trop bu|drunk too much}}.",
+    "bd": {
+      "meaning": "It's like a bartender: he stops serving a person who has drunk too much.",
+      "chunks": [["C'est comme un barman", "it's like a bartender"], ["il arrête de servir", "he stops serving (arrêter de + plain verb)"], ["une personne qui a trop bu", "a person who has drunk too much (a bu = past of boire)"]],
+      "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a trop bu</span> = 'has drunk too much': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>bu</span> (from boire)."
+    }
+  }]],
+  "grammar": [{
+    "fr": "il a gagné un prix Nobel",
+    "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> (from avoir) changes with the subject and the main verb takes its past form <span class='fr'>gagné</span>. Your 'past = avoir/être + verb' key."
+  }, {
+    "fr": "Meta veut faire… / l'application peut fixer…",
+    "en": "<b>helper + plain verb.</b> <span class='fr'>veut</span> and <span class='fr'>peut</span> carry the subject; the next verb (<span class='fr'>faire</span>, <span class='fr'>fixer</span>) stays plain. Your vouloir / pouvoir / devoir helpers all work this way."
+  }, {
+    "fr": "il n'aime pas / ce n'est pas grave",
+    "en": "<b>the ne … pas sandwich.</b> It wraps the verb: <span class='fr'>n'aime pas</span>. Before a vowel <span class='fr'>ne</span> shrinks to <span class='fr'>n'</span>."
+  }],
+  "quiz": {
+    "q": "Quelle est l'idée d'Al Roth pour aider les gens ?",
+    "a": "L'application peut fixer une limite : elle s'arrête quand vous perdez trop d'argent. (The app can set a limit: it stops when you lose too much money.)"
+  },
+  "flag": "<b>marchés de prédiction</b> is clear and understood, but many French writers use <span class='fr'>marchés prédictifs</span> — I chose the more transparent form for you. This was a Q&A interview, compressed into a short neutral retelling: I dropped the DARPA 'terrorist market' example, the wheat-farmer futures analogy, and the fight over whether the C.F.T.C. or the states should regulate. <span class='fr'>certains marchés choquent les gens</span> is my plain stand-in for Roth's idea of 'repugnant markets' — the gist, not a technical match. It's a neutral summary of your article, not my own view on betting."
+}, {
+  "id": "china-ai-jobs",
+  "chip": "L'IA et les emplois",
+  "kicker": "Chine · Économie",
+  "title": "La Chine veut protéger le travail des gens",
+  "level": "A1",
+  "gist": "China uses AI and robots more than almost anywhere, and driverless taxis in the city of Wuhan have already sparked protests from drivers losing work. Fearing public anger — especially now that AI also threatens university graduates — the government is pushing to keep people employed: courts have sided with fired workers, and the state wants AI to help people rather than replace them. It's a state-driven vision, unlike the company-led approach in the United States.",
+  "body": [[{
+    "fr": "En Chine, il y a beaucoup de {{robots|robots}}.",
+    "bd": {
+      "meaning": "In China, there are many robots.",
+      "chunks": [["En Chine", "in China"], ["il y a", "there is / there are — a fixed phrase"], ["beaucoup de robots", "many robots (beaucoup de = a lot of)"]],
+      "key": "<b>il y a = 'there is / are'.</b> One set phrase covers both: <span class='bd-fr-i'>il y a beaucoup de robots</span> = 'there are many robots'."
+    }
+  }, {
+    "fr": "Les robots {{travaillent|work (from travailler)}} dans les {{usines|factories}}.",
+    "bd": {
+      "meaning": "The robots work in the factories.",
+      "chunks": [["Les robots travaillent", "the robots work — the -ent ending marks the plural subject"], ["dans les usines", "in the factories"]],
+      "key": "<b>-ent = a plural subject.</b> <span class='bd-fr-i'>robots</span> is plural, so <span class='bd-fr-i'>travaillent</span> ends in silent <span class='bd-fr-i'>-ent</span> (it sounds like <span class='bd-fr-i'>travaille</span>)."
+    }
+  }, {
+    "fr": "Il y a aussi des taxis {{sans chauffeur|driverless / without a driver}}.",
+    "bd": {
+      "meaning": "There are also driverless taxis.",
+      "chunks": [["Il y a aussi", "there are also"], ["des taxis", "some taxis"], ["sans chauffeur", "without a driver (sans = without)"]],
+      "key": "<b>sans = 'without'.</b> A handy little word: <span class='bd-fr-i'>sans chauffeur</span> = 'without a driver' — and you don't add a word for 'a'."
+    }
+  }], [{
+    "fr": "Dans la ville de Wuhan, les {{chauffeurs de taxi|taxi drivers}} ne sont pas contents.",
+    "bd": {
+      "meaning": "In the city of Wuhan, the taxi drivers are not happy.",
+      "chunks": [["Dans la ville de Wuhan", "in the city of Wuhan"], ["les chauffeurs de taxi", "the taxi drivers"], ["ne sont pas contents", "are not happy — ne…pas wraps sont; contents takes -s (plural)"]],
+      "key": "<b>Negation sandwich: ne … pas.</b> It wraps the verb: <span class='bd-fr-i'>ne sont pas</span> = 'are not'."
+    }
+  }, {
+    "fr": "Les robots-taxis {{prennent|take (from prendre)}} leur travail.",
+    "bd": {
+      "meaning": "The robot-taxis take their jobs.",
+      "chunks": [["Les robots-taxis prennent", "the robot-taxis take (prendre = to take)"], ["leur travail", "their work / their jobs"]],
+      "key": "<b>leur = 'their'.</b> A possessive little word: <span class='bd-fr-i'>leur travail</span> = 'their work'."
+    }
+  }], [{
+    "fr": "Le {{gouvernement|government}} a peur.",
+    "bd": {
+      "meaning": "The government is afraid.",
+      "chunks": [["Le gouvernement", "the government"], ["a peur", "is afraid (avoir peur = to be afraid, literally 'has fear')"]],
+      "key": "<b>avoir peur = 'to be afraid'.</b> French uses <span class='bd-fr-i'>a peur</span> ('has fear') where English uses 'is afraid'."
+    }
+  }, {
+    "fr": "L'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}} peut prendre le travail des gens.",
+    "bd": {
+      "meaning": "Artificial intelligence can take people's jobs.",
+      "chunks": [["L'intelligence artificielle", "artificial intelligence — the adjective comes AFTER the noun"], ["peut prendre", "can take (pouvoir + plain verb)"], ["le travail des gens", "people's work (des = de + les)"]],
+      "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>prendre</span> stays plain."
+    }
+  }, {
+    "fr": "Et ça peut {{créer|create}} de la {{colère|anger}}.",
+    "bd": {
+      "meaning": "And that can create anger.",
+      "chunks": [["Et ça peut créer", "and that can create"], ["de la colère", "anger (de la = 'some', before a feminine word)"]],
+      "key": "<b>de la = 'some' (feminine).</b> Before <span class='bd-fr-i'>colère</span> (a feminine word) French adds <span class='bd-fr-i'>de la</span> where English says nothing."
+    }
+  }], [{
+    "fr": "Avant, l'IA a surtout {{touché|affected / hit}} les {{ouvriers|blue-collar workers}}.",
+    "bd": {
+      "meaning": "Before, AI mainly affected factory workers.",
+      "chunks": [["Avant", "before / in the past"], ["l'IA a surtout touché", "AI mainly affected (a touché = past of toucher)"], ["les ouvriers", "the (manual / factory) workers"]],
+      "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a touché</span> = 'affected': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>touché</span>."
+    }
+  }, {
+    "fr": "Maintenant, l'IA touche aussi les {{jeunes diplômés|young graduates}}.",
+    "bd": {
+      "meaning": "Now, AI also affects young graduates.",
+      "chunks": [["Maintenant", "now"], ["l'IA touche aussi", "AI also affects (present tense)"], ["les jeunes diplômés", "young graduates — jeune is one of the few adjectives placed BEFORE the noun"]],
+      "key": "<b>Present tense for 'now'.</b> <span class='bd-fr-i'>touche</span> ('affects') — the plain present is the simplest way to say what happens now, against the past <span class='bd-fr-i'>a touché</span> just before."
+    }
+  }], [{
+    "fr": "La Chine {{veut|wants}} être le numéro un de l'IA.",
+    "bd": {
+      "meaning": "China wants to be number one in AI.",
+      "chunks": [["La Chine veut", "China wants (vouloir = to want)"], ["être le numéro un", "to be number one — être stays plain after veut"], ["de l'IA", "of / in AI"]],
+      "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veut</span> (wants) changes with the subject; the next verb <span class='bd-fr-i'>être</span> stays plain."
+    }
+  }, {
+    "fr": "Mais la Chine veut aussi {{garder|keep}} les gens au travail.",
+    "bd": {
+      "meaning": "But China also wants to keep people in work.",
+      "chunks": [["Mais la Chine veut aussi", "but China also wants"], ["garder les gens", "to keep people (garder = to keep)"], ["au travail", "at / in work (au = à + le)"]],
+      "key": "<b>au = à + le.</b> The two words squash together: <span class='bd-fr-i'>à + le travail</span> → <span class='bd-fr-i'>au travail</span>."
+    }
+  }], [{
+    "fr": "Dans son {{plan|plan}}, le gouvernement {{promet|promises}} d'aider les {{travailleurs|workers}}.",
+    "bd": {
+      "meaning": "In its plan, the government promises to help workers.",
+      "chunks": [["Dans son plan", "in its plan"], ["le gouvernement promet", "the government promises (promettre = to promise)"], ["d'aider les travailleurs", "to help the workers (promettre de + plain verb; de → d')"]],
+      "key": "<b>promettre <span class='bd-fr-i'>de</span> + plain verb.</b> Some verbs link to the next one with <span class='bd-fr-i'>de</span>: <span class='bd-fr-i'>promet d'aider</span> = 'promises to help'."
+    }
+  }, {
+    "fr": "Pour la Chine, l'IA {{doit|must}} aider les gens, pas les {{remplacer|replace them}}.",
+    "bd": {
+      "meaning": "For China, AI must help people, not replace them.",
+      "chunks": [["Pour la Chine", "for China"], ["l'IA doit aider", "AI must help (devoir + plain verb)"], ["pas les remplacer", "not replace them (les = 'them', sits before the verb)"]],
+      "key": "<b>devoir = 'must'.</b> <span class='bd-fr-i'>doit</span> carries the subject and the next verb <span class='bd-fr-i'>aider</span> stays plain — your pouvoir / vouloir / devoir helper family."
+    }
+  }], [{
+    "fr": "Une {{entreprise|company}} a {{remplacé|replaced}} un homme par une IA.",
+    "bd": {
+      "meaning": "A company replaced a man with an AI.",
+      "chunks": [["Une entreprise", "a company"], ["a remplacé un homme", "replaced a man (a remplacé = past of remplacer)"], ["par une IA", "with / by an AI"]],
+      "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a remplacé</span> = 'replaced': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>remplacé</span>."
+    }
+  }, {
+    "fr": "Un {{tribunal|court}} a dit : c'est {{illégal|illegal}}.",
+    "bd": {
+      "meaning": "A court said: it's illegal.",
+      "chunks": [["Un tribunal a dit", "a court said (a dit = past of dire)"], ["c'est illégal", "it's illegal (c'est = the set phrase 'it is')"]],
+      "key": "<b>c'est = 'it is / that's'.</b> The everyday set phrase: <span class='bd-fr-i'>c'est illégal</span> = 'it's illegal'."
+    }
+  }], [{
+    "fr": "Il y a deux visions {{différentes|different}}.",
+    "bd": {
+      "meaning": "There are two different visions.",
+      "chunks": [["Il y a deux visions", "there are two visions"], ["différentes", "different — takes -es to match visions (feminine plural)"]],
+      "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>visions</span> is feminine plural, so <span class='bd-fr-i'>différentes</span> adds <span class='bd-fr-i'>-es</span>."
+    }
+  }, {
+    "fr": "Aux {{États-Unis|United States}}, les entreprises {{décident|decide}}.",
+    "bd": {
+      "meaning": "In the United States, the companies decide.",
+      "chunks": [["Aux États-Unis", "in the United States (aux = à + les)"], ["les entreprises décident", "the companies decide — -ent marks the plural subject"]],
+      "key": "<b>aux = à + les.</b> Like <span class='bd-fr-i'>au</span>, but plural: <span class='bd-fr-i'>à + les États-Unis</span> → <span class='bd-fr-i'>aux États-Unis</span>."
+    }
+  }, {
+    "fr": "En Chine, c'est le gouvernement qui décide.",
+    "bd": {
+      "meaning": "In China, it's the government that decides.",
+      "chunks": [["En Chine", "in China"], ["c'est le gouvernement qui décide", "it's the government that decides (c'est … qui = 'it's … that')"]],
+      "key": "<b>c'est … qui = 'it's … that'.</b> A frame to spotlight who does something: <span class='bd-fr-i'>c'est le gouvernement qui décide</span>."
+    }
+  }]],
+  "grammar": [{
+    "fr": "l'IA a touché / a remplacé / a dit",
+    "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> (from avoir) plus a past form: <span class='fr'>a touché</span>, <span class='fr'>a remplacé</span>, <span class='fr'>a dit</span>. Your 'past = avoir/être + verb' key."
+  }, {
+    "fr": "l'IA peut prendre / veut être / doit aider",
+    "en": "<b>helper + plain verb.</b> <span class='fr'>peut</span>, <span class='fr'>veut</span>, <span class='fr'>doit</span> carry the subject; the second verb stays plain. Your pouvoir / vouloir / devoir family."
+  }, {
+    "fr": "au travail / aux États-Unis / des gens",
+    "en": "<b>the squashed little words.</b> <span class='fr'>à + le → au</span>, <span class='fr'>à + les → aux</span>, <span class='fr'>de + les → des</span>. They merge automatically — you can't keep them apart."
+  }],
+  "quiz": {
+    "q": "Pourquoi le gouvernement chinois a peur de l'IA ?",
+    "a": "Parce que l'IA peut prendre le travail des gens et créer de la colère. (Because AI can take people's jobs and create anger.)"
+  },
+  "flag": "Compressed hard from a longer analysis piece: I dropped 'A.I. Marxism', the five-year-plan detail, the Brookings expert, and the specific ministries and insurance proposals, keeping the core story. It's a neutral retelling of your article, not a view on China. Two phrasing notes: <span class='fr'>garder les gens au travail</span> ('keep people in work') reads fine but is my own simplification of 'keeping humans at the core of the economy'; and <span class='fr'>l'IA touche les ouvriers</span> uses <span class='fr'>toucher</span> ('to affect / hit') in the ordinary news sense — natural, though a native might also say <span class='fr'>l'IA menace les emplois</span> ('threatens jobs')."
+}, {
+  "id": "fed-independence",
+  "chip": "Qui contrôle les agences ?",
+  "kicker": "États-Unis · Justice",
+  "title": "Le président gagne plus de pouvoir sur les agences",
+  "level": "A1",
+  "gist": "Some U.S. agencies, like the central bank (the Fed), are meant to be independent of the president. The Supreme Court blocked President Trump from immediately firing Fed governor Lisa Cook — but in a linked ruling it gave presidents much more power to remove the heads of other independent agencies. For companies that means the regulatory rules may now swing with each new president.",
+  "body": [[{
+    "fr": "Aux {{États-Unis|United States}}, certaines {{agences|agencies}} sont {{indépendantes|independent}}.",
+    "bd": {
+      "meaning": "In the United States, some agencies are independent.",
+      "chunks": [["Aux États-Unis", "in the United States (aux = à + les)"], ["certaines agences", "some / certain agencies (agence is feminine)"], ["sont indépendantes", "are independent — indépendantes takes -es to match agences (feminine plural)"]],
+      "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>agences</span> is feminine plural, so <span class='bd-fr-i'>indépendantes</span> ends in <span class='bd-fr-i'>-es</span>."
+    }
+  }, {
+    "fr": "Le président ne {{contrôle|controls}} pas ces agences.",
+    "bd": {
+      "meaning": "The president doesn't control these agencies.",
+      "chunks": [["Le président", "the president"], ["ne contrôle pas", "doesn't control — the ne…pas sandwich around contrôle"], ["ces agences", "these agencies"]],
+      "key": "<b>Negation sandwich: ne … pas.</b> It wraps the verb: <span class='bd-fr-i'>ne contrôle pas</span> = 'does not control'."
+    }
+  }, {
+    "fr": "La {{banque centrale|central bank (the Fed)}} est une agence indépendante.",
+    "bd": {
+      "meaning": "The central bank is an independent agency.",
+      "chunks": [["La banque centrale", "the central bank (the U.S. 'Fed')"], ["est une agence indépendante", "is an independent agency"]],
+      "key": "<b>Adjective after the noun.</b> <span class='bd-fr-i'>indépendante</span> follows <span class='bd-fr-i'>agence</span> and agrees with it (feminine singular)."
+    }
+  }], [{
+    "fr": "Le président Trump veut {{renvoyer|dismiss / fire}} Lisa Cook.",
+    "bd": {
+      "meaning": "President Trump wants to fire Lisa Cook.",
+      "chunks": [["Le président Trump veut", "President Trump wants (vouloir = to want)"], ["renvoyer Lisa Cook", "to fire Lisa Cook — renvoyer stays plain after veut"]],
+      "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veut</span> (wants) changes with the subject; the next verb <span class='bd-fr-i'>renvoyer</span> stays plain."
+    }
+  }, {
+    "fr": "Elle {{travaille|works}} à la banque centrale.",
+    "bd": {
+      "meaning": "She works at the central bank.",
+      "chunks": [["Elle travaille", "she works (travailler = to work)"], ["à la banque centrale", "at the central bank"]],
+      "key": "<b>à = 'at / to'.</b> <span class='bd-fr-i'>à la banque</span> = 'at the bank'. (With <span class='bd-fr-i'>le</span> it becomes <span class='bd-fr-i'>au</span>; with <span class='bd-fr-i'>la</span> it stays <span class='bd-fr-i'>à la</span>.)"
+    }
+  }], [{
+    "fr": "La {{Cour suprême|Supreme Court}} dit non.",
+    "bd": {
+      "meaning": "The Supreme Court says no.",
+      "chunks": [["La Cour suprême", "the Supreme Court"], ["dit non", "says no (dire = to say)"]],
+      "key": "<b>dire = 'to say'.</b> <span class='bd-fr-i'>dit</span> = 'says' — a top-frequency verb; its past <span class='bd-fr-i'>a dit</span> ('said') turns up further down."
+    }
+  }, {
+    "fr": "Pour le moment, Trump ne peut pas renvoyer Lisa Cook.",
+    "bd": {
+      "meaning": "For now, Trump cannot fire Lisa Cook.",
+      "chunks": [["Pour le moment", "for now / for the moment"], ["Trump ne peut pas renvoyer", "Trump cannot fire — ne…pas wraps peut; renvoyer stays plain"], ["Lisa Cook", "Lisa Cook"]],
+      "key": "<b>Negation + helper together.</b> <span class='bd-fr-i'>ne peut pas</span> = 'cannot', and the plain verb still follows: <span class='bd-fr-i'>ne peut pas renvoyer</span>."
+    }
+  }], [{
+    "fr": "Mais la Cour {{prend une autre décision|makes another decision}}.",
+    "bd": {
+      "meaning": "But the Court makes another decision.",
+      "chunks": [["Mais la Cour", "but the Court"], ["prend une autre décision", "makes another decision (prendre une décision = to make a decision)"]],
+      "key": "<b>prendre une décision = 'to make a decision'.</b> French <span class='bd-fr-i'>prend</span> ('takes') a decision where English 'makes' one — learn it as a set phrase."
+    }
+  }, {
+    "fr": "Maintenant, le président a {{plus de pouvoir|more power}}.",
+    "bd": {
+      "meaning": "Now, the president has more power.",
+      "chunks": [["Maintenant", "now"], ["le président a", "the president has (avoir = to have)"], ["plus de pouvoir", "more power (plus de = more)"]],
+      "key": "<b>plus de = 'more'.</b> <span class='bd-fr-i'>plus de pouvoir</span> = 'more power' — the mirror of <span class='bd-fr-i'>moins de</span> ('less')."
+    }
+  }, {
+    "fr": "Il peut renvoyer les {{chefs|heads / bosses}} d'autres agences.",
+    "bd": {
+      "meaning": "He can fire the heads of other agencies.",
+      "chunks": [["Il peut renvoyer", "he can fire (pouvoir + plain verb)"], ["les chefs d'autres agences", "the heads of other agencies (de → d' before a vowel)"]],
+      "key": "<b>Helper + plain verb, again.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>renvoyer</span> stays plain."
+    }
+  }], [{
+    "fr": "C'est un grand {{changement|change}}.",
+    "bd": {
+      "meaning": "It's a big change.",
+      "chunks": [["C'est", "it is / that's — the set phrase c'est"], ["un grand changement", "a big change — grand comes BEFORE the noun"]],
+      "key": "<b>A few adjectives go BEFORE the noun.</b> <span class='bd-fr-i'>grand</span> is one: <span class='bd-fr-i'>un grand changement</span> = 'a big change'."
+    }
+  }, {
+    "fr": "Avant, la {{loi|law}} a {{protégé|protected}} ces personnes.",
+    "bd": {
+      "meaning": "Before, the law protected these people.",
+      "chunks": [["Avant", "before / in the past"], ["la loi a protégé", "the law protected (a protégé = past of protéger)"], ["ces personnes", "these people"]],
+      "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a protégé</span> = 'protected': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>protégé</span>. Your 'past = avoir/être + verb' key."
+    }
+  }], [{
+    "fr": "Pour les {{entreprises|companies}}, c'est un problème.",
+    "bd": {
+      "meaning": "For companies, it's a problem.",
+      "chunks": [["Pour les entreprises", "for the companies"], ["c'est un problème", "it's a problem"]],
+      "key": "<b>c'est = 'it is / that's'.</b> The everyday set phrase: <span class='bd-fr-i'>c'est un problème</span> = 'it's a problem'."
+    }
+  }, {
+    "fr": "Les {{règles|rules}} peuvent changer avec {{chaque|each}} président.",
+    "bd": {
+      "meaning": "The rules can change with each president.",
+      "chunks": [["Les règles peuvent changer", "the rules can change (pouvoir + plain verb)"], ["avec chaque président", "with each president (chaque = each)"]],
+      "key": "<b>chaque = 'each / every'.</b> It stays singular: <span class='bd-fr-i'>chaque président</span> = 'each president'."
+    }
+  }, {
+    "fr": "Trump dit : « Ce n'est pas fini. »",
+    "bd": {
+      "meaning": "Trump says: “It's not over.”",
+      "chunks": [["Trump dit", "Trump says"], ["ce n'est pas fini", "it's not over / finished — the ne…pas sandwich around est"]],
+      "key": "<b>ne … pas around c'est.</b> <span class='bd-fr-i'>c'est</span> becomes <span class='bd-fr-i'>ce n'est pas</span>: 'it is' → 'it is not'."
+    }
+  }]],
+  "grammar": [{
+    "fr": "la loi a protégé ces personnes",
+    "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> (from avoir) + a past form <span class='fr'>protégé</span>. Your 'past = avoir/être + verb' key."
+  }, {
+    "fr": "veut renvoyer / peut renvoyer / peuvent changer",
+    "en": "<b>helper + plain verb.</b> <span class='fr'>veut</span>, <span class='fr'>peut</span>, <span class='fr'>peuvent</span> carry the subject; the next verb stays plain. Your pouvoir / vouloir / devoir family."
+  }, {
+    "fr": "ne contrôle pas / ne peut pas / ce n'est pas",
+    "en": "<b>the ne … pas sandwich.</b> It wraps the verb every time: <span class='fr'>ne contrôle pas</span>, <span class='fr'>ne peut pas</span>, <span class='fr'>ce n'est pas</span>."
+  }],
+  "quiz": {
+    "q": "Qu'est-ce que la Cour suprême décide pour Lisa Cook ?",
+    "a": "Pour le moment, Trump ne peut pas la renvoyer. (For now, Trump cannot fire her.)"
+  },
+  "flag": "A legal / political story compressed to A1 and kept strictly neutral — a factual retelling of your article, not a view on the ruling or the people. I dropped the detail: the F.T.C. commissioner's parallel case, the 5–4 split, the mortgage-fraud allegations, and the new Fed chair. Two word choices: <span class='fr'>la banque centrale</span> stands in for 'the Fed', and <span class='fr'>renvoyer</span> ('to send away') is the everyday verb for 'fire' — for removing an official a lawyer might use <span class='fr'>révoquer</span>. <span class='fr'>agence</span> is a fair plain word for these regulators, though the source is more specific."
+}, {
+  "id": "taxing-ai",
+  "chip": "Faut-il taxer l'IA ?",
+  "kicker": "Économie · Technologie",
+  "title": "Des idées pour taxer l'intelligence artificielle",
+  "level": "A1",
+  "gist": "AI is making some people very rich while threatening others' jobs — and if AI replaces workers, the government loses the taxes those wages paid. So proposals to tax AI are multiplying: the state taking a share of AI companies (Bernie Sanders and, vaguely, Trump), taxing the use of AI, or taxing what people consume. Beneath them all sits an unresolved question — what is the actual goal? — and a sci-fi worry about AI no one can control.",
+  "body": [[{
+    "fr": "L'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}} rend certaines personnes très {{riches|rich}}.",
+    "bd": {
+      "meaning": "Artificial intelligence makes some people very rich.",
+      "chunks": [["L'intelligence artificielle", "artificial intelligence — the adjective comes AFTER the noun"], ["rend … très riches", "makes … very rich (rendre + adjective = to make someone ___)"], ["certaines personnes", "some / certain people"]],
+      "key": "<b>rendre + adjective = 'to make ___'.</b> <span class='bd-fr-i'>rend riches</span> = 'makes rich'. Note <span class='bd-fr-i'>riches</span> adds -s to match <span class='bd-fr-i'>personnes</span>."
+    }
+  }, {
+    "fr": "Les grandes {{entreprises|companies}} d'IA {{valent|are worth}} beaucoup d'argent.",
+    "bd": {
+      "meaning": "The big AI companies are worth a lot of money.",
+      "chunks": [["Les grandes entreprises d'IA", "the big AI companies — grandes comes BEFORE the noun"], ["valent beaucoup d'argent", "are worth a lot of money (valoir = to be worth)"]],
+      "key": "<b>grand goes BEFORE the noun.</b> <span class='bd-fr-i'>les grandes entreprises</span> = 'the big companies' — one of the small before-the-noun club."
+    }
+  }], [{
+    "fr": "Mais l'IA peut aussi prendre le travail des gens.",
+    "bd": {
+      "meaning": "But AI can also take people's jobs.",
+      "chunks": [["Mais l'IA peut aussi", "but AI can also"], ["prendre le travail des gens", "take people's work (des = de + les)"]],
+      "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>prendre</span> stays plain."
+    }
+  }, {
+    "fr": "Sans travail, les gens ne {{paient|pay}} pas d'{{impôts|taxes}}.",
+    "bd": {
+      "meaning": "Without work, people don't pay taxes.",
+      "chunks": [["Sans travail", "without work (sans = without)"], ["les gens ne paient pas", "people don't pay — the ne…pas sandwich around paient"], ["d'impôts", "taxes (des → d' after a negative)"]],
+      "key": "<b>A negative turns 'des' into 'de'.</b> After <span class='bd-fr-i'>ne…pas</span>, <span class='bd-fr-i'>des impôts</span> becomes <span class='bd-fr-i'>d'impôts</span> — the same shift as <span class='bd-fr-i'>un</span> → <span class='bd-fr-i'>de</span>."
+    }
+  }, {
+    "fr": "Alors le gouvernement {{perd|loses}} de l'argent.",
+    "bd": {
+      "meaning": "So the government loses money.",
+      "chunks": [["Alors", "so / then"], ["le gouvernement perd", "the government loses (perdre = to lose)"], ["de l'argent", "money (de l' = 'some')"]],
+      "key": "<b>de l' = 'some'.</b> Before <span class='bd-fr-i'>argent</span> (money) French adds <span class='bd-fr-i'>de l'</span> where English says nothing."
+    }
+  }], [{
+    "fr": "Beaucoup de gens veulent {{taxer|tax}} l'IA.",
+    "bd": {
+      "meaning": "Many people want to tax AI.",
+      "chunks": [["Beaucoup de gens veulent", "many people want (vouloir = to want)"], ["taxer l'IA", "to tax AI — taxer stays plain after veulent"]],
+      "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veulent</span> (want) carries the plural subject; <span class='bd-fr-i'>taxer</span> stays plain."
+    }
+  }, {
+    "fr": "Mais comment ? Il y a beaucoup d'{{idées|ideas}}.",
+    "bd": {
+      "meaning": "But how? There are many ideas.",
+      "chunks": [["Mais comment ?", "but how?"], ["Il y a beaucoup d'idées", "there are many ideas (beaucoup de → beaucoup d')"]],
+      "key": "<b>il y a = 'there is / are'.</b> <span class='bd-fr-i'>il y a beaucoup d'idées</span> = 'there are many ideas'."
+    }
+  }], [{
+    "fr": "Première idée : le gouvernement prend une {{partie|part}} des entreprises.",
+    "bd": {
+      "meaning": "First idea: the government takes a part of the companies.",
+      "chunks": [["Première idée", "first idea (première comes before the noun and agrees, feminine)"], ["le gouvernement prend", "the government takes (prendre = to take)"], ["une partie des entreprises", "a part of the companies (des = de + les)"]],
+      "key": "<b>des = de + les.</b> <span class='bd-fr-i'>une partie des entreprises</span> = 'a part of the companies' — the two little words merge."
+    }
+  }, {
+    "fr": "Le {{sénateur|senator}} Bernie Sanders veut une {{taxe|tax}} pour ça.",
+    "bd": {
+      "meaning": "Senator Bernie Sanders wants a tax for that.",
+      "chunks": [["Le sénateur Bernie Sanders veut", "Senator Bernie Sanders wants"], ["une taxe pour ça", "a tax for that (ça = that / this)"]],
+      "key": "<b>ça = 'that / this'.</b> A short everyday word: <span class='bd-fr-i'>pour ça</span> = 'for that'."
+    }
+  }, {
+    "fr": "Le président Trump veut aussi une {{part|share}} pour l'{{État|state}}.",
+    "bd": {
+      "meaning": "President Trump also wants a share for the state.",
+      "chunks": [["Le président Trump veut aussi", "President Trump also wants"], ["une part pour l'État", "a share for the state (l'État = the government / state)"]],
+      "key": "<b>Reusing the same verb.</b> <span class='bd-fr-i'>veut</span> ('wants') serves both Sanders and Trump — French reuses the high-frequency verb rather than reaching for a synonym."
+    }
+  }], [{
+    "fr": "Deuxième idée : {{taxer l'usage|tax the use}} de l'IA.",
+    "bd": {
+      "meaning": "Second idea: tax the use of AI.",
+      "chunks": [["Deuxième idée", "second idea"], ["taxer l'usage de l'IA", "to tax the use of AI (l'usage = the use)"]],
+      "key": "<b>The plain verb as a heading.</b> <span class='bd-fr-i'>taxer</span> ('to tax') stands alone here — the bare, unconjugated form, like English 'to tax'."
+    }
+  }, {
+    "fr": "Comme ça, l'IA {{coûte plus cher|costs more}}.",
+    "bd": {
+      "meaning": "This way, AI costs more.",
+      "chunks": [["Comme ça", "this way / like that"], ["l'IA coûte plus cher", "AI costs more (coûter cher = to be expensive)"]],
+      "key": "<b>plus cher = 'more expensive'.</b> <span class='bd-fr-i'>plus</span> + adjective builds the comparison — the mirror of <span class='bd-fr-i'>moins cher</span> ('cheaper')."
+    }
+  }, {
+    "fr": "Et les gens l'{{utilisent moins|use it less}}.",
+    "bd": {
+      "meaning": "And people use it less.",
+      "chunks": [["Et les gens", "and people"], ["l'utilisent moins", "use it less (l' = 'it', sits before the verb; moins = less)"]],
+      "key": "<b>The object goes BEFORE the verb.</b> <span class='bd-fr-i'>l'utilisent</span> = 'use it' — French puts the little 'it' (<span class='bd-fr-i'>l'</span>) in front of the verb, not after."
+    }
+  }], [{
+    "fr": "Troisième idée : une taxe sur les {{achats|purchases}}.",
+    "bd": {
+      "meaning": "Third idea: a tax on purchases.",
+      "chunks": [["Troisième idée", "third idea"], ["une taxe sur les achats", "a tax on purchases (les achats = shopping / purchases)"]],
+      "key": "<b>sur = 'on'.</b> <span class='bd-fr-i'>une taxe sur les achats</span> = 'a tax on purchases'."
+    }
+  }, {
+    "fr": "Quand on {{achète|buys}} une chose, on paie un peu plus.",
+    "bd": {
+      "meaning": "When you buy something, you pay a little more.",
+      "chunks": [["Quand on achète une chose", "when you buy a thing (on = the general 'you / people')"], ["on paie un peu plus", "you pay a little more"]],
+      "key": "<b>on = 'you / people / we'.</b> The workhorse for people in general: <span class='bd-fr-i'>on achète, on paie</span> = 'you buy, you pay'."
+    }
+  }], [{
+    "fr": "Mais quel est le {{but|goal}} de ces taxes ?",
+    "bd": {
+      "meaning": "But what is the goal of these taxes?",
+      "chunks": [["Mais quel est le but", "but what is the goal (quel est…? = what is…?)"], ["de ces taxes", "of these taxes"]],
+      "key": "<b>Quel est… ? = 'What is… ?'</b> for asking about a thing: <span class='bd-fr-i'>quel est le but ?</span> = 'what is the goal?'"
+    }
+  }, {
+    "fr": "Mais les gens ne sont pas toujours {{d'accord|in agreement}}.",
+    "bd": {
+      "meaning": "But people don't always agree.",
+      "chunks": [["Mais les gens", "but people"], ["ne sont pas toujours d'accord", "don't always agree — ne…pas wraps sont; être d'accord = to agree"]],
+      "key": "<b>être d'accord = 'to agree'.</b> French says 'to be in agreement': <span class='bd-fr-i'>sont d'accord</span>. Here <span class='bd-fr-i'>ne…pas</span> makes it 'do not agree'."
+    }
+  }, {
+    "fr": "Et il y a une grande {{peur|fear}}.",
+    "bd": {
+      "meaning": "And there is a big fear.",
+      "chunks": [["Et il y a", "and there is"], ["une grande peur", "a big fear — grande comes before the noun and agrees (feminine)"]],
+      "key": "<b>grand agrees too.</b> Before a feminine noun it becomes <span class='bd-fr-i'>grande</span>: <span class='bd-fr-i'>une grande peur</span> = 'a big fear'."
+    }
+  }, {
+    "fr": "Si l'IA {{devient|becomes}} trop {{puissante|powerful}}, c'est un très gros problème.",
+    "bd": {
+      "meaning": "If AI becomes too powerful, it's a very big problem.",
+      "chunks": [["Si l'IA devient trop puissante", "if AI becomes too powerful (devenir = to become; puissante is feminine to match l'IA)"], ["c'est un très gros problème", "it's a very big problem"]],
+      "key": "<b>si = 'if'.</b> <span class='bd-fr-i'>si l'IA devient…</span> = 'if AI becomes…' — it sets up a condition, just like English 'if'."
+    }
+  }]],
+  "grammar": [{
+    "fr": "l'IA peut prendre / les gens veulent taxer",
+    "en": "<b>helper + plain verb.</b> <span class='fr'>peut</span>, <span class='fr'>veulent</span> carry the subject; the second verb (<span class='fr'>prendre</span>, <span class='fr'>taxer</span>) stays plain. Your pouvoir / vouloir / devoir family."
+  }, {
+    "fr": "ne paient pas d'impôts / ne sont pas d'accord",
+    "en": "<b>the ne … pas sandwich — and des → de.</b> It wraps the verb, and after it <span class='fr'>des impôts</span> becomes <span class='fr'>d'impôts</span>."
+  }, {
+    "fr": "les grandes entreprises / une grande peur / un gros problème",
+    "en": "<b>a few adjectives come BEFORE the noun.</b> <span class='fr'>grand</span>, <span class='fr'>gros</span>, <span class='fr'>premier</span> sit in front — and still agree: <span class='fr'>grande</span>, <span class='fr'>grandes</span>."
+  }],
+  "quiz": {
+    "q": "Pourquoi le gouvernement peut perdre de l'argent avec l'IA ?",
+    "a": "Parce que l'IA peut prendre le travail des gens ; et sans travail, les gens ne paient pas d'impôts. (Because AI can take people's jobs; and without work, people don't pay taxes.)"
+  },
+  "flag": "A long, detailed piece compressed hard to A1 — a neutral overview, not my own view on taxing AI. I kept three of the proposals (the state taking a share, taxing AI's use, and taxing what people buy) and dropped the rest: the specific company valuations, the token / data-centre / capital-tax distinctions, the named economists, and the sovereign-wealth-fund detail. Two word choices to flag: I used <span class='fr'>taxer / une taxe</span> throughout because it's transparent for you, though French often uses <span class='fr'>imposer / un impôt</span> for government taxation (I did use <span class='fr'>impôts</span> for what people pay); and <span class='fr'>l'usage de l'IA</span> is clear, though <span class='fr'>l'utilisation de l'IA</span> is just as common."
+}, {
+  "id": "euv-machine",
+  "chip": "La machine à puces",
+  "kicker": "Technologie · Chine",
+  "title": "Une machine, deux pays, un grand conflit",
+  "level": "A1",
+  "gist": "One machine — made only by the Dutch company ASML — produces the world's most advanced computer chips, the kind that power the best AI. Since 2019 the U.S. has blocked its sale to China, and now a U.S. official claims one may have reached China anyway. ASML flatly denies it and the Dutch government backs them. Underneath sits a bigger US–Europe disagreement over China, China's own effort to build such a machine, and a proposed U.S. law the Dutch dislike.",
+  "body": [[{
+    "fr": "Il y a une machine très {{spéciale|special}} et très {{importante|important}}.",
+    "bd": {
+      "meaning": "There is a very special and very important machine.",
+      "chunks": [["Il y a une machine", "there is a machine (il y a = there is)"], ["très spéciale et très importante", "very special and very important — both take -e to match machine (feminine)"]],
+      "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>machine</span> is feminine, so <span class='bd-fr-i'>spéciale</span> and <span class='bd-fr-i'>importante</span> both end in <span class='bd-fr-i'>-e</span>."
+    }
+  }, {
+    "fr": "Cette machine {{fabrique|makes}} les meilleures {{puces|chips}} d'ordinateur.",
+    "bd": {
+      "meaning": "This machine makes the best computer chips.",
+      "chunks": [["Cette machine fabrique", "this machine makes (fabriquer = to make / manufacture)"], ["les meilleures puces", "the best chips (une puce = a chip)"], ["d'ordinateur", "computer (chips)"]],
+      "key": "<b>meilleur = 'best / better'.</b> <span class='bd-fr-i'>les meilleures puces</span> = 'the best chips' — <span class='bd-fr-i'>meilleures</span> agrees (feminine plural)."
+    }
+  }, {
+    "fr": "Ces puces sont {{importantes|important}} pour l'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}}.",
+    "bd": {
+      "meaning": "These chips are important for artificial intelligence.",
+      "chunks": [["Ces puces sont importantes", "these chips are important — importantes agrees (feminine plural)"], ["pour l'IA", "for AI"]],
+      "key": "<b>pour = 'for'.</b> <span class='bd-fr-i'>pour l'IA</span> = 'for AI' — the same little word as in <span class='bd-fr-i'>pour aider</span> ('to help')."
+    }
+  }], [{
+    "fr": "Une {{seule|single / only}} {{entreprise|company}} fabrique cette machine : ASML.",
+    "bd": {
+      "meaning": "Only one company makes this machine: ASML.",
+      "chunks": [["Une seule entreprise", "only one / a single company (seul = only / single)"], ["fabrique cette machine", "makes this machine"]],
+      "key": "<b>seul before the noun = 'only / single'.</b> <span class='bd-fr-i'>une seule entreprise</span> = 'only one company'."
+    }
+  }, {
+    "fr": "ASML est une entreprise des {{Pays-Bas|Netherlands}}.",
+    "bd": {
+      "meaning": "ASML is a company from the Netherlands.",
+      "chunks": [["ASML est une entreprise", "ASML is a company"], ["des Pays-Bas", "from the Netherlands (les Pays-Bas = the Netherlands)"]],
+      "key": "<b>des = de + les.</b> <span class='bd-fr-i'>des Pays-Bas</span> = 'of / from the Netherlands' — the country's name itself is plural (<span class='bd-fr-i'>les Pays-Bas</span>)."
+    }
+  }], [{
+    "fr": "Depuis 2019, les États-Unis {{interdisent|forbid}} de vendre cette machine à la Chine.",
+    "bd": {
+      "meaning": "Since 2019, the United States has forbidden selling this machine to China.",
+      "chunks": [["Depuis 2019", "since 2019 (depuis = since)"], ["les États-Unis interdisent", "the United States forbid (interdire = to forbid)"], ["de vendre cette machine à la Chine", "to sell this machine to China (interdire de + plain verb)"]],
+      "key": "<b>depuis = 'since / for'.</b> French uses the present with <span class='bd-fr-i'>depuis</span> where English says 'has': <span class='bd-fr-i'>depuis 2019, ils interdisent</span> = 'since 2019 they have forbidden'."
+    }
+  }, {
+    "fr": "Mais aujourd'hui, un {{ministre|minister}} américain dit : peut-être qu'une machine est {{allée|went (from aller)}} en Chine.",
+    "bd": {
+      "meaning": "But today, a U.S. minister says: maybe a machine went to China.",
+      "chunks": [["Mais aujourd'hui", "but today"], ["un ministre américain dit", "a U.S. minister says (américain comes after the noun)"], ["peut-être qu'une machine est allée", "maybe a machine went (peut-être = maybe)"], ["en Chine", "to China"]],
+      "key": "<b>Past with être, not avoir.</b> <span class='bd-fr-i'>est allée</span> = 'went': a few verbs (like <span class='bd-fr-i'>aller</span>) use <span class='bd-fr-i'>être</span> in the past, and then the verb agrees — <span class='bd-fr-i'>allée</span> has an extra -e for <span class='bd-fr-i'>machine</span> (feminine)."
+    }
+  }], [{
+    "fr": "ASML {{répond|answers}} : « C'est impossible. »",
+    "bd": {
+      "meaning": "ASML answers: “It's impossible.”",
+      "chunks": [["ASML répond", "ASML answers / replies (répondre = to answer)"], ["c'est impossible", "it's impossible"]],
+      "key": "<b>c'est = 'it is / that's'.</b> <span class='bd-fr-i'>c'est impossible</span> = 'it's impossible' — the everyday set phrase."
+    }
+  }, {
+    "fr": "L'entreprise dit : nous {{savons|know}} où sont toutes nos machines.",
+    "bd": {
+      "meaning": "The company says: we know where all our machines are.",
+      "chunks": [["L'entreprise dit", "the company says"], ["nous savons", "we know (savoir = to know a fact)"], ["où sont toutes nos machines", "where all our machines are (toutes agrees: feminine plural)"]],
+      "key": "<b>savoir = 'to know' (a fact).</b> <span class='bd-fr-i'>nous savons</span> = 'we know'. French says <span class='bd-fr-i'>où sont</span> ('where are') with no extra word."
+    }
+  }, {
+    "fr": "{{Aucune|No}} machine n'est en Chine.",
+    "bd": {
+      "meaning": "No machine is in China.",
+      "chunks": [["Aucune machine", "no machine / not one machine (aucun / aucune = none)"], ["n'est en Chine", "is not in China — aucune… ne is a negative pair"]],
+      "key": "<b>aucune … ne = 'no / not any'.</b> Like <span class='bd-fr-i'>ne…pas</span>, it comes in two parts: <span class='bd-fr-i'>aucune machine n'est</span> = 'no machine is'."
+    }
+  }], [{
+    "fr": "Le gouvernement des Pays-Bas est {{d'accord|in agreement}}.",
+    "bd": {
+      "meaning": "The Dutch government agrees.",
+      "chunks": [["Le gouvernement des Pays-Bas", "the Dutch government (literally 'of the Netherlands')"], ["est d'accord", "agrees (être d'accord = to agree)"]],
+      "key": "<b>être d'accord = 'to agree'.</b> French says 'is in agreement': <span class='bd-fr-i'>est d'accord</span>."
+    }
+  }, {
+    "fr": "Il dit : nous {{respectons|follow / respect}} les {{règles|rules}}.",
+    "bd": {
+      "meaning": "It says: we follow the rules.",
+      "chunks": [["Il dit", "it says (il = 'it', for le gouvernement)"], ["nous respectons les règles", "we follow / respect the rules (respecter = to respect / obey)"]],
+      "key": "<b>-ons = the 'we' ending.</b> <span class='bd-fr-i'>nous respectons</span>, <span class='bd-fr-i'>nous savons</span> — verbs for <span class='bd-fr-i'>nous</span> ('we') end in <span class='bd-fr-i'>-ons</span>."
+    }
+  }], [{
+    "fr": "Mais {{derrière|behind}} ce problème, il y a un plus grand {{conflit|conflict}}.",
+    "bd": {
+      "meaning": "But behind this problem, there is a bigger conflict.",
+      "chunks": [["Mais derrière ce problème", "but behind this problem (derrière = behind)"], ["il y a un plus grand conflit", "there is a bigger conflict (plus grand = bigger)"]],
+      "key": "<b>plus grand = 'bigger'.</b> <span class='bd-fr-i'>plus</span> + adjective makes the comparison: <span class='bd-fr-i'>plus grand</span> = 'bigger', like <span class='bd-fr-i'>plus cher</span> ('more expensive')."
+    }
+  }, {
+    "fr": "Les États-Unis et l'Europe ne sont pas toujours d'accord sur la Chine.",
+    "bd": {
+      "meaning": "The United States and Europe don't always agree about China.",
+      "chunks": [["Les États-Unis et l'Europe", "the United States and Europe"], ["ne sont pas toujours d'accord", "don't always agree — ne…pas wraps sont"], ["sur la Chine", "about / on China (sur = on)"]],
+      "key": "<b>Negation sandwich: ne … pas.</b> It still wraps the verb with <span class='bd-fr-i'>toujours</span> tucked inside: <span class='bd-fr-i'>ne sont pas toujours</span> = 'are not always'."
+    }
+  }], [{
+    "fr": "La Chine veut aussi fabriquer sa {{propre|own}} machine.",
+    "bd": {
+      "meaning": "China also wants to make its own machine.",
+      "chunks": [["La Chine veut aussi fabriquer", "China also wants to make (vouloir + plain verb)"], ["sa propre machine", "its own machine (propre before the noun = 'own')"]],
+      "key": "<b>propre before the noun = 'own'.</b> <span class='bd-fr-i'>sa propre machine</span> = 'its own machine'. (After the noun, <span class='bd-fr-i'>propre</span> means 'clean' — position changes the meaning!)"
+    }
+  }, {
+    "fr": "Mais c'est très difficile : ça peut prendre {{des années|years}}.",
+    "bd": {
+      "meaning": "But it's very difficult: it can take years.",
+      "chunks": [["Mais c'est très difficile", "but it's very difficult"], ["ça peut prendre des années", "it can take years (ça = that / it; des années = years)"]],
+      "key": "<b>ça peut + plain verb.</b> <span class='bd-fr-i'>ça peut prendre</span> = 'it can take' — <span class='bd-fr-i'>ça</span> ('that/it') + <span class='bd-fr-i'>peut</span> (can) + the plain verb <span class='bd-fr-i'>prendre</span>."
+    }
+  }], [{
+    "fr": "Les États-Unis veulent une {{nouvelle loi|new law}} plus stricte.",
+    "bd": {
+      "meaning": "The United States wants a new, stricter law.",
+      "chunks": [["Les États-Unis veulent", "the United States want (vouloir = to want)"], ["une nouvelle loi plus stricte", "a new, stricter law (nouvelle before the noun; plus stricte = stricter)"]],
+      "key": "<b>nouveau / nouvelle goes BEFORE the noun.</b> <span class='bd-fr-i'>une nouvelle loi</span> = 'a new law' — and it agrees: <span class='bd-fr-i'>nouvelle</span> for the feminine <span class='bd-fr-i'>loi</span>."
+    }
+  }, {
+    "fr": "Mais les Pays-Bas ne sont pas {{contents|happy}}.",
+    "bd": {
+      "meaning": "But the Netherlands is not happy.",
+      "chunks": [["Mais les Pays-Bas", "but the Netherlands"], ["ne sont pas contents", "are not happy — ne…pas wraps sont; contents takes -s (plural)"]],
+      "key": "<b>Negation sandwich: ne … pas.</b> <span class='bd-fr-i'>ne sont pas contents</span> = 'are not happy'."
+    }
+  }, {
+    "fr": "C'est une {{petite bataille|small battle}} dans une grande {{guerre|war}} pour la technologie.",
+    "bd": {
+      "meaning": "It's a small battle in a big war over technology.",
+      "chunks": [["C'est une petite bataille", "it's a small battle (petite before the noun)"], ["dans une grande guerre", "in a big war (grande before the noun)"], ["pour la technologie", "for / over technology"]],
+      "key": "<b>Size adjectives go BEFORE the noun.</b> <span class='bd-fr-i'>petite bataille</span>, <span class='bd-fr-i'>grande guerre</span> — <span class='bd-fr-i'>petit</span> and <span class='bd-fr-i'>grand</span> sit in front, and both agree (feminine)."
+    }
+  }]],
+  "grammar": [{
+    "fr": "une machine est allée en Chine",
+    "en": "<b>Some verbs form the past with être, not avoir.</b> <span class='fr'>aller</span> is one: <span class='fr'>est allée</span> = 'went'. With <span class='fr'>être</span> the past word agrees with the subject — <span class='fr'>allée</span> gains an extra -e for the feminine <span class='fr'>machine</span>. (Contrast <span class='fr'>a gagné</span>, which uses avoir and doesn't agree.)"
+  }, {
+    "fr": "veut fabriquer / ça peut prendre / veulent une loi",
+    "en": "<b>helper + plain verb.</b> <span class='fr'>veut</span>, <span class='fr'>peut</span>, <span class='fr'>veulent</span> carry the subject; the next verb stays plain. Your pouvoir / vouloir / devoir family."
+  }, {
+    "fr": "une seule entreprise / nouvelle loi / plus grand conflit / petite bataille",
+    "en": "<b>a small set of adjectives sit BEFORE the noun</b> (<span class='fr'>grand</span>, <span class='fr'>petit</span>, <span class='fr'>nouveau</span>, <span class='fr'>seul</span>, <span class='fr'>propre</span>…) and still agree: <span class='fr'>seule</span>, <span class='fr'>nouvelle</span>, <span class='fr'>petite</span>."
+  }],
+  "quiz": {
+    "q": "Pourquoi cette machine est très importante ?",
+    "a": "Parce qu'elle fabrique les meilleures puces, et ces puces sont importantes pour l'IA. (Because it makes the best chips, and these chips are important for AI.)"
+  },
+  "flag": "Compressed very hard from a long geopolitical piece into a plain A1 through-line — a neutral retelling, not a view on the export-control politics. I dropped the historical opening (Peter the Great, A.Q. Khan), the DUV-vs-EUV and 'multi-patterning' detail, the named people (Lutnick, Sjoerdsma) and ASML's exact count of 340 machines, the Pax Silica alliance, the MATCH Act specifics, the Nvidia chips, and the Nexperia dispute. Word choices to flag: <span class='fr'>une puce</span> is the normal French word for a computer chip (it also means 'flea' — context makes it clear); <span class='fr'>interdire de vendre</span> ('forbid to sell') is my plain stand-in for formal <span class='fr'>contrôles à l'exportation</span> ('export controls'); and I used <span class='fr'>les Pays-Bas</span> ('the Netherlands') rather than the adjective <span class='fr'>néerlandais</span> to keep it transparent. The <span class='fr'>est allée</span> agreement is correct, but être-verbs + agreement is exactly the kind of thing worth double-checking as you advance."
+}];
+
+// Word-level highlights are OFF: sentence breakdowns already gloss every chunk.
+// Flip to true to bring back tappable highlighted words (data is retained).
+var SHOW_WORD_HIGHLIGHTS = false;
+
+/* ---- read-state store (persists in a normal browser; guarded so it never
+        throws in sandboxes that block storage — falls back to in-memory) ---- */
+var READ_KEY = 'enclair:read:v1';
+var readSet = {};
+(function loadRead() {
+  try {
+    var raw = localStorage.getItem(READ_KEY);
+    if (raw) {
+      var arr = JSON.parse(raw);
+      readSet = {};
+      for (var i = 0; i < arr.length; i++) {
+        readSet[arr[i]] = true;
+      }
+    }
+  } catch (e) {}
+})();
+function saveRead() {
+  try {
+    var arr = [];
+    for (var k in readSet) {
+      if (readSet.hasOwnProperty(k)) arr.push(k);
+    }
+    localStorage.setItem(READ_KEY, JSON.stringify(arr));
+  } catch (e) {}
+}
+function isRead(id) {
+  return !!readSet[id];
+}
+function setRead(id, val) {
+  if (val) readSet[id] = true;else delete readSet[id];
+  saveRead();
+}
+var cardsEl = document.getElementById('cards');
+var readCardsEl = document.getElementById('readCards');
+var readSection = document.getElementById('readSection');
+var readCount = document.getElementById('readCount');
+var viewIndex = document.getElementById('view-index');
+var viewStory = document.getElementById('view-story');
+var article = document.getElementById('article');
+var backBtn = document.getElementById('backBtn');
+var brand = document.getElementById('brand');
+var toggleGistBtn = document.getElementById('toggleGist');
+var toggleReadBtn = document.getElementById('toggleRead');
+var gistShown = true;
+var currentId = null;
+
+/* ---------- shared rendering ---------- */
+function renderInline(text, container) {
+  var re = /\{\{([^|]+)\|([^}]+)\}\}/g;
+  var last = 0,
+    m;
+  var _loop = function _loop() {
+    if (m.index > last) container.appendChild(document.createTextNode(text.slice(last, m.index)));
+    if (!SHOW_WORD_HIGHLIGHTS) {
+      container.appendChild(document.createTextNode(m[1]));
+      last = re.lastIndex;
+      return 1; // continue
+    }
+    var wrap = document.createElement('span');
+    wrap.className = 'term-wrap';
+    var term = document.createElement('span');
+    term.className = 'term';
+    term.setAttribute('role', 'button');
+    term.setAttribute('tabindex', '0');
+    term.setAttribute('aria-label', m[1] + ' — ' + m[2]);
+    term.textContent = m[1];
+    var gloss = document.createElement('span');
+    gloss.className = 'gloss';
+    gloss.textContent = m[2];
+    var toggle = function toggle(e) {
+      if (e) e.stopPropagation();
+      wrap.classList.toggle('is-open');
+      term.setAttribute('aria-expanded', wrap.classList.contains('is-open'));
+    };
+    addTap(term, toggle);
+    term.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      }
+    });
+    wrap.appendChild(term);
+    wrap.appendChild(gloss);
+    container.appendChild(wrap);
+    last = re.lastIndex;
+  };
+  while ((m = re.exec(text)) !== null) {
+    if (_loop()) continue;
+  }
+  if (last < text.length) container.appendChild(document.createTextNode(text.slice(last)));
+}
+function buildBreakdown(bd) {
+  var box = document.createElement('div');
+  box.className = 'breakdown';
+  var html = '<div class="bd-meaning">' + bd.meaning + '</div>';
+  if (bd.chunks && bd.chunks.length) {
+    html += '<div class="bd-chunks">';
+    bd.chunks.forEach(function (c) {
+      html += '<div class="bd-row"><span class="bd-fr">' + c[0] + '</span><span class="bd-en">' + c[1] + '</span></div>';
+    });
+    html += '</div>';
+  }
+  if (bd.key) html += '<div class="bd-key"><span class="bd-key-label">Comment ça marche</span>' + bd.key + '</div>';
+  box.innerHTML = html;
+  return box;
+}
+function renderBody(paragraphs) {
+  var frag = document.createDocumentFragment();
+  paragraphs.forEach(function (par) {
+    var p = document.createElement('div');
+    p.className = 'para';
+    par.forEach(function (sent) {
+      var s = document.createElement('span');
+      s.className = 'sentence';
+      s.setAttribute('role', 'button');
+      s.setAttribute('tabindex', '0');
+      s.setAttribute('aria-expanded', 'false');
+      renderInline(sent.fr, s);
+      var box = buildBreakdown(sent.bd);
+      var toggle = function toggle() {
+        var open = box.classList.toggle('open');
+        s.classList.toggle('active', open);
+        s.setAttribute('aria-expanded', open);
+      };
+      addTap(s, toggle);
+      s.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+      p.appendChild(s);
+      p.appendChild(document.createTextNode(' '));
+      p.appendChild(box);
+    });
+    frag.appendChild(p);
+  });
+  return frag;
+}
+function buildArticle(s) {
+  article.innerHTML = '';
+  var kicker = document.createElement('div');
+  kicker.className = 'kicker';
+  kicker.textContent = s.kicker || '';
+  article.appendChild(kicker);
+  var trow = document.createElement('div');
+  trow.className = 'title-row';
+  var h1 = document.createElement('h1');
+  h1.className = 'title';
+  h1.textContent = s.title;
+  var lvl = document.createElement('span');
+  lvl.className = 'story-lvl';
+  lvl.textContent = s.level || 'A1';
+  trow.appendChild(h1);
+  trow.appendChild(lvl);
+  article.appendChild(trow);
+  var gist = document.createElement('div');
+  gist.className = 'gist' + (gistShown ? '' : ' hidden');
+  gist.id = 'gistBox';
+  gist.innerHTML = "<span class='gist-label'>The gist, in English</span>" + s.gist;
+  article.appendChild(gist);
+  var body = document.createElement('div');
+  body.className = 'body';
+  body.id = 'bodyBox';
+  body.appendChild(renderBody(s.body));
+  article.appendChild(body);
+  var gsec = document.createElement('div');
+  gsec.className = 'section';
+  var gdet = document.createElement('details');
+  gdet.open = true;
+  gdet.innerHTML = "<summary><span class='chev'>▶</span>Notes de grammaire</summary>";
+  (s.grammar || []).forEach(function (n) {
+    var note = document.createElement('div');
+    note.className = 'note';
+    note.innerHTML = "<h4>" + n.fr + "</h4><p>" + n.en + "</p>";
+    gdet.appendChild(note);
+  });
+  gsec.appendChild(gdet);
+  article.appendChild(gsec);
+  if (s.quiz) {
+    var qsec = document.createElement('div');
+    qsec.className = 'section';
+    var qdet = document.createElement('details');
+    qdet.innerHTML = "<summary><span class='chev'>▶</span>Petite question</summary>";
+    var quiz = document.createElement('div');
+    quiz.className = 'quiz';
+    quiz.innerHTML = "<p class='q'>" + s.quiz.q + "</p><button class='reveal-btn'>Voir la réponse</button><p class='answer'>" + s.quiz.a + "</p>";
+    var btn = quiz.querySelector('.reveal-btn'),
+      ans = quiz.querySelector('.answer');
+    addTap(btn, function () {
+      ans.classList.add('show');
+      btn.style.display = 'none';
+    });
+    qdet.appendChild(quiz);
+    qsec.appendChild(qdet);
+    article.appendChild(qsec);
+  }
+  if (s.flag) {
+    var flag = document.createElement('div');
+    flag.className = 'flag';
+    flag.innerHTML = "<b>À noter</b> · " + s.flag;
+    article.appendChild(flag);
+  }
+}
+
+/* ---------- index cards ---------- */
+function makeCard(s) {
+  var read = isRead(s.id);
+  var card = document.createElement('div');
+  card.className = 'card' + (read ? ' read' : '');
+  var open = document.createElement('button');
+  open.className = 'card-open';
+  var k = document.createElement('span');
+  k.className = 'k';
+  k.textContent = s.kicker || '';
+  var t = document.createElement('span');
+  t.className = 'ttl';
+  t.textContent = s.title;
+  var meta = document.createElement('span');
+  meta.className = 'meta';
+  var lvl = document.createElement('span');
+  lvl.className = 'lvl';
+  lvl.textContent = s.level || 'A1';
+  var tag = document.createElement('span');
+  tag.className = 'tag';
+  tag.textContent = s.chip || '';
+  meta.appendChild(lvl);
+  meta.appendChild(tag);
+  var go = document.createElement('span');
+  go.className = 'go';
+  go.textContent = read ? 'Relire →' : 'Lire →';
+  open.appendChild(k);
+  open.appendChild(t);
+  open.appendChild(meta);
+  open.appendChild(go);
+  addTap(open, function () {
+    location.hash = '#/' + encodeURIComponent(s.id);
+    showStory(s.id);
+  });
+  var mark = document.createElement('button');
+  mark.className = 'card-mark';
+  mark.textContent = '✓';
+  mark.setAttribute('aria-label', read ? 'Marquer comme non lu' : 'Marquer comme lu');
+  mark.title = mark.getAttribute('aria-label');
+  addTap(mark, function (e) {
+    e.stopPropagation();
+    setRead(s.id, !isRead(s.id));
+    renderCards();
+  });
+  card.appendChild(open);
+  card.appendChild(mark);
+  return card;
+}
+function renderCards() {
+  var unread = STORIES.filter(function (s) {
+    return !isRead(s.id);
+  });
+  var read = STORIES.filter(function (s) {
+    return isRead(s.id);
+  });
+  cardsEl.innerHTML = '';
+  if (unread.length === 0) {
+    var e = document.createElement('p');
+    e.className = 'empty';
+    e.textContent = 'Tout est lu 🎉';
+    cardsEl.appendChild(e);
+  } else unread.forEach(function (s) {
+    return cardsEl.appendChild(makeCard(s));
+  });
+  readCardsEl.innerHTML = '';
+  read.forEach(function (s) {
+    return readCardsEl.appendChild(makeCard(s));
+  });
+  readCount.textContent = read.length;
+  readSection.style.display = read.length ? 'block' : 'none';
+}
+
+/* ---------- routing (hash = source of truth) ---------- */
+function syncReadBtn() {
+  var r = currentId && isRead(currentId);
+  toggleReadBtn.setAttribute('aria-pressed', r ? 'true' : 'false');
+  toggleReadBtn.textContent = r ? 'Lu ✓' : 'Marquer comme lu';
+}
+function showIndex() {
+  currentId = null;
+  renderCards();
+  viewStory.classList.remove('active');
+  viewIndex.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showStory(id) {
+  var s = STORIES.find(function (x) {
+    return x.id === id;
+  });
+  if (!s) {
+    showIndex();
+    return;
+  }
+  currentId = id;
+  gistShown = true;
+  toggleGistBtn.setAttribute('aria-pressed', 'true');
+  buildArticle(s);
+  syncReadBtn();
+  viewIndex.classList.remove('active');
+  viewStory.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function route() {
+  var m = location.hash.match(/^#\/(.+)$/);
+  if (m) showStory(decodeURIComponent(m[1]));else showIndex();
+}
+window.addEventListener('hashchange', route);
+addTap(backBtn, function () {
+  location.hash = '#/';
+  showIndex();
+});
+addTap(brand, function () {
+  location.hash = '#/';
+  showIndex();
+});
+brand.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    location.hash = '#/';
+  }
+});
+addTap(toggleGistBtn, function () {
+  gistShown = !gistShown;
+  toggleGistBtn.setAttribute('aria-pressed', gistShown);
+  var b = document.getElementById('gistBox');
+  if (b) b.classList.toggle('hidden', !gistShown);
+});
+addTap(toggleReadBtn, function () {
+  if (!currentId) return;
+  setRead(currentId, !isRead(currentId));
+  syncReadBtn();
+});
+renderCards();
+route();
+
+</script>
+
+
+</body>
+</html>
