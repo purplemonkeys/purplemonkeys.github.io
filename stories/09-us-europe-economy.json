@@ -1,0 +1,309 @@
+{
+  "id": "us-europe-economy",
+  "chip": "Qui va mieux ?",
+  "kicker": "Économie · Comparaison",
+  "title": "États-Unis ou Europe : qui va mieux ?",
+  "level": "A1",
+  "gist": "Most people assume Europe's economy is falling behind the US, especially in tech. But Americans live shorter, more violent lives, with far more people in prison — and once you account for real purchasing power, Europe isn't actually poorer, just weaker geopolitically. The argument (from an FT column summarising economist Paul Krugman) is that Europe's real vulnerability is security and defense, not economics.",
+  "body": [
+    [
+      {
+        "fr": "Beaucoup de gens pensent que l'économie de l'Europe {{est en déclin|is declining}}.",
+        "bd": {
+          "meaning": "Many people think Europe's economy is declining.",
+          "chunks": [
+            ["Beaucoup de gens", "many people (beaucoup de = a lot of)"],
+            ["pensent que", "think that — pensent from penser, the ils/elles form"],
+            ["l'économie de l'Europe", "Europe's economy (de = 's / of)"],
+            ["est en déclin", "is declining (en déclin = in decline)"]
+          ],
+          "key": "<b>“penser que” + a full sentence.</b> Use <span class='bd-fr-i'>penser que</span> to report what people think — the clause after it works like any other sentence."
+        }
+      },
+      {
+        "fr": "Ils disent que les États-Unis sont {{plus forts|stronger}}, surtout en technologie.",
+        "bd": {
+          "meaning": "They say the US is stronger, especially in technology.",
+          "chunks": [
+            ["Ils disent que", "they say that"],
+            ["les États-Unis sont", "the United States is/are (États-Unis takes a plural verb)"],
+            ["plus forts", "stronger (plus + adjective)"],
+            ["surtout en technologie", "especially in technology"]
+          ],
+          "key": "<b>plus + adjective = “more ___ / -er.”</b> <span class='bd-fr-i'>plus forts</span> = “stronger” — the everyday way to build a comparative."
+        }
+      },
+      {
+        "fr": "Les États-Unis sont un seul pays, donc ils peuvent {{agir vite|act fast}}.",
+        "bd": {
+          "meaning": "The US is a single country, so it can act fast.",
+          "chunks": [
+            ["Les États-Unis sont un seul pays", "the US is a single/one country"],
+            ["donc", "so / therefore"],
+            ["ils peuvent", "it/they can (pouvoir)"],
+            ["agir vite", "act fast — plain verb after peuvent"]
+          ],
+          "key": "<b>pouvoir + plain verb.</b> <span class='bd-fr-i'>peuvent agir</span> = “can act” — only <span class='bd-fr-i'>peuvent</span> changes; <span class='bd-fr-i'>agir</span> stays plain."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais la vie aux États-Unis n'est pas parfaite.",
+        "bd": {
+          "meaning": "But life in the US is not perfect.",
+          "chunks": [
+            ["Mais", "but"],
+            ["la vie aux États-Unis", "life in the US (aux = à + les)"],
+            ["n'est pas parfaite", "is not perfect — the ne…pas sandwich around est"]
+          ],
+          "key": "<b>ne … pas around “est.”</b> <span class='bd-fr-i'>n'est pas</span> = “is not” — the same sandwich you'll meet again and again."
+        }
+      },
+      {
+        "fr": "Les Américains vivent {{environ 79 ans|about 79 years}} ; les Européens, environ 83 ans.",
+        "bd": {
+          "meaning": "Americans live about 79 years; Europeans, about 83.",
+          "chunks": [
+            ["Les Américains vivent", "Americans live"],
+            ["environ 79 ans", "about 79 years (environ = about/around)"],
+            ["les Européens", "Europeans (same verb reused, dropped after the semicolon)"],
+            ["environ 83 ans", "about 83 years"]
+          ],
+          "key": "<b>environ = “about / around.”</b> Handy for any approximate number — <span class='bd-fr-i'>environ 79 ans</span> = “about 79 years.”"
+        }
+      },
+      {
+        "fr": "Le {{taux de prisonniers|rate of people in prison}} est presque {{huit fois plus élevé|eight times higher}} aux États-Unis qu'en Allemagne.",
+        "bd": {
+          "meaning": "The rate of people in prison is almost eight times higher in the US than in Germany.",
+          "chunks": [
+            ["Le taux de prisonniers", "the rate of people in prison (taux = rate)"],
+            ["est presque huit fois plus élevé", "is almost eight times higher (fois = times)"],
+            ["aux États-Unis", "in the US"],
+            ["qu'en Allemagne", "than in Germany"]
+          ],
+          "key": "<b>“fois” for multiples.</b> <span class='bd-fr-i'>huit fois plus élevé</span> = “eight times higher” — combine a number with <span class='bd-fr-i'>fois</span> to say “X times more.”"
+        }
+      },
+      {
+        "fr": "Pourtant, les États-Unis {{dépensent|spend}} plus d'argent pour la santé.",
+        "bd": {
+          "meaning": "Yet the US spends more money on health.",
+          "chunks": [
+            ["Pourtant", "yet / however"],
+            ["les États-Unis dépensent", "the US spends (dépenser, ils/elles form)"],
+            ["plus d'argent", "more money"],
+            ["pour la santé", "on health"]
+          ],
+          "key": "<b>plus de/d' + noun = “more ___.”</b> Same pattern as before — <span class='bd-fr-i'>de</span> becomes <span class='bd-fr-i'>d'</span> before a vowel."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Depuis 2000, {{le revenu par personne|income per person}} augmente plus vite aux États-Unis.",
+        "bd": {
+          "meaning": "Since 2000, income per person has grown faster in the US.",
+          "chunks": [
+            ["Depuis 2000", "since 2000"],
+            ["le revenu par personne", "income per person"],
+            ["augmente plus vite", "grows faster (augmenter = to grow/increase)"],
+            ["aux États-Unis", "in the US"]
+          ],
+          "key": "<b>depuis + present tense = “since ___, has been ___ing.”</b> French keeps the present where English switches tense: <span class='bd-fr-i'>depuis 2000, ça augmente</span> = “since 2000, it's been growing.”"
+        }
+      },
+      {
+        "fr": "Mais c'est étrange : le niveau de vie en Europe {{se rapproche|gets closer}} quand même de celui des États-Unis.",
+        "bd": {
+          "meaning": "But here's the strange part: Europe's standard of living is getting closer to the US's anyway.",
+          "chunks": [
+            ["Mais c'est étrange", "but it's strange / here's the odd part"],
+            ["le niveau de vie en Europe", "the standard of living in Europe"],
+            ["se rapproche", "gets closer (se rapprocher = to get closer)"],
+            ["quand même de celui des États-Unis", "to that of the US anyway (celui = “the one” — stands in for “niveau de vie”)"]
+          ],
+          "key": "<b>“celui” replaces a noun</b> to avoid repeating it: <span class='bd-fr-i'>celui des États-Unis</span> = “that of the US,” instead of saying “le niveau de vie des États-Unis” again."
+        }
+      },
+      {
+        "fr": "Les économistes appellent ça {{un paradoxe|a paradox}}.",
+        "bd": {
+          "meaning": "Economists call this a paradox.",
+          "chunks": [
+            ["Les économistes appellent", "economists call (appeler)"],
+            ["ça", "that / this"],
+            ["un paradoxe", "a paradox — something that seems impossible but is true"]
+          ],
+          "key": "<b>appeler + ça + noun = “call this ___.”</b> Same shape as <span class='bd-fr-i'>on appelle ça…</span>, just with a different subject."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La raison principale, c'est la technologie.",
+        "bd": {
+          "meaning": "The main reason is technology.",
+          "chunks": [
+            ["La raison principale", "the main reason"],
+            ["c'est", "is / that's"],
+            ["la technologie", "technology"]
+          ],
+          "key": "<b>c'est to name the answer.</b> <span class='bd-fr-i'>c'est la technologie</span> = “it's technology” — a simple way to state a cause."
+        }
+      },
+      {
+        "fr": "Le secteur technologique est beaucoup plus grand aux États-Unis qu'en Europe.",
+        "bd": {
+          "meaning": "The tech sector is much bigger in the US than in Europe.",
+          "chunks": [
+            ["Le secteur technologique", "the tech sector"],
+            ["est beaucoup plus grand", "is much bigger (beaucoup plus = much more)"],
+            ["aux États-Unis", "in the US"],
+            ["qu'en Europe", "than in Europe (que → qu' before a vowel)"]
+          ],
+          "key": "<b>beaucoup plus + adjective = “much more / much ___-er.”</b> <span class='bd-fr-i'>beaucoup</span> strengthens the comparative you already know."
+        }
+      },
+      {
+        "fr": "Cette différence explique presque toute la différence de croissance entre les deux régions.",
+        "bd": {
+          "meaning": "This one difference explains almost all of the growth gap between the two regions.",
+          "chunks": [
+            ["Cette différence explique", "this difference explains"],
+            ["presque toute", "almost all of (toute agrees with the feminine “différence”)"],
+            ["la différence de croissance", "the growth gap/difference"],
+            ["entre les deux régions", "between the two regions"]
+          ],
+          "key": "<b>“toute” agrees with the noun it describes.</b> <span class='bd-fr-i'>toute la différence</span> is feminine singular, matching <span class='bd-fr-i'>différence</span>."
+        }
+      },
+      {
+        "fr": "En plus, il est difficile de {{mesurer|measure}} la vraie valeur de la technologie.",
+        "bd": {
+          "meaning": "Also, it's hard to measure the real value of technology.",
+          "chunks": [
+            ["En plus", "also / on top of that"],
+            ["il est difficile de", "it's hard to (+ plain verb)"],
+            ["mesurer", "to measure — plain verb after “difficile de”"],
+            ["la vraie valeur de la technologie", "the real value of technology (vraie comes before the noun)"]
+          ],
+          "key": "<b>il est difficile de + plain verb = “it's hard to ___.”</b> Like <span class='bd-fr-i'>pour + verb</span>, the verb after <span class='bd-fr-i'>de</span> stays plain."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Si on compare {{le vrai pouvoir d'achat|real purchasing power}}, l'Europe n'est pas vraiment en retard.",
+        "bd": {
+          "meaning": "If you compare real purchasing power, Europe isn't really behind.",
+          "chunks": [
+            ["Si on compare", "if you/one compare(s) (on = the general “you/we/people”)"],
+            ["le vrai pouvoir d'achat", "real purchasing power — what money can actually buy"],
+            ["l'Europe n'est pas vraiment", "Europe isn't really (ne…pas sandwich)"],
+            ["en retard", "behind / late"]
+          ],
+          "key": "<b>“on” again for the general “you.”</b> <span class='bd-fr-i'>si on compare</span> = “if you compare” — no need for a specific subject."
+        }
+      },
+      {
+        "fr": "Les Européens peuvent acheter presque autant de choses que les Américains.",
+        "bd": {
+          "meaning": "Europeans can buy almost as many things as Americans.",
+          "chunks": [
+            ["Les Européens peuvent acheter", "Europeans can buy (pouvoir + plain verb)"],
+            ["presque autant de choses", "almost as many things (autant de = as much/many)"],
+            ["que les Américains", "as Americans"]
+          ],
+          "key": "<b>autant de ___ que = “as much/many ___ as.”</b> A third comparison shape, alongside <span class='bd-fr-i'>plus … que</span> and <span class='bd-fr-i'>moins … que</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Il y a une raison à ce paradoxe : la technologie américaine aide le monde entier.",
+        "bd": {
+          "meaning": "There's a reason for this paradox: American technology helps the whole world.",
+          "chunks": [
+            ["Il y a une raison", "there is a reason"],
+            ["à ce paradoxe", "for this paradox"],
+            ["la technologie américaine aide", "American technology helps"],
+            ["le monde entier", "the whole world"]
+          ],
+          "key": "<b>il y a, once more.</b> Same fixed phrase as before, now introducing an explanation instead of a fact."
+        }
+      },
+      {
+        "fr": "Même les pays qui n'ont pas de grandes entreprises tech {{en profitent|benefit from it}}.",
+        "bd": {
+          "meaning": "Even countries that don't have big tech companies benefit from it.",
+          "chunks": [
+            ["Même les pays", "even the countries"],
+            ["qui n'ont pas de grandes entreprises tech", "that don't have big tech companies (qui = that/which; ne…pas + de after the negation)"],
+            ["en profitent", "benefit from it (en = “from it”)"]
+          ],
+          "key": "<b>“qui” + ne…pas together.</b> <span class='bd-fr-i'>qui n'ont pas de</span> = “that don't have” — the relative clause and the negation sandwich stack up."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Donc, la vie n'est pas {{pire|worse}} en Europe qu'aux États-Unis.",
+        "bd": {
+          "meaning": "So, life isn't worse in Europe than in the US.",
+          "chunks": [
+            ["Donc", "so / therefore"],
+            ["la vie n'est pas pire", "life isn't worse (pire = worse)"],
+            ["en Europe qu'aux États-Unis", "in Europe than in the US"]
+          ],
+          "key": "<b>pire = the irregular “worse.”</b> It doesn't follow the plus/moins pattern — it's its own word, like English “worse” instead of “more bad.”"
+        }
+      },
+      {
+        "fr": "Mais l'Europe reste plus faible, parce qu'elle {{dépend de|depends on}} la technologie américaine.",
+        "bd": {
+          "meaning": "But Europe remains weaker, because it depends on American technology.",
+          "chunks": [
+            ["Mais l'Europe reste", "but Europe remains/stays (rester)"],
+            ["plus faible", "weaker"],
+            ["parce qu'elle dépend de", "because it depends on (que → qu' before a vowel)"],
+            ["la technologie américaine", "American technology"]
+          ],
+          "key": "<b>dépendre de = “to depend on.”</b> A fixed pairing — in French the verb always takes <span class='bd-fr-i'>de</span> before what you depend on."
+        }
+      },
+      {
+        "fr": "Le vrai problème de l'Europe, ce n'est pas l'économie : c'est la sécurité et la défense.",
+        "bd": {
+          "meaning": "Europe's real problem isn't the economy: it's security and defense.",
+          "chunks": [
+            ["Le vrai problème de l'Europe", "Europe's real problem"],
+            ["ce n'est pas l'économie", "isn't the economy (ce n'est pas = the negative of c'est)"],
+            ["c'est la sécurité et la défense", "it's security and defense"]
+          ],
+          "key": "<b>c'est / ce n'est pas, to close.</b> The story ends on the same set phrase it used to open explanations — naming what something is, and what it isn't."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "plus forts / moins longtemps / autant de choses que",
+      "en": "<b>Three ways to compare: plus … que, moins … que, autant de … que.</b> “More than,” “less than,” “as much/many as” — this story uses all three."
+    },
+    {
+      "fr": "Depuis 2000, le revenu augmente",
+      "en": "<b>depuis + present tense = an action that started in the past and is still going.</b> French uses the present here where English reaches for “has been happening” — no extra tense needed."
+    },
+    {
+      "fr": "Il y a plus de violence / Il y a une raison",
+      "en": "<b>il y a = “there is/are.”</b> A fixed phrase, unchanged whether one thing or many follow — it turns up twice in this story."
+    }
+  ],
+  "quiz": {
+    "q": "Qu'est-ce qui explique presque tout le paradoxe entre les États-Unis et l'Europe ?",
+    "a": "Le secteur technologique, beaucoup plus grand aux États-Unis, explique presque toute la différence. (The tech sector, much bigger in the US, explains almost the whole gap.)"
+  },
+  "flag": "This compresses a Martin Wolf FT opinion column that itself summarises economist Paul Krugman's argument — it's one economist's interpretation, not settled consensus, though I kept the retelling neutral rather than argumentative. I dropped the named sources (Krugman, Seth Ackerman, the Draghi report) and the detailed GDP-measurement debate (hedonic price adjustments, growth-vs-level accounting) the original leans on heavily. The life-expectancy figure combines men's and women's averages, rounded; the prison figure (US vs Germany) is calculated from the article's per-100,000 numbers. <span class='fr'>le vrai pouvoir d'achat</span> stands in for the technical term <span class='fr'>parité de pouvoir d'achat</span> (purchasing power parity) — a native economist would likely use the fuller term."
+}
