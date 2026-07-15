@@ -1,0 +1,407 @@
+{
+  "id": "prediction-markets",
+  "chip": "Parier sur le futur",
+  "kicker": "Économie · Marchés",
+  "title": "Des applications pour parier sur le futur",
+  "level": "A1",
+  "gist": "On prediction-market apps, people bet real money on future events like politics and sport — and they're booming, with even Meta building one. But they're controversial: some people bet using secret information, and others say it's really just gambling. The economist Al Roth, a Nobel Prize winner, argues that insider betting matters less here than on the stock market, worries most about powerful Washington insiders betting, and suggests apps let users cap their own losses.",
+  "body": [
+    [
+      {
+        "fr": "Sur les {{marchés de prédiction|prediction markets}}, les gens {{parient|bet (from parier)}} de l'argent.",
+        "bd": {
+          "meaning": "On prediction markets, people bet money.",
+          "chunks": [
+            [
+              "Sur les marchés de prédiction",
+              "on prediction markets (un marché = a market)"
+            ],
+            [
+              "les gens parient",
+              "people bet (parier = to bet)"
+            ],
+            [
+              "de l'argent",
+              "money (de l' = 'some', before a vowel)"
+            ]
+          ],
+          "key": "<b>The little words: <span class='bd-fr-i'>de l'</span> = 'some'.</b> Before <span class='bd-fr-i'>argent</span> (money) French slips in <span class='bd-fr-i'>de l'</span> where English says nothing."
+        }
+      },
+      {
+        "fr": "Ils parient sur le {{futur|future}} : la {{politique|politics}}, le {{sport|sport}}.",
+        "bd": {
+          "meaning": "They bet on the future: politics, sport.",
+          "chunks": [
+            [
+              "Ils parient sur",
+              "they bet on"
+            ],
+            [
+              "le futur",
+              "the future"
+            ],
+            [
+              "la politique, le sport",
+              "politics, sport — le / la still tag each noun"
+            ]
+          ],
+          "key": "<b>le / la = 'the'.</b> French keeps <span class='bd-fr-i'>le</span> or <span class='bd-fr-i'>la</span> even for general ideas: <span class='bd-fr-i'>la politique</span>, <span class='bd-fr-i'>le sport</span>."
+        }
+      },
+      {
+        "fr": "Ces {{applications|apps}} sont très {{populaires|popular}} aujourd'hui.",
+        "bd": {
+          "meaning": "These apps are very popular today.",
+          "chunks": [
+            [
+              "Ces applications",
+              "these apps"
+            ],
+            [
+              "sont très populaires",
+              "are very popular — populaires takes -s to match applications"
+            ],
+            [
+              "aujourd'hui",
+              "today"
+            ]
+          ],
+          "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>applications</span> is plural, so <span class='bd-fr-i'>populaires</span> adds an -s to match."
+        }
+      },
+      {
+        "fr": "{{Meta veut|Meta wants}} faire une application comme ça aussi.",
+        "bd": {
+          "meaning": "Meta wants to make an app like that too.",
+          "chunks": [
+            [
+              "Meta veut",
+              "Meta wants (vouloir = to want)"
+            ],
+            [
+              "faire une application",
+              "to make an app — faire stays plain after veut"
+            ],
+            [
+              "comme ça aussi",
+              "like that too"
+            ]
+          ],
+          "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veut</span> (wants) changes with the subject; the next verb <span class='bd-fr-i'>faire</span> stays plain."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais il y a un {{problème|problem}}.",
+        "bd": {
+          "meaning": "But there is a problem.",
+          "chunks": [
+            [
+              "Mais",
+              "but"
+            ],
+            [
+              "il y a",
+              "there is / there are — a fixed phrase"
+            ],
+            [
+              "un problème",
+              "a problem"
+            ]
+          ],
+          "key": "<b>il y a = 'there is / are'.</b> A set phrase — don't read it word for word as 'he has there'."
+        }
+      },
+      {
+        "fr": "Parfois, les gens parient avec des {{informations secrètes|secret information}}.",
+        "bd": {
+          "meaning": "Sometimes people bet with secret information.",
+          "chunks": [
+            [
+              "Parfois",
+              "sometimes"
+            ],
+            [
+              "les gens parient avec",
+              "people bet with"
+            ],
+            [
+              "des informations secrètes",
+              "secret information — secrètes comes AFTER the noun and takes -s"
+            ]
+          ],
+          "key": "<b>Adjective after the noun, and agreeing.</b> <span class='bd-fr-i'>informations secrètes</span>: the describing word follows the noun and adds -s for the plural."
+        }
+      },
+      {
+        "fr": "D'autres personnes disent que c'est seulement un {{jeu d'argent|gambling ('a money game')}}.",
+        "bd": {
+          "meaning": "Other people say it's just gambling.",
+          "chunks": [
+            [
+              "D'autres personnes disent que",
+              "other people say that (dire = to say)"
+            ],
+            [
+              "c'est seulement",
+              "it's only / just"
+            ],
+            [
+              "un jeu d'argent",
+              "gambling (literally 'a money game')"
+            ]
+          ],
+          "key": "<b>c'est = 'it is / that's'.</b> The everyday set phrase for pointing at something: <span class='bd-fr-i'>c'est seulement un jeu</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Un {{économiste|economist}} parle de ce problème.",
+        "bd": {
+          "meaning": "An economist talks about this problem.",
+          "chunks": [
+            [
+              "Un économiste",
+              "an economist"
+            ],
+            [
+              "parle de",
+              "talks about (parler de = to talk about)"
+            ],
+            [
+              "ce problème",
+              "this problem"
+            ]
+          ],
+          "key": "<b>parler <span class='bd-fr-i'>de</span> = 'to talk <span class='bd-fr-i'>about</span>'.</b> Many French verbs pin on a small word like <span class='bd-fr-i'>de</span> — learn the pair together."
+        }
+      },
+      {
+        "fr": "Il s'appelle Al Roth et il a {{gagné|won (from gagner)}} un prix Nobel.",
+        "bd": {
+          "meaning": "His name is Al Roth and he won a Nobel Prize.",
+          "chunks": [
+            [
+              "Il s'appelle Al Roth",
+              "his name is Al Roth (literally 'he calls himself')"
+            ],
+            [
+              "il a gagné",
+              "he won"
+            ],
+            [
+              "un prix Nobel",
+              "a Nobel Prize"
+            ]
+          ],
+          "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a gagné</span> = 'won': <span class='bd-fr-i'>a</span> (from avoir) + the past form <span class='bd-fr-i'>gagné</span>. Your 'past = avoir/être + verb' key."
+        }
+      },
+      {
+        "fr": "Pour lui, certains marchés {{choquent|shock}} les gens.",
+        "bd": {
+          "meaning": "For him, some markets shock people.",
+          "chunks": [
+            [
+              "Pour lui",
+              "for him"
+            ],
+            [
+              "certains marchés",
+              "some / certain markets"
+            ],
+            [
+              "choquent les gens",
+              "shock people — the -ent ending marks a plural subject"
+            ]
+          ],
+          "key": "<b>-ent = a plural subject.</b> <span class='bd-fr-i'>certains marchés</span> is plural, so the verb ends in silent <span class='bd-fr-i'>-ent</span> (it sounds the same as the singular)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Dans la {{bourse|stock market}}, ce problème est très grave.",
+        "bd": {
+          "meaning": "On the stock market, this problem is very serious.",
+          "chunks": [
+            [
+              "Dans la bourse",
+              "on / in the stock market"
+            ],
+            [
+              "ce problème est",
+              "this problem is"
+            ],
+            [
+              "très grave",
+              "very serious"
+            ]
+          ],
+          "key": "<b>Two ways to say 'is': c'est vs est.</b> With a named subject (<span class='bd-fr-i'>ce problème</span>) use <span class='bd-fr-i'>est</span>; the bare 'it is' set phrase is <span class='bd-fr-i'>c'est</span>."
+        }
+      },
+      {
+        "fr": "Mais pour ces applications, Al Roth pense que c'est {{moins grave|less serious}}.",
+        "bd": {
+          "meaning": "But for these apps, Al Roth thinks it's less serious.",
+          "chunks": [
+            [
+              "Mais pour ces applications",
+              "but for these apps"
+            ],
+            [
+              "Al Roth pense que",
+              "Al Roth thinks that (penser que = to think that)"
+            ],
+            [
+              "c'est moins grave",
+              "it's less serious"
+            ]
+          ],
+          "key": "<b>moins + adjective = 'less ___'.</b> <span class='bd-fr-i'>moins grave</span> = 'less serious' — the easy way to compare with no special word."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Al Roth a peur d'une autre chose.",
+        "bd": {
+          "meaning": "Al Roth is afraid of another thing.",
+          "chunks": [
+            [
+              "Al Roth a peur de",
+              "Al Roth is afraid of (avoir peur de = to be afraid of)"
+            ],
+            [
+              "une autre chose",
+              "another thing (de → d' before a vowel)"
+            ]
+          ],
+          "key": "<b>avoir peur de = 'to be afraid of'.</b> French says 'has fear of' — <span class='bd-fr-i'>a peur de</span> — using avoir where English uses 'to be'."
+        }
+      },
+      {
+        "fr": "Il n'aime pas quand les gens {{puissants|powerful}} de Washington parient.",
+        "bd": {
+          "meaning": "He doesn't like it when powerful people from Washington bet.",
+          "chunks": [
+            [
+              "Il n'aime pas",
+              "he doesn't like — the ne…pas sandwich around aime; ne → n' before a vowel"
+            ],
+            [
+              "quand les gens puissants",
+              "when the powerful people — puissants comes after the noun"
+            ],
+            [
+              "de Washington parient",
+              "from Washington bet"
+            ]
+          ],
+          "key": "<b>Negation sandwich: ne … pas.</b> It wraps the verb: <span class='bd-fr-i'>n'aime pas</span> = 'does not like'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Al Roth a une idée pour {{aider|help}} les gens.",
+        "bd": {
+          "meaning": "Al Roth has an idea to help people.",
+          "chunks": [
+            [
+              "Al Roth a une idée",
+              "Al Roth has an idea"
+            ],
+            [
+              "pour aider les gens",
+              "to help / in order to help people"
+            ]
+          ],
+          "key": "<b>pour + plain verb = 'in order to'.</b> After <span class='bd-fr-i'>pour</span> the verb stays plain: <span class='bd-fr-i'>aider</span>, not conjugated."
+        }
+      },
+      {
+        "fr": "L'application peut {{fixer une limite|set a limit}}.",
+        "bd": {
+          "meaning": "The app can set a limit.",
+          "chunks": [
+            [
+              "L'application peut",
+              "the app can (pouvoir = can / to be able to)"
+            ],
+            [
+              "fixer une limite",
+              "set a limit — fixer stays plain after peut"
+            ]
+          ],
+          "key": "<b>Helper + plain verb, again.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>fixer</span> stays in its plain form."
+        }
+      },
+      {
+        "fr": "Par exemple : « Quand je {{perds|lose (from perdre)}} cent dollars, arrête. »",
+        "bd": {
+          "meaning": "For example: “When I lose a hundred dollars, stop.”",
+          "chunks": [
+            [
+              "Par exemple",
+              "for example"
+            ],
+            [
+              "quand je perds cent dollars",
+              "when I lose a hundred dollars (perdre = to lose)"
+            ],
+            [
+              "arrête",
+              "stop! (a command)"
+            ]
+          ],
+          "key": "<b>Giving an order: the bare verb.</b> <span class='bd-fr-i'>arrête</span> = 'stop!' — a command drops the subject and just uses the verb form."
+        }
+      },
+      {
+        "fr": "C'est comme un {{barman|bartender}} : il arrête de servir une personne qui a {{trop bu|drunk too much}}.",
+        "bd": {
+          "meaning": "It's like a bartender: he stops serving a person who has drunk too much.",
+          "chunks": [
+            [
+              "C'est comme un barman",
+              "it's like a bartender"
+            ],
+            [
+              "il arrête de servir",
+              "he stops serving (arrêter de + plain verb)"
+            ],
+            [
+              "une personne qui a trop bu",
+              "a person who has drunk too much (a bu = past of boire)"
+            ]
+          ],
+          "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a trop bu</span> = 'has drunk too much': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>bu</span> (from boire)."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "il a gagné un prix Nobel",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> (from avoir) changes with the subject and the main verb takes its past form <span class='fr'>gagné</span>. Your 'past = avoir/être + verb' key."
+    },
+    {
+      "fr": "Meta veut faire… / l'application peut fixer…",
+      "en": "<b>helper + plain verb.</b> <span class='fr'>veut</span> and <span class='fr'>peut</span> carry the subject; the next verb (<span class='fr'>faire</span>, <span class='fr'>fixer</span>) stays plain. Your vouloir / pouvoir / devoir helpers all work this way."
+    },
+    {
+      "fr": "il n'aime pas / ce n'est pas grave",
+      "en": "<b>the ne … pas sandwich.</b> It wraps the verb: <span class='fr'>n'aime pas</span>. Before a vowel <span class='fr'>ne</span> shrinks to <span class='fr'>n'</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Quelle est l'idée d'Al Roth pour aider les gens ?",
+    "a": "L'application peut fixer une limite : elle s'arrête quand vous perdez trop d'argent. (The app can set a limit: it stops when you lose too much money.)"
+  },
+  "flag": "<b>marchés de prédiction</b> is clear and understood, but many French writers use <span class='fr'>marchés prédictifs</span> — I chose the more transparent form for you. This was a Q&A interview, compressed into a short neutral retelling: I dropped the DARPA 'terrorist market' example, the wheat-farmer futures analogy, and the fight over whether the C.F.T.C. or the states should regulate. <span class='fr'>certains marchés choquent les gens</span> is my plain stand-in for Roth's idea of 'repugnant markets' — the gist, not a technical match. It's a neutral summary of your article, not my own view on betting."
+}

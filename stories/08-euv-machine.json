@@ -1,0 +1,396 @@
+{
+  "id": "euv-machine",
+  "chip": "La machine à puces",
+  "kicker": "Technologie · Chine",
+  "title": "Une machine, deux pays, un grand conflit",
+  "level": "A1",
+  "gist": "One machine — made only by the Dutch company ASML — produces the world's most advanced computer chips, the kind that power the best AI. Since 2019 the U.S. has blocked its sale to China, and now a U.S. official claims one may have reached China anyway. ASML flatly denies it and the Dutch government backs them. Underneath sits a bigger US–Europe disagreement over China, China's own effort to build such a machine, and a proposed U.S. law the Dutch dislike.",
+  "body": [
+    [
+      {
+        "fr": "Il y a une machine très {{spéciale|special}} et très {{importante|important}}.",
+        "bd": {
+          "meaning": "There is a very special and very important machine.",
+          "chunks": [
+            [
+              "Il y a une machine",
+              "there is a machine (il y a = there is)"
+            ],
+            [
+              "très spéciale et très importante",
+              "very special and very important — both take -e to match machine (feminine)"
+            ]
+          ],
+          "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>machine</span> is feminine, so <span class='bd-fr-i'>spéciale</span> and <span class='bd-fr-i'>importante</span> both end in <span class='bd-fr-i'>-e</span>."
+        }
+      },
+      {
+        "fr": "Cette machine {{fabrique|makes}} les meilleures {{puces|chips}} d'ordinateur.",
+        "bd": {
+          "meaning": "This machine makes the best computer chips.",
+          "chunks": [
+            [
+              "Cette machine fabrique",
+              "this machine makes (fabriquer = to make / manufacture)"
+            ],
+            [
+              "les meilleures puces",
+              "the best chips (une puce = a chip)"
+            ],
+            [
+              "d'ordinateur",
+              "computer (chips)"
+            ]
+          ],
+          "key": "<b>meilleur = 'best / better'.</b> <span class='bd-fr-i'>les meilleures puces</span> = 'the best chips' — <span class='bd-fr-i'>meilleures</span> agrees (feminine plural)."
+        }
+      },
+      {
+        "fr": "Ces puces sont {{importantes|important}} pour l'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}}.",
+        "bd": {
+          "meaning": "These chips are important for artificial intelligence.",
+          "chunks": [
+            [
+              "Ces puces sont importantes",
+              "these chips are important — importantes agrees (feminine plural)"
+            ],
+            [
+              "pour l'IA",
+              "for AI"
+            ]
+          ],
+          "key": "<b>pour = 'for'.</b> <span class='bd-fr-i'>pour l'IA</span> = 'for AI' — the same little word as in <span class='bd-fr-i'>pour aider</span> ('to help')."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Une {{seule|single / only}} {{entreprise|company}} fabrique cette machine : ASML.",
+        "bd": {
+          "meaning": "Only one company makes this machine: ASML.",
+          "chunks": [
+            [
+              "Une seule entreprise",
+              "only one / a single company (seul = only / single)"
+            ],
+            [
+              "fabrique cette machine",
+              "makes this machine"
+            ]
+          ],
+          "key": "<b>seul before the noun = 'only / single'.</b> <span class='bd-fr-i'>une seule entreprise</span> = 'only one company'."
+        }
+      },
+      {
+        "fr": "ASML est une entreprise des {{Pays-Bas|Netherlands}}.",
+        "bd": {
+          "meaning": "ASML is a company from the Netherlands.",
+          "chunks": [
+            [
+              "ASML est une entreprise",
+              "ASML is a company"
+            ],
+            [
+              "des Pays-Bas",
+              "from the Netherlands (les Pays-Bas = the Netherlands)"
+            ]
+          ],
+          "key": "<b>des = de + les.</b> <span class='bd-fr-i'>des Pays-Bas</span> = 'of / from the Netherlands' — the country's name itself is plural (<span class='bd-fr-i'>les Pays-Bas</span>)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Depuis 2019, les États-Unis {{interdisent|forbid}} de vendre cette machine à la Chine.",
+        "bd": {
+          "meaning": "Since 2019, the United States has forbidden selling this machine to China.",
+          "chunks": [
+            [
+              "Depuis 2019",
+              "since 2019 (depuis = since)"
+            ],
+            [
+              "les États-Unis interdisent",
+              "the United States forbid (interdire = to forbid)"
+            ],
+            [
+              "de vendre cette machine à la Chine",
+              "to sell this machine to China (interdire de + plain verb)"
+            ]
+          ],
+          "key": "<b>depuis = 'since / for'.</b> French uses the present with <span class='bd-fr-i'>depuis</span> where English says 'has': <span class='bd-fr-i'>depuis 2019, ils interdisent</span> = 'since 2019 they have forbidden'."
+        }
+      },
+      {
+        "fr": "Mais aujourd'hui, un {{ministre|minister}} américain dit : peut-être qu'une machine est {{allée|went (from aller)}} en Chine.",
+        "bd": {
+          "meaning": "But today, a U.S. minister says: maybe a machine went to China.",
+          "chunks": [
+            [
+              "Mais aujourd'hui",
+              "but today"
+            ],
+            [
+              "un ministre américain dit",
+              "a U.S. minister says (américain comes after the noun)"
+            ],
+            [
+              "peut-être qu'une machine est allée",
+              "maybe a machine went (peut-être = maybe)"
+            ],
+            [
+              "en Chine",
+              "to China"
+            ]
+          ],
+          "key": "<b>Past with être, not avoir.</b> <span class='bd-fr-i'>est allée</span> = 'went': a few verbs (like <span class='bd-fr-i'>aller</span>) use <span class='bd-fr-i'>être</span> in the past, and then the verb agrees — <span class='bd-fr-i'>allée</span> has an extra -e for <span class='bd-fr-i'>machine</span> (feminine)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "ASML {{répond|answers}} : « C'est impossible. »",
+        "bd": {
+          "meaning": "ASML answers: “It's impossible.”",
+          "chunks": [
+            [
+              "ASML répond",
+              "ASML answers / replies (répondre = to answer)"
+            ],
+            [
+              "c'est impossible",
+              "it's impossible"
+            ]
+          ],
+          "key": "<b>c'est = 'it is / that's'.</b> <span class='bd-fr-i'>c'est impossible</span> = 'it's impossible' — the everyday set phrase."
+        }
+      },
+      {
+        "fr": "L'entreprise dit : nous {{savons|know}} où sont toutes nos machines.",
+        "bd": {
+          "meaning": "The company says: we know where all our machines are.",
+          "chunks": [
+            [
+              "L'entreprise dit",
+              "the company says"
+            ],
+            [
+              "nous savons",
+              "we know (savoir = to know a fact)"
+            ],
+            [
+              "où sont toutes nos machines",
+              "where all our machines are (toutes agrees: feminine plural)"
+            ]
+          ],
+          "key": "<b>savoir = 'to know' (a fact).</b> <span class='bd-fr-i'>nous savons</span> = 'we know'. French says <span class='bd-fr-i'>où sont</span> ('where are') with no extra word."
+        }
+      },
+      {
+        "fr": "{{Aucune|No}} machine n'est en Chine.",
+        "bd": {
+          "meaning": "No machine is in China.",
+          "chunks": [
+            [
+              "Aucune machine",
+              "no machine / not one machine (aucun / aucune = none)"
+            ],
+            [
+              "n'est en Chine",
+              "is not in China — aucune… ne is a negative pair"
+            ]
+          ],
+          "key": "<b>aucune … ne = 'no / not any'.</b> Like <span class='bd-fr-i'>ne…pas</span>, it comes in two parts: <span class='bd-fr-i'>aucune machine n'est</span> = 'no machine is'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le gouvernement des Pays-Bas est {{d'accord|in agreement}}.",
+        "bd": {
+          "meaning": "The Dutch government agrees.",
+          "chunks": [
+            [
+              "Le gouvernement des Pays-Bas",
+              "the Dutch government (literally 'of the Netherlands')"
+            ],
+            [
+              "est d'accord",
+              "agrees (être d'accord = to agree)"
+            ]
+          ],
+          "key": "<b>être d'accord = 'to agree'.</b> French says 'is in agreement': <span class='bd-fr-i'>est d'accord</span>."
+        }
+      },
+      {
+        "fr": "Il dit : nous {{respectons|follow / respect}} les {{règles|rules}}.",
+        "bd": {
+          "meaning": "It says: we follow the rules.",
+          "chunks": [
+            [
+              "Il dit",
+              "it says (il = 'it', for le gouvernement)"
+            ],
+            [
+              "nous respectons les règles",
+              "we follow / respect the rules (respecter = to respect / obey)"
+            ]
+          ],
+          "key": "<b>-ons = the 'we' ending.</b> <span class='bd-fr-i'>nous respectons</span>, <span class='bd-fr-i'>nous savons</span> — verbs for <span class='bd-fr-i'>nous</span> ('we') end in <span class='bd-fr-i'>-ons</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais {{derrière|behind}} ce problème, il y a un plus grand {{conflit|conflict}}.",
+        "bd": {
+          "meaning": "But behind this problem, there is a bigger conflict.",
+          "chunks": [
+            [
+              "Mais derrière ce problème",
+              "but behind this problem (derrière = behind)"
+            ],
+            [
+              "il y a un plus grand conflit",
+              "there is a bigger conflict (plus grand = bigger)"
+            ]
+          ],
+          "key": "<b>plus grand = 'bigger'.</b> <span class='bd-fr-i'>plus</span> + adjective makes the comparison: <span class='bd-fr-i'>plus grand</span> = 'bigger', like <span class='bd-fr-i'>plus cher</span> ('more expensive')."
+        }
+      },
+      {
+        "fr": "Les États-Unis et l'Europe ne sont pas toujours d'accord sur la Chine.",
+        "bd": {
+          "meaning": "The United States and Europe don't always agree about China.",
+          "chunks": [
+            [
+              "Les États-Unis et l'Europe",
+              "the United States and Europe"
+            ],
+            [
+              "ne sont pas toujours d'accord",
+              "don't always agree — ne…pas wraps sont"
+            ],
+            [
+              "sur la Chine",
+              "about / on China (sur = on)"
+            ]
+          ],
+          "key": "<b>Negation sandwich: ne … pas.</b> It still wraps the verb with <span class='bd-fr-i'>toujours</span> tucked inside: <span class='bd-fr-i'>ne sont pas toujours</span> = 'are not always'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Chine veut aussi fabriquer sa {{propre|own}} machine.",
+        "bd": {
+          "meaning": "China also wants to make its own machine.",
+          "chunks": [
+            [
+              "La Chine veut aussi fabriquer",
+              "China also wants to make (vouloir + plain verb)"
+            ],
+            [
+              "sa propre machine",
+              "its own machine (propre before the noun = 'own')"
+            ]
+          ],
+          "key": "<b>propre before the noun = 'own'.</b> <span class='bd-fr-i'>sa propre machine</span> = 'its own machine'. (After the noun, <span class='bd-fr-i'>propre</span> means 'clean' — position changes the meaning!)"
+        }
+      },
+      {
+        "fr": "Mais c'est très difficile : ça peut prendre {{des années|years}}.",
+        "bd": {
+          "meaning": "But it's very difficult: it can take years.",
+          "chunks": [
+            [
+              "Mais c'est très difficile",
+              "but it's very difficult"
+            ],
+            [
+              "ça peut prendre des années",
+              "it can take years (ça = that / it; des années = years)"
+            ]
+          ],
+          "key": "<b>ça peut + plain verb.</b> <span class='bd-fr-i'>ça peut prendre</span> = 'it can take' — <span class='bd-fr-i'>ça</span> ('that/it') + <span class='bd-fr-i'>peut</span> (can) + the plain verb <span class='bd-fr-i'>prendre</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Les États-Unis veulent une {{nouvelle loi|new law}} plus stricte.",
+        "bd": {
+          "meaning": "The United States wants a new, stricter law.",
+          "chunks": [
+            [
+              "Les États-Unis veulent",
+              "the United States want (vouloir = to want)"
+            ],
+            [
+              "une nouvelle loi plus stricte",
+              "a new, stricter law (nouvelle before the noun; plus stricte = stricter)"
+            ]
+          ],
+          "key": "<b>nouveau / nouvelle goes BEFORE the noun.</b> <span class='bd-fr-i'>une nouvelle loi</span> = 'a new law' — and it agrees: <span class='bd-fr-i'>nouvelle</span> for the feminine <span class='bd-fr-i'>loi</span>."
+        }
+      },
+      {
+        "fr": "Mais les Pays-Bas ne sont pas {{contents|happy}}.",
+        "bd": {
+          "meaning": "But the Netherlands is not happy.",
+          "chunks": [
+            [
+              "Mais les Pays-Bas",
+              "but the Netherlands"
+            ],
+            [
+              "ne sont pas contents",
+              "are not happy — ne…pas wraps sont; contents takes -s (plural)"
+            ]
+          ],
+          "key": "<b>Negation sandwich: ne … pas.</b> <span class='bd-fr-i'>ne sont pas contents</span> = 'are not happy'."
+        }
+      },
+      {
+        "fr": "C'est une {{petite bataille|small battle}} dans une grande {{guerre|war}} pour la technologie.",
+        "bd": {
+          "meaning": "It's a small battle in a big war over technology.",
+          "chunks": [
+            [
+              "C'est une petite bataille",
+              "it's a small battle (petite before the noun)"
+            ],
+            [
+              "dans une grande guerre",
+              "in a big war (grande before the noun)"
+            ],
+            [
+              "pour la technologie",
+              "for / over technology"
+            ]
+          ],
+          "key": "<b>Size adjectives go BEFORE the noun.</b> <span class='bd-fr-i'>petite bataille</span>, <span class='bd-fr-i'>grande guerre</span> — <span class='bd-fr-i'>petit</span> and <span class='bd-fr-i'>grand</span> sit in front, and both agree (feminine)."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "une machine est allée en Chine",
+      "en": "<b>Some verbs form the past with être, not avoir.</b> <span class='fr'>aller</span> is one: <span class='fr'>est allée</span> = 'went'. With <span class='fr'>être</span> the past word agrees with the subject — <span class='fr'>allée</span> gains an extra -e for the feminine <span class='fr'>machine</span>. (Contrast <span class='fr'>a gagné</span>, which uses avoir and doesn't agree.)"
+    },
+    {
+      "fr": "veut fabriquer / ça peut prendre / veulent une loi",
+      "en": "<b>helper + plain verb.</b> <span class='fr'>veut</span>, <span class='fr'>peut</span>, <span class='fr'>veulent</span> carry the subject; the next verb stays plain. Your pouvoir / vouloir / devoir family."
+    },
+    {
+      "fr": "une seule entreprise / nouvelle loi / plus grand conflit / petite bataille",
+      "en": "<b>a small set of adjectives sit BEFORE the noun</b> (<span class='fr'>grand</span>, <span class='fr'>petit</span>, <span class='fr'>nouveau</span>, <span class='fr'>seul</span>, <span class='fr'>propre</span>…) and still agree: <span class='fr'>seule</span>, <span class='fr'>nouvelle</span>, <span class='fr'>petite</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi cette machine est très importante ?",
+    "a": "Parce qu'elle fabrique les meilleures puces, et ces puces sont importantes pour l'IA. (Because it makes the best chips, and these chips are important for AI.)"
+  },
+  "flag": "Compressed very hard from a long geopolitical piece into a plain A1 through-line — a neutral retelling, not a view on the export-control politics. I dropped the historical opening (Peter the Great, A.Q. Khan), the DUV-vs-EUV and 'multi-patterning' detail, the named people (Lutnick, Sjoerdsma) and ASML's exact count of 340 machines, the Pax Silica alliance, the MATCH Act specifics, the Nvidia chips, and the Nexperia dispute. Word choices to flag: <span class='fr'>une puce</span> is the normal French word for a computer chip (it also means 'flea' — context makes it clear); <span class='fr'>interdire de vendre</span> ('forbid to sell') is my plain stand-in for formal <span class='fr'>contrôles à l'exportation</span> ('export controls'); and I used <span class='fr'>les Pays-Bas</span> ('the Netherlands') rather than the adjective <span class='fr'>néerlandais</span> to keep it transparent. The <span class='fr'>est allée</span> agreement is correct, but être-verbs + agreement is exactly the kind of thing worth double-checking as you advance."
+}

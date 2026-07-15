@@ -1,0 +1,316 @@
+{
+  "id": "fed-independence",
+  "chip": "Qui contrôle les agences ?",
+  "kicker": "États-Unis · Justice",
+  "title": "Le président gagne plus de pouvoir sur les agences",
+  "level": "A1",
+  "gist": "Some U.S. agencies, like the central bank (the Fed), are meant to be independent of the president. The Supreme Court blocked President Trump from immediately firing Fed governor Lisa Cook — but in a linked ruling it gave presidents much more power to remove the heads of other independent agencies. For companies that means the regulatory rules may now swing with each new president.",
+  "body": [
+    [
+      {
+        "fr": "Aux {{États-Unis|United States}}, certaines {{agences|agencies}} sont {{indépendantes|independent}}.",
+        "bd": {
+          "meaning": "In the United States, some agencies are independent.",
+          "chunks": [
+            [
+              "Aux États-Unis",
+              "in the United States (aux = à + les)"
+            ],
+            [
+              "certaines agences",
+              "some / certain agencies (agence is feminine)"
+            ],
+            [
+              "sont indépendantes",
+              "are independent — indépendantes takes -es to match agences (feminine plural)"
+            ]
+          ],
+          "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>agences</span> is feminine plural, so <span class='bd-fr-i'>indépendantes</span> ends in <span class='bd-fr-i'>-es</span>."
+        }
+      },
+      {
+        "fr": "Le président ne {{contrôle|controls}} pas ces agences.",
+        "bd": {
+          "meaning": "The president doesn't control these agencies.",
+          "chunks": [
+            [
+              "Le président",
+              "the president"
+            ],
+            [
+              "ne contrôle pas",
+              "doesn't control — the ne…pas sandwich around contrôle"
+            ],
+            [
+              "ces agences",
+              "these agencies"
+            ]
+          ],
+          "key": "<b>Negation sandwich: ne … pas.</b> It wraps the verb: <span class='bd-fr-i'>ne contrôle pas</span> = 'does not control'."
+        }
+      },
+      {
+        "fr": "La {{banque centrale|central bank (the Fed)}} est une agence indépendante.",
+        "bd": {
+          "meaning": "The central bank is an independent agency.",
+          "chunks": [
+            [
+              "La banque centrale",
+              "the central bank (the U.S. 'Fed')"
+            ],
+            [
+              "est une agence indépendante",
+              "is an independent agency"
+            ]
+          ],
+          "key": "<b>Adjective after the noun.</b> <span class='bd-fr-i'>indépendante</span> follows <span class='bd-fr-i'>agence</span> and agrees with it (feminine singular)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le président Trump veut {{renvoyer|dismiss / fire}} Lisa Cook.",
+        "bd": {
+          "meaning": "President Trump wants to fire Lisa Cook.",
+          "chunks": [
+            [
+              "Le président Trump veut",
+              "President Trump wants (vouloir = to want)"
+            ],
+            [
+              "renvoyer Lisa Cook",
+              "to fire Lisa Cook — renvoyer stays plain after veut"
+            ]
+          ],
+          "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veut</span> (wants) changes with the subject; the next verb <span class='bd-fr-i'>renvoyer</span> stays plain."
+        }
+      },
+      {
+        "fr": "Elle {{travaille|works}} à la banque centrale.",
+        "bd": {
+          "meaning": "She works at the central bank.",
+          "chunks": [
+            [
+              "Elle travaille",
+              "she works (travailler = to work)"
+            ],
+            [
+              "à la banque centrale",
+              "at the central bank"
+            ]
+          ],
+          "key": "<b>à = 'at / to'.</b> <span class='bd-fr-i'>à la banque</span> = 'at the bank'. (With <span class='bd-fr-i'>le</span> it becomes <span class='bd-fr-i'>au</span>; with <span class='bd-fr-i'>la</span> it stays <span class='bd-fr-i'>à la</span>.)"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La {{Cour suprême|Supreme Court}} dit non.",
+        "bd": {
+          "meaning": "The Supreme Court says no.",
+          "chunks": [
+            [
+              "La Cour suprême",
+              "the Supreme Court"
+            ],
+            [
+              "dit non",
+              "says no (dire = to say)"
+            ]
+          ],
+          "key": "<b>dire = 'to say'.</b> <span class='bd-fr-i'>dit</span> = 'says' — a top-frequency verb; its past <span class='bd-fr-i'>a dit</span> ('said') turns up further down."
+        }
+      },
+      {
+        "fr": "Pour le moment, Trump ne peut pas renvoyer Lisa Cook.",
+        "bd": {
+          "meaning": "For now, Trump cannot fire Lisa Cook.",
+          "chunks": [
+            [
+              "Pour le moment",
+              "for now / for the moment"
+            ],
+            [
+              "Trump ne peut pas renvoyer",
+              "Trump cannot fire — ne…pas wraps peut; renvoyer stays plain"
+            ],
+            [
+              "Lisa Cook",
+              "Lisa Cook"
+            ]
+          ],
+          "key": "<b>Negation + helper together.</b> <span class='bd-fr-i'>ne peut pas</span> = 'cannot', and the plain verb still follows: <span class='bd-fr-i'>ne peut pas renvoyer</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais la Cour {{prend une autre décision|makes another decision}}.",
+        "bd": {
+          "meaning": "But the Court makes another decision.",
+          "chunks": [
+            [
+              "Mais la Cour",
+              "but the Court"
+            ],
+            [
+              "prend une autre décision",
+              "makes another decision (prendre une décision = to make a decision)"
+            ]
+          ],
+          "key": "<b>prendre une décision = 'to make a decision'.</b> French <span class='bd-fr-i'>prend</span> ('takes') a decision where English 'makes' one — learn it as a set phrase."
+        }
+      },
+      {
+        "fr": "Maintenant, le président a {{plus de pouvoir|more power}}.",
+        "bd": {
+          "meaning": "Now, the president has more power.",
+          "chunks": [
+            [
+              "Maintenant",
+              "now"
+            ],
+            [
+              "le président a",
+              "the president has (avoir = to have)"
+            ],
+            [
+              "plus de pouvoir",
+              "more power (plus de = more)"
+            ]
+          ],
+          "key": "<b>plus de = 'more'.</b> <span class='bd-fr-i'>plus de pouvoir</span> = 'more power' — the mirror of <span class='bd-fr-i'>moins de</span> ('less')."
+        }
+      },
+      {
+        "fr": "Il peut renvoyer les {{chefs|heads / bosses}} d'autres agences.",
+        "bd": {
+          "meaning": "He can fire the heads of other agencies.",
+          "chunks": [
+            [
+              "Il peut renvoyer",
+              "he can fire (pouvoir + plain verb)"
+            ],
+            [
+              "les chefs d'autres agences",
+              "the heads of other agencies (de → d' before a vowel)"
+            ]
+          ],
+          "key": "<b>Helper + plain verb, again.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>renvoyer</span> stays plain."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "C'est un grand {{changement|change}}.",
+        "bd": {
+          "meaning": "It's a big change.",
+          "chunks": [
+            [
+              "C'est",
+              "it is / that's — the set phrase c'est"
+            ],
+            [
+              "un grand changement",
+              "a big change — grand comes BEFORE the noun"
+            ]
+          ],
+          "key": "<b>A few adjectives go BEFORE the noun.</b> <span class='bd-fr-i'>grand</span> is one: <span class='bd-fr-i'>un grand changement</span> = 'a big change'."
+        }
+      },
+      {
+        "fr": "Avant, la {{loi|law}} a {{protégé|protected}} ces personnes.",
+        "bd": {
+          "meaning": "Before, the law protected these people.",
+          "chunks": [
+            [
+              "Avant",
+              "before / in the past"
+            ],
+            [
+              "la loi a protégé",
+              "the law protected (a protégé = past of protéger)"
+            ],
+            [
+              "ces personnes",
+              "these people"
+            ]
+          ],
+          "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a protégé</span> = 'protected': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>protégé</span>. Your 'past = avoir/être + verb' key."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Pour les {{entreprises|companies}}, c'est un problème.",
+        "bd": {
+          "meaning": "For companies, it's a problem.",
+          "chunks": [
+            [
+              "Pour les entreprises",
+              "for the companies"
+            ],
+            [
+              "c'est un problème",
+              "it's a problem"
+            ]
+          ],
+          "key": "<b>c'est = 'it is / that's'.</b> The everyday set phrase: <span class='bd-fr-i'>c'est un problème</span> = 'it's a problem'."
+        }
+      },
+      {
+        "fr": "Les {{règles|rules}} peuvent changer avec {{chaque|each}} président.",
+        "bd": {
+          "meaning": "The rules can change with each president.",
+          "chunks": [
+            [
+              "Les règles peuvent changer",
+              "the rules can change (pouvoir + plain verb)"
+            ],
+            [
+              "avec chaque président",
+              "with each president (chaque = each)"
+            ]
+          ],
+          "key": "<b>chaque = 'each / every'.</b> It stays singular: <span class='bd-fr-i'>chaque président</span> = 'each president'."
+        }
+      },
+      {
+        "fr": "Trump dit : « Ce n'est pas fini. »",
+        "bd": {
+          "meaning": "Trump says: “It's not over.”",
+          "chunks": [
+            [
+              "Trump dit",
+              "Trump says"
+            ],
+            [
+              "ce n'est pas fini",
+              "it's not over / finished — the ne…pas sandwich around est"
+            ]
+          ],
+          "key": "<b>ne … pas around c'est.</b> <span class='bd-fr-i'>c'est</span> becomes <span class='bd-fr-i'>ce n'est pas</span>: 'it is' → 'it is not'."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "la loi a protégé ces personnes",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> (from avoir) + a past form <span class='fr'>protégé</span>. Your 'past = avoir/être + verb' key."
+    },
+    {
+      "fr": "veut renvoyer / peut renvoyer / peuvent changer",
+      "en": "<b>helper + plain verb.</b> <span class='fr'>veut</span>, <span class='fr'>peut</span>, <span class='fr'>peuvent</span> carry the subject; the next verb stays plain. Your pouvoir / vouloir / devoir family."
+    },
+    {
+      "fr": "ne contrôle pas / ne peut pas / ce n'est pas",
+      "en": "<b>the ne … pas sandwich.</b> It wraps the verb every time: <span class='fr'>ne contrôle pas</span>, <span class='fr'>ne peut pas</span>, <span class='fr'>ce n'est pas</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Qu'est-ce que la Cour suprême décide pour Lisa Cook ?",
+    "a": "Pour le moment, Trump ne peut pas la renvoyer. (For now, Trump cannot fire her.)"
+  },
+  "flag": "A legal / political story compressed to A1 and kept strictly neutral — a factual retelling of your article, not a view on the ruling or the people. I dropped the detail: the F.T.C. commissioner's parallel case, the 5–4 split, the mortgage-fraud allegations, and the new Fed chair. Two word choices: <span class='fr'>la banque centrale</span> stands in for 'the Fed', and <span class='fr'>renvoyer</span> ('to send away') is the everyday verb for 'fire' — for removing an official a lawyer might use <span class='fr'>révoquer</span>. <span class='fr'>agence</span> is a fair plain word for these regulators, though the source is more specific."
+}

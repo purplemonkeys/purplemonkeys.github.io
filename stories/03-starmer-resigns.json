@@ -1,0 +1,352 @@
+{
+  "id": "starmer-resigns",
+  "chip": "Le charisme ne suffit pas",
+  "kicker": "Royaume-Uni · Politique",
+  "title": "Starmer démissionne, Burnham arrive",
+  "level": "A1",
+  "gist": "Keir Starmer stepped down as prime minister after Nigel Farage's Reform party overtook Labour and voters turned against him. Andy Burnham, a popular, charismatic former mayor, is expected to take over — but Britain's deep problems (big debt, weak growth) remain, and his policies may not differ much. The article's point: charisma alone won't be enough.",
+  "body": [
+    [
+      {
+        "fr": "Keir Starmer {{démissionne|resigns, steps down}}.",
+        "bd": {
+          "meaning": "Keir Starmer resigns.",
+          "chunks": [
+            [
+              "Keir Starmer démissionne",
+              "Keir Starmer resigns — present tense for a fresh event"
+            ]
+          ],
+          "key": "<b>démissionner = 'to resign'.</b> The present tense is the simplest way to report news: 'Starmer resigns'."
+        }
+      },
+      {
+        "fr": "Il {{n'est plus|is no longer}} Premier ministre.",
+        "bd": {
+          "meaning": "He is no longer Prime Minister.",
+          "chunks": [
+            [
+              "Il n'est plus",
+              "he is no longer (the ne...plus sandwich)"
+            ],
+            [
+              "Premier ministre",
+              "Prime Minister"
+            ]
+          ],
+          "key": "<b>A new sandwich filling:</b> <span class='bd-fr-i'>ne ... plus</span> = 'no longer / not anymore' — same shape as ne...pas, different word. ne becomes n' before the vowel."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le parti de Nigel Farage, {{Reform|Reform (a party)}}, est très {{populaire|popular}}.",
+        "bd": {
+          "meaning": "Nigel Farage's party, Reform, is very popular.",
+          "chunks": [
+            [
+              "Le parti de Nigel Farage",
+              "Nigel Farage's party (French: 'the party OF Farage')"
+            ],
+            [
+              "est très populaire",
+              "is very popular"
+            ]
+          ],
+          "key": "<b>Possession with 'de':</b> French has no 's. 'Farage's party' becomes <span class='bd-fr-i'>le parti de Nigel Farage</span>, 'the party of Farage'."
+        }
+      },
+      {
+        "fr": "C'est un parti {{contre l'immigration|against immigration}}.",
+        "bd": {
+          "meaning": "It's a party against immigration.",
+          "chunks": [
+            [
+              "C'est",
+              "it is / that's (a fixed phrase)"
+            ],
+            [
+              "un parti contre l'immigration",
+              "a party against immigration"
+            ]
+          ],
+          "key": "<b>c'est = 'it is / this is'</b> — the go-to set phrase for describing or identifying something."
+        }
+      },
+      {
+        "fr": "{{Beaucoup de gens|many people}} {{ne veulent plus|no longer want}} de Starmer.",
+        "bd": {
+          "meaning": "Many people no longer want Starmer.",
+          "chunks": [
+            [
+              "Beaucoup de gens",
+              "many people"
+            ],
+            [
+              "ne veulent plus de",
+              "no longer want (ne...plus around 'veulent')"
+            ],
+            [
+              "Starmer",
+              "Starmer"
+            ]
+          ],
+          "key": "<b>ne ... plus once more:</b> <span class='bd-fr-i'>ne veulent plus</span> = 'don't want anymore'. The sandwich wraps the verb <span class='bd-fr-i'>veulent</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le Royaume-Uni {{a beaucoup de problèmes|has many problems}}.",
+        "bd": {
+          "meaning": "The UK has many problems.",
+          "chunks": [
+            [
+              "Le Royaume-Uni a",
+              "the UK has"
+            ],
+            [
+              "beaucoup de problèmes",
+              "many problems (beaucoup de = a lot of)"
+            ]
+          ],
+          "key": "<b>beaucoup de = 'a lot of / many'</b> — always with 'de', never 'des': <span class='bd-fr-i'>beaucoup de problèmes</span>."
+        }
+      },
+      {
+        "fr": "La {{croissance|growth}} est {{faible|weak}}.",
+        "bd": {
+          "meaning": "Growth is weak.",
+          "chunks": [
+            [
+              "La croissance",
+              "growth (French keeps 'the': la croissance)"
+            ],
+            [
+              "est faible",
+              "is weak"
+            ]
+          ],
+          "key": "<b>French keeps 'the' for general ideas:</b> <span class='bd-fr-i'>la croissance</span> = just 'growth', not 'the growth'."
+        }
+      },
+      {
+        "fr": "La {{dette|debt}} est très {{grande|big}}.",
+        "bd": {
+          "meaning": "The debt is very big.",
+          "chunks": [
+            [
+              "La dette",
+              "the debt"
+            ],
+            [
+              "est très grande",
+              "is very big ('grande' takes -e because 'dette' is feminine)"
+            ]
+          ],
+          "key": "<b>Adjective agreement:</b> <span class='bd-fr-i'>dette</span> is feminine, so <span class='bd-fr-i'>grand</span> becomes <span class='bd-fr-i'>grande</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En dix ans, le pays {{a eu|had}} six Premiers ministres.",
+        "bd": {
+          "meaning": "In ten years, the country has had six prime ministers.",
+          "chunks": [
+            [
+              "En dix ans",
+              "in ten years"
+            ],
+            [
+              "le pays a eu",
+              "the country has had (a eu = avoir + the past form of avoir itself)"
+            ],
+            [
+              "six Premiers ministres",
+              "six prime ministers"
+            ]
+          ],
+          "key": "<b>Even 'to have' has a past:</b> <span class='bd-fr-i'>a eu</span> = 'has had / had' (avoir + eu)."
+        }
+      },
+      {
+        "fr": "Bientôt, il va {{avoir|have}} un {{septième|seventh}} Premier ministre.",
+        "bd": {
+          "meaning": "Soon, it's going to have a seventh prime minister.",
+          "chunks": [
+            [
+              "Bientôt",
+              "soon"
+            ],
+            [
+              "il va avoir",
+              "it's going to have (aller + plain verb)"
+            ],
+            [
+              "un septième Premier ministre",
+              "a seventh prime minister"
+            ]
+          ],
+          "key": "<b>aller + plain verb future:</b> <span class='bd-fr-i'>va avoir</span> = 'is going to have'. <span class='bd-fr-i'>septième</span> = 'seventh' (numbers add -ième)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le {{nouveau chef|new leader}} va probablement {{être|be}} Andy Burnham.",
+        "bd": {
+          "meaning": "The new leader will probably be Andy Burnham.",
+          "chunks": [
+            [
+              "Le nouveau chef",
+              "the new leader ('nouveau' comes BEFORE the noun)"
+            ],
+            [
+              "va probablement être",
+              "is probably going to be (aller + plain verb, with 'probablement' slipped in)"
+            ],
+            [
+              "Andy Burnham",
+              "Andy Burnham"
+            ]
+          ],
+          "key": "<b>'nouveau' goes before the noun</b> — one of the small group that do. And the future is <span class='bd-fr-i'>va être</span> = 'is going to be'."
+        }
+      },
+      {
+        "fr": "Il est {{ancien maire|former mayor}} de Manchester.",
+        "bd": {
+          "meaning": "He is the former mayor of Manchester.",
+          "chunks": [
+            [
+              "Il est",
+              "he is"
+            ],
+            [
+              "ancien maire",
+              "former mayor ('ancien' before the noun = 'former')"
+            ],
+            [
+              "de Manchester",
+              "of Manchester"
+            ]
+          ],
+          "key": "<b>Position changes meaning:</b> <span class='bd-fr-i'>ancien maire</span> (before) = 'former mayor'; <span class='bd-fr-i'>un bâtiment ancien</span> (after) = 'an old building'."
+        }
+      },
+      {
+        "fr": "Il est populaire et {{charismatique|charismatic}}.",
+        "bd": {
+          "meaning": "He is popular and charismatic.",
+          "chunks": [
+            [
+              "Il est populaire",
+              "he is popular"
+            ],
+            [
+              "et charismatique",
+              "and charismatic"
+            ]
+          ],
+          "key": "<b>Two easy cognates:</b> <span class='bd-fr-i'>populaire</span>, <span class='bd-fr-i'>charismatique</span> — both end in -e and don't change for gender."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais les problèmes {{restent|stay, remain}}.",
+        "bd": {
+          "meaning": "But the problems remain.",
+          "chunks": [
+            [
+              "Mais",
+              "but"
+            ],
+            [
+              "les problèmes restent",
+              "the problems remain / stay"
+            ]
+          ],
+          "key": "<b>rester = 'to stay / remain'</b> — a false friend: it does NOT mean 'to rest'. Plural subject, so <span class='bd-fr-i'>restent</span>."
+        }
+      },
+      {
+        "fr": "Sa {{politique|policy}} {{ne va peut-être pas|maybe won't}} beaucoup changer.",
+        "bd": {
+          "meaning": "His policy may not change much.",
+          "chunks": [
+            [
+              "Sa politique",
+              "his policy (sa = his/her)"
+            ],
+            [
+              "ne va peut-être pas",
+              "is maybe not going to (ne...pas around 'va', with 'peut-être' = maybe inside)"
+            ],
+            [
+              "beaucoup changer",
+              "change much"
+            ]
+          ],
+          "key": "<b>Negating the aller-future:</b> the <span class='bd-fr-i'>ne ... pas</span> wraps <span class='bd-fr-i'>va</span> (the helper), not the plain verb: <span class='bd-fr-i'>ne va pas changer</span> = 'is not going to change'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le {{charisme|charisma}} {{ne suffit pas|is not enough}}.",
+        "bd": {
+          "meaning": "Charisma is not enough.",
+          "chunks": [
+            [
+              "Le charisme",
+              "charisma"
+            ],
+            [
+              "ne suffit pas",
+              "is not enough (ne...pas around 'suffit', from suffire = to be enough)"
+            ]
+          ],
+          "key": "<b>The ne ... pas sandwich</b> once more, around <span class='bd-fr-i'>suffit</span>: 'is not enough'. Learn the shape once, spot it everywhere."
+        }
+      },
+      {
+        "fr": "Burnham {{doit|must}} {{obtenir des résultats|deliver results}}.",
+        "bd": {
+          "meaning": "Burnham must deliver results.",
+          "chunks": [
+            [
+              "Burnham doit",
+              "Burnham must / has to (from devoir)"
+            ],
+            [
+              "obtenir des résultats",
+              "get results (obtenir = to get / obtain)"
+            ]
+          ],
+          "key": "<b>devoir + plain verb = must / have to:</b> <span class='bd-fr-i'>doit obtenir</span> = 'must get'. The helper conjugates; the second verb stays plain."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "ne ... pas  /  ne ... plus",
+      "en": "<b>The negation sandwich and its cousin.</b> <span class='fr'>ne ... pas</span> = 'not'; <span class='fr'>ne ... plus</span> = 'no longer'. Both wrap the verb (n'est plus, ne veulent plus, ne suffit pas)."
+    },
+    {
+      "fr": "va être / va avoir / va changer",
+      "en": "<b>aller + plain verb = the near future</b>, used all through this story to talk about what's coming. Only <span class='fr'>aller</span> changes."
+    },
+    {
+      "fr": "nouveau chef / ancien maire",
+      "en": "<b>A few adjectives go BEFORE the noun</b> (nouveau, ancien, grand, bon). And <span class='fr'>ancien</span> even shifts meaning by position: before = 'former', after = 'old / ancient'."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi le charisme ne suffit pas ?",
+    "a": "Parce que les problèmes du Royaume-Uni (la dette, la croissance faible) restent. (Because the UK's problems — debt, weak growth — remain.)"
+  },
+  "flag": "Also compressed hard from a long opinion piece: I dropped Reform's poll numbers, the debt figure (94% of GDP), the nicknames and the magazine jab at Starmer, and kept it neutral rather than carrying the article's editorial tone. One register note: <span class='fr'>ne veulent plus de Starmer</span> is natural but a touch colloquial; <span class='fr'>ne soutiennent plus Starmer</span> ('no longer support') is the more standard news phrasing."
+}

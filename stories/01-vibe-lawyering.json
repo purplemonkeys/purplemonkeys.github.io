@@ -1,0 +1,547 @@
+{
+  "id": "vibe-lawyering",
+  "chip": "Le « vibe lawyering »",
+  "kicker": "Technologie · Justice",
+  "title": "Des gens utilisent l'IA au lieu d'un avocat",
+  "level": "A1",
+  "gist": "More and more people are using AI chatbots instead of lawyers to fight their own court cases — a trend called “vibe lawyering.” The problem is the AI often invents fake legal cases, which gets their claims thrown out and can cost them money. Used carefully it can help, but for now human lawyers still matter.",
+  "body": [
+    [
+      {
+        "fr": "Beaucoup de gens {{utilisent|use (from utiliser)}} l'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}} pour {{aller au tribunal|go to court}}.",
+        "bd": {
+          "meaning": "Lots of people use AI to go to court.",
+          "chunks": [
+            [
+              "Beaucoup de gens",
+              "lots of people (beaucoup de = a lot of)"
+            ],
+            [
+              "utilisent",
+              "use — the -ent ending marks a plural subject"
+            ],
+            [
+              "l'intelligence artificielle",
+              "artificial intelligence — note the adjective comes AFTER the noun"
+            ],
+            [
+              "pour aller",
+              "to go / in order to go"
+            ],
+            [
+              "au tribunal",
+              "to the court (au = à + le)"
+            ]
+          ],
+          "key": "<b>pour + plain verb = “in order to.”</b> The verb after <span class='bd-fr-i'>pour</span> stays plain (<span class='bd-fr-i'>aller</span>, not conjugated)."
+        }
+      },
+      {
+        "fr": "Ils n'ont pas d'{{avocat|lawyer}}.",
+        "bd": {
+          "meaning": "They don't have a lawyer.",
+          "chunks": [
+            [
+              "Ils",
+              "they"
+            ],
+            [
+              "n'ont pas",
+              "don't have — the ne…pas sandwich around the verb 'ont'; ne → n' before a vowel"
+            ],
+            [
+              "d'avocat",
+              "a lawyer (un → de after a negative; de → d')"
+            ]
+          ],
+          "key": "<b>Negation sandwich:</b> <span class='bd-fr-i'>ne … pas</span> wraps the verb, and after it <span class='bd-fr-i'>un avocat</span> becomes <span class='bd-fr-i'>d'avocat</span>."
+        }
+      },
+      {
+        "fr": "C'est {{moins cher|cheaper}}.",
+        "bd": {
+          "meaning": "It's cheaper.",
+          "chunks": [
+            [
+              "C'est",
+              "it is / that's — the set phrase c'est"
+            ],
+            [
+              "moins cher",
+              "less expensive (moins = less, cher = expensive)"
+            ]
+          ],
+          "key": "<b>moins + adjective = “less ___.”</b> The everyday way to say “cheaper” without a special word."
+        }
+      },
+      {
+        "fr": "{{On appelle ça|it's called / people call it}} le « vibe lawyering ».",
+        "bd": {
+          "meaning": "This is called “vibe lawyering.”",
+          "chunks": [
+            [
+              "On appelle",
+              "one calls / people call (on = the general 'you / people / we')"
+            ],
+            [
+              "ça",
+              "that / this"
+            ],
+            [
+              "le « vibe lawyering »",
+              "kept in English — there's no settled French term"
+            ]
+          ],
+          "key": "<b>“On” is the workhorse</b> for “people / you / we” in general. <span class='bd-fr-i'>On appelle ça…</span> = “this is called…”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais il y a un problème.",
+        "bd": {
+          "meaning": "But there is a problem.",
+          "chunks": [
+            [
+              "Mais",
+              "but"
+            ],
+            [
+              "il y a",
+              "there is / there are — a fixed phrase"
+            ],
+            [
+              "un problème",
+              "a problem"
+            ]
+          ],
+          "key": "<b>il y a = “there is / are.”</b> A set phrase — don't read it literally as “he has there.”"
+        }
+      },
+      {
+        "fr": "L'IA {{invente|invents, makes up}} parfois des {{choses fausses|false things}}.",
+        "bd": {
+          "meaning": "AI sometimes invents false things.",
+          "chunks": [
+            [
+              "L'IA",
+              "the AI"
+            ],
+            [
+              "invente",
+              "invents / makes up"
+            ],
+            [
+              "parfois",
+              "sometimes"
+            ],
+            [
+              "des choses fausses",
+              "false things — 'fausses' comes after the noun"
+            ]
+          ],
+          "key": "<b>Adjective after the noun, and agreeing with it:</b> <span class='bd-fr-i'>choses</span> is feminine plural, so <span class='bd-fr-i'>faux</span> becomes <span class='bd-fr-i'>fausses</span>."
+        }
+      },
+      {
+        "fr": "Elle invente des {{affaires de justice|court cases}} {{qui n'existent pas|that don't exist}}.",
+        "bd": {
+          "meaning": "It invents court cases that don't exist.",
+          "chunks": [
+            [
+              "Elle invente",
+              "it invents ('elle' stands in for l'IA, which is feminine)"
+            ],
+            [
+              "des affaires de justice",
+              "court cases (affaire = case/matter)"
+            ],
+            [
+              "qui n'existent pas",
+              "that don't exist (qui = that/which; then the ne…pas sandwich again)"
+            ]
+          ],
+          "key": "<b>“qui” hooks a description onto a noun</b> (“cases THAT don't exist”), and inside it the <span class='bd-fr-i'>ne … pas</span> sandwich shows up once more."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Par exemple, Omar Rafique a un restaurant.",
+        "bd": {
+          "meaning": "For example, Omar Rafique has a restaurant.",
+          "chunks": [
+            [
+              "Par exemple",
+              "for example — a fixed phrase"
+            ],
+            [
+              "a",
+              "has (from avoir, the il/elle form)"
+            ],
+            [
+              "un restaurant",
+              "a restaurant"
+            ]
+          ],
+          "key": "<b>“a” (from avoir) = “has.”</b> A tiny word that does a lot — you'll meet it again as the past helper."
+        }
+      },
+      {
+        "fr": "Il a un problème avec les {{impôts|taxes}}.",
+        "bd": {
+          "meaning": "He has a problem with taxes.",
+          "chunks": [
+            [
+              "Il a",
+              "he has"
+            ],
+            [
+              "un problème",
+              "a problem"
+            ],
+            [
+              "avec les impôts",
+              "with taxes (les = 'the', where English drops it)"
+            ]
+          ],
+          "key": "<b>French keeps “the” where English drops it:</b> <span class='bd-fr-i'>les impôts</span> = just “taxes.”"
+        }
+      },
+      {
+        "fr": "Il va au tribunal, mais ses documents sont {{faux|fake, false}}.",
+        "bd": {
+          "meaning": "He goes to court, but his documents are fake.",
+          "chunks": [
+            [
+              "Il va",
+              "he goes (from aller)"
+            ],
+            [
+              "au tribunal",
+              "to court"
+            ],
+            [
+              "mais",
+              "but"
+            ],
+            [
+              "ses documents",
+              "his documents (ses = his/her, plural)"
+            ],
+            [
+              "sont faux",
+              "are fake"
+            ]
+          ],
+          "key": "<b>“ses” = his OR her.</b> French doesn't mark the owner's gender — context tells you which."
+        }
+      },
+      {
+        "fr": "Un chatbot IA {{a inventé|invented (past tense)}} ces documents.",
+        "bd": {
+          "meaning": "An AI chatbot invented these documents.",
+          "chunks": [
+            [
+              "Un chatbot IA",
+              "an AI chatbot"
+            ],
+            [
+              "a inventé",
+              "invented (a = has + inventé = past form)"
+            ],
+            [
+              "ces documents",
+              "these documents (ces = these/those)"
+            ]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a inventé</span> = “invented.” The <span class='bd-fr-i'>a</span> is the same little word as “has.”"
+        }
+      },
+      {
+        "fr": "Le {{juge|judge}} {{refuse|rejects, refuses}} son affaire.",
+        "bd": {
+          "meaning": "The judge rejects his case.",
+          "chunks": [
+            [
+              "Le juge",
+              "the judge"
+            ],
+            [
+              "refuse",
+              "rejects / refuses"
+            ],
+            [
+              "son affaire",
+              "his/her case"
+            ]
+          ],
+          "key": "<b>“son affaire” = his/her case</b> — again, <span class='bd-fr-i'>son</span> doesn't reveal the owner's gender."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Dans {{plusieurs pays|several countries}}, {{de plus en plus de gens|more and more people}} vont au tribunal {{sans|without}} avocat.",
+        "bd": {
+          "meaning": "In several countries, more and more people go to court without a lawyer.",
+          "chunks": [
+            [
+              "Dans plusieurs pays",
+              "in several countries (pays is spelled the same singular and plural)"
+            ],
+            [
+              "de plus en plus de gens",
+              "more and more people — a ready-made phrase"
+            ],
+            [
+              "vont",
+              "go (from aller, plural)"
+            ],
+            [
+              "sans avocat",
+              "without a lawyer — note: no 'un' after sans"
+            ]
+          ],
+          "key": "<b>“de plus en plus de ___” = “more and more ___.”</b> And <span class='bd-fr-i'>sans avocat</span> drops the article — “without lawyer.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "L'IA dit souvent aux gens : « Allez au tribunal ! Vous {{allez gagner|are going to win}} ! »",
+        "bd": {
+          "meaning": "AI often tells people: “Go to court! You're going to win!”",
+          "chunks": [
+            [
+              "L'IA dit souvent",
+              "the AI often says/tells"
+            ],
+            [
+              "aux gens",
+              "to people (aux = à + les)"
+            ],
+            [
+              "Allez au tribunal",
+              "go to court! — a command"
+            ],
+            [
+              "Vous allez gagner",
+              "you're going to win"
+            ]
+          ],
+          "key": "<b>Vous allez gagner = the aller + plain verb future.</b> Only <span class='bd-fr-i'>allez</span> changes; <span class='bd-fr-i'>gagner</span> stays plain."
+        }
+      },
+      {
+        "fr": "Mais {{ce n'est pas toujours vrai|it's not always true}}.",
+        "bd": {
+          "meaning": "But it's not always true.",
+          "chunks": [
+            [
+              "Mais",
+              "but"
+            ],
+            [
+              "ce n'est pas",
+              "it is not (c'est with the ne…pas sandwich)"
+            ],
+            [
+              "toujours vrai",
+              "always true"
+            ]
+          ],
+          "key": "<b>“c'est” negates to “ce n'est pas”</b> — the same <span class='bd-fr-i'>ne … pas</span> sandwich, wrapped around <span class='bd-fr-i'>est</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Utiliser l'IA peut {{coûter cher|be expensive (cost a lot)}}.",
+        "bd": {
+          "meaning": "Using AI can be expensive.",
+          "chunks": [
+            [
+              "Utiliser l'IA",
+              "using AI / to use AI (plain verb used as 'using')"
+            ],
+            [
+              "peut",
+              "can (from pouvoir)"
+            ],
+            [
+              "coûter cher",
+              "cost a lot / be expensive"
+            ]
+          ],
+          "key": "<b>peut coûter = “can cost”</b> — pouvoir + plain verb, the helper-plus-plain-verb shape. Only <span class='bd-fr-i'>peut</span> conjugates."
+        }
+      },
+      {
+        "fr": "Une {{étudiante|student (female)}} {{doit payer|has to pay}} 7 000 dollars, parce qu'elle a {{mal utilisé|used badly}} l'IA.",
+        "bd": {
+          "meaning": "A student has to pay 7,000 dollars, because she used AI badly.",
+          "chunks": [
+            [
+              "Une étudiante",
+              "a (female) student — the -e ending marks her as female"
+            ],
+            [
+              "doit payer",
+              "has to pay (devoir + plain verb)"
+            ],
+            [
+              "parce qu'elle",
+              "because she (que → qu' before a vowel)"
+            ],
+            [
+              "a mal utilisé",
+              "used badly (a…utilisé = past; mal sits in the middle)"
+            ]
+          ],
+          "key": "<b>doit payer = “has to pay”</b> (devoir + plain verb). And the <b>-e</b> on <span class='bd-fr-i'>étudiante</span> is what tells you the student is a woman."
+        }
+      },
+      {
+        "fr": "{{Même|even}} les {{vrais avocats|real lawyers}} font des {{erreurs|mistakes}} avec l'IA.",
+        "bd": {
+          "meaning": "Even real lawyers make mistakes with AI.",
+          "chunks": [
+            [
+              "Même",
+              "even"
+            ],
+            [
+              "les vrais avocats",
+              "real lawyers — 'vrais' comes BEFORE the noun"
+            ],
+            [
+              "font",
+              "make / do (from faire)"
+            ],
+            [
+              "des erreurs",
+              "mistakes"
+            ]
+          ],
+          "key": "<b>“vrais” goes BEFORE the noun.</b> A handful of everyday adjectives (vrai, bon, grand, petit) break the usual “after the noun” rule."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais l'IA peut aussi {{aider|help}}.",
+        "bd": {
+          "meaning": "But AI can also help.",
+          "chunks": [
+            [
+              "Mais",
+              "but"
+            ],
+            [
+              "l'IA peut",
+              "AI can"
+            ],
+            [
+              "aussi",
+              "also / too"
+            ],
+            [
+              "aider",
+              "help (plain verb after 'peut')"
+            ]
+          ],
+          "key": "<b>Again pouvoir + plain verb:</b> <span class='bd-fr-i'>peut aider</span> = “can help.”"
+        }
+      },
+      {
+        "fr": "À Londres, une femme utilise une IA et {{récupère|gets back, recovers}} son argent.",
+        "bd": {
+          "meaning": "In London, a woman uses an AI and gets her money back.",
+          "chunks": [
+            [
+              "À Londres",
+              "in London (à before a city = 'in')"
+            ],
+            [
+              "une femme utilise une IA",
+              "a woman uses an AI"
+            ],
+            [
+              "récupère son argent",
+              "gets her money back (récupérer = get back/recover)"
+            ]
+          ],
+          "key": "<b>“à” before a city = “in”:</b> <span class='bd-fr-i'>à Londres</span> = “in London.”"
+        }
+      },
+      {
+        "fr": "Mais un vrai avocat {{parle pour elle|speaks for her}} au tribunal.",
+        "bd": {
+          "meaning": "But a real lawyer speaks for her in court.",
+          "chunks": [
+            [
+              "Mais un vrai avocat",
+              "but a real lawyer"
+            ],
+            [
+              "parle",
+              "speaks"
+            ],
+            [
+              "pour elle",
+              "for her (elle = her, after the little word 'pour')"
+            ],
+            [
+              "au tribunal",
+              "in court"
+            ]
+          ],
+          "key": "<b>After a little word like “pour,” “she” becomes “elle”:</b> <span class='bd-fr-i'>pour elle</span> = “for her.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "{{Pour le moment|for now}}, les avocats humains {{restent|remain, stay}} importants.",
+        "bd": {
+          "meaning": "For now, human lawyers remain important.",
+          "chunks": [
+            [
+              "Pour le moment",
+              "for now / for the moment — a fixed phrase"
+            ],
+            [
+              "les avocats humains",
+              "human lawyers ('humains' after the noun, plural)"
+            ],
+            [
+              "restent importants",
+              "remain important ('importants' takes -s to agree)"
+            ]
+          ],
+          "key": "<b>Adjectives echo the noun's number:</b> both <span class='bd-fr-i'>humains</span> and <span class='bd-fr-i'>importants</span> take a plural -s to match “avocats.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Vous allez gagner",
+      "en": "<b>aller + plain verb = the near future.</b> Only <span class='fr'>aller</span> changes with the subject; the second verb (<span class='fr'>gagner</span>) stays plain. Your “future = aller + verb” key."
+    },
+    {
+      "fr": "Un chatbot a inventé",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>avoir</span> changes with the subject (<span class='fr'>a</span>) and the main verb takes its past form. Your “past = avoir/être + verb” key."
+    },
+    {
+      "fr": "Ils n'ont pas d'avocat",
+      "en": "<b>the ne … pas sandwich.</b> It wraps the verb, and it turns up all over this story: <span class='fr'>n'ont pas</span>, <span class='fr'>qui n'existent pas</span>, <span class='fr'>ce n'est pas</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi le juge refuse l'affaire d'Omar Rafique ?",
+    "a": "Parce que ses documents sont faux — l'IA les a inventés. (Because his documents are fake — the AI made them up.)"
+  },
+  "flag": "Two honesty flags: <b>“vibe lawyering”</b> stays in English — there's no settled French term, and a French writer would likely do the same. And <span class='fr'>affaires de justice qui n'existent pas</span> is clear and correct, but a native might say <span class='fr'>décisions qui n'existent pas</span> (“rulings that don't exist”); I chose <span class='fr'>affaires</span> as the higher-frequency word for you."
+}

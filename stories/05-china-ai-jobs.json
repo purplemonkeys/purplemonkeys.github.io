@@ -1,0 +1,412 @@
+{
+  "id": "china-ai-jobs",
+  "chip": "L'IA et les emplois",
+  "kicker": "Chine · Économie",
+  "title": "La Chine veut protéger le travail des gens",
+  "level": "A1",
+  "gist": "China uses AI and robots more than almost anywhere, and driverless taxis in the city of Wuhan have already sparked protests from drivers losing work. Fearing public anger — especially now that AI also threatens university graduates — the government is pushing to keep people employed: courts have sided with fired workers, and the state wants AI to help people rather than replace them. It's a state-driven vision, unlike the company-led approach in the United States.",
+  "body": [
+    [
+      {
+        "fr": "En Chine, il y a beaucoup de {{robots|robots}}.",
+        "bd": {
+          "meaning": "In China, there are many robots.",
+          "chunks": [
+            [
+              "En Chine",
+              "in China"
+            ],
+            [
+              "il y a",
+              "there is / there are — a fixed phrase"
+            ],
+            [
+              "beaucoup de robots",
+              "many robots (beaucoup de = a lot of)"
+            ]
+          ],
+          "key": "<b>il y a = 'there is / are'.</b> One set phrase covers both: <span class='bd-fr-i'>il y a beaucoup de robots</span> = 'there are many robots'."
+        }
+      },
+      {
+        "fr": "Les robots {{travaillent|work (from travailler)}} dans les {{usines|factories}}.",
+        "bd": {
+          "meaning": "The robots work in the factories.",
+          "chunks": [
+            [
+              "Les robots travaillent",
+              "the robots work — the -ent ending marks the plural subject"
+            ],
+            [
+              "dans les usines",
+              "in the factories"
+            ]
+          ],
+          "key": "<b>-ent = a plural subject.</b> <span class='bd-fr-i'>robots</span> is plural, so <span class='bd-fr-i'>travaillent</span> ends in silent <span class='bd-fr-i'>-ent</span> (it sounds like <span class='bd-fr-i'>travaille</span>)."
+        }
+      },
+      {
+        "fr": "Il y a aussi des taxis {{sans chauffeur|driverless / without a driver}}.",
+        "bd": {
+          "meaning": "There are also driverless taxis.",
+          "chunks": [
+            [
+              "Il y a aussi",
+              "there are also"
+            ],
+            [
+              "des taxis",
+              "some taxis"
+            ],
+            [
+              "sans chauffeur",
+              "without a driver (sans = without)"
+            ]
+          ],
+          "key": "<b>sans = 'without'.</b> A handy little word: <span class='bd-fr-i'>sans chauffeur</span> = 'without a driver' — and you don't add a word for 'a'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Dans la ville de Wuhan, les {{chauffeurs de taxi|taxi drivers}} ne sont pas contents.",
+        "bd": {
+          "meaning": "In the city of Wuhan, the taxi drivers are not happy.",
+          "chunks": [
+            [
+              "Dans la ville de Wuhan",
+              "in the city of Wuhan"
+            ],
+            [
+              "les chauffeurs de taxi",
+              "the taxi drivers"
+            ],
+            [
+              "ne sont pas contents",
+              "are not happy — ne…pas wraps sont; contents takes -s (plural)"
+            ]
+          ],
+          "key": "<b>Negation sandwich: ne … pas.</b> It wraps the verb: <span class='bd-fr-i'>ne sont pas</span> = 'are not'."
+        }
+      },
+      {
+        "fr": "Les robots-taxis {{prennent|take (from prendre)}} leur travail.",
+        "bd": {
+          "meaning": "The robot-taxis take their jobs.",
+          "chunks": [
+            [
+              "Les robots-taxis prennent",
+              "the robot-taxis take (prendre = to take)"
+            ],
+            [
+              "leur travail",
+              "their work / their jobs"
+            ]
+          ],
+          "key": "<b>leur = 'their'.</b> A possessive little word: <span class='bd-fr-i'>leur travail</span> = 'their work'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le {{gouvernement|government}} a peur.",
+        "bd": {
+          "meaning": "The government is afraid.",
+          "chunks": [
+            [
+              "Le gouvernement",
+              "the government"
+            ],
+            [
+              "a peur",
+              "is afraid (avoir peur = to be afraid, literally 'has fear')"
+            ]
+          ],
+          "key": "<b>avoir peur = 'to be afraid'.</b> French uses <span class='bd-fr-i'>a peur</span> ('has fear') where English uses 'is afraid'."
+        }
+      },
+      {
+        "fr": "L'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}} peut prendre le travail des gens.",
+        "bd": {
+          "meaning": "Artificial intelligence can take people's jobs.",
+          "chunks": [
+            [
+              "L'intelligence artificielle",
+              "artificial intelligence — the adjective comes AFTER the noun"
+            ],
+            [
+              "peut prendre",
+              "can take (pouvoir + plain verb)"
+            ],
+            [
+              "le travail des gens",
+              "people's work (des = de + les)"
+            ]
+          ],
+          "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>prendre</span> stays plain."
+        }
+      },
+      {
+        "fr": "Et ça peut {{créer|create}} de la {{colère|anger}}.",
+        "bd": {
+          "meaning": "And that can create anger.",
+          "chunks": [
+            [
+              "Et ça peut créer",
+              "and that can create"
+            ],
+            [
+              "de la colère",
+              "anger (de la = 'some', before a feminine word)"
+            ]
+          ],
+          "key": "<b>de la = 'some' (feminine).</b> Before <span class='bd-fr-i'>colère</span> (a feminine word) French adds <span class='bd-fr-i'>de la</span> where English says nothing."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Avant, l'IA a surtout {{touché|affected / hit}} les {{ouvriers|blue-collar workers}}.",
+        "bd": {
+          "meaning": "Before, AI mainly affected factory workers.",
+          "chunks": [
+            [
+              "Avant",
+              "before / in the past"
+            ],
+            [
+              "l'IA a surtout touché",
+              "AI mainly affected (a touché = past of toucher)"
+            ],
+            [
+              "les ouvriers",
+              "the (manual / factory) workers"
+            ]
+          ],
+          "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a touché</span> = 'affected': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>touché</span>."
+        }
+      },
+      {
+        "fr": "Maintenant, l'IA touche aussi les {{jeunes diplômés|young graduates}}.",
+        "bd": {
+          "meaning": "Now, AI also affects young graduates.",
+          "chunks": [
+            [
+              "Maintenant",
+              "now"
+            ],
+            [
+              "l'IA touche aussi",
+              "AI also affects (present tense)"
+            ],
+            [
+              "les jeunes diplômés",
+              "young graduates — jeune is one of the few adjectives placed BEFORE the noun"
+            ]
+          ],
+          "key": "<b>Present tense for 'now'.</b> <span class='bd-fr-i'>touche</span> ('affects') — the plain present is the simplest way to say what happens now, against the past <span class='bd-fr-i'>a touché</span> just before."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Chine {{veut|wants}} être le numéro un de l'IA.",
+        "bd": {
+          "meaning": "China wants to be number one in AI.",
+          "chunks": [
+            [
+              "La Chine veut",
+              "China wants (vouloir = to want)"
+            ],
+            [
+              "être le numéro un",
+              "to be number one — être stays plain after veut"
+            ],
+            [
+              "de l'IA",
+              "of / in AI"
+            ]
+          ],
+          "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veut</span> (wants) changes with the subject; the next verb <span class='bd-fr-i'>être</span> stays plain."
+        }
+      },
+      {
+        "fr": "Mais la Chine veut aussi {{garder|keep}} les gens au travail.",
+        "bd": {
+          "meaning": "But China also wants to keep people in work.",
+          "chunks": [
+            [
+              "Mais la Chine veut aussi",
+              "but China also wants"
+            ],
+            [
+              "garder les gens",
+              "to keep people (garder = to keep)"
+            ],
+            [
+              "au travail",
+              "at / in work (au = à + le)"
+            ]
+          ],
+          "key": "<b>au = à + le.</b> The two words squash together: <span class='bd-fr-i'>à + le travail</span> → <span class='bd-fr-i'>au travail</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Dans son {{plan|plan}}, le gouvernement {{promet|promises}} d'aider les {{travailleurs|workers}}.",
+        "bd": {
+          "meaning": "In its plan, the government promises to help workers.",
+          "chunks": [
+            [
+              "Dans son plan",
+              "in its plan"
+            ],
+            [
+              "le gouvernement promet",
+              "the government promises (promettre = to promise)"
+            ],
+            [
+              "d'aider les travailleurs",
+              "to help the workers (promettre de + plain verb; de → d')"
+            ]
+          ],
+          "key": "<b>promettre <span class='bd-fr-i'>de</span> + plain verb.</b> Some verbs link to the next one with <span class='bd-fr-i'>de</span>: <span class='bd-fr-i'>promet d'aider</span> = 'promises to help'."
+        }
+      },
+      {
+        "fr": "Pour la Chine, l'IA {{doit|must}} aider les gens, pas les {{remplacer|replace them}}.",
+        "bd": {
+          "meaning": "For China, AI must help people, not replace them.",
+          "chunks": [
+            [
+              "Pour la Chine",
+              "for China"
+            ],
+            [
+              "l'IA doit aider",
+              "AI must help (devoir + plain verb)"
+            ],
+            [
+              "pas les remplacer",
+              "not replace them (les = 'them', sits before the verb)"
+            ]
+          ],
+          "key": "<b>devoir = 'must'.</b> <span class='bd-fr-i'>doit</span> carries the subject and the next verb <span class='bd-fr-i'>aider</span> stays plain — your pouvoir / vouloir / devoir helper family."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Une {{entreprise|company}} a {{remplacé|replaced}} un homme par une IA.",
+        "bd": {
+          "meaning": "A company replaced a man with an AI.",
+          "chunks": [
+            [
+              "Une entreprise",
+              "a company"
+            ],
+            [
+              "a remplacé un homme",
+              "replaced a man (a remplacé = past of remplacer)"
+            ],
+            [
+              "par une IA",
+              "with / by an AI"
+            ]
+          ],
+          "key": "<b>Past = avoir + verb.</b> <span class='bd-fr-i'>a remplacé</span> = 'replaced': <span class='bd-fr-i'>a</span> (avoir) + the past form <span class='bd-fr-i'>remplacé</span>."
+        }
+      },
+      {
+        "fr": "Un {{tribunal|court}} a dit : c'est {{illégal|illegal}}.",
+        "bd": {
+          "meaning": "A court said: it's illegal.",
+          "chunks": [
+            [
+              "Un tribunal a dit",
+              "a court said (a dit = past of dire)"
+            ],
+            [
+              "c'est illégal",
+              "it's illegal (c'est = the set phrase 'it is')"
+            ]
+          ],
+          "key": "<b>c'est = 'it is / that's'.</b> The everyday set phrase: <span class='bd-fr-i'>c'est illégal</span> = 'it's illegal'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Il y a deux visions {{différentes|different}}.",
+        "bd": {
+          "meaning": "There are two different visions.",
+          "chunks": [
+            [
+              "Il y a deux visions",
+              "there are two visions"
+            ],
+            [
+              "différentes",
+              "different — takes -es to match visions (feminine plural)"
+            ]
+          ],
+          "key": "<b>Adjective agrees with its noun.</b> <span class='bd-fr-i'>visions</span> is feminine plural, so <span class='bd-fr-i'>différentes</span> adds <span class='bd-fr-i'>-es</span>."
+        }
+      },
+      {
+        "fr": "Aux {{États-Unis|United States}}, les entreprises {{décident|decide}}.",
+        "bd": {
+          "meaning": "In the United States, the companies decide.",
+          "chunks": [
+            [
+              "Aux États-Unis",
+              "in the United States (aux = à + les)"
+            ],
+            [
+              "les entreprises décident",
+              "the companies decide — -ent marks the plural subject"
+            ]
+          ],
+          "key": "<b>aux = à + les.</b> Like <span class='bd-fr-i'>au</span>, but plural: <span class='bd-fr-i'>à + les États-Unis</span> → <span class='bd-fr-i'>aux États-Unis</span>."
+        }
+      },
+      {
+        "fr": "En Chine, c'est le gouvernement qui décide.",
+        "bd": {
+          "meaning": "In China, it's the government that decides.",
+          "chunks": [
+            [
+              "En Chine",
+              "in China"
+            ],
+            [
+              "c'est le gouvernement qui décide",
+              "it's the government that decides (c'est … qui = 'it's … that')"
+            ]
+          ],
+          "key": "<b>c'est … qui = 'it's … that'.</b> A frame to spotlight who does something: <span class='bd-fr-i'>c'est le gouvernement qui décide</span>."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "l'IA a touché / a remplacé / a dit",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> (from avoir) plus a past form: <span class='fr'>a touché</span>, <span class='fr'>a remplacé</span>, <span class='fr'>a dit</span>. Your 'past = avoir/être + verb' key."
+    },
+    {
+      "fr": "l'IA peut prendre / veut être / doit aider",
+      "en": "<b>helper + plain verb.</b> <span class='fr'>peut</span>, <span class='fr'>veut</span>, <span class='fr'>doit</span> carry the subject; the second verb stays plain. Your pouvoir / vouloir / devoir family."
+    },
+    {
+      "fr": "au travail / aux États-Unis / des gens",
+      "en": "<b>the squashed little words.</b> <span class='fr'>à + le → au</span>, <span class='fr'>à + les → aux</span>, <span class='fr'>de + les → des</span>. They merge automatically — you can't keep them apart."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi le gouvernement chinois a peur de l'IA ?",
+    "a": "Parce que l'IA peut prendre le travail des gens et créer de la colère. (Because AI can take people's jobs and create anger.)"
+  },
+  "flag": "Compressed hard from a longer analysis piece: I dropped 'A.I. Marxism', the five-year-plan detail, the Brookings expert, and the specific ministries and insurance proposals, keeping the core story. It's a neutral retelling of your article, not a view on China. Two phrasing notes: <span class='fr'>garder les gens au travail</span> ('keep people in work') reads fine but is my own simplification of 'keeping humans at the core of the economy'; and <span class='fr'>l'IA touche les ouvriers</span> uses <span class='fr'>toucher</span> ('to affect / hit') in the ordinary news sense — natural, though a native might also say <span class='fr'>l'IA menace les emplois</span> ('threatens jobs')."
+}

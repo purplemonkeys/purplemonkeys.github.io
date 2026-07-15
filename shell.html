@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- ================================================================
+     EN CLAIR — a small French A1/A2 reader for real news, simplified.
+     THIS IS THE SHELL (template). It holds all CSS + logic. The story
+     data is injected by build.py at the marked line near the top of the
+     script (search for STORIES_DATA_SENTINEL). Do NOT paste story data
+     here or mention that sentinel text anywhere else in this file — the
+     build replaces it, and a second copy would be duplicated in. Edit the
+     stories/*.json files, never this file, to change content.
+
+     ARCHITECTURE (why it is split):
+       - Runtime must be ONE self-contained HTML file (artifacts can't
+         fetch external files), so build.py bundles everything.
+       - Authoring is split: shell.html (stable) + stories/NN-id.json
+         (one per story) + build.py. Adding a story = write ONE new JSON
+         file and re-run build.py; existing stories are never reprocessed,
+         so edit cost stays flat as the archive grows.
+
+     TO ADD A STORY (instructions for the assistant):
+       1. Simplify the article with the `news-to-french-a1` skill (real
+          judgement: what to cut, how to pitch the level). Default A1.
+       2. Write each sentence's breakdown with the SELF-CONTAINED recipe
+          below (the french-sentence-breakdown skill is optional backup
+          for tricky sentences). Match the existing stories exactly.
+       3. Save as stories/NN-id.json (next number); run build.py.
+
+     BREAKDOWN RECIPE (reproduce the existing style exactly):
+       meaning - ONE natural-English sentence for the whole line. Plain.
+       chunks  - the sentence in order, one [French chunk, English gloss]
+                 pair per MEANINGFUL UNIT (group words that work together,
+                 e.g. "aller au tribunal", the verb inside "n'ont pas").
+                 Not every word; ~2-5 per sentence. English side = short
+                 gloss PLUS an optional micro-note in parentheses/after a
+                 dash, e.g. "a lawyer (un becomes de after a negative)".
+       key     - exactly ONE takeaway: bold pattern-name lead, then one
+                 plain sentence, French set in italic via
+                 <span class='bd-fr-i'>...</span>. Tie to the learner's
+                 known keys: aller+verb future, avoir/etre past, ne...pas
+                 (and ne...plus) sandwich, adjective after/agreeing with
+                 the noun, helper+plain verb, little words (le/la/les/des),
+                 a+city, on = people/you/we, c'est / il y a. One key only.
+                 Tone: concise, phone-tight, jargon-light; standard French.
+
+     STORY JSON SHAPE:
+       { "id","chip","kicker","title","level",        (level "A1"/"A2")
+         "gist": "English, 2-3 sentences",
+         "body": [ [ { "fr":"text with {{french|english}} marks",
+                       "bd": { "meaning":"...",
+                               "chunks":[["fr","en"], ...],
+                               "key":"..." } }, ... ], ... ],
+         "grammar": [ { "fr":"example", "en":"plain explanation" }, ... ],
+         "quiz": { "q":"French question", "a":"French answer (English)" },
+         "flag": "honesty note(s) about uncertain phrasing"   (optional) }
+       Light inline HTML allowed in meaning/key/en/flag/gloss.
+       {{french|english}} marks feed the (hidden) word-highlight layer.
+     ================================================================ -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F5F2; --card:#FBFBF9; --ink:#232A2C; --muted:#6C7476; --faint:#9AA0A0;
+    --rule:#E3E4DD; --accent:#12706A; --accent-deep:#0C534F;
+    --hl:rgba(244,201,93,.42); --hl-strong:rgba(240,186,58,.6); --gloss:#0C534F;
+    --maxw:680px;
+    --font-read:'Spectral',Georgia,'Times New Roman',serif;
+    --font-ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --font-display:'Fraunces',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:20px 18px 72px}
+
+  .masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .brand{font-family:var(--font-display);font-weight:600;font-size:30px;letter-spacing:-.01em;line-height:1;cursor:pointer}
+  .brand .clair{color:var(--accent)}
+  .tagline{font-size:13px;color:var(--muted);font-style:italic;font-family:var(--font-read)}
+
+  .view{display:none}
+  .view.active{display:block}
+
+  .index-intro{font-size:13px;color:var(--muted);letter-spacing:.02em;margin:18px 2px 12px}
+  .cards{display:grid;grid-template-columns:1fr;gap:12px}
+  @media (min-width:560px){ .cards{grid-template-columns:1fr 1fr} }
+  .empty{font-size:13.5px;color:var(--muted);font-style:italic;padding:6px 2px}
+
+  /* card = container with a main open-button + a corner mark-button */
+  .card{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:14px;transition:border-color .15s,transform .12s,box-shadow .15s,opacity .15s}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(18,112,106,.09)}
+  .card-open{display:flex;flex-direction:column;gap:8px;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;font-family:var(--font-ui);color:var(--ink);padding:16px 46px 14px 16px;border-radius:14px}
+  .card-open:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .card .k{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+  .card .ttl{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.2;color:var(--ink)}
+  .card .meta{display:flex;align-items:center;gap:8px;margin-top:2px}
+  .card .lvl{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;padding:2px 8px;background:rgba(18,112,106,.06)}
+  .card .tag{font-size:12px;color:var(--muted);font-style:italic;font-family:var(--font-read)}
+  .card .go{font-size:12.5px;font-weight:600;color:var(--accent)}
+
+  /* corner mark control */
+  .card-mark{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:1.6px solid var(--rule);background:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;color:transparent;font-size:15px;line-height:1;z-index:2;transition:border-color .15s,background .15s,color .15s}
+  .card-mark:hover{border-color:var(--accent);color:var(--faint)}
+  .card-mark:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* read state */
+  .card.read{opacity:.58}
+  .card.read:hover{opacity:.9}
+  .card.read .card-mark{background:var(--accent);border-color:var(--accent);color:#fff}
+  .card.read .card-mark:hover{color:#fff}
+
+  /* "already read" collapsible section */
+  .read-section{margin-top:22px;border-top:1px solid var(--rule)}
+  .read-section summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:12px 2px 10px;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .read-section summary::-webkit-details-marker{display:none}
+  .read-section summary:hover{color:var(--ink)}
+  .read-section .chev{transition:transform .2s;color:var(--accent);font-size:11px}
+  .read-section[open] .chev{transform:rotate(90deg)}
+  .read-section .cards{margin-top:4px}
+
+  /* story view */
+  .back{display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--accent-deep);font-family:var(--font-ui);font-size:13px;font-weight:600;padding:16px 2px 6px;margin-left:-2px}
+  .back:hover{color:var(--accent)}
+  .back:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 2px}
+  .btn{font-size:12.5px;font-weight:500;color:var(--accent-deep);background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:7px 12px;cursor:pointer;transition:background .15s,border-color .15s}
+  .btn:hover{border-color:var(--accent)}
+  .btn[aria-pressed="true"]{background:rgba(18,112,106,.1);border-color:var(--accent)}
+  .btn.done{color:var(--accent-deep)}
+  .btn.done[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .legend{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0}
+  .legend .ls{color:var(--ink);border-bottom:1px dotted var(--accent)}
+
+  article{margin-top:14px}
+  .kicker{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+  .title-row{display:flex;align-items:flex-start;gap:12px}
+  .title{font-family:var(--font-display);font-weight:600;font-size:26px;line-height:1.15;letter-spacing:-.01em;margin:0 0 4px;flex:1}
+  .story-lvl{flex:0 0 auto;margin-top:4px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;padding:3px 9px;background:rgba(18,112,106,.06)}
+  .gist{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;padding:12px 14px;margin:14px 0 6px;font-size:14.5px;line-height:1.55;color:#3d4547}
+  .gist .gist-label{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px}
+  .gist.hidden{display:none}
+
+  .body{font-family:var(--font-read);font-size:19px;line-height:1.72;margin-top:18px}
+  .body .para{margin:0 0 1.05em}
+
+  .sentence{cursor:pointer;border-radius:3px;padding:0 1px;transition:background .12s}
+  .sentence:hover{background:rgba(18,112,106,.07)}
+  .sentence.active{background:rgba(18,112,106,.06)}
+  .sentence:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .term-wrap{position:relative}
+  .term{background:linear-gradient(180deg,transparent 14%,var(--hl) 14%,var(--hl) 86%,transparent 86%);-webkit-box-decoration-break:clone;box-decoration-break:clone;border-bottom:1.5px solid transparent;border-radius:2px;cursor:pointer;padding:0 1px;transition:background .15s,border-color .15s;color:inherit;font:inherit}
+  .term:hover{background:linear-gradient(180deg,transparent 14%,var(--hl-strong) 14%,var(--hl-strong) 86%,transparent 86%)}
+  .term-wrap.is-open .term{border-bottom-color:var(--accent)}
+  .term:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .gloss{display:none;font-family:var(--font-ui);font-size:.62em;font-weight:500;color:var(--gloss);white-space:nowrap;margin:0 .12em;vertical-align:.15em}
+  .gloss::before{content:"→ ";color:var(--faint)}
+  .term-wrap.is-open .gloss,.body.show-all .gloss{display:inline}
+
+  .breakdown{display:none;margin:9px 0 13px;padding:13px 15px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;font-family:var(--font-ui)}
+  .breakdown.open{display:block;animation:bd .22s ease}
+  @keyframes bd{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .bd-meaning{font-family:var(--font-read);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:11px}
+  .bd-chunks{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}
+  .bd-row{display:flex;gap:12px;align-items:baseline;font-size:13.5px;line-height:1.45}
+  .bd-fr{font-family:var(--font-read);font-style:italic;color:var(--accent-deep);flex:0 0 40%;min-width:0}
+  .bd-en{color:#41494b;flex:1;min-width:0}
+  .bd-key{font-size:12.5px;line-height:1.55;color:#41494b;border-top:1px solid var(--rule);padding-top:9px}
+  .bd-key-label{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+  .bd-fr-i{font-family:var(--font-read);font-style:italic;color:var(--ink)}
+
+  .section{margin-top:26px;border-top:1px solid var(--rule);padding-top:8px}
+  summary{list-style:none}
+  .section summary{cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 0;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+  .section summary::-webkit-details-marker{display:none}
+  .section summary .chev{transition:transform .2s;color:var(--accent);font-size:12px}
+  .section details[open] summary .chev,details.section[open] summary .chev{transform:rotate(90deg)}
+  .note{margin:6px 0 14px;padding-left:14px;border-left:2px solid var(--hl-strong)}
+  .note h4{font-family:var(--font-read);font-style:italic;font-weight:500;font-size:16px;margin:0 0 3px;color:var(--accent-deep)}
+  .note p{font-size:13.5px;line-height:1.55;color:#41494b;margin:0}
+  .note code,.fr{font-family:var(--font-read);font-style:italic;color:var(--ink)}
+  .quiz{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px}
+  .quiz .q{font-family:var(--font-read);font-size:17px;color:var(--ink);margin:0 0 10px}
+  .quiz .answer{font-family:var(--font-read);font-size:15.5px;color:#3d4547;margin:8px 0 0;display:none}
+  .quiz .answer.show{display:block}
+  .reveal-btn{font-size:12.5px;font-weight:500;color:var(--accent-deep);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:6px 12px;cursor:pointer}
+  .reveal-btn:hover{background:rgba(18,112,106,.08)}
+  .flag{margin-top:22px;font-size:12px;line-height:1.5;color:var(--muted);background:rgba(240,186,58,.12);border-radius:8px;padding:10px 12px}
+  .flag b{color:var(--accent-deep);font-weight:600}
+  .foot{margin-top:28px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.5}
+
+  @media (max-width:480px){
+    .brand{font-size:26px}.body{font-size:18px;line-height:1.7}.title{font-size:23px}
+    .bd-row{flex-direction:column;gap:1px}.bd-fr{flex-basis:auto}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<title>En Clair</title>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand" id="brand" role="button" tabindex="0" title="Retour à l'accueil">En&nbsp;<span class="clair">clair</span></div>
+    <div class="tagline">l'actualité en français simple</div>
+  </header>
+
+  <!-- INDEX VIEW -->
+  <main id="view-index" class="view">
+    <p class="index-intro">Choisissez une histoire :</p>
+    <div class="cards" id="cards"></div>
+    <details class="read-section" id="readSection">
+      <summary><span class="chev">▶</span>Déjà lu (<span id="readCount">0</span>)</summary>
+      <div class="cards" id="readCards"></div>
+    </details>
+  </main>
+
+  <!-- STORY VIEW -->
+  <main id="view-story" class="view">
+    <button class="back" id="backBtn">← Toutes les histoires</button>
+    <div class="toolbar">
+      <button class="btn" id="toggleGist" aria-pressed="true" title="Show / hide the English summary">Résumé</button>
+      <button class="btn done" id="toggleRead" aria-pressed="false" title="Mark this story read / unread">Marquer comme lu</button>
+    </div>
+    <p class="legend">Tap any <span class="ls">sentence</span> to see what it means and how it's built.</p>
+    <article id="article"></article>
+  </main>
+
+  <div class="foot">En clair · lecture douce · standard French</div>
+</div>
+
+<script>
+/* ---- visible error log: Kobo's browser has no dev console, so surface
+        any runtime error on-screen instead of failing silently ---- */
+window.onerror = function (msg, url, line, col, err) {
+  try {
+    var dbg = document.getElementById('debugBox');
+    if (!dbg) {
+      dbg = document.createElement('div');
+      dbg.id = 'debugBox';
+      dbg.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#fee;color:#900;font:11px monospace;padding:8px;z-index:9999;max-height:35%;overflow:auto;white-space:pre-wrap;border-top:2px solid #900';
+      document.body.appendChild(dbg);
+    }
+    dbg.style.display = 'block';
+    dbg.textContent += 'ERROR: ' + msg + ' (line ' + line + ')\n';
+  } catch (e) {}
+  return false;
+};
+
+/* ---- tap helper: old/limited touch browsers don't reliably synthesize a
+        'click' from a touch, so listen for touchend directly. Guards
+        against the element ALSO receiving a delayed synthetic click
+        afterward (which would toggle twice). ---- */
+function addTap(el, handler) {
+  var lastTouch = 0;
+  var startX = 0,
+    startY = 0,
+    moved = false;
+  var MOVE_THRESHOLD = 12; // px of finger movement before we call it a scroll, not a tap
+
+  el.addEventListener('touchstart', function (e) {
+    moved = false;
+    if (e.touches && e.touches.length) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }
+  }, {
+    passive: true
+  });
+  el.addEventListener('touchmove', function (e) {
+    if (e.touches && e.touches.length) {
+      var dx = e.touches[0].clientX - startX;
+      var dy = e.touches[0].clientY - startY;
+      if (Math.sqrt(dx * dx + dy * dy) > MOVE_THRESHOLD) {
+        moved = true;
+      }
+    }
+  }, {
+    passive: true
+  });
+  el.addEventListener('touchend', function (e) {
+    lastTouch = Date.now();
+    if (moved) return; // finger moved = scroll/swipe, not a tap: let the page scroll, don't trigger
+    e.preventDefault();
+    handler(e);
+  }, {
+    passive: false
+  });
+  el.addEventListener('click', function (e) {
+    if (Date.now() - lastTouch < 600) return;
+    handler(e);
+  });
+}
+var STORIES = /*STORIES_DATA_SENTINEL*/[];
+
+// Word-level highlights are OFF: sentence breakdowns already gloss every chunk.
+// Flip to true to bring back tappable highlighted words (data is retained).
+var SHOW_WORD_HIGHLIGHTS = false;
+
+/* ---- read-state store (persists in a normal browser; guarded so it never
+        throws in sandboxes that block storage — falls back to in-memory) ---- */
+var READ_KEY = 'enclair:read:v1';
+var readSet = {};
+(function loadRead() {
+  try {
+    var raw = localStorage.getItem(READ_KEY);
+    if (raw) {
+      var arr = JSON.parse(raw);
+      readSet = {};
+      for (var i = 0; i < arr.length; i++) {
+        readSet[arr[i]] = true;
+      }
+    }
+  } catch (e) {}
+})();
+function saveRead() {
+  try {
+    var arr = [];
+    for (var k in readSet) {
+      if (readSet.hasOwnProperty(k)) arr.push(k);
+    }
+    localStorage.setItem(READ_KEY, JSON.stringify(arr));
+  } catch (e) {}
+}
+function isRead(id) {
+  return !!readSet[id];
+}
+function setRead(id, val) {
+  if (val) readSet[id] = true;else delete readSet[id];
+  saveRead();
+}
+var cardsEl = document.getElementById('cards');
+var readCardsEl = document.getElementById('readCards');
+var readSection = document.getElementById('readSection');
+var readCount = document.getElementById('readCount');
+var viewIndex = document.getElementById('view-index');
+var viewStory = document.getElementById('view-story');
+var article = document.getElementById('article');
+var backBtn = document.getElementById('backBtn');
+var brand = document.getElementById('brand');
+var toggleGistBtn = document.getElementById('toggleGist');
+var toggleReadBtn = document.getElementById('toggleRead');
+var gistShown = true;
+var currentId = null;
+
+/* ---------- shared rendering ---------- */
+function renderInline(text, container) {
+  var re = /\{\{([^|]+)\|([^}]+)\}\}/g;
+  var last = 0,
+    m;
+  var _loop = function _loop() {
+    if (m.index > last) container.appendChild(document.createTextNode(text.slice(last, m.index)));
+    if (!SHOW_WORD_HIGHLIGHTS) {
+      container.appendChild(document.createTextNode(m[1]));
+      last = re.lastIndex;
+      return 1; // continue
+    }
+    var wrap = document.createElement('span');
+    wrap.className = 'term-wrap';
+    var term = document.createElement('span');
+    term.className = 'term';
+    term.setAttribute('role', 'button');
+    term.setAttribute('tabindex', '0');
+    term.setAttribute('aria-label', m[1] + ' — ' + m[2]);
+    term.textContent = m[1];
+    var gloss = document.createElement('span');
+    gloss.className = 'gloss';
+    gloss.textContent = m[2];
+    var toggle = function toggle(e) {
+      if (e) e.stopPropagation();
+      if (wrap.classList.contains('is-open')) {
+        wrap.classList.remove('is-open');
+      } else {
+        wrap.classList.add('is-open');
+      }
+      term.setAttribute('aria-expanded', wrap.classList.contains('is-open'));
+    };
+    addTap(term, toggle);
+    term.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      }
+    });
+    wrap.appendChild(term);
+    wrap.appendChild(gloss);
+    container.appendChild(wrap);
+    last = re.lastIndex;
+  };
+  while ((m = re.exec(text)) !== null) {
+    if (_loop()) continue;
+  }
+  if (last < text.length) container.appendChild(document.createTextNode(text.slice(last)));
+}
+function buildBreakdown(bd) {
+  var box = document.createElement('div');
+  box.className = 'breakdown';
+  var html = '<div class="bd-meaning">' + bd.meaning + '</div>';
+  if (bd.chunks && bd.chunks.length) {
+    html += '<div class="bd-chunks">';
+    bd.chunks.forEach(function (c) {
+      html += '<div class="bd-row"><span class="bd-fr">' + c[0] + '</span><span class="bd-en">' + c[1] + '</span></div>';
+    });
+    html += '</div>';
+  }
+  if (bd.key) html += '<div class="bd-key"><span class="bd-key-label">Comment ça marche</span>' + bd.key + '</div>';
+  box.innerHTML = html;
+  return box;
+}
+function renderBody(paragraphs) {
+  var frag = document.createDocumentFragment();
+  paragraphs.forEach(function (par) {
+    var p = document.createElement('div');
+    p.className = 'para';
+    par.forEach(function (sent) {
+      var s = document.createElement('span');
+      s.className = 'sentence';
+      s.setAttribute('role', 'button');
+      s.setAttribute('tabindex', '0');
+      s.setAttribute('aria-expanded', 'false');
+      renderInline(sent.fr, s);
+      var box = buildBreakdown(sent.bd);
+      var toggle = function toggle() {
+        var open = !box.classList.contains('open');
+        if (open) {
+          box.classList.add('open');
+          s.classList.add('active');
+        } else {
+          box.classList.remove('open');
+          s.classList.remove('active');
+        }
+        s.setAttribute('aria-expanded', open);
+      };
+      addTap(s, toggle);
+      s.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+      p.appendChild(s);
+      p.appendChild(document.createTextNode(' '));
+      p.appendChild(box);
+    });
+    frag.appendChild(p);
+  });
+  return frag;
+}
+function buildArticle(s) {
+  article.innerHTML = '';
+  var kicker = document.createElement('div');
+  kicker.className = 'kicker';
+  kicker.textContent = s.kicker || '';
+  article.appendChild(kicker);
+  var trow = document.createElement('div');
+  trow.className = 'title-row';
+  var h1 = document.createElement('h1');
+  h1.className = 'title';
+  h1.textContent = s.title;
+  var lvl = document.createElement('span');
+  lvl.className = 'story-lvl';
+  lvl.textContent = s.level || 'A1';
+  trow.appendChild(h1);
+  trow.appendChild(lvl);
+  article.appendChild(trow);
+  var gist = document.createElement('div');
+  gist.className = 'gist' + (gistShown ? '' : ' hidden');
+  gist.id = 'gistBox';
+  gist.innerHTML = "<span class='gist-label'>The gist, in English</span>" + s.gist;
+  article.appendChild(gist);
+  var body = document.createElement('div');
+  body.className = 'body';
+  body.id = 'bodyBox';
+  body.appendChild(renderBody(s.body));
+  article.appendChild(body);
+  var gsec = document.createElement('div');
+  gsec.className = 'section';
+  var gdet = document.createElement('details');
+  gdet.open = true;
+  gdet.innerHTML = "<summary><span class='chev'>▶</span>Notes de grammaire</summary>";
+  (s.grammar || []).forEach(function (n) {
+    var note = document.createElement('div');
+    note.className = 'note';
+    note.innerHTML = "<h4>" + n.fr + "</h4><p>" + n.en + "</p>";
+    gdet.appendChild(note);
+  });
+  gsec.appendChild(gdet);
+  article.appendChild(gsec);
+  if (s.quiz) {
+    var qsec = document.createElement('div');
+    qsec.className = 'section';
+    var qdet = document.createElement('details');
+    qdet.innerHTML = "<summary><span class='chev'>▶</span>Petite question</summary>";
+    var quiz = document.createElement('div');
+    quiz.className = 'quiz';
+    quiz.innerHTML = "<p class='q'>" + s.quiz.q + "</p><button class='reveal-btn'>Voir la réponse</button><p class='answer'>" + s.quiz.a + "</p>";
+    var btn = quiz.querySelector('.reveal-btn'),
+      ans = quiz.querySelector('.answer');
+    addTap(btn, function () {
+      ans.classList.add('show');
+      btn.style.display = 'none';
+    });
+    qdet.appendChild(quiz);
+    qsec.appendChild(qdet);
+    article.appendChild(qsec);
+  }
+  if (s.flag) {
+    var flag = document.createElement('div');
+    flag.className = 'flag';
+    flag.innerHTML = "<b>À noter</b> · " + s.flag;
+    article.appendChild(flag);
+  }
+}
+
+/* ---------- index cards ---------- */
+function makeCard(s) {
+  var read = isRead(s.id);
+  var card = document.createElement('div');
+  card.className = 'card' + (read ? ' read' : '');
+  var open = document.createElement('button');
+  open.className = 'card-open';
+  var k = document.createElement('span');
+  k.className = 'k';
+  k.textContent = s.kicker || '';
+  var t = document.createElement('span');
+  t.className = 'ttl';
+  t.textContent = s.title;
+  var meta = document.createElement('span');
+  meta.className = 'meta';
+  var lvl = document.createElement('span');
+  lvl.className = 'lvl';
+  lvl.textContent = s.level || 'A1';
+  var tag = document.createElement('span');
+  tag.className = 'tag';
+  tag.textContent = s.chip || '';
+  meta.appendChild(lvl);
+  meta.appendChild(tag);
+  var go = document.createElement('span');
+  go.className = 'go';
+  go.textContent = read ? 'Relire →' : 'Lire →';
+  open.appendChild(k);
+  open.appendChild(t);
+  open.appendChild(meta);
+  open.appendChild(go);
+  addTap(open, function () {
+    location.hash = '#/' + encodeURIComponent(s.id);
+    showStory(s.id);
+  });
+  var mark = document.createElement('button');
+  mark.className = 'card-mark';
+  mark.textContent = '✓';
+  mark.setAttribute('aria-label', read ? 'Marquer comme non lu' : 'Marquer comme lu');
+  mark.title = mark.getAttribute('aria-label');
+  addTap(mark, function (e) {
+    e.stopPropagation();
+    setRead(s.id, !isRead(s.id));
+    renderCards();
+  });
+  card.appendChild(open);
+  card.appendChild(mark);
+  return card;
+}
+function renderCards() {
+  var unread = STORIES.filter(function (s) {
+    return !isRead(s.id);
+  });
+  var read = STORIES.filter(function (s) {
+    return isRead(s.id);
+  });
+  cardsEl.innerHTML = '';
+  if (unread.length === 0) {
+    var e = document.createElement('p');
+    e.className = 'empty';
+    e.textContent = 'Tout est lu 🎉';
+    cardsEl.appendChild(e);
+  } else unread.forEach(function (s) {
+    return cardsEl.appendChild(makeCard(s));
+  });
+  readCardsEl.innerHTML = '';
+  read.forEach(function (s) {
+    return readCardsEl.appendChild(makeCard(s));
+  });
+  readCount.textContent = read.length;
+  readSection.style.display = read.length ? 'block' : 'none';
+}
+
+/* ---------- routing (hash = source of truth) ---------- */
+function syncReadBtn() {
+  var r = currentId && isRead(currentId);
+  toggleReadBtn.setAttribute('aria-pressed', r ? 'true' : 'false');
+  toggleReadBtn.textContent = r ? 'Lu ✓' : 'Marquer comme lu';
+}
+function showIndex() {
+  currentId = null;
+  renderCards();
+  viewStory.classList.remove('active');
+  viewIndex.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showStory(id) {
+  var s = null;
+  for (var i = 0; i < STORIES.length; i++) {
+    if (STORIES[i].id === id) {
+      s = STORIES[i];
+      break;
+    }
+  }
+  if (!s) {
+    showIndex();
+    return;
+  }
+  currentId = id;
+  gistShown = true;
+  toggleGistBtn.setAttribute('aria-pressed', 'true');
+  buildArticle(s);
+  syncReadBtn();
+  viewIndex.classList.remove('active');
+  viewStory.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function route() {
+  var m = location.hash.match(/^#\/(.+)$/);
+  if (m) showStory(decodeURIComponent(m[1]));else showIndex();
+}
+window.addEventListener('hashchange', route);
+addTap(backBtn, function () {
+  location.hash = '#/';
+  showIndex();
+});
+addTap(brand, function () {
+  location.hash = '#/';
+  showIndex();
+});
+brand.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    location.hash = '#/';
+  }
+});
+addTap(toggleGistBtn, function () {
+  gistShown = !gistShown;
+  toggleGistBtn.setAttribute('aria-pressed', gistShown);
+  var b = document.getElementById('gistBox');
+  if (b) {
+    if (gistShown) {
+      b.classList.remove('hidden');
+    } else {
+      b.classList.add('hidden');
+    }
+  }
+});
+addTap(toggleReadBtn, function () {
+  if (!currentId) return;
+  setRead(currentId, !isRead(currentId));
+  syncReadBtn();
+});
+renderCards();
+route();
+
+</script>
+
+
+</body>
+</html>

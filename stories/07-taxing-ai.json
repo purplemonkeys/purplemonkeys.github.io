@@ -1,0 +1,382 @@
+{
+  "id": "taxing-ai",
+  "chip": "Faut-il taxer l'IA ?",
+  "kicker": "Économie · Technologie",
+  "title": "Des idées pour taxer l'intelligence artificielle",
+  "level": "A1",
+  "gist": "AI is making some people very rich while threatening others' jobs — and if AI replaces workers, the government loses the taxes those wages paid. So proposals to tax AI are multiplying: the state taking a share of AI companies (Bernie Sanders and, vaguely, Trump), taxing the use of AI, or taxing what people consume. Beneath them all sits an unresolved question — what is the actual goal? — and a sci-fi worry about AI no one can control.",
+  "body": [
+    [
+      {
+        "fr": "L'{{intelligence artificielle (l'IA)|artificial intelligence (AI)}} rend certaines personnes très {{riches|rich}}.",
+        "bd": {
+          "meaning": "Artificial intelligence makes some people very rich.",
+          "chunks": [
+            [
+              "L'intelligence artificielle",
+              "artificial intelligence — the adjective comes AFTER the noun"
+            ],
+            [
+              "rend … très riches",
+              "makes … very rich (rendre + adjective = to make someone ___)"
+            ],
+            [
+              "certaines personnes",
+              "some / certain people"
+            ]
+          ],
+          "key": "<b>rendre + adjective = 'to make ___'.</b> <span class='bd-fr-i'>rend riches</span> = 'makes rich'. Note <span class='bd-fr-i'>riches</span> adds -s to match <span class='bd-fr-i'>personnes</span>."
+        }
+      },
+      {
+        "fr": "Les grandes {{entreprises|companies}} d'IA {{valent|are worth}} beaucoup d'argent.",
+        "bd": {
+          "meaning": "The big AI companies are worth a lot of money.",
+          "chunks": [
+            [
+              "Les grandes entreprises d'IA",
+              "the big AI companies — grandes comes BEFORE the noun"
+            ],
+            [
+              "valent beaucoup d'argent",
+              "are worth a lot of money (valoir = to be worth)"
+            ]
+          ],
+          "key": "<b>grand goes BEFORE the noun.</b> <span class='bd-fr-i'>les grandes entreprises</span> = 'the big companies' — one of the small before-the-noun club."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais l'IA peut aussi prendre le travail des gens.",
+        "bd": {
+          "meaning": "But AI can also take people's jobs.",
+          "chunks": [
+            [
+              "Mais l'IA peut aussi",
+              "but AI can also"
+            ],
+            [
+              "prendre le travail des gens",
+              "take people's work (des = de + les)"
+            ]
+          ],
+          "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>peut</span> (can) carries the subject; <span class='bd-fr-i'>prendre</span> stays plain."
+        }
+      },
+      {
+        "fr": "Sans travail, les gens ne {{paient|pay}} pas d'{{impôts|taxes}}.",
+        "bd": {
+          "meaning": "Without work, people don't pay taxes.",
+          "chunks": [
+            [
+              "Sans travail",
+              "without work (sans = without)"
+            ],
+            [
+              "les gens ne paient pas",
+              "people don't pay — the ne…pas sandwich around paient"
+            ],
+            [
+              "d'impôts",
+              "taxes (des → d' after a negative)"
+            ]
+          ],
+          "key": "<b>A negative turns 'des' into 'de'.</b> After <span class='bd-fr-i'>ne…pas</span>, <span class='bd-fr-i'>des impôts</span> becomes <span class='bd-fr-i'>d'impôts</span> — the same shift as <span class='bd-fr-i'>un</span> → <span class='bd-fr-i'>de</span>."
+        }
+      },
+      {
+        "fr": "Alors le gouvernement {{perd|loses}} de l'argent.",
+        "bd": {
+          "meaning": "So the government loses money.",
+          "chunks": [
+            [
+              "Alors",
+              "so / then"
+            ],
+            [
+              "le gouvernement perd",
+              "the government loses (perdre = to lose)"
+            ],
+            [
+              "de l'argent",
+              "money (de l' = 'some')"
+            ]
+          ],
+          "key": "<b>de l' = 'some'.</b> Before <span class='bd-fr-i'>argent</span> (money) French adds <span class='bd-fr-i'>de l'</span> where English says nothing."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Beaucoup de gens veulent {{taxer|tax}} l'IA.",
+        "bd": {
+          "meaning": "Many people want to tax AI.",
+          "chunks": [
+            [
+              "Beaucoup de gens veulent",
+              "many people want (vouloir = to want)"
+            ],
+            [
+              "taxer l'IA",
+              "to tax AI — taxer stays plain after veulent"
+            ]
+          ],
+          "key": "<b>Helper + plain verb.</b> <span class='bd-fr-i'>veulent</span> (want) carries the plural subject; <span class='bd-fr-i'>taxer</span> stays plain."
+        }
+      },
+      {
+        "fr": "Mais comment ? Il y a beaucoup d'{{idées|ideas}}.",
+        "bd": {
+          "meaning": "But how? There are many ideas.",
+          "chunks": [
+            [
+              "Mais comment ?",
+              "but how?"
+            ],
+            [
+              "Il y a beaucoup d'idées",
+              "there are many ideas (beaucoup de → beaucoup d')"
+            ]
+          ],
+          "key": "<b>il y a = 'there is / are'.</b> <span class='bd-fr-i'>il y a beaucoup d'idées</span> = 'there are many ideas'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Première idée : le gouvernement prend une {{partie|part}} des entreprises.",
+        "bd": {
+          "meaning": "First idea: the government takes a part of the companies.",
+          "chunks": [
+            [
+              "Première idée",
+              "first idea (première comes before the noun and agrees, feminine)"
+            ],
+            [
+              "le gouvernement prend",
+              "the government takes (prendre = to take)"
+            ],
+            [
+              "une partie des entreprises",
+              "a part of the companies (des = de + les)"
+            ]
+          ],
+          "key": "<b>des = de + les.</b> <span class='bd-fr-i'>une partie des entreprises</span> = 'a part of the companies' — the two little words merge."
+        }
+      },
+      {
+        "fr": "Le {{sénateur|senator}} Bernie Sanders veut une {{taxe|tax}} pour ça.",
+        "bd": {
+          "meaning": "Senator Bernie Sanders wants a tax for that.",
+          "chunks": [
+            [
+              "Le sénateur Bernie Sanders veut",
+              "Senator Bernie Sanders wants"
+            ],
+            [
+              "une taxe pour ça",
+              "a tax for that (ça = that / this)"
+            ]
+          ],
+          "key": "<b>ça = 'that / this'.</b> A short everyday word: <span class='bd-fr-i'>pour ça</span> = 'for that'."
+        }
+      },
+      {
+        "fr": "Le président Trump veut aussi une {{part|share}} pour l'{{État|state}}.",
+        "bd": {
+          "meaning": "President Trump also wants a share for the state.",
+          "chunks": [
+            [
+              "Le président Trump veut aussi",
+              "President Trump also wants"
+            ],
+            [
+              "une part pour l'État",
+              "a share for the state (l'État = the government / state)"
+            ]
+          ],
+          "key": "<b>Reusing the same verb.</b> <span class='bd-fr-i'>veut</span> ('wants') serves both Sanders and Trump — French reuses the high-frequency verb rather than reaching for a synonym."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Deuxième idée : {{taxer l'usage|tax the use}} de l'IA.",
+        "bd": {
+          "meaning": "Second idea: tax the use of AI.",
+          "chunks": [
+            [
+              "Deuxième idée",
+              "second idea"
+            ],
+            [
+              "taxer l'usage de l'IA",
+              "to tax the use of AI (l'usage = the use)"
+            ]
+          ],
+          "key": "<b>The plain verb as a heading.</b> <span class='bd-fr-i'>taxer</span> ('to tax') stands alone here — the bare, unconjugated form, like English 'to tax'."
+        }
+      },
+      {
+        "fr": "Comme ça, l'IA {{coûte plus cher|costs more}}.",
+        "bd": {
+          "meaning": "This way, AI costs more.",
+          "chunks": [
+            [
+              "Comme ça",
+              "this way / like that"
+            ],
+            [
+              "l'IA coûte plus cher",
+              "AI costs more (coûter cher = to be expensive)"
+            ]
+          ],
+          "key": "<b>plus cher = 'more expensive'.</b> <span class='bd-fr-i'>plus</span> + adjective builds the comparison — the mirror of <span class='bd-fr-i'>moins cher</span> ('cheaper')."
+        }
+      },
+      {
+        "fr": "Et les gens l'{{utilisent moins|use it less}}.",
+        "bd": {
+          "meaning": "And people use it less.",
+          "chunks": [
+            [
+              "Et les gens",
+              "and people"
+            ],
+            [
+              "l'utilisent moins",
+              "use it less (l' = 'it', sits before the verb; moins = less)"
+            ]
+          ],
+          "key": "<b>The object goes BEFORE the verb.</b> <span class='bd-fr-i'>l'utilisent</span> = 'use it' — French puts the little 'it' (<span class='bd-fr-i'>l'</span>) in front of the verb, not after."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Troisième idée : une taxe sur les {{achats|purchases}}.",
+        "bd": {
+          "meaning": "Third idea: a tax on purchases.",
+          "chunks": [
+            [
+              "Troisième idée",
+              "third idea"
+            ],
+            [
+              "une taxe sur les achats",
+              "a tax on purchases (les achats = shopping / purchases)"
+            ]
+          ],
+          "key": "<b>sur = 'on'.</b> <span class='bd-fr-i'>une taxe sur les achats</span> = 'a tax on purchases'."
+        }
+      },
+      {
+        "fr": "Quand on {{achète|buys}} une chose, on paie un peu plus.",
+        "bd": {
+          "meaning": "When you buy something, you pay a little more.",
+          "chunks": [
+            [
+              "Quand on achète une chose",
+              "when you buy a thing (on = the general 'you / people')"
+            ],
+            [
+              "on paie un peu plus",
+              "you pay a little more"
+            ]
+          ],
+          "key": "<b>on = 'you / people / we'.</b> The workhorse for people in general: <span class='bd-fr-i'>on achète, on paie</span> = 'you buy, you pay'."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais quel est le {{but|goal}} de ces taxes ?",
+        "bd": {
+          "meaning": "But what is the goal of these taxes?",
+          "chunks": [
+            [
+              "Mais quel est le but",
+              "but what is the goal (quel est…? = what is…?)"
+            ],
+            [
+              "de ces taxes",
+              "of these taxes"
+            ]
+          ],
+          "key": "<b>Quel est… ? = 'What is… ?'</b> for asking about a thing: <span class='bd-fr-i'>quel est le but ?</span> = 'what is the goal?'"
+        }
+      },
+      {
+        "fr": "Mais les gens ne sont pas toujours {{d'accord|in agreement}}.",
+        "bd": {
+          "meaning": "But people don't always agree.",
+          "chunks": [
+            [
+              "Mais les gens",
+              "but people"
+            ],
+            [
+              "ne sont pas toujours d'accord",
+              "don't always agree — ne…pas wraps sont; être d'accord = to agree"
+            ]
+          ],
+          "key": "<b>être d'accord = 'to agree'.</b> French says 'to be in agreement': <span class='bd-fr-i'>sont d'accord</span>. Here <span class='bd-fr-i'>ne…pas</span> makes it 'do not agree'."
+        }
+      },
+      {
+        "fr": "Et il y a une grande {{peur|fear}}.",
+        "bd": {
+          "meaning": "And there is a big fear.",
+          "chunks": [
+            [
+              "Et il y a",
+              "and there is"
+            ],
+            [
+              "une grande peur",
+              "a big fear — grande comes before the noun and agrees (feminine)"
+            ]
+          ],
+          "key": "<b>grand agrees too.</b> Before a feminine noun it becomes <span class='bd-fr-i'>grande</span>: <span class='bd-fr-i'>une grande peur</span> = 'a big fear'."
+        }
+      },
+      {
+        "fr": "Si l'IA {{devient|becomes}} trop {{puissante|powerful}}, c'est un très gros problème.",
+        "bd": {
+          "meaning": "If AI becomes too powerful, it's a very big problem.",
+          "chunks": [
+            [
+              "Si l'IA devient trop puissante",
+              "if AI becomes too powerful (devenir = to become; puissante is feminine to match l'IA)"
+            ],
+            [
+              "c'est un très gros problème",
+              "it's a very big problem"
+            ]
+          ],
+          "key": "<b>si = 'if'.</b> <span class='bd-fr-i'>si l'IA devient…</span> = 'if AI becomes…' — it sets up a condition, just like English 'if'."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "l'IA peut prendre / les gens veulent taxer",
+      "en": "<b>helper + plain verb.</b> <span class='fr'>peut</span>, <span class='fr'>veulent</span> carry the subject; the second verb (<span class='fr'>prendre</span>, <span class='fr'>taxer</span>) stays plain. Your pouvoir / vouloir / devoir family."
+    },
+    {
+      "fr": "ne paient pas d'impôts / ne sont pas d'accord",
+      "en": "<b>the ne … pas sandwich — and des → de.</b> It wraps the verb, and after it <span class='fr'>des impôts</span> becomes <span class='fr'>d'impôts</span>."
+    },
+    {
+      "fr": "les grandes entreprises / une grande peur / un gros problème",
+      "en": "<b>a few adjectives come BEFORE the noun.</b> <span class='fr'>grand</span>, <span class='fr'>gros</span>, <span class='fr'>premier</span> sit in front — and still agree: <span class='fr'>grande</span>, <span class='fr'>grandes</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi le gouvernement peut perdre de l'argent avec l'IA ?",
+    "a": "Parce que l'IA peut prendre le travail des gens ; et sans travail, les gens ne paient pas d'impôts. (Because AI can take people's jobs; and without work, people don't pay taxes.)"
+  },
+  "flag": "A long, detailed piece compressed hard to A1 — a neutral overview, not my own view on taxing AI. I kept three of the proposals (the state taking a share, taxing AI's use, and taxing what people buy) and dropped the rest: the specific company valuations, the token / data-centre / capital-tax distinctions, the named economists, and the sovereign-wealth-fund detail. Two word choices to flag: I used <span class='fr'>taxer / une taxe</span> throughout because it's transparent for you, though French often uses <span class='fr'>imposer / un impôt</span> for government taxation (I did use <span class='fr'>impôts</span> for what people pay); and <span class='fr'>l'usage de l'IA</span> is clear, though <span class='fr'>l'utilisation de l'IA</span> is just as common."
+}

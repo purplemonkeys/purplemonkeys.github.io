@@ -1,0 +1,361 @@
+{
+  "id": "burnham-economy",
+  "chip": "Burnham et l'économie",
+  "kicker": "Royaume-Uni · Économie",
+  "title": "Andy Burnham gagne et veut diriger le pays",
+  "level": "A1",
+  "gist": "Andy Burnham won a big election and wants to become Britain's prime minister, replacing Keir Starmer. He wants to spend on public services, but investors worry he'll spend too much when the UK's finances are already tight — so many think taxes may have to rise. Business leaders just want a stable government.",
+  "body": [
+    [
+      {
+        "fr": "Andy Burnham {{gagne|wins}} une {{élection importante|big / important election}} au Royaume-Uni.",
+        "bd": {
+          "meaning": "Andy Burnham wins a big election in the United Kingdom.",
+          "chunks": [
+            [
+              "Andy Burnham gagne",
+              "Andy Burnham wins — present tense, used for fresh news"
+            ],
+            [
+              "une élection importante",
+              "a big election ('importante' comes AFTER the noun and takes -e to agree)"
+            ],
+            [
+              "au Royaume-Uni",
+              "in the United Kingdom (au = à + le)"
+            ]
+          ],
+          "key": "<b>Adjective after the noun, and agreeing with it:</b> <span class='bd-fr-i'>importante</span> follows <span class='bd-fr-i'>élection</span> (feminine), so it takes an -e."
+        }
+      },
+      {
+        "fr": "Il {{veut|wants}} {{devenir|to become}} Premier ministre.",
+        "bd": {
+          "meaning": "He wants to become Prime Minister.",
+          "chunks": [
+            [
+              "Il veut",
+              "he wants (from vouloir)"
+            ],
+            [
+              "devenir",
+              "to become — plain verb after 'veut'"
+            ],
+            [
+              "Premier ministre",
+              "Prime Minister"
+            ]
+          ],
+          "key": "<b>Helper + plain verb:</b> <span class='bd-fr-i'>veut devenir</span> = 'wants to become'. Only <span class='bd-fr-i'>veut</span> changes; <span class='bd-fr-i'>devenir</span> stays plain."
+        }
+      },
+      {
+        "fr": "Il veut {{remplacer|replace}} Keir Starmer.",
+        "bd": {
+          "meaning": "He wants to replace Keir Starmer.",
+          "chunks": [
+            [
+              "Il veut remplacer",
+              "he wants to replace"
+            ],
+            [
+              "Keir Starmer",
+              "Keir Starmer (the outgoing PM)"
+            ]
+          ],
+          "key": "<b>Same helper shape again:</b> <span class='bd-fr-i'>veut remplacer</span> — vouloir + plain verb. You'll meet this pattern constantly."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Avant, Burnham {{a été|was / has been}} {{maire|mayor}} de Manchester.",
+        "bd": {
+          "meaning": "Before, Burnham was mayor of Manchester.",
+          "chunks": [
+            [
+              "Avant",
+              "before / previously"
+            ],
+            [
+              "a été maire",
+              "was mayor (a été = avoir + été, the past)"
+            ],
+            [
+              "de Manchester",
+              "of Manchester"
+            ]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a été</span> = 'was / has been' — the same avoir-past you know (a gagné, a inventé). Note: no 'un' before a job."
+        }
+      },
+      {
+        "fr": "Il est {{populaire|popular}}.",
+        "bd": {
+          "meaning": "He is popular.",
+          "chunks": [
+            [
+              "Il est",
+              "he is"
+            ],
+            [
+              "populaire",
+              "popular — an easy cognate"
+            ]
+          ],
+          "key": "<b>populaire</b> already ends in -e, so it looks the same for a man or a woman — no extra -e to add."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Burnham veut {{dépenser|spend}} de l'argent pour les {{services publics|public services}}.",
+        "bd": {
+          "meaning": "Burnham wants to spend money on public services.",
+          "chunks": [
+            [
+              "Burnham veut dépenser",
+              "Burnham wants to spend (vouloir + plain verb)"
+            ],
+            [
+              "de l'argent",
+              "money (de l' = 'some')"
+            ],
+            [
+              "pour les services publics",
+              "for public services ('publics' after the noun, plural)"
+            ]
+          ],
+          "key": "<b>The 'some' word:</b> <span class='bd-fr-i'>de l'argent</span> = 'money'. French adds <span class='bd-fr-i'>de l' / du / des</span> where English says nothing."
+        }
+      },
+      {
+        "fr": "Mais les {{investisseurs|investors}} {{ont peur|are afraid}}.",
+        "bd": {
+          "meaning": "But investors are afraid.",
+          "chunks": [
+            [
+              "Mais",
+              "but"
+            ],
+            [
+              "les investisseurs",
+              "the investors"
+            ],
+            [
+              "ont peur",
+              "are afraid (literally 'have fear')"
+            ]
+          ],
+          "key": "<b>An avoir idiom:</b> French 'has fear' = 'is afraid'. <span class='bd-fr-i'>avoir peur</span>, like <span class='bd-fr-i'>avoir faim</span> (be hungry) — it uses avoir, not être."
+        }
+      },
+      {
+        "fr": "Ils pensent qu'il va {{dépenser trop|spend too much}}.",
+        "bd": {
+          "meaning": "They think he's going to spend too much.",
+          "chunks": [
+            [
+              "Ils pensent que",
+              "they think that (que becomes qu' before a vowel)"
+            ],
+            [
+              "il va dépenser",
+              "he's going to spend (aller + plain verb = future)"
+            ],
+            [
+              "trop",
+              "too much"
+            ]
+          ],
+          "key": "<b>aller + plain verb = the future:</b> <span class='bd-fr-i'>va dépenser</span> = 'is going to spend'. Only <span class='bd-fr-i'>va</span> changes."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le problème : le Royaume-Uni {{a emprunté|borrowed}} beaucoup d'argent.",
+        "bd": {
+          "meaning": "The problem: the UK has borrowed a lot of money.",
+          "chunks": [
+            [
+              "Le problème",
+              "the problem"
+            ],
+            [
+              "a emprunté",
+              "borrowed / has borrowed (avoir + past form)"
+            ],
+            [
+              "beaucoup d'argent",
+              "a lot of money (beaucoup de becomes d' before a vowel)"
+            ]
+          ],
+          "key": "<b>Past again:</b> <span class='bd-fr-i'>a emprunté</span> = 'borrowed'. And <span class='bd-fr-i'>beaucoup d'argent</span> — 'de' shrinks to 'd'' before the vowel."
+        }
+      },
+      {
+        "fr": "Il y a {{peu de place|little room}} pour dépenser plus.",
+        "bd": {
+          "meaning": "There is little room to spend more.",
+          "chunks": [
+            [
+              "Il y a",
+              "there is (a fixed phrase)"
+            ],
+            [
+              "peu de place",
+              "little room / not much room"
+            ],
+            [
+              "pour dépenser plus",
+              "to spend more (pour + plain verb)"
+            ]
+          ],
+          "key": "<b>Two set pieces:</b> <span class='bd-fr-i'>il y a</span> = 'there is/are', and <span class='bd-fr-i'>pour + plain verb</span> = 'in order to' (pour dépenser = 'to spend')."
+        }
+      },
+      {
+        "fr": "Sur les {{marchés|markets}}, les {{taux|rates}} {{montent|go up}}.",
+        "bd": {
+          "meaning": "On the markets, rates go up.",
+          "chunks": [
+            [
+              "Sur les marchés",
+              "on the markets"
+            ],
+            [
+              "les taux",
+              "the (interest) rates — 'taux' is spelled the same singular and plural"
+            ],
+            [
+              "montent",
+              "go up / rise"
+            ]
+          ],
+          "key": "<b>Present tense for live action:</b> <span class='bd-fr-i'>les taux montent</span> = 'rates are rising' — the simplest way to report what's happening now."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Burnham est un homme {{de gauche|left-wing / on the left}}.",
+        "bd": {
+          "meaning": "Burnham is a left-wing man.",
+          "chunks": [
+            [
+              "Burnham est",
+              "Burnham is"
+            ],
+            [
+              "un homme de gauche",
+              "a man of the left / a left-wing man"
+            ]
+          ],
+          "key": "<b>'de + noun' builds a description:</b> <span class='bd-fr-i'>un homme de gauche</span> = 'a left-wing man' (the opposite is <span class='bd-fr-i'>de droite</span>, right-wing)."
+        }
+      },
+      {
+        "fr": "Il {{n'aime pas|doesn't like}} {{l'austérité|austerity (spending cuts)}}.",
+        "bd": {
+          "meaning": "He doesn't like austerity.",
+          "chunks": [
+            [
+              "Il n'aime pas",
+              "he doesn't like (the ne...pas sandwich around 'aime')"
+            ],
+            [
+              "l'austérité",
+              "austerity — cuts to public spending"
+            ]
+          ],
+          "key": "<b>Negation sandwich:</b> <span class='bd-fr-i'>ne ... pas</span> wraps the verb <span class='bd-fr-i'>aime</span>; ne becomes n' before the vowel."
+        }
+      },
+      {
+        "fr": "Alors, beaucoup pensent que les {{impôts|taxes}} vont {{augmenter|go up, rise}}.",
+        "bd": {
+          "meaning": "So, many people think taxes are going to rise.",
+          "chunks": [
+            [
+              "Alors",
+              "so / therefore"
+            ],
+            [
+              "beaucoup pensent que",
+              "many (people) think that"
+            ],
+            [
+              "les impôts vont augmenter",
+              "taxes are going to rise (aller + plain verb)"
+            ]
+          ],
+          "key": "<b>Future with aller, plural:</b> <span class='bd-fr-i'>vont augmenter</span> = 'are going to rise'. Plural subject, so <span class='bd-fr-i'>aller</span> becomes <span class='bd-fr-i'>vont</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Burnham {{promet|promises}} de {{baisser|lower}} les {{factures d'énergie|energy bills}}.",
+        "bd": {
+          "meaning": "Burnham promises to lower energy bills.",
+          "chunks": [
+            [
+              "Burnham promet",
+              "Burnham promises"
+            ],
+            [
+              "de baisser",
+              "to lower (promettre de + verb)"
+            ],
+            [
+              "les factures d'énergie",
+              "energy bills (une facture = a bill)"
+            ]
+          ],
+          "key": "<b>Some verbs link with 'de':</b> <span class='bd-fr-i'>promet de baisser</span> = 'promises to lower' — the linking word is 'de', then the plain verb."
+        }
+      },
+      {
+        "fr": "Les {{entreprises|businesses}} {{veulent|want}} un gouvernement {{stable|stable}}.",
+        "bd": {
+          "meaning": "Businesses want a stable government.",
+          "chunks": [
+            [
+              "Les entreprises",
+              "businesses / companies"
+            ],
+            [
+              "veulent",
+              "want (from vouloir, plural)"
+            ],
+            [
+              "un gouvernement stable",
+              "a stable government ('stable' sits after the noun)"
+            ]
+          ],
+          "key": "<b>vouloir = 'to want':</b> plural is <span class='bd-fr-i'>veulent</span>. And the adjective <span class='bd-fr-i'>stable</span> comes after the noun."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "il va dépenser / vont augmenter",
+      "en": "<b>aller + plain verb = the near future.</b> It recurs all through this story. Only <span class='fr'>aller</span> changes (va, vont); the second verb stays plain."
+    },
+    {
+      "fr": "a été / a emprunté",
+      "en": "<b>avoir + past form = the past.</b> <span class='fr'>a été</span> = 'was', <span class='fr'>a emprunté</span> = 'borrowed'. Same shape as the vibe-lawyering story."
+    },
+    {
+      "fr": "les investisseurs ont peur",
+      "en": "<b>avoir idioms.</b> French says 'has fear' for 'is afraid' (<span class='fr'>avoir peur</span>) — like <span class='fr'>avoir faim</span> (be hungry). Uses avoir, not être."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi les investisseurs ont peur ?",
+    "a": "Parce qu'ils pensent que Burnham va dépenser trop d'argent. (Because they think Burnham is going to spend too much money.)"
+  },
+  "flag": "This was a dense economics piece compressed hard to A1: I dropped the specialist terms (deficit, bond yields, fiscal rules, the chancellor race, the named advisers). <span class='fr'>Les taux montent</span> stands in for 'bond yields pushed up' — close enough at this level, not a literal match. It's a neutral retelling of your article, not my own view on UK politics."
+}
