@@ -17,7 +17,7 @@ TOKEN = "/*STORIES_DATA_SENTINEL*/[]"
 
 # Tokens that break Kobo's old WebKit (ES5 only). Checked against the script.
 ES6_BANNED = ["=>", "const ", "let ", "`", "new Set", "new Map",
-              "Object.assign", "includes(", "...", "async ", "await "]
+              "Object.assign", ".includes(", "...", "async ", "await "]
 
 def check_es5(shell_src):
     """Warn loudly if ES6 creeps into the shell script: Kobo runs ES5 only."""
@@ -26,9 +26,8 @@ def check_es5(shell_src):
     if start < 0 or end < 0:
         return []
     script = shell_src[start:end]
-    # strip comments so prose like "let the page scroll" doesn't false-positive
     out, i, n = [], 0, len(script)
-    while i < n:
+    while i < n:                              # strip comments so prose is exempt
         if script.startswith("//", i):
             j = script.find("\n", i); i = n if j < 0 else j
         elif script.startswith("/*", i):
@@ -61,8 +60,7 @@ def main():
             for si, sent in enumerate(para):
                 if "fr" not in sent or "bd" not in sent:
                     sys.exit(f"{name}: body[{pi}][{si}] needs both 'fr' and 'bd'")
-                bd = sent["bd"]
-                if "meaning" not in bd:
+                if "meaning" not in sent["bd"]:
                     sys.exit(f"{name}: body[{pi}][{si}].bd missing 'meaning'")
         stories.append(s)
 

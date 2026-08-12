@@ -86,6 +86,13 @@
   .view.active{display:block}
 
   .index-intro{font-size:13px;color:var(--muted);letter-spacing:.02em;margin:18px 2px 12px}
+  .index-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 2px 4px}
+  .index-head .index-intro{margin:0}
+  .memtoggle{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;background:var(--card);flex:0 0 auto}
+  .mem-opt{font-family:var(--font-ui);font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--muted);background:transparent;border:none;padding:6px 14px;cursor:pointer}
+  .mem-opt+.mem-opt{border-left:1px solid var(--rule)}
+  .mem-opt[aria-pressed="true"]{background:var(--accent);color:#fff}
+  .mem-hint{font-size:11.5px;color:var(--faint);margin:0 2px 12px;font-style:italic}
   .cards{display:grid;grid-template-columns:1fr;gap:12px}
   @media (min-width:560px){ .cards{grid-template-columns:1fr 1fr} }
   .empty{font-size:13.5px;color:var(--muted);font-style:italic;padding:6px 2px}
@@ -212,7 +219,14 @@
 
   <!-- INDEX VIEW -->
   <main id="view-index" class="view">
-    <p class="index-intro">Choisissez une histoire :</p>
+    <div class="index-head">
+      <p class="index-intro">Choisissez une histoire :</p>
+      <div class="memtoggle" id="memToggle" role="group" aria-label="Mémoire">
+        <button class="mem-opt" data-mem="M1" type="button">M1</button>
+        <button class="mem-opt" data-mem="M2" type="button">M2</button>
+      </div>
+    </div>
+    <p class="mem-hint" id="memHint"></p>
     <div class="cards" id="cards"></div>
     <details class="read-section" id="readSection">
       <summary><span class="chev">▶</span>Déjà lu (<span id="readCount">0</span>)</summary>
@@ -302,11 +316,34 @@ var STORIES = /*STORIES_DATA_SENTINEL*/[];
 // Flip to true to bring back tappable highlighted words (data is retained).
 var SHOW_WORD_HIGHLIGHTS = false;
 
-/* ---- read-state store (persists in a normal browser; guarded so it never
-        throws in sandboxes that block storage — falls back to in-memory) ---- */
+/* ---- memory modes ----------------------------------------------------------
+   M2 = this device (localStorage) — the original behaviour, unchanged.
+   M1 = shared repo memory, read from progress/m1.json. READ-ONLY here: taps do
+        nothing. You update M1 by editing progress/m1.json and committing.
+   The M1/M2 choice is a per-device preference, NOT a login. Default is M2.
+   M1 loads via XMLHttpRequest (not fetch) for the old-WebKit Kobo, and fails
+   silently over file:// — a sideloaded Kobo shows M1 empty; use the web URL. */
 var READ_KEY = 'enclair:read:v1';
-var readSet = {};
-(function loadRead() {
+var MEM_KEY = 'enclair:mem:v1';
+var readSet = {}; /* M2 */
+var m1Set = {}; /* M1 */
+var m1Loaded = false;
+var m1Failed = false;
+var mem = 'M2';
+
+(function loadMem() {
+  try {
+    var v = localStorage.getItem(MEM_KEY);
+    if (v === 'M1' || v === 'M2') mem = v;
+  } catch (e) {}
+})();
+function saveMem() {
+  try {
+    localStorage.setItem(MEM_KEY, mem);
+  } catch (e) {}
+}
+
+(function loadReadM2() {
   try {
     var raw = localStorage.getItem(READ_KEY);
     if (raw) {
@@ -327,10 +364,55 @@ function saveRead() {
     localStorage.setItem(READ_KEY, JSON.stringify(arr));
   } catch (e) {}
 }
+
+function loadM1(cb) {
+  if (m1Loaded || m1Failed) {
+    if (cb) cb();
+    return;
+  }
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'progress/m1.json', true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) return;
+      var ok = xhr.status === 200 || xhr.status === 0;
+      var parsed = null;
+      if (ok && xhr.responseText) {
+        try {
+          parsed = JSON.parse(xhr.responseText);
+        } catch (e) {
+          parsed = null;
+        }
+      }
+      if (parsed) {
+        var list = parsed.read ? parsed.read : parsed.length ? parsed : [];
+        m1Set = {};
+        for (var i = 0; i < list.length; i++) m1Set[list[i]] = true;
+        m1Loaded = true;
+      } else {
+        m1Failed = true;
+      }
+      if (cb) cb();
+    };
+    xhr.onerror = function () {
+      m1Failed = true;
+      if (cb) cb();
+    };
+    xhr.send();
+  } catch (e) {
+    m1Failed = true;
+    if (cb) cb();
+  }
+}
+
+function activeSet() {
+  return mem === 'M1' ? m1Set : readSet;
+}
 function isRead(id) {
-  return !!readSet[id];
+  return !!activeSet()[id];
 }
 function setRead(id, val) {
+  if (mem === 'M1') return; /* M1 is read-only: taps do nothing */
   if (val) readSet[id] = true;else delete readSet[id];
   saveRead();
 }
@@ -338,6 +420,8 @@ var cardsEl = document.getElementById('cards');
 var readCardsEl = document.getElementById('readCards');
 var readSection = document.getElementById('readSection');
 var readCount = document.getElementById('readCount');
+var memToggle = document.getElementById('memToggle');
+var memHint = document.getElementById('memHint');
 var viewIndex = document.getElementById('view-index');
 var viewStory = document.getElementById('view-story');
 var article = document.getElementById('article');
@@ -660,8 +744,55 @@ addTap(toggleReadBtn, function () {
   setRead(currentId, !isRead(currentId));
   syncReadBtn();
 });
-renderCards();
-route();
+function renderMem() {
+  var opts = memToggle.getElementsByClassName('mem-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].setAttribute('aria-pressed', opts[i].getAttribute('data-mem') === mem ? 'true' : 'false');
+  }
+  if (mem === 'M1') {
+    memHint.textContent = m1Failed ? 'M1 — mémoire partagée (en ligne seulement, pas en fichier local).' : 'M1 — mémoire partagée du dépôt, en lecture seule.';
+  } else {
+    memHint.textContent = 'M2 — mémoire de cet appareil.';
+  }
+}
+function setMem(v) {
+  if (v !== 'M1' && v !== 'M2') return;
+  mem = v;
+  saveMem();
+  renderMem();
+  if (mem === 'M1' && !m1Loaded && !m1Failed) {
+    loadM1(function () {
+      renderMem();
+      renderCards();
+      if (currentId) syncReadBtn();
+    });
+  } else {
+    renderCards();
+    if (currentId) syncReadBtn();
+  }
+}
+(function wireMem() {
+  var opts = memToggle.getElementsByClassName('mem-opt');
+  for (var i = 0; i < opts.length; i++) {
+    (function (btn) {
+      addTap(btn, function () {
+        setMem(btn.getAttribute('data-mem'));
+      });
+    })(opts[i]);
+  }
+})();
+
+renderMem();
+if (mem === 'M1') {
+  loadM1(function () {
+    renderMem();
+    renderCards();
+    route();
+  });
+} else {
+  renderCards();
+  route();
+}
 
 </script>
 
