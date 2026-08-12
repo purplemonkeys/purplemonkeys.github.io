@@ -1,4 +1,9 @@
 {
-  "_comment": "M1 = shared reading progress. List the ids of stories you've read, then commit. Story ids are the part after the number in each stories/NN-<id>.json filename, e.g. vibe-lawyering. This file is read-only in the reader; editing here + committing is how M1 updates on every device.",
-  "read": []
+  "read": [
+    "vibe-lawyering",
+    "burnham-economy",
+    "starmer-resigns",
+    "prediction-markets",
+    "china-ai-jobs"
+  ]
 }
