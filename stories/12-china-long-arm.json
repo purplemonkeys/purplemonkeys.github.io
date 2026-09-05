@@ -1,0 +1,283 @@
+{
+  "id": "china-long-arm",
+  "chip": "Le long bras de la Chine",
+  "kicker": "Chine · Droit international",
+  "title": "12. La Chine veut que ses lois s'appliquent partout",
+  "level": "A1",
+  "gist": "China has long resented the US for enforcing its laws abroad through sanctions, but is now doing the same — most strikingly by forcing Meta to unwind a $2bn AI acquisition in April. The shift traces back to the 2018 arrest of a Huawei executive in Canada at America's request, after which China built a body of extraterritorial law: a 2021 anti-sanctions law now being used to sue JPMorgan and Citigroup in Chinese courts, and conflicting London/Chinese court rulings that leave firms like Samsung caught between two legal systems. China is also using new laws to police criticism of itself abroad, part of a broader push to centralize control and stop being, in its own telling, a victim of world history rather than its maker.",
+  "body": [
+    [
+      {
+        "fr": "Pendant longtemps, la Chine a {{critiqué|criticized}} les pays étrangers qui appliquaient leurs propres lois sur son territoire.",
+        "bd": {
+          "meaning": "For a long time, China criticized foreign countries that applied their own laws on its territory.",
+          "chunks": [
+            ["Pendant longtemps", "for a long time"],
+            ["la Chine a critiqué", "China criticized (a...critiqué = past form)"],
+            ["les pays étrangers", "foreign countries"],
+            ["qui appliquaient leurs propres lois", "that applied their own laws (qui = that/which)"],
+            ["sur son territoire", "on its territory"]
+          ],
+          "key": "<b>Past = avoir + past participle.</b> <span class='bd-fr-i'>a critiqué</span> = “criticized” — the familiar avoir + past-form pattern."
+        }
+      },
+      {
+        "fr": "Mais aujourd'hui, la Chine fait la même chose : elle veut appliquer ses lois {{en dehors de|outside of}} ses frontières.",
+        "bd": {
+          "meaning": "But today, China is doing the same thing: it wants to apply its laws outside its borders.",
+          "chunks": [
+            ["Mais aujourd'hui", "but today"],
+            ["la Chine fait la même chose", "China does/is doing the same thing"],
+            ["elle veut appliquer ses lois", "it wants to apply its laws (vouloir + plain verb)"],
+            ["en dehors de ses frontières", "outside its borders"]
+          ],
+          "key": "<b>vouloir + plain verb = “to want to ___.”</b> <span class='bd-fr-i'>veut appliquer</span> = “wants to apply” — another helper-plus-plain-verb pair."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En avril, la Chine a {{obligé|forced}} Meta, le propriétaire de Facebook, à annuler un achat de 2 milliards de dollars.",
+        "bd": {
+          "meaning": "In April, China forced Meta, Facebook's owner, to cancel a $2 billion purchase.",
+          "chunks": [
+            ["En avril, la Chine a obligé", "in April, China forced (obliger qqn à = to force someone to)"],
+            ["Meta, le propriétaire de Facebook", "Meta, Facebook's owner"],
+            ["à annuler", "to cancel"],
+            ["un achat de 2 milliards de dollars", "a $2 billion purchase (milliard = billion)"]
+          ],
+          "key": "<b>obliger qqn à + plain verb = “to force someone to ___.”</b> Same shape as <span class='bd-fr-i'>aider qqn à</span> and <span class='bd-fr-i'>pousser qqn à</span> — a person, à, then the plain verb."
+        }
+      },
+      {
+        "fr": "Meta voulait acheter Manus, une entreprise d'IA, mais le gouvernement chinois a dit non.",
+        "bd": {
+          "meaning": "Meta wanted to buy Manus, an AI company, but the Chinese government said no.",
+          "chunks": [
+            ["Meta voulait acheter Manus", "Meta wanted to buy Manus (voulait = imperfect of vouloir)"],
+            ["une entreprise d'IA", "an AI company"],
+            ["mais le gouvernement chinois a dit non", "but the Chinese government said no"]
+          ],
+          "key": "<b>“voulait” = “wanted” (an ongoing past state).</b> Different from <span class='bd-fr-i'>a voulu</span> — <span class='bd-fr-i'>voulait</span> paints the wanting as a background situation, not a single completed action."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Ce tournant vient d'un événement {{précis|specific}}.",
+        "bd": {
+          "meaning": "This turning point comes from a specific event.",
+          "chunks": [
+            ["Ce tournant vient de", "this turning point comes from"],
+            ["un événement précis", "a specific event (précis after the noun)"]
+          ],
+          "key": "<b>venir de + noun = “to come from ___.”</b> A simple way to point back at a cause."
+        }
+      },
+      {
+        "fr": "En 2018, une {{directrice|(female) executive}} de Huawei a été arrêtée au Canada, à la demande des États-Unis.",
+        "bd": {
+          "meaning": "In 2018, a Huawei executive was arrested in Canada, at the request of the United States.",
+          "chunks": [
+            ["En 2018, une directrice de Huawei", "in 2018, a (female) Huawei executive"],
+            ["a été arrêtée", "was arrested (être + past participle = the passive)"],
+            ["au Canada", "in Canada"],
+            ["à la demande des États-Unis", "at the request of the United States"]
+          ],
+          "key": "<b>être + past participle = the passive (“was ___ed”).</b> <span class='bd-fr-i'>a été arrêtée</span> = “was arrested” — the participle agrees in gender, so it gets an extra -e for “une directrice.”"
+        }
+      },
+      {
+        "fr": "Les dirigeants chinois ont compris que leurs entreprises étaient très {{vulnérables|vulnerable}} face aux lois américaines.",
+        "bd": {
+          "meaning": "Chinese leaders understood that their companies were very vulnerable to American laws.",
+          "chunks": [
+            ["Les dirigeants chinois ont compris que", "Chinese leaders understood that (comprendre)"],
+            ["leurs entreprises étaient très vulnérables", "their companies were very vulnerable (étaient = imperfect of être)"],
+            ["face aux lois américaines", "in the face of American laws"]
+          ],
+          "key": "<b>“étaient” describes a past state,</b> while <span class='bd-fr-i'>ont compris</span> is the single moment of realizing it — two different past tenses working together."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Depuis 2021, la Chine a une loi contre les entreprises qui {{respectent|comply with}} les sanctions étrangères.",
+        "bd": {
+          "meaning": "Since 2021, China has had a law against companies that comply with foreign sanctions.",
+          "chunks": [
+            ["Depuis 2021, la Chine a une loi", "since 2021, China has had a law"],
+            ["contre les entreprises", "against companies"],
+            ["qui respectent les sanctions étrangères", "that comply with foreign sanctions"]
+          ],
+          "key": "<b>depuis + present tense, again.</b> <span class='bd-fr-i'>depuis 2021, la Chine a</span> = “since 2021, China has had” — French keeps the present where English switches to “has had.”"
+        }
+      },
+      {
+        "fr": "Par exemple, deux grandes banques américaines, JPMorgan et Citigroup, sont {{poursuivies|sued}} devant un tribunal chinois.",
+        "bd": {
+          "meaning": "For example, two big American banks, JPMorgan and Citigroup, are being sued in a Chinese court.",
+          "chunks": [
+            ["Par exemple, deux grandes banques américaines", "for example, two big American banks"],
+            ["JPMorgan et Citigroup", "JPMorgan and Citigroup"],
+            ["sont poursuivies", "are being sued (être + past participle, passive again)"],
+            ["devant un tribunal chinois", "before a Chinese court"]
+          ],
+          "key": "<b>être + past participle, once more.</b> <span class='bd-fr-i'>sont poursuivies</span> = “are (being) sued” — the same passive shape as <span class='bd-fr-i'>a été arrêtée</span>, now present tense and feminine plural."
+        }
+      },
+      {
+        "fr": "Elles doivent payer 44 millions de dollars, parce qu'elles ont {{gelé|frozen}} l'argent d'une entreprise chinoise sanctionnée par les États-Unis.",
+        "bd": {
+          "meaning": "They have to pay $44 million, because they froze the money of a Chinese company sanctioned by the US.",
+          "chunks": [
+            ["Elles doivent payer 44 millions de dollars", "they have to pay $44 million (devoir + plain verb)"],
+            ["parce qu'elles ont gelé", "because they froze (avoir + past participle)"],
+            ["l'argent d'une entreprise chinoise", "the money of a Chinese company"],
+            ["sanctionnée par les États-Unis", "sanctioned by the US"]
+          ],
+          "key": "<b>devoir + plain verb = “have to.”</b> <span class='bd-fr-i'>doivent payer</span> = “have to pay” — the same shape as <span class='bd-fr-i'>doit payer</span> from an earlier story, now plural."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Cette situation crée un vrai problème pour les entreprises {{internationales|international}}.",
+        "bd": {
+          "meaning": "This situation creates a real problem for international companies.",
+          "chunks": [
+            ["Cette situation crée", "this situation creates"],
+            ["un vrai problème", "a real problem (vrai before the noun)"],
+            ["pour les entreprises internationales", "for international companies"]
+          ],
+          "key": "<b>“vrai” before the noun,</b> as you've seen before — a handful of common adjectives (vrai, bon, grand, petit) go before rather than after."
+        }
+      },
+      {
+        "fr": "En mai, un tribunal à Londres et un tribunal en Chine ont donné deux décisions {{différentes|different}} dans un même conflit entre Samsung et ZTE.",
+        "bd": {
+          "meaning": "In May, a court in London and a court in China gave two different rulings in the same dispute between Samsung and ZTE.",
+          "chunks": [
+            ["En mai, un tribunal à Londres", "in May, a court in London"],
+            ["et un tribunal en Chine", "and a court in China"],
+            ["ont donné deux décisions différentes", "gave two different rulings"],
+            ["dans un même conflit entre Samsung et ZTE", "in the same dispute between Samsung and ZTE"]
+          ],
+          "key": "<b>“en Chine” vs “à Londres.”</b> Countries use <span class='bd-fr-i'>en</span>, cities use <span class='bd-fr-i'>à</span> — two different little words for “in.”"
+        }
+      },
+      {
+        "fr": "Samsung doit maintenant choisir : {{obéir|obey}} au tribunal anglais, ou obéir au tribunal chinois.",
+        "bd": {
+          "meaning": "Samsung now has to choose: obey the English court, or obey the Chinese court.",
+          "chunks": [
+            ["Samsung doit maintenant choisir", "Samsung now has to choose (devoir + plain verb)"],
+            ["obéir au tribunal anglais", "obey the English court (obéir à = to obey)"],
+            ["ou obéir au tribunal chinois", "or obey the Chinese court"]
+          ],
+          "key": "<b>obéir à = “to obey.”</b> A fixed pairing — in French you always “obey TO” someone, with <span class='bd-fr-i'>à</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Chine utilise aussi ses nouvelles lois pour {{contrôler|control}} les critiques à l'étranger.",
+        "bd": {
+          "meaning": "China also uses its new laws to control criticism abroad.",
+          "chunks": [
+            ["La Chine utilise aussi ses nouvelles lois", "China also uses its new laws"],
+            ["pour contrôler", "to control (pour + plain verb)"],
+            ["les critiques à l'étranger", "criticism abroad"]
+          ],
+          "key": "<b>pour + plain verb, one more time.</b> <span class='bd-fr-i'>pour contrôler</span> = “to control” — this “in order to” shape has appeared throughout every story so far."
+        }
+      },
+      {
+        "fr": "Une loi de juillet {{interdit|forbids}} tout acte, même en dehors de la Chine, qui « nuit à l'unité nationale ».",
+        "bd": {
+          "meaning": "A July law forbids any act, even outside China, that 'harms national unity.'",
+          "chunks": [
+            ["Une loi de juillet interdit", "a July law forbids (interdire)"],
+            ["tout acte", "any act"],
+            ["même en dehors de la Chine", "even outside China"],
+            ["qui « nuit à l'unité nationale »", "that 'harms national unity' (qui = that/which)"]
+          ],
+          "key": "<b>“qui” again hooks on a description,</b> this time to “tout acte”: an act THAT harms national unity."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Selon des experts, ce mouvement {{montre|shows}} la volonté de la Chine de centraliser son pouvoir.",
+        "bd": {
+          "meaning": "According to experts, this movement shows China's desire to centralize its power.",
+          "chunks": [
+            ["Selon des experts", "according to experts"],
+            ["ce mouvement montre", "this movement shows"],
+            ["la volonté de la Chine de centraliser", "China's desire to centralize (volonté de + plain verb)"],
+            ["son pouvoir", "its power"]
+          ],
+          "key": "<b>“selon” = “according to.”</b> A simple way to attribute an opinion or claim to someone else."
+        }
+      },
+      {
+        "fr": "En créant ces lois, le gouvernement chinois envoie aussi un message clair aux autres pays.",
+        "bd": {
+          "meaning": "By creating these laws, the Chinese government also sends a clear message to other countries.",
+          "chunks": [
+            ["En créant ces lois", "by creating these laws (en + -ant form = 'by ___ing')"],
+            ["le gouvernement chinois envoie aussi", "the Chinese government also sends"],
+            ["un message clair", "a clear message"],
+            ["aux autres pays", "to other countries"]
+          ],
+          "key": "<b>en + -ant form = “by ___ing.”</b> <span class='bd-fr-i'>en créant</span> = “by creating” — a new shape worth knowing: it describes how something is done."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Chine ne veut plus être seulement une {{victime|victim}} de l'histoire mondiale.",
+        "bd": {
+          "meaning": "China no longer wants to be just a victim of world history.",
+          "chunks": [
+            ["La Chine ne veut plus être", "China no longer wants to be (ne...plus = no longer)"],
+            ["seulement une victime", "just/only a victim"],
+            ["de l'histoire mondiale", "of world history"]
+          ],
+          "key": "<b>ne … plus, to close this idea.</b> <span class='bd-fr-i'>ne veut plus</span> = “no longer wants” — the same sandwich you meet whenever something that used to be true stops being true."
+        }
+      },
+      {
+        "fr": "Elle veut maintenant {{écrire|write}} les règles elle-même.",
+        "bd": {
+          "meaning": "It now wants to write the rules itself.",
+          "chunks": [
+            ["Elle veut maintenant écrire", "it now wants to write (vouloir + plain verb)"],
+            ["les règles", "the rules"],
+            ["elle-même", "itself (emphatic pronoun + même)"]
+          ],
+          "key": "<b>“elle-même” = “itself/herself.”</b> Add <span class='bd-fr-i'>même</span> after a pronoun to emphasize “by itself / on its own.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Une directrice a été arrêtée / les banques sont poursuivies",
+      "en": "<b>être + past participle = the passive (“was/is ___ed”).</b> Unlike <span class='fr'>avoir + past participle</span> (the ordinary past), this shape says something was done TO the subject."
+    },
+    {
+      "fr": "La banque n'est plus... / la Chine ne veut plus...",
+      "en": "<b>ne … plus = “no longer / not anymore.”</b> Same sandwich shape as <span class='fr'>ne … pas</span>, but marks something that used to be true and now isn't."
+    },
+    {
+      "fr": "En créant ces lois",
+      "en": "<b>en + -ant form = “by ___ing.”</b> Describes the means or manner of an action — <span class='fr'>en créant</span> = “by creating.”"
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi la Chine a-t-elle obligé Meta à annuler l'achat de Manus ?",
+    "a": "Parce que la Chine renforce son contrôle sur les technologies d'intelligence artificielle et travaille sur de nouvelles lois pour mieux contrôler ces technologies. (Because China is tightening control over AI technology and working on new laws to better control it.)"
+  },
+  "flag": "This compresses a dense Economist piece with several named legal experts (Henry Gao, Mark Jia, Yalkun Uluyol) and additional laws — the entry/exit-ban rules taking effect in September, the EU-style “blocking statute” comparison, a pending cyber-crime bill, a corruption-evidence law, and older tactics like covert police stations and kidnapped dissidents — all dropped to focus on three concrete threads: the Meta/Manus deal, the JPMorgan/Citigroup lawsuits, and the Samsung/ZTE court clash. The $44m figure is the combined total from the article, not one single lawsuit. <span class='fr'>tournant</span> (turning point) and <span class='fr'>long bras</span> (long arm) are natural-sounding choices for ideas the article treats more abstractly — a native speaker might reach directly for the technical term <span class='fr'>extraterritorialité</span>, which I avoided as too advanced for A1."
+}
