@@ -1,0 +1,282 @@
+{
+  "id": "status-death",
+  "chip": "La mort du statut",
+  "kicker": "Économie · Société",
+  "title": "11. Le grand chamboulement du statut social",
+  "level": "A1",
+  "gist": "A hedge-fund worker feels miserable because friends in AI are getting richer faster than him — an example of what The Economist's Schumpeter column calls “status death,” as capitalism's usual ways of ranking people get disrupted. Luxury brands like LVMH and Ferrari are losing their shine because they became too accessible, banks use elaborate fake titles to soften status loss, Silicon Valley workers fear AI will make them obsolete, and even Donald Trump will eventually face his own demotion when he leaves office. The one silver lining: fear of losing status pushes people to quit and try something new.",
+  "body": [
+    [
+      {
+        "fr": "Les gens adorent comparer leur {{statut|status}} avec celui des autres.",
+        "bd": {
+          "meaning": "People love comparing their status with other people's.",
+          "chunks": [
+            ["Les gens adorent comparer", "people love comparing/to compare"],
+            ["leur statut", "their status"],
+            ["avec celui des autres", "with that of others (celui = 'the one', stands in for 'statut')"]
+          ],
+          "key": "<b>“celui” replaces a noun</b> to avoid repeating it: <span class='bd-fr-i'>celui des autres</span> = “that of others,” instead of saying “le statut des autres” again."
+        }
+      },
+      {
+        "fr": "Même les {{patrons|bosses}} des grandes entreprises passent du temps sur LinkedIn pour montrer leurs succès.",
+        "bd": {
+          "meaning": "Even the bosses of big companies spend time on LinkedIn to show off their successes.",
+          "chunks": [
+            ["Même les patrons", "even the bosses"],
+            ["des grandes entreprises", "of big companies (grandes before the noun)"],
+            ["passent du temps sur LinkedIn", "spend time on LinkedIn"],
+            ["pour montrer leurs succès", "to show their successes (pour + plain verb)"]
+          ],
+          "key": "<b>pour + plain verb, once more.</b> <span class='bd-fr-i'>pour montrer</span> = “to show” — the same “in order to” shape you've seen before."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Aujourd'hui, beaucoup de gens vivent ce qu'on appelle {{« la mort du statut »|\"status death\"}}.",
+        "bd": {
+          "meaning": "Today, many people experience what's called 'status death.'",
+          "chunks": [
+            ["Aujourd'hui, beaucoup de gens vivent", "today, many people experience/live"],
+            ["ce qu'on appelle", "what people call (ce que + on appelle)"],
+            ["« la mort du statut »", "'status death'"]
+          ],
+          "key": "<b>“ce que” + on + verb = “what people ___.”</b> <span class='bd-fr-i'>ce qu'on appelle</span> = “what is called” — a handy way to introduce a term."
+        }
+      },
+      {
+        "fr": "Un jeune {{banquier|banker}} très riche est triste parce que ses amis, qui travaillent dans l'intelligence artificielle, gagnent encore plus d'argent que lui.",
+        "bd": {
+          "meaning": "A very rich young banker is sad because his friends, who work in AI, earn even more money than him.",
+          "chunks": [
+            ["Un jeune banquier très riche est triste", "a very rich young banker is sad"],
+            ["parce que ses amis", "because his friends"],
+            ["qui travaillent dans l'intelligence artificielle", "who work in AI (qui = who/that)"],
+            ["gagnent encore plus d'argent que lui", "earn even more money than him"]
+          ],
+          "key": "<b>“que lui” for comparison after a pronoun.</b> After <span class='bd-fr-i'>plus … que</span>, “him” becomes the standalone form <span class='bd-fr-i'>lui</span>, not “il.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Les marques de luxe connaissent le même problème.",
+        "bd": {
+          "meaning": "Luxury brands face the same problem.",
+          "chunks": [
+            ["Les marques de luxe", "luxury brands"],
+            ["connaissent", "know / experience (connaître, ils/elles form)"],
+            ["le même problème", "the same problem"]
+          ],
+          "key": "<b>“même” before the noun = “the same.”</b> <span class='bd-fr-i'>le même problème</span> = “the same problem” — don't confuse with <span class='bd-fr-i'>même</span> meaning “even,” which turns up elsewhere."
+        }
+      },
+      {
+        "fr": "Les {{sacs à main|handbags}} de LVMH et de Kering, deux grandes entreprises françaises, se vendent moins bien.",
+        "bd": {
+          "meaning": "Handbags from LVMH and Kering, two big French companies, are selling less well.",
+          "chunks": [
+            ["Les sacs à main de LVMH et de Kering", "handbags from LVMH and Kering"],
+            ["deux grandes entreprises françaises", "two big French companies"],
+            ["se vendent", "sell (se vendre = 'to sell' in the sense of 'to be sold')"],
+            ["moins bien", "less well"]
+          ],
+          "key": "<b>“se vendre” = “to sell” (be sold).</b> French often uses this reflexive shape for “X sells well/badly,” where English just says “sells.”"
+        }
+      },
+      {
+        "fr": "Pendant longtemps, ces marques ont vendu leurs produits à trop de gens, alors elles ont perdu {{leur image exclusive|their exclusive image}}.",
+        "bd": {
+          "meaning": "For a long time, these brands sold their products to too many people, so they lost their exclusive image.",
+          "chunks": [
+            ["Pendant longtemps", "for a long time"],
+            ["ces marques ont vendu leurs produits", "these brands sold their products"],
+            ["à trop de gens", "to too many people"],
+            ["alors elles ont perdu leur image exclusive", "so they lost their exclusive image"]
+          ],
+          "key": "<b>Past = avoir + past participle, twice in one sentence.</b> <span class='bd-fr-i'>ont vendu</span> and <span class='bd-fr-i'>ont perdu</span> both follow the same “avoir + past form” pattern."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Les voitures électriques chinoises, moins chères, ont {{cassé|broken, shattered}} l'image exclusive du secteur automobile de luxe.",
+        "bd": {
+          "meaning": "Cheaper Chinese electric cars have shattered the exclusive image of the luxury car sector.",
+          "chunks": [
+            ["Les voitures électriques chinoises", "Chinese electric cars"],
+            ["moins chères", "cheaper (moins + adjective)"],
+            ["ont cassé", "have broken/shattered (casser)"],
+            ["l'image exclusive du secteur automobile de luxe", "the exclusive image of the luxury car sector"]
+          ],
+          "key": "<b>moins + adjective, reused.</b> <span class='bd-fr-i'>moins chères</span> = “cheaper” — same comparative shape as <span class='bd-fr-i'>moins cher</span> from an earlier story, here feminine plural to agree with “voitures.”"
+        }
+      },
+      {
+        "fr": "À cause de ça, les clients ont mal réagi à la première voiture électrique de Ferrari.",
+        "bd": {
+          "meaning": "Because of that, customers reacted badly to Ferrari's first electric car.",
+          "chunks": [
+            ["À cause de ça", "because of that"],
+            ["les clients ont mal réagi", "customers reacted badly (mal = badly, sits after 'ont')"],
+            ["à la première voiture électrique de Ferrari", "to Ferrari's first electric car"]
+          ],
+          "key": "<b>“mal” + past participle = “badly ___ed.”</b> Small adverbs like <span class='bd-fr-i'>mal</span> slot in right after the helper verb, before the past participle."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Dans la finance, les banques utilisent des {{titres compliqués|complicated titles}} pour cacher la perte de statut de leurs employés.",
+        "bd": {
+          "meaning": "In finance, banks use complicated titles to hide their employees' loss of status.",
+          "chunks": [
+            ["Dans la finance, les banques utilisent", "in finance, banks use"],
+            ["des titres compliqués", "complicated titles"],
+            ["pour cacher", "to hide (pour + plain verb)"],
+            ["la perte de statut de leurs employés", "their employees' loss of status"]
+          ],
+          "key": "<b>pour + plain verb, yet again.</b> <span class='bd-fr-i'>pour cacher</span> = “to hide” — by now you can spot this pattern anywhere."
+        }
+      },
+      {
+        "fr": "Par exemple, chez Goldman Sachs, le titre de « {{partenaire|partner}} » existe encore, même si la banque n'est plus une vraie société de partenaires.",
+        "bd": {
+          "meaning": "For example, at Goldman Sachs, the title of 'partner' still exists, even though the bank is no longer really a partnership.",
+          "chunks": [
+            ["Par exemple, chez Goldman Sachs", "for example, at Goldman Sachs (chez = at the place/company of)"],
+            ["le titre de « partenaire » existe encore", "the title of 'partner' still exists"],
+            ["même si", "even though / even if"],
+            ["la banque n'est plus une vraie société de partenaires", "the bank is no longer really a partnership (ne...plus = no longer)"]
+          ],
+          "key": "<b>ne … plus = “no longer / not anymore.”</b> A cousin of <span class='bd-fr-i'>ne … pas</span> — same sandwich shape, different meaning."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Silicon Valley se présente comme un endroit {{sans hiérarchie|without hierarchy}}.",
+        "bd": {
+          "meaning": "Silicon Valley presents itself as a place without hierarchy.",
+          "chunks": [
+            ["La Silicon Valley se présente comme", "Silicon Valley presents itself as"],
+            ["un endroit sans hiérarchie", "a place without hierarchy (sans = without, no article after it)"]
+          ],
+          "key": "<b>“sans” drops the article, again.</b> <span class='bd-fr-i'>sans hiérarchie</span> = “without hierarchy” — same rule as <span class='bd-fr-i'>sans avocat</span> and <span class='bd-fr-i'>sans réponse</span>."
+        }
+      },
+      {
+        "fr": "Mais en réalité, ses employés ont très peur que l'intelligence artificielle {{remplace|replace}} leur travail.",
+        "bd": {
+          "meaning": "But in reality, its employees are very afraid that AI will replace their jobs.",
+          "chunks": [
+            ["Mais en réalité", "but in reality"],
+            ["ses employés ont très peur que", "its employees are very afraid that"],
+            ["l'intelligence artificielle remplace", "AI (will) replace"],
+            ["leur travail", "their job(s)"]
+          ],
+          "key": "<b>avoir peur que + verb = “to be afraid that ___.”</b> A useful pattern for expressing worry about something happening."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le président Donald Trump illustre bien cette {{peur du statut perdu|fear of lost status}}.",
+        "bd": {
+          "meaning": "President Donald Trump illustrates this fear of lost status well.",
+          "chunks": [
+            ["Le président Donald Trump illustre bien", "President Donald Trump illustrates well"],
+            ["cette peur du statut perdu", "this fear of lost status"]
+          ],
+          "key": "<b>Past participle as adjective:</b> <span class='bd-fr-i'>perdu</span> (lost, from perdre) describes “statut” just like a regular adjective — many past participles work this way."
+        }
+      },
+      {
+        "fr": "Il attaque souvent les universités et les médias, {{deux institutions|two institutions}} qui donnent normalement du prestige.",
+        "bd": {
+          "meaning": "He often attacks universities and the media, two institutions that normally give prestige.",
+          "chunks": [
+            ["Il attaque souvent", "he often attacks"],
+            ["les universités et les médias", "universities and the media"],
+            ["deux institutions qui donnent normalement", "two institutions that normally give (qui = that/which)"],
+            ["du prestige", "prestige"]
+          ],
+          "key": "<b>“qui” hooks on more description,</b> as before: “two institutions THAT normally give prestige.”"
+        }
+      },
+      {
+        "fr": "Mais un jour, il {{va quitter|is going to leave}} son poste, et il va perdre beaucoup de statut.",
+        "bd": {
+          "meaning": "But one day, he's going to leave his position, and he's going to lose a lot of status.",
+          "chunks": [
+            ["Mais un jour", "but one day"],
+            ["il va quitter son poste", "he's going to leave his position (aller + plain verb)"],
+            ["et il va perdre", "and he's going to lose"],
+            ["beaucoup de statut", "a lot of status"]
+          ],
+          "key": "<b>aller + plain verb = the future, twice in one sentence.</b> <span class='bd-fr-i'>va quitter</span> and <span class='bd-fr-i'>va perdre</span> both use the same “aller + plain verb” shape."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Heureusement, la peur de perdre son statut n'est pas seulement {{négative|negative}}.",
+        "bd": {
+          "meaning": "Fortunately, the fear of losing your status isn't only negative.",
+          "chunks": [
+            ["Heureusement", "fortunately"],
+            ["la peur de perdre son statut", "the fear of losing one's status"],
+            ["n'est pas seulement négative", "isn't only negative (ne...pas + seulement)"]
+          ],
+          "key": "<b>ne … pas seulement = “not only.”</b> The negation sandwich wraps around “seulement” to soften a claim rather than deny it fully."
+        }
+      },
+      {
+        "fr": "Elle {{pousse|pushes, drives}} aussi les gens à changer de travail et à créer de nouvelles choses.",
+        "bd": {
+          "meaning": "It also drives people to change jobs and create new things.",
+          "chunks": [
+            ["Elle pousse aussi les gens à", "it also pushes/drives people to"],
+            ["changer de travail", "change jobs"],
+            ["et à créer de nouvelles choses", "and create new things"]
+          ],
+          "key": "<b>pousser qqn à + plain verb = “to drive/push someone to ___.”</b> Same shape as <span class='bd-fr-i'>aider qqn à</span> — a person, then à, then the plain verb."
+        }
+      },
+      {
+        "fr": "Le jeune banquier du début de cette histoire a finalement {{quitté|quit, left}} son emploi pour chercher plus d'argent, et surtout, plus de statut.",
+        "bd": {
+          "meaning": "The young banker from the start of this story finally quit his job to look for more money, and above all, more status.",
+          "chunks": [
+            ["Le jeune banquier du début de cette histoire", "the young banker from the start of this story"],
+            ["a finalement quitté son emploi", "finally quit his job (a...quitté = past form)"],
+            ["pour chercher plus d'argent", "to look for more money"],
+            ["et surtout, plus de statut", "and above all, more status"]
+          ],
+          "key": "<b>Past = avoir + past participle, to close.</b> <span class='bd-fr-i'>a quitté</span> = “quit” — the same pattern this story has used throughout to talk about what already happened."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "La banque n'est plus une société de partenaires",
+      "en": "<b>ne … plus = “no longer / not anymore.”</b> Same sandwich shape as <span class='fr'>ne … pas</span>, but it marks something that used to be true and isn't now."
+    },
+    {
+      "fr": "Elle pousse les gens à changer de travail",
+      "en": "<b>pousser / aider / apprendre qqn à + plain verb = “to get someone to ___.”</b> A family of verbs that all use the same shape: person, then à, then a plain verb."
+    },
+    {
+      "fr": "Il va quitter son poste",
+      "en": "<b>aller + plain verb = the near future.</b> Only <span class='fr'>aller</span> changes with the subject; the second verb stays plain. Your “future = aller + verb” key, again."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi les marques de luxe comme LVMH perdent-elles leur statut ?",
+    "a": "Parce qu'elles ont vendu leurs produits à trop de gens et ont perdu leur image exclusive. (Because they sold their products to too many people and lost their exclusive image.)"
+  },
+  "flag": "This retells a witty Economist “Schumpeter” opinion column, so the compression is heavier than usual: I dropped the Hermès-tie anecdote, the front/middle/back-office bank hierarchy, Nike's leisurewear pivot, Knight Frank's luxury index, and the section on Trump's children striking business deals. <span class='fr'>la mort du statut</span> is my own translation of the column's coined phrase “status death” — there's no established French equivalent, and a French writer covering the same idea might reach for <span class='fr'>déclassement</span> (downgrading) instead. The original is opinionated and sardonic; I flattened the tone to stay neutral, as instructed."
+}
