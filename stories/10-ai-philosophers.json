@@ -1,0 +1,294 @@
+{
+  "id": "ai-philosophers",
+  "chip": "Philosophes de l'IA",
+  "kicker": "Technologie · Philosophie",
+  "title": "10. Les philosophes, nouveaux experts de l'IA",
+  "level": "A1",
+  "gist": "Ten years ago students were told to learn to code; now it's programmers who worry about AI taking their jobs, while philosophy graduates have lower unemployment and are being snapped up by AI labs. Companies use philosophical training — the Socratic method, humility about what a model doesn't know — to make AI less sycophantic and overconfident, and write “constitutions” of moral rules (like Anthropic's for Claude) drawing on two rival ethical frameworks: strict rules versus weighing consequences. Hard questions remain unresolved, so there's no shortage of work for philosophers of AI.",
+  "body": [
+    [
+      {
+        "fr": "On dit souvent qu'il {{faut|is necessary, must}} apprendre à coder pour trouver un emploi facilement.",
+        "bd": {
+          "meaning": "People often say you have to learn to code to find a job easily.",
+          "chunks": [
+            ["On dit souvent", "people often say (on = people/you/we in general)"],
+            ["qu'il faut", "that you have to / it's necessary to"],
+            ["apprendre à coder", "learn to code"],
+            ["pour trouver un emploi facilement", "to find a job easily (pour + plain verb = 'in order to')"]
+          ],
+          "key": "<b>il faut + plain verb = “you have to / it's necessary to.”</b> <span class='bd-fr-i'>il faut</span> never changes form — it's always “il faut,” whoever is being told."
+        }
+      },
+      {
+        "fr": "Mais aujourd'hui, {{ce sont|it's — plural}} les programmeurs qui ont peur de perdre leur travail à cause de l'IA.",
+        "bd": {
+          "meaning": "But today, it's the programmers who are afraid of losing their jobs because of AI.",
+          "chunks": [
+            ["Mais aujourd'hui", "but today"],
+            ["ce sont les programmeurs", "it's the programmers (ce sont = plural version of c'est)"],
+            ["qui ont peur de perdre", "who are afraid of losing (avoir peur de = to be afraid of)"],
+            ["leur travail à cause de l'IA", "their job(s) because of AI"]
+          ],
+          "key": "<b>“ce sont” = the plural of “c'est.”</b> Use it when what follows is plural: <span class='bd-fr-i'>ce sont les programmeurs</span> = “it's the programmers.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Une étude montre une chose {{surprenante|surprising}}.",
+        "bd": {
+          "meaning": "A study shows something surprising.",
+          "chunks": [
+            ["Une étude montre", "a study shows"],
+            ["une chose surprenante", "a surprising thing (surprenante after the noun, agreeing feminine)"]
+          ],
+          "key": "<b>Adjective after the noun, agreeing with it:</b> <span class='bd-fr-i'>chose</span> is feminine, so <span class='bd-fr-i'>surprenant</span> becomes <span class='bd-fr-i'>surprenante</span>."
+        }
+      },
+      {
+        "fr": "Les {{diplômés en philosophie|philosophy graduates}} trouvent un emploi plus facilement que les diplômés en informatique.",
+        "bd": {
+          "meaning": "Philosophy graduates find a job more easily than computer science graduates.",
+          "chunks": [
+            ["Les diplômés en philosophie", "philosophy graduates (diplômé = graduate)"],
+            ["trouvent un emploi", "find a job"],
+            ["plus facilement que", "more easily than (plus + adverb + que)"],
+            ["les diplômés en informatique", "computer science graduates"]
+          ],
+          "key": "<b>plus + adverb + que = “more ___ than.”</b> Same comparison shape you use with adjectives, here applied to <span class='bd-fr-i'>facilement</span> (easily)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Beaucoup d'entreprises d'IA {{embauchent|hire}} maintenant des philosophes.",
+        "bd": {
+          "meaning": "Many AI companies now hire philosophers.",
+          "chunks": [
+            ["Beaucoup d'entreprises d'IA", "many AI companies"],
+            ["embauchent", "hire (embaucher, ils/elles form)"],
+            ["maintenant", "now"],
+            ["des philosophes", "philosophers"]
+          ],
+          "key": "<b>-ent ending = plural subject.</b> <span class='bd-fr-i'>embauchent</span> tells you the subject (les entreprises) is plural, even though you don't hear the ending."
+        }
+      },
+      {
+        "fr": "Des étudiants {{reçoivent|receive}} une offre d'emploi avant même de finir leurs études.",
+        "bd": {
+          "meaning": "Students receive a job offer before they've even finished their studies.",
+          "chunks": [
+            ["Des étudiants reçoivent", "students receive (recevoir)"],
+            ["une offre d'emploi", "a job offer"],
+            ["avant même de finir", "before even finishing (avant de + plain verb)"],
+            ["leurs études", "their studies"]
+          ],
+          "key": "<b>avant de + plain verb = “before ___ing.”</b> Like <span class='bd-fr-i'>pour</span>, the verb after <span class='bd-fr-i'>avant de</span> stays plain: <span class='bd-fr-i'>avant de finir</span> = “before finishing.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Les IA disent souvent oui à tout, pour {{plaire|please}} aux utilisateurs.",
+        "bd": {
+          "meaning": "AIs often say yes to everything, to please users.",
+          "chunks": [
+            ["Les IA disent souvent oui à tout", "AIs often say yes to everything"],
+            ["pour plaire", "to please (pour + plain verb)"],
+            ["aux utilisateurs", "to users (aux = à + les)"]
+          ],
+          "key": "<b>pour + plain verb, again.</b> <span class='bd-fr-i'>pour plaire</span> = “to please” — the same “in order to” shape from earlier stories."
+        }
+      },
+      {
+        "fr": "La méthode de Socrate, un {{philosophe grec|Greek philosopher}}, apprend à un modèle à poser des questions et à chercher la vérité.",
+        "bd": {
+          "meaning": "Socrates's method, a Greek philosopher, teaches a model to ask questions and seek the truth.",
+          "chunks": [
+            ["La méthode de Socrate", "Socrates's method (de = 's)"],
+            ["un philosophe grec", "a Greek philosopher (grec after the noun)"],
+            ["apprend à un modèle à poser des questions", "teaches a model to ask questions (apprendre à qqn à + verb)"],
+            ["et à chercher la vérité", "and to seek the truth"]
+          ],
+          "key": "<b>apprendre à qqn à + plain verb = “to teach someone to ___.”</b> Two <span class='bd-fr-i'>à</span>'s in a row: one for the person, one before the verb."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Une autre idée de Socrate dit qu'il faut savoir {{qu'on ne sait pas tout|that we don't know everything}}.",
+        "bd": {
+          "meaning": "Another idea of Socrates says you have to know that you don't know everything.",
+          "chunks": [
+            ["Une autre idée de Socrate dit", "another idea of Socrates says"],
+            ["qu'il faut savoir", "that you have to know"],
+            ["qu'on ne sait pas tout", "that we don't know everything (ne...pas around sait)"]
+          ],
+          "key": "<b>ne … pas around “sait”:</b> <span class='bd-fr-i'>on ne sait pas tout</span> = “we don't know everything” — the familiar negation sandwich, one more time."
+        }
+      },
+      {
+        "fr": "Cette {{humilité|humility}} aide l'IA à être moins sûre d'elle et à inventer moins de fausses informations.",
+        "bd": {
+          "meaning": "This humility helps AI be less overconfident and invent less false information.",
+          "chunks": [
+            ["Cette humilité aide l'IA à être", "this humility helps AI be (aider qqn à + verb)"],
+            ["moins sûre d'elle", "less sure of itself / less overconfident"],
+            ["et à inventer moins", "and invent less"],
+            ["de fausses informations", "false information (fausses before the noun here)"]
+          ],
+          "key": "<b>aider qqn à + plain verb = “help someone (to) ___.”</b> <span class='bd-fr-i'>aide l'IA à être</span> = “helps AI (to) be.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Certaines entreprises écrivent une « {{constitution|constitution}} » pour leur IA.",
+        "bd": {
+          "meaning": "Some companies write a 'constitution' for their AI.",
+          "chunks": [
+            ["Certaines entreprises écrivent", "some companies write (écrire)"],
+            ["une « constitution »", "a 'constitution'"],
+            ["pour leur IA", "for their AI"]
+          ],
+          "key": "<b>“certaines” = “some” (feminine).</b> It agrees with the noun it introduces — here <span class='bd-fr-i'>entreprises</span>, feminine plural."
+        }
+      },
+      {
+        "fr": "C'est une longue {{liste de règles morales|list of moral rules}}.",
+        "bd": {
+          "meaning": "It's a long list of moral rules.",
+          "chunks": [
+            ["C'est", "it is / that's"],
+            ["une longue liste", "a long list (longue before the noun)"],
+            ["de règles morales", "of moral rules (morales after, agreeing feminine plural)"]
+          ],
+          "key": "<b>Some adjectives go before, some after.</b> <span class='bd-fr-i'>longue</span> (long) comes before the noun, but <span class='bd-fr-i'>morales</span> (moral) comes after — most descriptive adjectives follow this second pattern."
+        }
+      },
+      {
+        "fr": "Anthropic, qui a créé le chatbot Claude, {{a écrit|wrote}} une constitution de 78 pages avec des idées de plusieurs philosophes.",
+        "bd": {
+          "meaning": "Anthropic, which created the chatbot Claude, wrote a 78-page constitution with ideas from several philosophers.",
+          "chunks": [
+            ["Anthropic, qui a créé le chatbot Claude", "Anthropic, which created the chatbot Claude"],
+            ["a écrit", "wrote (a + écrit = past form of écrire)"],
+            ["une constitution de 78 pages", "a 78-page constitution"],
+            ["avec des idées de plusieurs philosophes", "with ideas from several philosophers"]
+          ],
+          "key": "<b>Past = avoir + past participle, again.</b> <span class='bd-fr-i'>a écrit</span> = “wrote” — same pattern as <span class='bd-fr-i'>a inventé</span> from an earlier story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Il {{existe|exists — there are}} deux grandes façons de penser la morale.",
+        "bd": {
+          "meaning": "There are two big ways of thinking about morality.",
+          "chunks": [
+            ["Il existe", "there exist(s) / there are (a formal cousin of 'il y a')"],
+            ["deux grandes façons", "two big ways (grandes before the noun)"],
+            ["de penser la morale", "of thinking about morality"]
+          ],
+          "key": "<b>“Il existe” = another way to say “there is/are.”</b> Slightly more formal than <span class='bd-fr-i'>il y a</span>, but works the same way."
+        }
+      },
+      {
+        "fr": "La première dit que certaines actions sont {{toujours interdites|always forbidden}}, comme mentir.",
+        "bd": {
+          "meaning": "The first says that certain actions are always forbidden, like lying.",
+          "chunks": [
+            ["La première dit que", "the first (one) says that"],
+            ["certaines actions sont toujours interdites", "certain actions are always forbidden"],
+            ["comme mentir", "like lying (plain verb used as a noun)"]
+          ],
+          "key": "<b>A plain verb can act like a noun.</b> <span class='bd-fr-i'>mentir</span> here means “lying” — French often uses the plain verb where English adds “-ing.”"
+        }
+      },
+      {
+        "fr": "La deuxième regarde seulement les {{conséquences|consequences}} avant de choisir une action.",
+        "bd": {
+          "meaning": "The second only looks at the consequences before choosing an action.",
+          "chunks": [
+            ["La deuxième regarde seulement", "the second (one) only looks at"],
+            ["les conséquences", "the consequences"],
+            ["avant de choisir une action", "before choosing an action"]
+          ],
+          "key": "<b>avant de + plain verb, once more.</b> <span class='bd-fr-i'>avant de choisir</span> = “before choosing” — same shape as <span class='bd-fr-i'>avant de finir</span> earlier."
+        }
+      },
+      {
+        "fr": "Les {{voitures autonomes|self-driving cars}} utilisent cette deuxième idée pour décider quoi faire avant un accident.",
+        "bd": {
+          "meaning": "Self-driving cars use this second idea to decide what to do before an accident.",
+          "chunks": [
+            ["Les voitures autonomes utilisent", "self-driving cars use"],
+            ["cette deuxième idée", "this second idea"],
+            ["pour décider quoi faire", "to decide what to do (pour + plain verb)"],
+            ["avant un accident", "before an accident"]
+          ],
+          "key": "<b>pour + plain verb, back again.</b> <span class='bd-fr-i'>pour décider</span> = “to decide” — this “in order to” shape is everywhere once you notice it."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais des questions {{difficiles|difficult}} restent sans réponse.",
+        "bd": {
+          "meaning": "But difficult questions remain unanswered.",
+          "chunks": [
+            ["Mais des questions difficiles", "but difficult questions (difficiles after the noun)"],
+            ["restent", "remain (rester)"],
+            ["sans réponse", "without an answer (sans = without, no article after it)"]
+          ],
+          "key": "<b>“sans” drops the article,</b> just like <span class='bd-fr-i'>sans avocat</span> earlier: <span class='bd-fr-i'>sans réponse</span> = “without an answer,” not “without a answer.”"
+        }
+      },
+      {
+        "fr": "{{Est-ce que|is it that — question marker}} l'IA doit aussi protéger les animaux et la nature ?",
+        "bd": {
+          "meaning": "Should AI also protect animals and nature?",
+          "chunks": [
+            ["Est-ce que", "question marker — turns a statement into a yes/no question"],
+            ["l'IA doit aussi protéger", "AI must/should also protect (devoir + plain verb)"],
+            ["les animaux et la nature", "animals and nature"]
+          ],
+          "key": "<b>Est-ce que + statement = a yes/no question.</b> Drop it in front of any sentence — <span class='bd-fr-i'>l'IA doit protéger…</span> becomes a question, word order unchanged."
+        }
+      },
+      {
+        "fr": "Une chose est {{sûre|certain, sure}} : les philosophes ont beaucoup de travail avec l'intelligence artificielle.",
+        "bd": {
+          "meaning": "One thing is certain: philosophers have plenty of work with artificial intelligence.",
+          "chunks": [
+            ["Une chose est sûre", "one thing is certain"],
+            ["les philosophes ont", "philosophers have"],
+            ["beaucoup de travail", "a lot of work"],
+            ["avec l'intelligence artificielle", "with artificial intelligence"]
+          ],
+          "key": "<b>“avoir beaucoup de ___” = “to have a lot of ___.”</b> Simple and everyday — swap in any noun after <span class='bd-fr-i'>beaucoup de</span>."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Il faut apprendre à coder",
+      "en": "<b>il faut + plain verb = “you have to / it's necessary to.”</b> A fixed, unchanging phrase — no matter who's being told, it's always <span class='fr'>il faut</span>."
+    },
+    {
+      "fr": "avant de finir / avant de choisir",
+      "en": "<b>avant de + plain verb = “before ___ing.”</b> The verb after <span class='fr'>avant de</span> stays plain, just like after <span class='fr'>pour</span>."
+    },
+    {
+      "fr": "Anthropic a écrit une constitution",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a écrit</span> = “wrote” — your “past = avoir/être + verb” key, showing up again."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi Anthropic a-t-il écrit une « constitution » pour Claude ?",
+    "a": "Pour donner à l'IA des règles morales claires, basées sur les idées de plusieurs philosophes. (To give the AI clear moral rules, based on the ideas of several philosophers.)"
+  },
+  "flag": "Heavy compression: the original names many philosophers and executives (Floridi, Noller, Gabriel, Powers, Rossi, Bostrom, Heck, Yampolskiy) and specific products (IBM's Granite, Inflection's Pi, Waymo, Google DeepMind) — I dropped all of them to keep the story to two ideas (the Socratic method, AI constitutions) and two ethical frameworks (strict rules vs. weighing consequences). The 7%/5.1% unemployment figures and the 78-page Claude constitution are accurate to the article; everything else is simplified. A native speaker might say <span class='fr'>philosophie morale</span> rather than just <span class='fr'>la morale</span> in one sentence, and the real French terms <span class='fr'>déontologie</span> / <span class='fr'>conséquentialisme</span> exist — I avoided them here as too technical for A1."
+}
