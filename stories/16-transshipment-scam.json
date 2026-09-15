@@ -1,0 +1,213 @@
+{
+  "id": "transshipment-scam",
+  "chip": "La fausse « arnaque » du contournement",
+  "kicker": "États-Unis · Chine · Commerce",
+  "title": "16. Les États-Unis accusent le monde entier de tricher avec la Chine",
+  "level": "A1",
+  "gist": "The White House published a paper called \"The Great Transshipment Scam,\" accusing more than 40 countries of helping China dodge US tariffs by rerouting goods through them. But rerouting supply chains to avoid high tariffs is a predictable, mostly legal reaction to the tariffs themselves — not proof of a scam. The paper's definition is so broad that almost any product with a Chinese part counts as suspicious, which critics say amounts to declaring war on global trade itself.",
+  "body": [
+    [
+      {
+        "fr": "Depuis 2018, les États-Unis {{mettent|put}} des taxes douanières {{très hautes|very high}} sur les produits chinois.",
+        "bd": {
+          "meaning": "Since 2018, the US has been putting very high tariffs on Chinese products.",
+          "chunks": [
+            ["Depuis 2018", "since 2018"],
+            ["les États-Unis mettent", "the US puts"],
+            ["des taxes douanières très hautes", "very high tariffs"],
+            ["sur les produits chinois", "on Chinese products"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Alors, beaucoup d'entreprises chinoises {{envoient d'abord|first send}} leurs produits dans un autre pays.",
+        "bd": {
+          "meaning": "So, many Chinese companies first send their products to another country.",
+          "chunks": [
+            ["Alors", "so"],
+            ["beaucoup d'entreprises chinoises", "many Chinese companies"],
+            ["envoient d'abord", "first send"],
+            ["leurs produits dans un autre pays", "their products to another country"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Ensuite, ce pays {{les exporte|exports them}} vers les États-Unis.",
+        "bd": {
+          "meaning": "Then, that country exports them to the US.",
+          "chunks": [
+            ["Ensuite", "then"],
+            ["ce pays les exporte", "that country exports them"],
+            ["vers les États-Unis", "to the US"]
+          ],
+          "key": "<b>“les” in front of the verb = “them.”</b> Object pronouns go before the verb in French, not after like in English."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Maison-Blanche {{publie|publishes}} un rapport : « la grande {{arnaque|scam}} du contournement ».",
+        "bd": {
+          "meaning": "The White House publishes a report: \"The Great Transshipment Scam.\"",
+          "chunks": [
+            ["La Maison-Blanche publie", "the White House publishes"],
+            ["un rapport", "a report"],
+            ["la grande arnaque du contournement", "the great scam of rerouting"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Le rapport {{accuse|accuses}} plus de 40 pays d'{{aider|helping}} la Chine à {{tricher|cheat}}.",
+        "bd": {
+          "meaning": "The report accuses more than 40 countries of helping China cheat.",
+          "chunks": [
+            ["Le rapport accuse", "the report accuses"],
+            ["plus de 40 pays", "more than 40 countries"],
+            ["d'aider la Chine", "of helping China"],
+            ["à tricher", "to cheat"]
+          ],
+          "key": "<b>accuser qqn de + verb = “accuse someone of.”</b> Another verb-plus-little-word-plus-verb chain."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais changer un {{lieu de fabrication|place of manufacture}} {{n'est pas|is not}} tricher.",
+        "bd": {
+          "meaning": "But changing a place of manufacture is not cheating.",
+          "chunks": [
+            ["Mais changer un lieu de fabrication", "but changing a place of manufacture"],
+            ["n'est pas", "is not"],
+            ["tricher", "cheating"]
+          ],
+          "key": "<b>ne … pas sandwich</b> around <span class='bd-fr-i'>est</span>, this time wrapping a whole “X is not Y” sentence."
+        }
+      },
+      {
+        "fr": "{{C'est|it's}} une réaction normale à des taxes douanières très hautes.",
+        "bd": {
+          "meaning": "It's a normal reaction to very high tariffs.",
+          "chunks": [
+            ["C'est", "it's"],
+            ["une réaction normale", "a normal reaction"],
+            ["à des taxes douanières très hautes", "to very high tariffs"]
+          ],
+          "key": "<b>c'est</b> — the everyday way to link an idea to what it is."
+        }
+      },
+      {
+        "fr": "Le rapport {{ne fait pas de différence|doesn't distinguish}} entre tricher et {{simplement changer d'usine|simply changing factories}}.",
+        "bd": {
+          "meaning": "The report doesn't distinguish between cheating and simply changing factories.",
+          "chunks": [
+            ["Le rapport ne fait pas de différence", "the report doesn't make a distinction"],
+            ["entre tricher", "between cheating"],
+            ["et simplement changer d'usine", "and simply changing factories"]
+          ],
+          "key": "<b>faire une différence</b> is a fixed phrase for “to distinguish” — here negated with the usual <span class='bd-fr-i'>ne … pas</span> sandwich."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "{{Selon|according to}} le rapport, presque tout {{qui touche|that touches}} la Chine est {{suspect|suspicious}}.",
+        "bd": {
+          "meaning": "According to the report, almost everything that touches China is suspicious.",
+          "chunks": [
+            ["Selon le rapport", "according to the report"],
+            ["presque tout", "almost everything"],
+            ["qui touche la Chine", "that touches China"],
+            ["est suspect", "is suspicious"]
+          ],
+          "key": "<b>“qui” hooks a description onto a word</b> (“everything THAT touches China”) — the same little word used to describe court cases in an earlier story."
+        }
+      },
+      {
+        "fr": "Mais presque tous les produits du monde {{contiennent|contain}} une pièce chinoise.",
+        "bd": {
+          "meaning": "But almost all products in the world contain a Chinese part.",
+          "chunks": [
+            ["Mais", "but"],
+            ["presque tous les produits du monde", "almost all products in the world"],
+            ["contiennent", "contain"],
+            ["une pièce chinoise", "a Chinese part"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Alors, selon cette logique, presque {{tout le commerce mondial|all world trade}} {{devient suspect|becomes suspicious}}.",
+        "bd": {
+          "meaning": "So, by this logic, almost all world trade becomes suspicious.",
+          "chunks": [
+            ["Alors, selon cette logique", "so, by this logic"],
+            ["presque tout le commerce mondial", "almost all world trade"],
+            ["devient suspect", "becomes suspicious"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Des experts disent que le rapport {{déclare la guerre|declares war}} au commerce {{lui-même|itself}}.",
+        "bd": {
+          "meaning": "Experts say the report declares war on trade itself.",
+          "chunks": [
+            ["Des experts disent que", "experts say that"],
+            ["le rapport déclare la guerre", "the report declares war"],
+            ["au commerce lui-même", "on trade itself"]
+          ],
+          "key": "<b>dire que</b> = “say that” — a common connector for reporting what someone thinks or claims."
+        }
+      },
+      {
+        "fr": "Pour l'instant, les États-Unis {{n'ont pas encore appliqué|have not yet applied}} de taxe géante contre le contournement.",
+        "bd": {
+          "meaning": "For now, the US has not yet applied a giant tax against transshipment.",
+          "chunks": [
+            ["Pour l'instant", "for now"],
+            ["les États-Unis n'ont pas encore appliqué", "the US has not yet applied"],
+            ["de taxe géante", "a giant tax"],
+            ["contre le contournement", "against transshipment"]
+          ],
+          "key": "<b>ne … pas encore = “not yet.”</b> A variant of the <span class='bd-fr-i'>pas</span> sandwich, with <span class='bd-fr-i'>encore</span> added."
+        }
+      },
+      {
+        "fr": "Ça {{peut faire monter|could raise}} les prix pour les Américains {{eux-mêmes|themselves}}.",
+        "bd": {
+          "meaning": "That could raise prices for Americans themselves.",
+          "chunks": [
+            ["Ça peut faire monter", "that could raise"],
+            ["les prix", "prices"],
+            ["pour les Américains eux-mêmes", "for Americans themselves"]
+          ],
+          "key": "Reuses <b>pouvoir + plain verb</b>: <span class='bd-fr-i'>peut faire monter</span> = “could raise.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Le rapport accuse 40 pays d'aider la Chine",
+      "en": "<b>accuser qqn de + verb = “accuse someone of.”</b> The little word <span class='fr'>de</span> links the accusation to the action."
+    },
+    {
+      "fr": "Les États-Unis n'ont pas encore appliqué",
+      "en": "<b>ne … pas encore = “not yet.”</b> Slot <span class='fr'>encore</span> into the usual negative sandwich to add “yet.”"
+    },
+    {
+      "fr": "Ce pays les exporte",
+      "en": "<b>Object pronouns (le/la/les) sit before the verb,</b> not after it: <span class='fr'>les exporte</span> = “exports them.”"
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi le rapport de la Maison-Blanche est-il critiqué ?",
+    "a": "Parce qu'il dit que presque tout ce qui touche la Chine est suspect, même si c'est normal dans le commerce mondial. (Because it says almost everything touching China is suspicious, even though that's normal in world trade.)"
+  },
+  "flag": "I heavily compressed the original piece's framing (Chesterton's fence, the legal “substantial transformation” test, specific dollar estimates of transshipment flows) to keep the story to one clear idea. My rendering <span class='fr'>l'arnaque du contournement</span> for “The Great Transshipment Scam” uses the more transparent word <b>contournement</b> (circumvention); a French trade article would more likely keep the technical shipping term <b>transbordement</b>."
+}
