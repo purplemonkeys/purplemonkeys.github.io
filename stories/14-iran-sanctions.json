@@ -1,0 +1,221 @@
+{
+  "id": "iran-sanctions",
+  "chip": "Nouvelles sanctions contre l'Iran",
+  "kicker": "États-Unis · Iran · Économie",
+  "title": "14. Les États-Unis lancent de nouvelles sanctions contre l'Iran",
+  "level": "A1",
+  "gist": "The US launched new sanctions against Iran on August 24, targeting nearly 60 people, companies and ships, plus five sectors of its economy. Trump and his treasury secretary call it a historic economic attack, but the US hasn't used its most powerful weapon — sanctions on China, Iran's biggest oil buyer — because that could shake the world's financial system. The regime is unlikely to fall, and ordinary Iranians suffer more than the leaders. Some think the real goal is domestic: to move the Iran war off the front pages before the November elections.",
+  "body": [
+    [
+      {
+        "fr": "{{Le 24 août|on August 24}}, les États-Unis {{lancent|launch}} de nouvelles sanctions contre l'Iran.",
+        "bd": {
+          "meaning": "On August 24, the US launches new sanctions against Iran.",
+          "chunks": [
+            ["Le 24 août", "on August 24"],
+            ["les États-Unis lancent", "the US launches"],
+            ["de nouvelles sanctions", "new sanctions"],
+            ["contre l'Iran", "against Iran"]
+          ],
+          "key": "<b>le + date = “on” a date.</b> French doesn't need a separate word for “on” before a date."
+        }
+      },
+      {
+        "fr": "{{Presque|almost}} soixante personnes et entreprises sont sur la liste.",
+        "bd": {
+          "meaning": "Almost sixty people and companies are on the list.",
+          "chunks": [
+            ["Presque soixante", "almost sixty"],
+            ["personnes et entreprises", "people and companies"],
+            ["sont sur la liste", "are on the list"]
+          ],
+          "key": "<b>“sont” = “are.”</b> The plural (ils/elles) form of <span class='bd-fr-i'>être</span>."
+        }
+      },
+      {
+        "fr": "Le président Trump {{appelle ça|calls it}} « {{la plus grande|the biggest}} attaque économique de l'histoire ».",
+        "bd": {
+          "meaning": "President Trump calls it \"the biggest economic attack in history.\"",
+          "chunks": [
+            ["Le président Trump appelle ça", "President Trump calls this"],
+            ["la plus grande attaque économique", "the biggest economic attack"],
+            ["de l'histoire", "in history"]
+          ],
+          "key": "<b>le/la plus + adjective = “the most ___.”</b> <span class='bd-fr-i'>la plus grande</span> = “the biggest.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais les États-Unis {{gardent|keep}} leur arme la plus puissante {{dans le tiroir|in the drawer, unused}}.",
+        "bd": {
+          "meaning": "But the US keeps its most powerful weapon in the drawer, unused.",
+          "chunks": [
+            ["Mais", "but"],
+            ["les États-Unis gardent", "the US keeps"],
+            ["leur arme la plus puissante", "their most powerful weapon"],
+            ["dans le tiroir", "in the drawer"]
+          ],
+          "key": "<b>“leur” = their</b> (one thing owned by a plural group) — reuses the superlative <span class='bd-fr-i'>la plus puissante</span> from before."
+        }
+      },
+      {
+        "fr": "Cette arme, {{ce sont|these are}} des sanctions contre la Chine.",
+        "bd": {
+          "meaning": "This weapon is sanctions against China.",
+          "chunks": [
+            ["Cette arme", "this weapon"],
+            ["ce sont", "these are"],
+            ["des sanctions contre la Chine", "sanctions against China"]
+          ],
+          "key": "<b>“ce sont” is the plural of “c'est.”</b> Use it when what follows is plural: <span class='bd-fr-i'>ce sont des sanctions</span> = “these are sanctions.”"
+        }
+      },
+      {
+        "fr": "La Chine {{achète|buys}} presque tout le pétrole iranien.",
+        "bd": {
+          "meaning": "China buys almost all Iranian oil.",
+          "chunks": [
+            ["La Chine achète", "China buys"],
+            ["presque tout le pétrole iranien", "almost all Iranian oil"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Si les États-Unis {{punissent|punish}} la Chine, le système financier mondial {{peut exploser|could blow up}}.",
+        "bd": {
+          "meaning": "If the US punishes China, the global financial system could blow up.",
+          "chunks": [
+            ["Si les États-Unis punissent la Chine", "if the US punishes China"],
+            ["le système financier mondial", "the global financial system"],
+            ["peut exploser", "could blow up"]
+          ],
+          "key": "<b>pouvoir + plain verb = “can/could.”</b> Only <span class='bd-fr-i'>peut</span> conjugates; <span class='bd-fr-i'>exploser</span> stays plain."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le régime iranien {{ne va probablement pas tomber|probably won't fall}} à cause de ces sanctions.",
+        "bd": {
+          "meaning": "The Iranian regime probably won't fall because of these sanctions.",
+          "chunks": [
+            ["Le régime iranien", "the Iranian regime"],
+            ["ne va probablement pas tomber", "probably won't fall"],
+            ["à cause de ces sanctions", "because of these sanctions"]
+          ],
+          "key": "<b>Negative future:</b> <span class='bd-fr-i'>ne … pas</span> wraps around <span class='bd-fr-i'>va</span>, and the plain verb <span class='bd-fr-i'>tomber</span> stays after it."
+        }
+      },
+      {
+        "fr": "Les gens ordinaires {{souffrent|suffer}} plus que les dirigeants.",
+        "bd": {
+          "meaning": "Ordinary people suffer more than the leaders.",
+          "chunks": [
+            ["Les gens ordinaires", "ordinary people"],
+            ["souffrent", "suffer"],
+            ["plus que", "more than"],
+            ["les dirigeants", "the leaders"]
+          ],
+          "key": "<b>plus que = “more than.”</b> The everyday French comparative."
+        }
+      },
+      {
+        "fr": "Les prix du pétrole sont {{élevés|high}}, mais moins qu'avant.",
+        "bd": {
+          "meaning": "Oil prices are high, but less than before.",
+          "chunks": [
+            ["Les prix du pétrole", "oil prices"],
+            ["sont élevés", "are high"],
+            ["mais moins qu'avant", "but less than before"]
+          ],
+          "key": "<b>moins que = “less than”</b> — the mirror image of <span class='bd-fr-i'>plus que</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Peut-être, le vrai but de Trump {{n'est pas de détruire|isn't to destroy}} l'Iran.",
+        "bd": {
+          "meaning": "Maybe Trump's real goal isn't to destroy Iran.",
+          "chunks": [
+            ["Peut-être", "maybe"],
+            ["le vrai but de Trump", "Trump's real goal"],
+            ["n'est pas de détruire l'Iran", "isn't to destroy Iran"]
+          ],
+          "key": "<b>n'est pas de + verb = “isn't to ___.”</b> The <span class='bd-fr-i'>ne … pas</span> sandwich again, this time around <span class='bd-fr-i'>est</span>."
+        }
+      },
+      {
+        "fr": "{{Il veut|he wants}} sortir cette guerre des journaux avant les élections de novembre.",
+        "bd": {
+          "meaning": "He wants to get this war out of the news before the November elections.",
+          "chunks": [
+            ["Il veut", "he wants"],
+            ["sortir cette guerre des journaux", "get this war out of the newspapers"],
+            ["avant les élections de novembre", "before the November elections"]
+          ],
+          "key": "<b>vouloir + plain verb = “want to.”</b> Another helper-plus-plain-verb pair, like <span class='bd-fr-i'>pouvoir</span> and <span class='bd-fr-i'>devoir</span>."
+        }
+      },
+      {
+        "fr": "Seulement 31% des Américains {{soutiennent|support}} encore l'action militaire.",
+        "bd": {
+          "meaning": "Only 31% of Americans still support military action.",
+          "chunks": [
+            ["Seulement 31% des Américains", "only 31% of Americans"],
+            ["soutiennent encore", "still support"],
+            ["l'action militaire", "military action"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "L'Iran {{peut aussi attaquer|can also attack}} des bateaux près du détroit d'Hormuz.",
+        "bd": {
+          "meaning": "Iran can also attack ships near the Strait of Hormuz.",
+          "chunks": [
+            ["L'Iran peut aussi attaquer", "Iran can also attack"],
+            ["des bateaux", "ships"],
+            ["près du détroit d'Hormuz", "near the Strait of Hormuz"]
+          ],
+          "key": "Reuses <b>pouvoir + plain verb</b> from earlier — <span class='bd-fr-i'>peut attaquer</span> = “can attack.”"
+        }
+      },
+      {
+        "fr": "Alors, personne ne sait comment cette histoire {{va finir|will end}}.",
+        "bd": {
+          "meaning": "So, nobody knows how this story will end.",
+          "chunks": [
+            ["Alors", "so"],
+            ["personne ne sait", "nobody knows"],
+            ["comment cette histoire va finir", "how this story will end"]
+          ],
+          "key": "<b>Two keys in one:</b> <span class='bd-fr-i'>personne ne sait</span> = “nobody knows,” and <span class='bd-fr-i'>va finir</span> is the near future, “will end.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Cette arme, ce sont des sanctions",
+      "en": "<b>“ce sont” is the plural of “c'est.”</b> Switch to it whenever what follows is a plural noun."
+    },
+    {
+      "fr": "Le régime ne va probablement pas tomber",
+      "en": "<b>Negative near future:</b> <span class='fr'>ne … pas</span> wraps around <span class='fr'>va</span>, not around the plain verb after it."
+    },
+    {
+      "fr": "Il veut sortir cette guerre des journaux",
+      "en": "<b>vouloir + plain verb = “want to.”</b> A third helper-plus-plain-verb pair, alongside <span class='fr'>pouvoir</span> and <span class='fr'>devoir</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi les États-Unis n'utilisent-ils pas de sanctions directes contre la Chine ?",
+    "a": "Parce que ça pourrait faire exploser le système financier mondial. (Because it could blow up the global financial system.)"
+  },
+  "flag": "I simplified a lot here: the operation's actual name (\"Operation Economic Outcast\"), the inner economics of the IRGC, and the Oman strait-toll negotiations are all left out for a cleaner story. <span class='fr'>le système financier mondial peut exploser</span> compresses a direct quote from the US treasury secretary; a native speaker might prefer the calmer verb <b>s'effondrer</b> (“collapse”) over the more dramatic <b>exploser</b> (“explode”) — I chose the more vivid, higher-frequency word for a beginner."
+}

@@ -1,0 +1,202 @@
+{
+  "id": "china-oil-power",
+  "chip": "La Chine contrôle le marché du pétrole",
+  "kicker": "Chine · Énergie · Iran",
+  "title": "17. Comment la Chine a calmé le prix du pétrole pendant la guerre en Iran",
+  "level": "A1",
+  "gist": "During the Iran war, oil prices stayed surprisingly stable even with the Strait of Hormuz largely shut — mainly because China cut its crude oil imports by nearly half, absorbing the shock. This shows China's buying power now rivals OPEC's, and this time it helped consumers rather than hurting them. But it's uncomfortable that an authoritarian government has this much market control, and the balance could shift back toward OPEC as global oil supply tightens later this decade.",
+  "body": [
+    [
+      {
+        "fr": "Pendant la guerre en Iran, le {{détroit d'Hormuz|Strait of Hormuz}} est presque fermé.",
+        "bd": {
+          "meaning": "During the Iran war, the Strait of Hormuz is almost closed.",
+          "chunks": [
+            ["Pendant la guerre en Iran", "during the Iran war"],
+            ["le détroit d'Hormuz", "the Strait of Hormuz"],
+            ["est presque fermé", "is almost closed"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "{{Pourtant|however}}, le prix du pétrole {{reste|stays}} plutôt stable.",
+        "bd": {
+          "meaning": "However, the price of oil stays rather stable.",
+          "chunks": [
+            ["Pourtant", "however"],
+            ["le prix du pétrole reste", "the price of oil stays"],
+            ["plutôt stable", "rather stable"]
+          ],
+          "key": "<b>rester = “to remain/stay.”</b> A common verb for describing something that keeps a quality."
+        }
+      },
+      {
+        "fr": "Pourquoi ? {{Grâce à|thanks to}} la Chine.",
+        "bd": {
+          "meaning": "Why? Thanks to China.",
+          "chunks": [
+            ["Pourquoi", "why"],
+            ["Grâce à la Chine", "thanks to China"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Chine {{réduit|reduces}} ses importations de pétrole de presque la moitié.",
+        "bd": {
+          "meaning": "China reduces its oil imports by almost half.",
+          "chunks": [
+            ["La Chine réduit", "China reduces"],
+            ["ses importations de pétrole", "its oil imports"],
+            ["de presque la moitié", "by almost half"]
+          ],
+          "key": "<b>“ses” = his/her/its.</b> French doesn't mark the owner's gender — only what's owned."
+        }
+      },
+      {
+        "fr": "Elle {{utilise|uses}} ses grandes réserves {{au lieu d'acheter|instead of buying}} plus.",
+        "bd": {
+          "meaning": "It uses its large reserves instead of buying more.",
+          "chunks": [
+            ["Elle utilise", "it uses"],
+            ["ses grandes réserves", "its large reserves"],
+            ["au lieu d'acheter plus", "instead of buying more"]
+          ],
+          "key": "<b>au lieu de + plain verb = “instead of.”</b> Another little word that pairs with a plain verb."
+        }
+      },
+      {
+        "fr": "Ainsi, le monde {{évite|avoids}} un {{choc pétrolier|oil shock}}.",
+        "bd": {
+          "meaning": "This way, the world avoids an oil shock.",
+          "chunks": [
+            ["Ainsi", "this way"],
+            ["le monde évite", "the world avoids"],
+            ["un choc pétrolier", "an oil shock"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Depuis longtemps, {{c'est l'OPEP qui contrôle|it's OPEC that controls}} le marché du pétrole.",
+        "bd": {
+          "meaning": "For a long time, it's OPEC that controls the oil market.",
+          "chunks": [
+            ["Depuis longtemps", "for a long time"],
+            ["c'est l'OPEP qui contrôle", "it's OPEC that controls"],
+            ["le marché du pétrole", "the oil market"]
+          ],
+          "key": "<b>c'est … qui = “it's … that.”</b> A way to put emphasis on who does the action."
+        }
+      },
+      {
+        "fr": "L'OPEP garde les prix {{élevés|high}} {{en limitant|by limiting}} la production.",
+        "bd": {
+          "meaning": "OPEC keeps prices high by limiting production.",
+          "chunks": [
+            ["L'OPEP garde les prix élevés", "OPEC keeps prices high"],
+            ["en limitant la production", "by limiting production"]
+          ],
+          "key": "<b>en + -ant = “by doing.”</b> Describes how something happens."
+        }
+      },
+      {
+        "fr": "Mais maintenant, la Chine a presque le même {{pouvoir|power}}.",
+        "bd": {
+          "meaning": "But now, China has almost the same power.",
+          "chunks": [
+            ["Mais maintenant", "but now"],
+            ["la Chine a presque le même pouvoir", "China has almost the same power"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Cette fois, ce grand pouvoir {{aide|helps}} les consommateurs.",
+        "bd": {
+          "meaning": "This time, this great power helps consumers.",
+          "chunks": [
+            ["Cette fois", "this time"],
+            ["ce grand pouvoir aide", "this great power helps"],
+            ["les consommateurs", "consumers"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Mais {{c'est inquiétant|it's worrying}} : un gouvernement {{autoritaire|authoritarian}} a autant de contrôle.",
+        "bd": {
+          "meaning": "But it's worrying: an authoritarian government has this much control.",
+          "chunks": [
+            ["Mais c'est inquiétant", "but it's worrying"],
+            ["un gouvernement autoritaire", "an authoritarian government"],
+            ["a autant de contrôle", "has this much control"]
+          ],
+          "key": "Reuses <b>c'est</b> to introduce a judgment before explaining it — a common way to structure an opinion in French."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Plus tard, la situation {{va peut-être changer|might change}}.",
+        "bd": {
+          "meaning": "Later, the situation might change.",
+          "chunks": [
+            ["Plus tard", "later"],
+            ["la situation va peut-être changer", "the situation might change"]
+          ],
+          "key": "<b>aller + plain verb + peut-être</b> softens the near future into “might.”"
+        }
+      },
+      {
+        "fr": "Le monde {{va manquer|is going to lack}} de nouveaux {{champs pétroliers|oil fields}}.",
+        "bd": {
+          "meaning": "The world is going to lack new oil fields.",
+          "chunks": [
+            ["Le monde va manquer", "the world is going to lack"],
+            ["de nouveaux champs pétroliers", "new oil fields"]
+          ],
+          "key": "Reuses <b>aller + plain verb</b> for the near future."
+        }
+      },
+      {
+        "fr": "Alors, l'OPEP {{peut redevenir|can become again}} plus forte.",
+        "bd": {
+          "meaning": "So, OPEC can become strong again.",
+          "chunks": [
+            ["Alors", "so"],
+            ["l'OPEP peut redevenir", "OPEC can become again"],
+            ["plus forte", "stronger"]
+          ],
+          "key": "Reuses <b>pouvoir + plain verb</b>: <span class='bd-fr-i'>peut redevenir</span> = “can become again.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "C'est l'OPEP qui contrôle le marché",
+      "en": "<b>c'est … qui = “it's … that.”</b> Puts the spotlight on who performs the action."
+    },
+    {
+      "fr": "L'OPEP garde les prix élevés en limitant la production",
+      "en": "<b>en + -ant = “by doing.”</b> Explains the method behind an action."
+    },
+    {
+      "fr": "Elle utilise ses réserves au lieu d'acheter plus",
+      "en": "<b>au lieu de + plain verb = “instead of.”</b> Another little word (like <span class='fr'>pour</span> and <span class='fr'>sans</span>) that keeps the following verb plain."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi le prix du pétrole reste-t-il stable pendant la guerre en Iran ?",
+    "a": "Parce que la Chine réduit beaucoup ses importations et utilise ses réserves. (Because China greatly reduces its imports and uses its reserves.)"
+  },
+  "flag": "I dropped the OPEC economic-damage statistics and the UAE's exit from the cartel to keep the story short. I also simplified <span class='fr'>un gouvernement autoritaire ait autant de contrôle</span> into a plainer colon construction to avoid the subjunctive (<b>ait</b>) that a native speaker would naturally use there — correct A1 French, but not quite how an adult native would phrase the thought."
+}
