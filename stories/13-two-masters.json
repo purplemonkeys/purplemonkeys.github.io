@@ -1,0 +1,251 @@
+{
+  "id": "two-masters",
+  "chip": "Deux lois, un problème",
+  "kicker": "Chine · États-Unis · Entreprises",
+  "title": "13. Une entreprise, deux lois",
+  "level": "A1",
+  "gist": "Multinational companies increasingly find themselves stuck between American and Chinese law: obeying one often means breaking the other. China is suing JPMorgan and Citigroup for following US sanctions rules, and forced Meta to unwind a $2bn AI deal (Manus). A new Chinese law taking effect in September will let China stop people from leaving the country. Firms are splitting off their China operations to limit the risk.",
+  "body": [
+    [
+      {
+        "fr": "Une grande entreprise américaine travaille aussi {{en Chine|in China}}.",
+        "bd": {
+          "meaning": "A big American company also works in China.",
+          "chunks": [
+            ["Une grande entreprise américaine", "a big American company (grande before the noun)"],
+            ["travaille", "works"],
+            ["aussi", "also"],
+            ["en Chine", "in China"]
+          ],
+          "key": "<b>en + country = “in.”</b> Use <span class='bd-fr-i'>en</span> before feminine countries like <span class='bd-fr-i'>la Chine</span>."
+        }
+      },
+      {
+        "fr": "Elle {{doit respecter|has to follow}} les lois américaines et les lois chinoises.",
+        "bd": {
+          "meaning": "It has to follow American laws and Chinese laws.",
+          "chunks": [
+            ["Elle doit respecter", "it has to follow"],
+            ["les lois américaines", "American laws"],
+            ["et", "and"],
+            ["les lois chinoises", "Chinese laws"]
+          ],
+          "key": "<b>devoir + plain verb = “has to.”</b> Only <span class='bd-fr-i'>doit</span> changes; <span class='bd-fr-i'>respecter</span> stays plain."
+        }
+      },
+      {
+        "fr": "Mais parfois, les deux lois {{se contredisent|contradict each other}}.",
+        "bd": {
+          "meaning": "But sometimes, the two laws contradict each other.",
+          "chunks": [
+            ["Mais parfois", "but sometimes"],
+            ["les deux lois", "the two laws"],
+            ["se contredisent", "contradict each other"]
+          ],
+          "key": "<b>se + verb = a reflexive action.</b> <span class='bd-fr-i'>se contredire</span> = “to contradict each other/itself.”"
+        }
+      },
+      {
+        "fr": "{{Obéir|to obey}} à une loi, {{c'est|that means}} {{désobéir|disobey}} à l'autre.",
+        "bd": {
+          "meaning": "Obeying one law means disobeying the other.",
+          "chunks": [
+            ["Obéir à une loi", "obeying one law"],
+            ["c'est", "that is / that means"],
+            ["désobéir à l'autre", "disobeying the other"]
+          ],
+          "key": "<b>“X, c'est Y” = “X means Y.”</b> <span class='bd-fr-i'>c'est</span> links two ideas together."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Par exemple, deux grandes banques américaines, JPMorgan et Citigroup, {{ont un problème|have a problem}} en Chine.",
+        "bd": {
+          "meaning": "For example, two big American banks, JPMorgan and Citigroup, have a problem in China.",
+          "chunks": [
+            ["Par exemple", "for example"],
+            ["deux grandes banques américaines", "two big American banks"],
+            ["JPMorgan et Citigroup", "JPMorgan and Citigroup"],
+            ["ont un problème", "have a problem"],
+            ["en Chine", "in China"]
+          ],
+          "key": "<b>“ont” = “have.”</b> The plural (ils/elles) form of <span class='bd-fr-i'>avoir</span>."
+        }
+      },
+      {
+        "fr": "Des tribunaux chinois {{poursuivent|are suing}} les deux banques.",
+        "bd": {
+          "meaning": "Chinese courts are suing both banks.",
+          "chunks": [
+            ["Des tribunaux chinois", "Chinese courts"],
+            ["poursuivent", "are suing"],
+            ["les deux banques", "both banks"]
+          ],
+          "key": "<b>French present covers English “is/are -ing.”</b> No separate continuous form is needed: <span class='bd-fr-i'>poursuivent</span> = “sue” or “are suing.”"
+        }
+      },
+      {
+        "fr": "Les banques {{ont seulement obéi|only obeyed}} au gouvernement américain.",
+        "bd": {
+          "meaning": "The banks only obeyed the American government.",
+          "chunks": [
+            ["Les banques ont obéi", "the banks obeyed"],
+            ["seulement", "only"],
+            ["au gouvernement américain", "the American government"]
+          ],
+          "key": "<b>avoir + past participle = the past.</b> <span class='bd-fr-i'>ont obéi</span> = “obeyed.”"
+        }
+      },
+      {
+        "fr": "Elles {{suivent|follow}} les règles américaines contre certaines entreprises chinoises.",
+        "bd": {
+          "meaning": "They follow American rules against certain Chinese companies.",
+          "chunks": [
+            ["Elles suivent", "they follow"],
+            ["les règles américaines", "American rules"],
+            ["contre certaines entreprises chinoises", "against certain Chinese companies"]
+          ],
+          "key": "<b>Present tense covers ongoing habits:</b> <span class='bd-fr-i'>suivent</span> = “follow / are following.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Un autre exemple : Meta {{a acheté|bought}} une petite entreprise d'IA, Manus, pour deux milliards de dollars.",
+        "bd": {
+          "meaning": "Another example: Meta bought a small AI company, Manus, for two billion dollars.",
+          "chunks": [
+            ["Un autre exemple", "another example"],
+            ["Meta a acheté", "Meta bought"],
+            ["une petite entreprise d'IA", "a small AI company"],
+            ["Manus", "Manus"],
+            ["pour deux milliards de dollars", "for two billion dollars"]
+          ],
+          "key": "<b>avoir + past participle = the past.</b> <span class='bd-fr-i'>a acheté</span> = “bought.”"
+        }
+      },
+      {
+        "fr": "La Chine {{n'est pas d'accord|does not agree}}.",
+        "bd": {
+          "meaning": "China does not agree.",
+          "chunks": [
+            ["La Chine", "China"],
+            ["n'est pas d'accord", "does not agree"]
+          ],
+          "key": "<b>ne … pas sandwich</b> wraps around <span class='bd-fr-i'>est</span>. <span class='bd-fr-i'>être d'accord</span> is a fixed phrase for “to agree.”"
+        }
+      },
+      {
+        "fr": "Meta {{a annulé|cancelled}} l'achat {{pour rester|to stay}} en bons termes avec la Chine.",
+        "bd": {
+          "meaning": "Meta cancelled the purchase to stay on good terms with China.",
+          "chunks": [
+            ["Meta a annulé l'achat", "Meta cancelled the purchase"],
+            ["pour rester", "to stay / in order to stay"],
+            ["en bons termes avec la Chine", "on good terms with China"]
+          ],
+          "key": "<b>pour + plain verb = “in order to.”</b> <span class='bd-fr-i'>rester</span> stays plain after <span class='bd-fr-i'>pour</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En septembre, une nouvelle loi chinoise {{va entrer en vigueur|will take effect}}.",
+        "bd": {
+          "meaning": "In September, a new Chinese law will take effect.",
+          "chunks": [
+            ["En septembre", "in September"],
+            ["une nouvelle loi chinoise", "a new Chinese law"],
+            ["va entrer en vigueur", "will take effect"]
+          ],
+          "key": "<b>aller + plain verb = the near future.</b> Only <span class='bd-fr-i'>va</span> changes; <span class='bd-fr-i'>entrer</span> stays plain."
+        }
+      },
+      {
+        "fr": "Elle {{va permettre|will allow}} à la Chine d'{{empêcher|prevent}} des gens de {{quitter|leave}} le pays.",
+        "bd": {
+          "meaning": "It will allow China to stop people from leaving the country.",
+          "chunks": [
+            ["Elle va permettre", "it will allow"],
+            ["à la Chine d'empêcher", "China to prevent"],
+            ["des gens de quitter", "people from leaving"],
+            ["le pays", "the country"]
+          ],
+          "key": "<b>permettre à qqn de + verb = “allow someone to.”</b> Little words (<span class='bd-fr-i'>à</span>/<span class='bd-fr-i'>de</span>) link the two verbs together."
+        }
+      },
+      {
+        "fr": "Beaucoup d'entreprises {{ont peur|are afraid}} de cette nouvelle loi.",
+        "bd": {
+          "meaning": "Many companies are afraid of this new law.",
+          "chunks": [
+            ["Beaucoup d'entreprises", "many companies"],
+            ["ont peur", "are afraid"],
+            ["de cette nouvelle loi", "of this new law"]
+          ],
+          "key": "<b>avoir peur = “to be afraid.”</b> French says “have fear,” not “be afraid.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Alors, les entreprises {{séparent|separate}} leurs activités en Chine du reste du monde.",
+        "bd": {
+          "meaning": "So, companies separate their China operations from the rest of the world.",
+          "chunks": [
+            ["Alors", "so"],
+            ["les entreprises séparent", "companies separate"],
+            ["leurs activités en Chine", "their operations in China"],
+            ["du reste du monde", "from the rest of the world"]
+          ],
+          "key": "<b>“leurs” = their.</b> Just like <span class='bd-fr-i'>ses</span> is his/her, <span class='bd-fr-i'>leurs</span> doesn't show gender either."
+        }
+      },
+      {
+        "fr": "Elles gardent leurs {{données importantes|important data}} loin de la Chine.",
+        "bd": {
+          "meaning": "They keep their important data far from China.",
+          "chunks": [
+            ["Elles gardent", "they keep"],
+            ["leurs données importantes", "their important data"],
+            ["loin de la Chine", "far from China"]
+          ],
+          "key": "<b>Adjectives echo the noun's gender/number:</b> <span class='bd-fr-i'>importantes</span> agrees with feminine plural <span class='bd-fr-i'>données</span>."
+        }
+      },
+      {
+        "fr": "Pour le moment, {{personne ne sait|nobody knows}} comment {{résoudre|solve}} ce problème.",
+        "bd": {
+          "meaning": "For now, nobody knows how to solve this problem.",
+          "chunks": [
+            ["Pour le moment", "for now"],
+            ["personne ne sait", "nobody knows"],
+            ["comment résoudre", "how to solve"],
+            ["ce problème", "this problem"]
+          ],
+          "key": "<b>“personne ne + verb” = “nobody ___.”</b> <span class='bd-fr-i'>personne</span> acts like a negative word, paired with <span class='bd-fr-i'>ne</span>."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Elle va permettre à la Chine",
+      "en": "<b>aller + plain verb = the near future.</b> Only <span class='fr'>aller</span> changes with the subject; the second verb stays plain."
+    },
+    {
+      "fr": "Meta a annulé l'achat",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a</span> changes with the subject; the main verb takes its past form."
+    },
+    {
+      "fr": "Personne ne sait",
+      "en": "<b>“personne ne” is a negative word-pair,</b> like <span class='fr'>ne … pas</span> but meaning “nobody” instead of “not.”"
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi Meta a-t-il annulé l'achat de Manus ?",
+    "a": "Parce que la Chine n'est pas d'accord. (Because China does not agree.)"
+  },
+  "flag": "I compressed the legal detail a lot: the real story involves China's 2021 anti-sanctions law, a Singaporean shipping firm also caught up in a separate case, and the technical idea of “secondary sanctions” — I left all of that out to keep the story concrete. <span class='fr'>empêcher des gens de quitter le pays</span> is a plain-language stand-in for the technical term “entry and exit bans”; a French legal article would more likely say <b>interdiction de sortie du territoire</b>."
+}
