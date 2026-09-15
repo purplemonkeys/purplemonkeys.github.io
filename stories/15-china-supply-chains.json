@@ -1,0 +1,220 @@
+{
+  "id": "china-supply-chains",
+  "chip": "Les usines chinoises partout dans le monde",
+  "kicker": "Chine · Économie · Commerce",
+  "title": "15. Les entreprises chinoises construisent des usines partout dans le monde",
+  "level": "A1",
+  "gist": "Chinese companies have spent over $200bn building factories abroad in the last three years, spreading into nearly every region and pulling their suppliers along with them, especially in EVs, solar power and AI hardware. Weak demand at home, US tariffs, and generous incentives from countries like Egypt and Serbia are driving the shift, and Chinese firms are also building the ports and rail lines to connect it all. Trouble spots remain: US tariff threats and new Chinese export controls at home.",
+  "body": [
+    [
+      {
+        "fr": "Les entreprises chinoises {{construisent|are building}} des usines dans le monde entier.",
+        "bd": {
+          "meaning": "Chinese companies are building factories all over the world.",
+          "chunks": [
+            ["Les entreprises chinoises", "Chinese companies"],
+            ["construisent", "are building"],
+            ["des usines", "factories"],
+            ["dans le monde entier", "all over the world"]
+          ],
+          "key": "<b>French present covers English “is/are -ing.”</b> No separate continuous form is needed."
+        }
+      },
+      {
+        "fr": "En trois ans, elles {{ont dépensé|have spent}} plus de 200 milliards de dollars.",
+        "bd": {
+          "meaning": "In three years, they have spent more than 200 billion dollars.",
+          "chunks": [
+            ["En trois ans", "in three years"],
+            ["elles ont dépensé", "they have spent"],
+            ["plus de 200 milliards de dollars", "more than 200 billion dollars"]
+          ],
+          "key": "<b>avoir + past participle = the past.</b> <span class='bd-fr-i'>ont dépensé</span> = “have spent.”"
+        }
+      },
+      {
+        "fr": "Leurs {{fournisseurs|suppliers}} {{les suivent|follow them}} dans les nouveaux pays.",
+        "bd": {
+          "meaning": "Their suppliers follow them into the new countries.",
+          "chunks": [
+            ["Leurs fournisseurs", "their suppliers"],
+            ["les suivent", "follow them"],
+            ["dans les nouveaux pays", "into the new countries"]
+          ],
+          "key": "<b>“les” in front of the verb = “them.”</b> Object pronouns jump before the verb in French, not after like in English."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "À la maison, la demande est {{faible|weak}} et la concurrence est forte.",
+        "bd": {
+          "meaning": "At home, demand is weak and competition is strong.",
+          "chunks": [
+            ["À la maison", "at home"],
+            ["la demande est faible", "demand is weak"],
+            ["et la concurrence est forte", "and competition is strong"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Les taxes douanières américaines {{poussent|push}} aussi les entreprises {{à partir|to leave}}.",
+        "bd": {
+          "meaning": "American tariffs also push companies to leave.",
+          "chunks": [
+            ["Les taxes douanières américaines", "American tariffs"],
+            ["poussent aussi", "also push"],
+            ["les entreprises à partir", "companies to leave"]
+          ],
+          "key": "<b>pousser qqn à + verb = “push someone to.”</b> The little word <span class='bd-fr-i'>à</span> links the two verbs."
+        }
+      },
+      {
+        "fr": "Des pays comme l'Égypte {{offrent|offer}} de bonnes conditions.",
+        "bd": {
+          "meaning": "Countries like Egypt offer good conditions.",
+          "chunks": [
+            ["Des pays comme l'Égypte", "countries like Egypt"],
+            ["offrent", "offer"],
+            ["de bonnes conditions", "good conditions"]
+          ],
+          "key": "<b>“bonnes” goes BEFORE the noun,</b> like <span class='bd-fr-i'>vrai</span>, <span class='bd-fr-i'>grand</span> and <span class='bd-fr-i'>petit</span> — a handful of everyday adjectives break the usual “after the noun” rule."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En Égypte, une entreprise chinoise construit une {{ferme solaire|solar farm}} géante.",
+        "bd": {
+          "meaning": "In Egypt, a Chinese company is building a giant solar farm.",
+          "chunks": [
+            ["En Égypte", "in Egypt"],
+            ["une entreprise chinoise construit", "a Chinese company is building"],
+            ["une ferme solaire géante", "a giant solar farm"]
+          ],
+          "key": "<b>“géante” agrees with the noun:</b> feminine <span class='bd-fr-i'>ferme</span> takes the feminine ending -e."
+        }
+      },
+      {
+        "fr": "En Serbie, une usine chinoise {{fabrique|makes}} des pièces pour Volkswagen et Ford.",
+        "bd": {
+          "meaning": "In Serbia, a Chinese factory makes parts for Volkswagen and Ford.",
+          "chunks": [
+            ["En Serbie", "in Serbia"],
+            ["une usine chinoise fabrique", "a Chinese factory makes"],
+            ["des pièces", "parts"],
+            ["pour Volkswagen et Ford", "for Volkswagen and Ford"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Les voitures électriques chinoises sont {{un spectacle courant|a common sight}} {{de Rio à Londres|from Rio to London}}.",
+        "bd": {
+          "meaning": "Chinese electric cars are a common sight from Rio to London.",
+          "chunks": [
+            ["Les voitures électriques chinoises", "Chinese electric cars"],
+            ["sont un spectacle courant", "are a common sight"],
+            ["de Rio à Londres", "from Rio to London"]
+          ],
+          "key": "<b>“de … à …” = “from … to ….”</b> A simple way to describe a range of places."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La Chine {{investit aussi|also invests}} dans des ports {{à l'étranger|abroad}}.",
+        "bd": {
+          "meaning": "China also invests in ports abroad.",
+          "chunks": [
+            ["La Chine investit aussi", "China also invests"],
+            ["dans des ports", "in ports"],
+            ["à l'étranger", "abroad"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "Elle {{possède ou finance|owns or finances}} plus de 130 ports dans d'autres pays.",
+        "bd": {
+          "meaning": "It owns or finances more than 130 ports in other countries.",
+          "chunks": [
+            ["Elle possède ou finance", "it owns or finances"],
+            ["plus de 130 ports", "more than 130 ports"],
+            ["dans d'autres pays", "in other countries"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Mais {{tout ne va pas bien|not everything is going well}}.",
+        "bd": {
+          "meaning": "But not everything is going well.",
+          "chunks": [
+            ["Mais", "but"],
+            ["tout ne va pas bien", "not everything is going well"]
+          ],
+          "key": "<b>aller bien = “to be going well,”</b> a fixed phrase — here wrapped in the <span class='bd-fr-i'>ne … pas</span> sandwich."
+        }
+      },
+      {
+        "fr": "Les États-Unis {{menacent|threaten}} d'augmenter encore les taxes douanières.",
+        "bd": {
+          "meaning": "The US threatens to raise tariffs even more.",
+          "chunks": [
+            ["Les États-Unis menacent", "the US threatens"],
+            ["d'augmenter encore", "to raise even more"],
+            ["les taxes douanières", "tariffs"]
+          ],
+          "key": "<b>menacer de + verb = “threaten to.”</b> Another verb-plus-little-word-plus-verb chain."
+        }
+      },
+      {
+        "fr": "Et le gouvernement chinois {{limite|limits}} maintenant les exportations de technologie.",
+        "bd": {
+          "meaning": "And the Chinese government now limits technology exports.",
+          "chunks": [
+            ["Et le gouvernement chinois", "and the Chinese government"],
+            ["limite maintenant", "now limits"],
+            ["les exportations de technologie", "technology exports"]
+          ],
+          "key": "No new pattern here — just useful vocabulary for the story."
+        }
+      },
+      {
+        "fr": "{{Malgré tout|despite everything}}, le monde entier {{continue d'acheter|keeps buying}} des produits chinois.",
+        "bd": {
+          "meaning": "Despite everything, the whole world keeps buying Chinese products.",
+          "chunks": [
+            ["Malgré tout", "despite everything"],
+            ["le monde entier continue d'acheter", "the whole world keeps buying"],
+            ["des produits chinois", "Chinese products"]
+          ],
+          "key": "<b>continuer de/à + plain verb = “keep doing.”</b> Another helper-plus-plain-verb shape."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Leurs fournisseurs les suivent",
+      "en": "<b>Object pronouns go BEFORE the verb</b> in French: <span class='fr'>les suivent</span> = “follow them,” not “follow-them.”"
+    },
+    {
+      "fr": "Les taxes poussent les entreprises à partir",
+      "en": "<b>Verb + à/de + verb</b> is how French chains two actions together: <span class='fr'>pousser à</span>, <span class='fr'>menacer de</span>, <span class='fr'>continuer de</span> all follow this shape."
+    },
+    {
+      "fr": "Le monde continue d'acheter",
+      "en": "<b>continuer de + plain verb = “keep doing.”</b> Your fourth helper-plus-plain-verb pattern, alongside <span class='fr'>pouvoir</span>, <span class='fr'>devoir</span> and <span class='fr'>vouloir</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi les entreprises chinoises construisent-elles des usines à l'étranger ?",
+    "a": "Parce que la demande est faible en Chine et les taxes américaines sont élevées. (Because demand is weak in China and American tariffs are high.)"
+  },
+  "flag": "I compressed many country examples from the article (Morocco, Thailand, Hungary, Vietnam) down to two (Egypt, Serbia) to keep the story concrete rather than a list. <span class='fr'>un spectacle courant</span> is my plain rendering of “a common sight” — a native speaker might more naturally say <b>on en voit partout</b> (“you see them everywhere”), which I avoided here because it needs the pronoun <span class='fr'>en</span>, not yet introduced at this level."
+}
