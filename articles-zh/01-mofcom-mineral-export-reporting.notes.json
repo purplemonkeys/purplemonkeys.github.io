@@ -1,0 +1,786 @@
+{
+  "id": "mofcom-mineral-export-reporting",
+  "chip": "战略矿产举报",
+  "kicker": "商务部 · 出口管制",
+  "kind": "gov",
+  "register": "官方公告",
+  "gist": "MOFCOM is tightening how it handles tip-offs about export-control breaches involving dual-use strategic minerals. Anyone, whether a company or an individual, may report. This excerpt lists the first eight kinds of reportable conduct: exporting without a licence or beyond its terms, exporting banned items, evading controls by modifying goods or routing them through third countries, illegally transferring technology, servicing exporters you know are breaking the rules, and helping others evade the controls.",
+  "source": {
+    "name": "商务部（转载：新华网）",
+    "url": "https://www.news.cn/politics/20260624/ff05599a2939483e8ce6ba3820f91f63/c.html",
+    "date": "2026-06-24"
+  },
+  "words": [
+    {
+      "w": "商务部",
+      "en": "Ministry of Commerce (MOFCOM)"
+    },
+    {
+      "w": "公告",
+      "en": "public notice; to announce publicly",
+      "hard": true
+    },
+    {
+      "w": "年",
+      "en": "year"
+    },
+    {
+      "w": "第",
+      "en": "(ordinal marker: No.)"
+    },
+    {
+      "w": "号",
+      "en": "No. (number)"
+    },
+    {
+      "w": "节选",
+      "en": "excerpt",
+      "hard": true
+    },
+    {
+      "s": 1,
+      "w": "为",
+      "py": "wèi",
+      "en": "in order to (formal)",
+      "casual": "为了",
+      "hard": true
+    },
+    {
+      "w": "充分发挥",
+      "py": "chōngfèn fāhuī",
+      "en": "to make full use of; give full play to",
+      "casual": "好好利用",
+      "hard": true
+    },
+    {
+      "w": "社会监督",
+      "py": "shèhuì jiāndū",
+      "en": "public oversight (by society)",
+      "hard": true
+    },
+    {
+      "w": "作用",
+      "en": "role; function"
+    },
+    {
+      "w": "打击",
+      "en": "to crack down on"
+    },
+    {
+      "w": "战略矿产",
+      "py": "zhànlüè kuàngchǎn",
+      "en": "strategic minerals",
+      "hard": true
+    },
+    {
+      "w": "两用物项",
+      "py": "liǎngyòng wùxiàng",
+      "en": "dual-use items (civil and military use)",
+      "hard": true
+    },
+    {
+      "w": "出口管制",
+      "py": "chūkǒu guǎnzhì",
+      "en": "export control(s)",
+      "hard": true
+    },
+    {
+      "w": "违法违规",
+      "py": "wéifǎ wéiguī",
+      "en": "breaching laws and regulations",
+      "casual": "违反规定",
+      "hard": true
+    },
+    {
+      "w": "行为",
+      "en": "conduct; act"
+    },
+    {
+      "w": "根据",
+      "en": "according to; under (a law)"
+    },
+    {
+      "w": "中华人民共和国",
+      "py": "Zhōnghuá Rénmín Gònghéguó",
+      "en": "People's Republic of China"
+    },
+    {
+      "w": "出口管制法",
+      "py": "chūkǒu guǎnzhì fǎ",
+      "en": "Export Control Law",
+      "hard": true
+    },
+    {
+      "w": "对外贸易法",
+      "py": "duìwài màoyì fǎ",
+      "en": "Foreign Trade Law",
+      "hard": true
+    },
+    {
+      "w": "等",
+      "en": "etc.; and other"
+    },
+    {
+      "w": "法律法规",
+      "py": "fǎlǜ fǎguī",
+      "en": "laws and regulations",
+      "hard": true
+    },
+    {
+      "w": "决定",
+      "en": "to decide"
+    },
+    {
+      "w": "进一步",
+      "py": "jìnyībù",
+      "en": "further"
+    },
+    {
+      "w": "完善",
+      "en": "to improve; to perfect",
+      "casual": "改进",
+      "hard": true
+    },
+    {
+      "w": "举报",
+      "en": "to report (wrongdoing to the authorities)",
+      "hard": true
+    },
+    {
+      "w": "处理",
+      "en": "handling; to handle"
+    },
+    {
+      "w": "工作",
+      "en": "work (here: the process)"
+    },
+    {
+      "w": "现",
+      "en": "now (formal)",
+      "casual": "现在",
+      "hard": true
+    },
+    {
+      "w": "如下",
+      "en": "as follows",
+      "casual": "下面这些",
+      "hard": true
+    },
+    {
+      "w": "任何",
+      "en": "any"
+    },
+    {
+      "w": "组织",
+      "en": "organisation"
+    },
+    {
+      "w": "和",
+      "en": "and"
+    },
+    {
+      "w": "个人",
+      "en": "individual"
+    },
+    {
+      "w": "有权",
+      "en": "to have the right to",
+      "hard": true
+    },
+    {
+      "w": "涉嫌",
+      "en": "to be suspected of",
+      "casual": "被怀疑",
+      "hard": true
+    },
+    {
+      "w": "违反",
+      "en": "to breach; violate"
+    },
+    {
+      "w": "相关",
+      "en": "relevant; related"
+    },
+    {
+      "w": "出口",
+      "en": "to export; export"
+    },
+    {
+      "w": "的",
+      "en": "(linking particle: …'s / that …)"
+    },
+    {
+      "w": "包括",
+      "en": "to include"
+    },
+    {
+      "w": "未经许可",
+      "py": "wèijīng xǔkě",
+      "en": "without permission (no licence)",
+      "casual": "没有批准",
+      "hard": true
+    },
+    {
+      "w": "擅自",
+      "en": "without authorisation",
+      "casual": "自己随便",
+      "hard": true
+    },
+    {
+      "w": "超出",
+      "en": "to go beyond; exceed"
+    },
+    {
+      "w": "许可证件",
+      "py": "xǔkě zhèngjiàn",
+      "en": "licence (the licence documents)",
+      "hard": true
+    },
+    {
+      "w": "载明",
+      "py": "zǎimíng",
+      "en": "to state in writing (in a document)",
+      "casual": "写明",
+      "hard": true
+    },
+    {
+      "w": "范围",
+      "en": "scope"
+    },
+    {
+      "w": "条件",
+      "en": "conditions"
+    },
+    {
+      "w": "有效期",
+      "en": "validity period",
+      "hard": true
+    },
+    {
+      "w": "禁止",
+      "en": "to prohibit"
+    },
+    {
+      "w": "以",
+      "en": "by means of (formal)",
+      "casual": "用",
+      "hard": true
+    },
+    {
+      "w": "改造",
+      "en": "to modify; convert"
+    },
+    {
+      "w": "拆分",
+      "en": "to split up; break down",
+      "hard": true
+    },
+    {
+      "s": 7,
+      "w": "为",
+      "py": "wéi",
+      "en": "into (as in 'split into')",
+      "casual": "成",
+      "hard": true
+    },
+    {
+      "w": "部件",
+      "en": "part; component"
+    },
+    {
+      "w": "或者",
+      "en": "or"
+    },
+    {
+      "w": "组件",
+      "en": "component; assembly"
+    },
+    {
+      "w": "方式",
+      "en": "means; method",
+      "casual": "办法"
+    },
+    {
+      "w": "规避",
+      "en": "to evade; circumvent",
+      "casual": "躲开",
+      "hard": true
+    },
+    {
+      "w": "许可",
+      "en": "licence; permission",
+      "hard": true
+    },
+    {
+      "w": "通过",
+      "en": "through; by means of"
+    },
+    {
+      "w": "绕道",
+      "en": "to route via; take a detour through",
+      "hard": true
+    },
+    {
+      "w": "第三国",
+      "py": "dì-sān guó",
+      "en": "third country",
+      "hard": true
+    },
+    {
+      "w": "地区",
+      "en": "region"
+    },
+    {
+      "w": "有关规定",
+      "py": "yǒuguān guīdìng",
+      "en": "relevant provisions; applicable rules",
+      "hard": true
+    },
+    {
+      "w": "贸易性",
+      "en": "trade-related; commercial",
+      "hard": true
+    },
+    {
+      "w": "及",
+      "en": "and (formal)",
+      "casual": "和",
+      "hard": true
+    },
+    {
+      "w": "知识产权",
+      "py": "zhīshi chǎnquán",
+      "en": "intellectual property",
+      "hard": true
+    },
+    {
+      "w": "投资",
+      "en": "investment"
+    },
+    {
+      "w": "交流",
+      "en": "exchanges"
+    },
+    {
+      "w": "赠送",
+      "en": "gifting"
+    },
+    {
+      "w": "展览",
+      "en": "exhibitions"
+    },
+    {
+      "w": "展示",
+      "en": "displays; demonstrations"
+    },
+    {
+      "w": "检测",
+      "en": "inspection; testing"
+    },
+    {
+      "w": "测试",
+      "en": "testing"
+    },
+    {
+      "w": "援助",
+      "en": "aid"
+    },
+    {
+      "w": "传授",
+      "en": "teaching; passing on (know-how)",
+      "hard": true
+    },
+    {
+      "w": "联合",
+      "en": "joint"
+    },
+    {
+      "w": "研发",
+      "en": "R&D"
+    },
+    {
+      "w": "受雇",
+      "en": "being employed (by)",
+      "hard": true
+    },
+    {
+      "w": "或",
+      "en": "or (formal)",
+      "casual": "或者",
+      "hard": true
+    },
+    {
+      "w": "雇佣",
+      "en": "employing; hiring"
+    },
+    {
+      "w": "咨询",
+      "en": "consulting"
+    },
+    {
+      "w": "非法",
+      "en": "illegally"
+    },
+    {
+      "w": "对外",
+      "en": "abroad; to foreign parties"
+    },
+    {
+      "w": "转移",
+      "en": "to transfer"
+    },
+    {
+      "w": "受",
+      "en": "to be subject to",
+      "casual": "被",
+      "hard": true
+    },
+    {
+      "w": "管制",
+      "en": "control",
+      "hard": true
+    },
+    {
+      "w": "技术",
+      "en": "technology"
+    },
+    {
+      "w": "明知",
+      "en": "knowing full well",
+      "casual": "明明知道",
+      "hard": true
+    },
+    {
+      "w": "出口经营者",
+      "py": "chūkǒu jīngyíngzhě",
+      "en": "exporter (export operator)",
+      "hard": true
+    },
+    {
+      "w": "从事",
+      "en": "to engage in",
+      "casual": "做",
+      "hard": true
+    },
+    {
+      "w": "违法行为",
+      "py": "wéifǎ xíngwéi",
+      "en": "unlawful act",
+      "hard": true
+    },
+    {
+      "w": "仍",
+      "en": "still (formal)",
+      "casual": "还是",
+      "hard": true
+    },
+    {
+      "s": 10,
+      "w": "为",
+      "py": "wèi",
+      "en": "for; to (formal)",
+      "casual": "给",
+      "hard": true
+    },
+    {
+      "w": "其",
+      "en": "him / her / them / it (formal)",
+      "casual": "他 / 他们",
+      "hard": true
+    },
+    {
+      "w": "提供",
+      "en": "to provide"
+    },
+    {
+      "w": "代理",
+      "en": "agency (acting as agent)"
+    },
+    {
+      "w": "货运",
+      "en": "freight"
+    },
+    {
+      "w": "寄递",
+      "en": "postal and courier delivery",
+      "casual": "快递",
+      "hard": true
+    },
+    {
+      "w": "报关",
+      "en": "customs declaration",
+      "hard": true
+    },
+    {
+      "w": "第三方",
+      "py": "dì-sān fāng",
+      "en": "third-party"
+    },
+    {
+      "w": "电子商务",
+      "py": "diànzǐ shāngwù",
+      "en": "e-commerce"
+    },
+    {
+      "w": "交易平台",
+      "py": "jiāoyì píngtái",
+      "en": "trading platform"
+    },
+    {
+      "w": "金融",
+      "en": "financial"
+    },
+    {
+      "w": "服务",
+      "en": "services"
+    },
+    {
+      "w": "教唆",
+      "en": "to incite; abet",
+      "casual": "怂恿",
+      "hard": true
+    },
+    {
+      "w": "帮助",
+      "en": "to help"
+    },
+    {
+      "w": "进口商",
+      "en": "importer",
+      "hard": true
+    },
+    {
+      "w": "最终用户",
+      "py": "zuìzhōng yònghù",
+      "en": "end user",
+      "hard": true
+    },
+    {
+      "w": "实施",
+      "en": "to carry out; commit (an act)",
+      "casual": "做",
+      "hard": true
+    }
+  ],
+  "breakdowns": [
+    {
+      "s": 1,
+      "meaning": "To make full use of public oversight and crack down on export-control breaches involving dual-use strategic minerals, MOFCOM has decided, under the Export Control Law, the Foreign Trade Law and other laws and regulations, to further improve how it handles reports of such breaches.",
+      "chunks": [
+        [
+          "为充分发挥社会监督作用",
+          "in order to make full use of public oversight (为 here = 为了)"
+        ],
+        [
+          "打击……违法违规行为",
+          "to crack down on … breaches"
+        ],
+        [
+          "根据《出口管制法》《对外贸易法》等法律法规",
+          "under the Export Control Law, the Foreign Trade Law and other laws and regulations"
+        ],
+        [
+          "商务部决定进一步完善……举报处理工作",
+          "MOFCOM has decided to further improve how it handles reports of …"
+        ]
+      ],
+      "key": "<b>Purpose first, actor last:</b> notices open with 为… (in order to) and 根据… (under), and only then say who acts. Find <span class='bd-zh-i'>商务部决定</span> and the sentence falls into place."
+    },
+    {
+      "s": 2,
+      "meaning": "We hereby announce the following:",
+      "chunks": [
+        [
+          "现",
+          "now (formal for 现在)"
+        ],
+        [
+          "公告",
+          "announce, as a public notice"
+        ],
+        [
+          "如下",
+          "as follows (= 下面这些)"
+        ]
+      ],
+      "key": "<b>Stock phrase:</b> <span class='bd-zh-i'>现公告如下</span> is the fixed line that means \"the rules start here\". Spoken, you'd say 现在宣布下面这些事."
+    },
+    {
+      "s": 3,
+      "meaning": "1. Any organisation or individual has the right to report conduct suspected of exporting dual-use strategic minerals in breach of the relevant laws and regulations, including:",
+      "chunks": [
+        [
+          "任何组织和个人",
+          "any organisation or individual"
+        ],
+        [
+          "有权举报",
+          "has the right to report"
+        ],
+        [
+          "涉嫌违反相关法律法规出口……的行为",
+          "conduct suspected of exporting … in breach of the relevant laws (the whole phrase describes 行为)"
+        ],
+        [
+          "包括：",
+          "including:"
+        ]
+      ],
+      "key": "<b>Long describer before 的:</b> everything between 举报 and <span class='bd-zh-i'>的行为</span> describes the 行为 (conduct). Find the noun after 的 first, then go back for the description."
+    },
+    {
+      "s": 5,
+      "meaning": "(2) exporting dual-use strategic minerals beyond the scope, conditions or validity period stated in the export licence;",
+      "chunks": [
+        [
+          "超出",
+          "going beyond"
+        ],
+        [
+          "出口许可证件载明的",
+          "stated in the export licence (载明 = 写明)"
+        ],
+        [
+          "范围、条件和有效期",
+          "scope, conditions and validity period"
+        ],
+        [
+          "出口战略矿产两用物项",
+          "exporting dual-use strategic minerals"
+        ]
+      ],
+      "key": "<b>载 = written in:</b> <span class='bd-zh-i'>载明</span> (zǎimíng) means \"set out in a document\". It's zǎi, not the zài of 载货 (to carry cargo)."
+    },
+    {
+      "s": 7,
+      "meaning": "(4) evading licensing when exporting dual-use items related to strategic minerals, for example by modifying them or breaking them down into parts or components;",
+      "chunks": [
+        [
+          "以……等方式",
+          "by means such as … (以 = 用, 方式 = 办法)"
+        ],
+        [
+          "改造、拆分为部件或者组件",
+          "modifying them, or splitting them into parts or components"
+        ],
+        [
+          "规避许可",
+          "evading the licence requirement"
+        ],
+        [
+          "出口战略矿产相关两用物项",
+          "to export dual-use items related to strategic minerals"
+        ]
+      ],
+      "key": "<b>The 以…方式 frame:</b> <span class='bd-zh-i'>以 X 等方式 + verb</span> = \"do [verb] by means such as X\". Spoken: 用 X 这些办法来…"
+    },
+    {
+      "s": 9,
+      "meaning": "(6) illegally transferring controlled strategic-mineral technology abroad through trade exports or through IP licensing, investment, exchanges, gifts, exhibitions, demonstrations, inspection, testing, aid, teaching, joint R&D, employment, consulting or similar means;",
+      "chunks": [
+        [
+          "通过贸易性出口及……等方式",
+          "through trade exports and … similar means (及 = 和)"
+        ],
+        [
+          "知识产权许可、投资、……咨询",
+          "the channels: IP licensing, investment, … consulting"
+        ],
+        [
+          "非法对外转移",
+          "illegally transferring abroad"
+        ],
+        [
+          "受管制的战略矿产相关技术",
+          "controlled technology related to strategic minerals (受管制的 = 被管着的)"
+        ]
+      ],
+      "key": "<b>The list is a catalogue:</b> the 、-separated list just names every channel. Skim it and jump to the verb <span class='bd-zh-i'>非法对外转移</span> to see what is banned."
+    },
+    {
+      "s": 10,
+      "meaning": "(7) knowingly providing agency, freight, delivery, customs-declaration, third-party e-commerce platform, financial or similar services to an exporter engaged in unlawful exports of dual-use strategic minerals;",
+      "chunks": [
+        [
+          "明知",
+          "knowing full well (that)"
+        ],
+        [
+          "出口经营者从事……出口违法行为",
+          "an exporter is engaged in unlawful exports of …"
+        ],
+        [
+          "仍为其提供",
+          "still provides them with (仍 = 还是, 为其 = 给他们)"
+        ],
+        [
+          "代理、货运、……金融等服务",
+          "agency, freight, … financial and similar services"
+        ]
+      ],
+      "key": "<b>为其 = 给他:</b> <span class='bd-zh-i'>为其提供</span> (wèi qí tígōng) is the formal way to say 给他/他们提供. 其 is the written him/her/it/them."
+    }
+  ],
+  "register_notes": [
+    {
+      "formal": "为（+ 目的）",
+      "casual": "为了",
+      "en": "in order to"
+    },
+    {
+      "formal": "现",
+      "casual": "现在",
+      "en": "now"
+    },
+    {
+      "formal": "如下",
+      "casual": "下面这些",
+      "en": "as follows"
+    },
+    {
+      "formal": "载明",
+      "casual": "写明 / 上面写着",
+      "en": "stated in writing"
+    },
+    {
+      "formal": "以 … 方式",
+      "casual": "用 … 办法",
+      "en": "by means of"
+    },
+    {
+      "formal": "及",
+      "casual": "和",
+      "en": "and"
+    },
+    {
+      "formal": "或",
+      "casual": "或者",
+      "en": "or"
+    },
+    {
+      "formal": "仍",
+      "casual": "还是",
+      "en": "still"
+    },
+    {
+      "formal": "其",
+      "casual": "他 / 他们 / 它",
+      "en": "him, them, it"
+    },
+    {
+      "formal": "擅自",
+      "casual": "自己随便",
+      "en": "without authorisation"
+    },
+    {
+      "formal": "涉嫌",
+      "casual": "被怀疑",
+      "en": "suspected of"
+    }
+  ],
+  "quiz": {
+    "q": "根据这份公告，谁有权举报？",
+    "a": "任何组织和个人。(Any organisation or individual.)"
+  },
+  "flag": "Excerpt only: the preamble and Part 1, items (一)–(八). The full announcement goes on with more items and sections. The text comes from the 新华网 reprint via a search result, with punctuation changed to full-width. Check it against the MOFCOM original before relying on it. Pinyin: 载明 corrected to zǎimíng; 为 read as wèi in S1 (purpose) and S10 (for), and wéi in S7 (into). English for legal terms (两用物项 'dual-use items', 出口经营者 'exporter') follows common usage; MOFCOM's official English version may word them differently. Casual equivalents are approximate, not exact synonyms."
+}

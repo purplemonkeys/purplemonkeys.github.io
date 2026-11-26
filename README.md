@@ -28,6 +28,11 @@ Edit `progress/m1.json` like:
 | file | what it is |
 |---|---|
 | `index.html` | **generated** — the reader. Never hand-edit. |
+| `zh.html` | **generated** — the Chinese reader. Never hand-edit. |
+| `shell-zh.html` | the Chinese reader's CSS + ES5 JS |
+| `articles-zh/` | Chinese articles: `.txt` (by script), `.auto.json` (generated), `.notes.json` |
+| `tools/` | `zh_prepare.py` intake script + word-split lists |
+| `progress/m1-zh.json` | shared M1 read-list for the Chinese reader |
 | `shell.html` | the reader's CSS + ES5 JS (the framework) |
 | `stories/NN-id.json` | one story per file — the content |
 | `progress/m1.json` | shared M1 read-list |
@@ -55,3 +60,23 @@ ES5-only), and writes `index.html`.
 in the browser (Beta Features → Web Browser). No network needed; web fonts
 degrade gracefully to system fonts offline. (M1 needs the network; M2 works
 offline.)
+
+## En Clair 中文
+
+`zh.html` is a second reader for **original** simplified-Chinese articles
+(news and official notices), built from the same repo. Tap 中 (top right) on
+En Clair to get there, FR to come back.
+
+- 拼音 toggle: 关 / 难词 (formal words only) / 全部. Remembered per device.
+- Tap any word: pinyin, meaning, and the everyday equivalent of formal words.
+- Tap ▸ after a sentence for its breakdown (selected sentences).
+- Every article ends with register notes, a quiz, an honesty note, and its source.
+
+Add an article (details in `CLAUDE.md`):
+
+```bash
+pip install jieba pypinyin pycccedict opencc-python-reimplemented   # once, intake only
+python3 tools/zh_prepare.py "SOURCE.docx|.rtf|.txt" articles-zh/NN-id
+# write articles-zh/NN-id.notes.json
+python3 build.py
+```

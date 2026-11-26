@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<!-- ================================================================
+     EN CLAIR 中文 — a reader for original Chinese news and official notices.
+     THIS IS THE SHELL (template): all CSS + logic. Article data is injected
+     by the build at the ARTICLES data sentinel near the top of the script.
+     It must appear exactly once; never paste article data into this file.
+
+     Sources per article (articles-zh/):
+       NN-id.txt        original text, made by tools/zh_prepare.py from Jack's
+                        file. Claude never types or edits article text.
+       NN-id.auto.json  generated words / pinyin / dictionary glosses
+       NN-id.notes.json Claude's annotations: word fixes (py, en, casual, hard),
+                        breakdowns, register notes, quiz, flag, source
+     The build merges them into one record per article:
+       { id, num, chip, kicker, kind, register, gist, source, flag, quiz,
+         register_notes, title:{text,tok}, paras:[[{n,tok,bd}]] }
+     tok = [word, pinyin, english, casual, hard(0/1)]; pinyin "" = punctuation.
+
+     ES5 ONLY (same rule as En Clair): var/function, XMLHttpRequest, no
+     arrow functions, template literals, let/const, Set/Map, spread.
+     ================================================================ -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F6F3EF; --card:#FCFAF8; --ink:#2A2523; --muted:#76706C; --faint:#A39C97;
+    --rule:#E7E1DA; --accent:#B42B23; --accent-deep:#861F19;
+    --hl:rgba(244,201,93,.42); --hl-strong:rgba(240,186,58,.6); --gloss:#861F19;
+    --maxw:680px;
+    --font-read:'Songti SC','STSong','Noto Serif SC','Noto Serif CJK SC','Source Han Serif SC','SimSun',Georgia,serif;
+    --font-en:'Spectral',Georgia,'Times New Roman',serif;
+    --font-ui:'PingFang SC','Hiragino Sans GB','Noto Sans SC','Noto Sans CJK SC','Microsoft YaHei','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --font-display:'Fraunces','Songti SC','Noto Serif SC',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;line-height:1.5}
+  body.sheet-open .wrap{padding-bottom:190px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:20px 18px 72px}
+
+  .masthead{position:relative;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:0 52px 14px 0;border-bottom:1px solid var(--rule)}
+  .brand{font-family:var(--font-display);font-weight:600;font-size:30px;letter-spacing:-.01em;line-height:1;cursor:pointer}
+  .brand .clair{color:var(--accent)}
+  .brand .zh{color:var(--accent);font-family:var(--font-read);font-weight:700;letter-spacing:.02em}
+  .tagline{font-size:13px;color:var(--muted);font-family:var(--font-read)}
+  .lang-switch{position:absolute;right:0;top:-3px;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-weight:700;font-size:13px;letter-spacing:.03em;text-decoration:none;box-shadow:0 2px 6px rgba(134,31,25,.25);transition:background .15s,transform .12s}
+  .lang-switch:hover{background:var(--accent-deep);transform:translateY(-1px)}
+  .lang-switch:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px}
+
+  .view{display:none}
+  .view.active{display:block}
+
+  .index-intro{font-size:13px;color:var(--muted);letter-spacing:.02em;margin:18px 2px 12px}
+  .index-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 2px 4px}
+  .index-head .index-intro{margin:0}
+  .memtoggle{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;background:var(--card);flex:0 0 auto}
+  .mem-opt{font-family:var(--font-ui);font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--muted);background:transparent;border:none;padding:6px 14px;cursor:pointer}
+  .mem-opt+.mem-opt{border-left:1px solid var(--rule)}
+  .mem-opt[aria-pressed="true"]{background:var(--accent);color:#fff}
+  .mem-hint{font-size:11.5px;color:var(--faint);margin:0 2px 12px}
+  .cards{display:grid;grid-template-columns:1fr;gap:12px}
+  @media (min-width:560px){ .cards{grid-template-columns:1fr 1fr} }
+  .empty{font-size:13.5px;color:var(--muted);padding:6px 2px}
+
+  .card{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:14px;transition:border-color .15s,transform .12s,box-shadow .15s,opacity .15s}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(180,43,35,.09)}
+  .card-open{display:flex;flex-direction:column;gap:8px;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;font-family:var(--font-ui);color:var(--ink);padding:16px 46px 14px 16px;border-radius:14px}
+  .card-open:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .card .k{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--faint)}
+  .card .ttl{font-family:var(--font-read);font-weight:700;font-size:19px;line-height:1.35;color:var(--ink)}
+  .card .meta{display:flex;align-items:center;gap:8px;margin-top:2px}
+  .card .lvl{font-size:11px;font-weight:600;color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;padding:2px 8px;background:rgba(180,43,35,.06)}
+  .card .tag{font-size:12px;color:var(--muted);font-family:var(--font-read)}
+  .card .go{font-size:12.5px;font-weight:600;color:var(--accent)}
+  .card-mark{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:1.6px solid var(--rule);background:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;color:transparent;font-size:15px;line-height:1;z-index:2;transition:border-color .15s,background .15s,color .15s}
+  .card-mark:hover{border-color:var(--accent);color:var(--faint)}
+  .card.read{opacity:.58}
+  .card.read:hover{opacity:.9}
+  .card.read .card-mark{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .read-section{margin-top:22px;border-top:1px solid var(--rule)}
+  .read-section summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:12px 2px 10px;font-size:12.5px;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+  .read-section summary::-webkit-details-marker{display:none}
+  .read-section .chev{transition:transform .2s;color:var(--accent);font-size:11px}
+  .read-section[open] .chev{transform:rotate(90deg)}
+
+  .back{display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--accent-deep);font-family:var(--font-ui);font-size:13px;font-weight:600;padding:16px 2px 6px;margin-left:-2px}
+  .back:hover{color:var(--accent)}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:4px 0 2px}
+  .btn{font-family:var(--font-ui);font-size:12.5px;font-weight:500;color:var(--accent-deep);background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:7px 12px;cursor:pointer;transition:background .15s,border-color .15s}
+  .btn:hover{border-color:var(--accent)}
+  .btn[aria-pressed="true"]{background:rgba(180,43,35,.1);border-color:var(--accent)}
+  .btn.done[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .seg{display:inline-flex;align-items:center;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--card)}
+  .seg-label{font-size:11.5px;font-weight:600;color:var(--faint);padding:0 8px 0 10px}
+  .seg-opt{font-family:var(--font-ui);font-size:12.5px;color:var(--accent-deep);background:transparent;border:none;border-left:1px solid var(--rule);padding:7px 11px;cursor:pointer}
+  .seg-opt[aria-pressed="true"]{background:var(--accent);color:#fff}
+  .legend{font-size:12px;color:var(--muted);line-height:1.6;margin:10px 0 0}
+  .legend .mk{color:var(--accent);font-weight:700}
+  .legend .hw{border-bottom:1.5px dotted rgba(180,43,35,.55)}
+
+  article{margin-top:14px}
+  .kicker{font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--faint);margin-bottom:6px}
+  .title-row{display:flex;align-items:flex-start;gap:12px}
+  .title{font-family:var(--font-read);font-weight:700;font-size:25px;line-height:1.7;margin:0 0 4px;flex:1}
+  .story-lvl{flex:0 0 auto;margin-top:10px;font-size:11px;font-weight:600;color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;padding:3px 9px;background:rgba(180,43,35,.06);white-space:nowrap}
+  .gist{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;padding:12px 14px;margin:14px 0 6px;font-family:var(--font-en);font-size:15px;line-height:1.55;color:#4a4340}
+  .gist .gist-label{font-family:var(--font-ui);font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px}
+  .gist.hidden{display:none}
+
+  .body{font-family:var(--font-read);font-size:20px;line-height:2.35;margin-top:18px}
+  .body .para{margin:0 0 .9em}
+  .body .para.sub{font-weight:700;font-size:.92em;color:var(--accent-deep);margin:1.5em 0 .3em;border-top:1px solid var(--rule);padding-top:.5em}
+  .lat{font-family:var(--font-en);font-size:.92em}
+  .sentence{border-radius:3px;transition:background .12s}
+  .sentence.active{background:rgba(180,43,35,.06)}
+
+  /* words + pinyin (ruby). Modes live on the article element. */
+  .wb{display:inline-block}  /* one word = one unbreakable box; lines break between words */
+  ruby.w{cursor:pointer;border-radius:3px;padding:0 1px;transition:background .12s}  ruby.w:hover{background:rgba(180,43,35,.07)}
+  ruby.w.on{background:var(--hl-strong)}
+  ruby.w.hard{border-bottom:1.5px dotted rgba(180,43,35,.45)}
+  ruby.w:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  rt{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:.48em;font-weight:400;color:var(--accent-deep);letter-spacing:0;line-height:1}
+  .py-off rt{display:none}
+  .py-hard ruby.w:not(.hard) rt{display:none}
+
+  .bd-mark{display:inline-block;vertical-align:.12em;margin:0 .15em 0 .1em;width:1.15em;height:1.15em;line-height:1.1em;border-radius:50%;border:1.4px solid var(--accent);background:transparent;color:var(--accent);font-size:.62em;font-weight:700;text-align:center;padding:0;cursor:pointer;font-family:var(--font-ui);transition:transform .15s,background .15s,color .15s}
+  .bd-mark.open{background:var(--accent);color:#fff;transform:rotate(90deg)}
+  .bd-mark:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px}
+
+  .breakdown{display:none;margin:4px 0 12px;padding:13px 15px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;font-family:var(--font-ui);line-height:1.5}
+  .breakdown.open{display:block;animation:bd .22s ease}
+  @keyframes bd{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .bd-meaning{font-family:var(--font-en);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:11px}
+  .bd-chunks{display:flex;flex-direction:column;gap:7px;margin-bottom:11px}
+  .bd-row{display:flex;gap:12px;align-items:baseline;font-size:13.5px;line-height:1.5}
+  .bd-zh{font-family:var(--font-read);font-size:15px;color:var(--accent-deep);flex:0 0 44%;min-width:0}
+  .bd-en{color:#4a4340;flex:1;min-width:0}
+  .bd-key{font-size:12.5px;line-height:1.6;color:#4a4340;border-top:1px solid var(--rule);padding-top:9px}
+  .bd-key-label{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+  .bd-zh-i{font-family:var(--font-read);font-size:1.12em;color:var(--ink)}
+
+  .section{margin-top:26px;border-top:1px solid var(--rule);padding-top:8px}
+  summary{list-style:none}
+  .section summary{cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 0;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+  .section summary::-webkit-details-marker{display:none}
+  .section summary .chev{transition:transform .2s;color:var(--accent);font-size:12px}
+  .section details[open] summary .chev{transform:rotate(90deg)}
+  .reg-row{display:flex;align-items:baseline;gap:10px;padding:7px 2px;border-bottom:1px solid var(--rule);font-size:13.5px}
+  .reg-f{font-family:var(--font-read);font-size:17px;color:var(--accent-deep);flex:0 0 34%}
+  .reg-arrow{color:var(--faint)}
+  .reg-c{font-family:var(--font-read);font-size:17px;color:var(--ink);flex:0 0 30%}
+  .reg-en{color:var(--muted);flex:1}
+  .quiz{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px}
+  .quiz .q{font-family:var(--font-read);font-size:18px;color:var(--ink);margin:0 0 10px}
+  .quiz .answer{font-family:var(--font-read);font-size:16px;color:#4a4340;margin:8px 0 0;display:none}
+  .quiz .answer.show{display:block}
+  .reveal-btn{font-family:var(--font-ui);font-size:12.5px;font-weight:500;color:var(--accent-deep);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:6px 12px;cursor:pointer}
+  .flag{margin-top:22px;font-size:12px;line-height:1.55;color:var(--muted);background:rgba(240,186,58,.12);border-radius:8px;padding:10px 12px}
+  .flag b{color:var(--accent-deep);font-weight:600}
+  .source{margin-top:14px;font-size:12px;line-height:1.5;color:var(--muted);border-top:1px solid var(--rule);padding-top:10px}
+  .source a{color:var(--accent-deep)}
+  .foot{margin-top:28px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.5}
+
+  /* word card: fixed to the bottom of the screen */
+  .sheet{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;max-width:var(--maxw);margin:0 auto;background:var(--card);border:1px solid var(--rule);border-bottom:none;border-top:3px solid var(--accent);border-radius:14px 14px 0 0;box-shadow:0 -6px 24px rgba(42,37,35,.12);padding:14px 52px 18px 18px}
+  .sheet.open{display:block;animation:sh .18s ease}
+  @keyframes sh{from{transform:translateY(12px);opacity:.4}to{transform:none;opacity:1}}
+  .sheet-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .sheet-zh{font-family:var(--font-read);font-size:30px;font-weight:700;color:var(--ink);line-height:1.2}
+  .sheet-py{font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:17px;color:var(--accent-deep)}
+  .sheet-en{font-family:var(--font-en);font-size:16px;color:#4a4340;margin-top:6px;line-height:1.45}
+  .sheet-casual{margin-top:8px;font-size:13px;color:var(--muted)}
+  .sheet-casual b{font-family:var(--font-read);font-size:17px;color:var(--ink);font-weight:700;margin-left:4px}
+  .sheet-x{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);color:var(--muted);font-size:18px;line-height:1;cursor:pointer}
+
+  @media (max-width:480px){
+    .brand{font-size:26px}.body{font-size:19px;line-height:2.3}.title{font-size:22px}
+    .bd-row{flex-direction:column;gap:1px}.bd-zh{flex-basis:auto}
+    .reg-f,.reg-c{flex-basis:auto}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<title>En Clair 中文</title>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand" id="brand" role="button" tabindex="0" title="回到首页">En&nbsp;<span class="clair">clair</span> <span class="zh">中文</span></div>
+    <div class="tagline">读懂正式中文 · 拼音与释义</div>
+    <a class="lang-switch" href="index.html" title="En Clair — français" aria-label="Switch to En Clair, French">FR</a>
+  </header>
+
+  <!-- INDEX VIEW -->
+  <main id="view-index" class="view">
+    <div class="index-head">
+      <p class="index-intro">选择一篇文章：</p>
+      <div class="memtoggle" id="memToggle" role="group" aria-label="Memory">
+        <button class="mem-opt" data-mem="M1" type="button">M1</button>
+        <button class="mem-opt" data-mem="M2" type="button">M2</button>
+      </div>
+    </div>
+    <p class="mem-hint" id="memHint"></p>
+    <div class="cards" id="cards"></div>
+    <details class="read-section" id="readSection">
+      <summary><span class="chev">▶</span>已读 (<span id="readCount">0</span>)</summary>
+      <div class="cards" id="readCards"></div>
+    </details>
+  </main>
+
+  <!-- STORY VIEW -->
+  <main id="view-story" class="view">
+    <button class="back" id="backBtn">← 全部文章</button>
+    <div class="toolbar">
+      <button class="btn" id="toggleGist" aria-pressed="true" title="Show / hide the English summary">摘要</button>
+      <div class="seg" id="pySeg" role="group" aria-label="Pinyin">
+        <span class="seg-label">拼音</span>
+        <button class="seg-opt" data-py="off" type="button" title="Pinyin off">关</button>
+        <button class="seg-opt" data-py="hard" type="button" title="Pinyin on formal / hard words only">难词</button>
+        <button class="seg-opt" data-py="all" type="button" title="Pinyin on every word">全部</button>
+      </div>
+      <button class="btn done" id="toggleRead" aria-pressed="false" title="Mark this article read / unread">标为已读</button>
+    </div>
+    <p class="legend">Tap any word for its pinyin and meaning. Tap <span class="mk">▸</span> after a sentence for a breakdown. <span class="hw">Dotted</span> words are formal or hard.</p>
+    <article id="article"></article>
+  </main>
+
+  <div class="foot">En clair 中文 · 简体 · 拼音 + 释义</div>
+</div>
+
+<div class="sheet" id="wordSheet" role="dialog" aria-label="Word" aria-live="polite">
+  <button class="sheet-x" id="sheetX" type="button" aria-label="Close">×</button>
+  <div class="sheet-top"><span class="sheet-zh" id="sheetZh"></span><span class="sheet-py" id="sheetPy"></span></div>
+  <div class="sheet-en" id="sheetEn"></div>
+  <div class="sheet-casual" id="sheetCasual"></div>
+</div>
+
+<script>
+/* ---- visible error log (no dev console on some devices) ---- */
+window.onerror = function (msg, url, line) {
+  try {
+    var dbg = document.getElementById('debugBox');
+    if (!dbg) {
+      dbg = document.createElement('div');
+      dbg.id = 'debugBox';
+      dbg.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#fee;color:#900;font:11px monospace;padding:8px;z-index:9999;max-height:35%;overflow:auto;white-space:pre-wrap;border-bottom:2px solid #900';
+      document.body.appendChild(dbg);
+    }
+    dbg.textContent += 'ERROR: ' + msg + ' (line ' + line + ')\n';
+  } catch (e) {}
+  return false;
+};
+
+/* ---- tap helper (same as En Clair): touchend for old touch browsers,
+        ignore drags, swallow the delayed synthetic click ---- */
+function addTap(el, handler) {
+  var lastTouch = 0, startX = 0, startY = 0, moved = false;
+  el.addEventListener('touchstart', function (e) {
+    moved = false;
+    if (e.touches && e.touches.length) { startX = e.touches[0].clientX; startY = e.touches[0].clientY; }
+  }, { passive: true });
+  el.addEventListener('touchmove', function (e) {
+    if (e.touches && e.touches.length) {
+      var dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY;
+      if (Math.sqrt(dx * dx + dy * dy) > 12) moved = true;
+    }
+  }, { passive: true });
+  el.addEventListener('touchend', function (e) {
+    lastTouch = Date.now();
+    if (moved) return;
+    e.preventDefault();
+    handler(e);
+  }, { passive: false });
+  el.addEventListener('click', function (e) {
+    if (Date.now() - lastTouch < 600) return;
+    handler(e);
+  });
+}
+function onKey(el, fn) {
+  el.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); fn(e); }
+  });
+}
+
+var ARTICLES = [{"id":"mofcom-mineral-export-reporting","num":1,"chip":"战略矿产举报","kicker":"商务部 · 出口管制","kind":"gov","register":"官方公告","gist":"MOFCOM is tightening how it handles tip-offs about export-control breaches involving dual-use strategic minerals. Anyone, whether a company or an individual, may report. This excerpt lists the first eight kinds of reportable conduct: exporting without a licence or beyond its terms, exporting banned items, evading controls by modifying goods or routing them through third countries, illegally transferring technology, servicing exporters you know are breaking the rules, and helping others evade the controls.","source":{"name":"商务部（转载：新华网）","url":"https://www.news.cn/politics/20260624/ff05599a2939483e8ce6ba3820f91f63/c.html","date":"2026-06-24"},"flag":"Excerpt only: the preamble and Part 1, items (一)–(八). The full announcement goes on with more items and sections. The text comes from the 新华网 reprint via a search result, with punctuation changed to full-width. Check it against the MOFCOM original before relying on it. Pinyin: 载明 corrected to zǎimíng; 为 read as wèi in S1 (purpose) and S10 (for), and wéi in S7 (into). English for legal terms (两用物项 'dual-use items', 出口经营者 'exporter') follows common usage; MOFCOM's official English version may word them differently. Casual equivalents are approximate, not exact synonyms.","quiz":{"q":"根据这份公告，谁有权举报？","a":"任何组织和个人。(Any organisation or individual.)"},"register_notes":[{"formal":"为（+ 目的）","casual":"为了","en":"in order to"},{"formal":"现","casual":"现在","en":"now"},{"formal":"如下","casual":"下面这些","en":"as follows"},{"formal":"载明","casual":"写明 / 上面写着","en":"stated in writing"},{"formal":"以 … 方式","casual":"用 … 办法","en":"by means of"},{"formal":"及","casual":"和","en":"and"},{"formal":"或","casual":"或者","en":"or"},{"formal":"仍","casual":"还是","en":"still"},{"formal":"其","casual":"他 / 他们 / 它","en":"him, them, it"},{"formal":"擅自","casual":"自己随便","en":"without authorisation"},{"formal":"涉嫌","casual":"被怀疑","en":"suspected of"}],"title":{"text":"商务部公告2026年第26号（节选）","tok":[["商务部","shāngwùbù","Ministry of Commerce (MOFCOM)","",0],["公告","gōnggào","public notice; to announce publicly","",1],["2026","","","",0],["年","nián","year","",0],["第","dì","(ordinal marker: No.)","",0],["26","","","",0],["号","hào","No. (number)","",0],["（","","","",0],["节选","jiéxuǎn","excerpt","",1],["）","","","",0]]},"paras":[[{"n":1,"tok":[["为","wèi","in order to (formal)","为了",1],["充分发挥","chōngfèn fāhuī","to make full use of; give full play to","好好利用",1],["社会监督","shèhuì jiāndū","public oversight (by society)","",1],["作用","zuòyòng","role; function","",0],["，","","","",0],["打击","dǎjī","to crack down on","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["出口管制","chūkǒu guǎnzhì","export control(s)","",1],["违法违规","wéifǎ wéiguī","breaching laws and regulations","违反规定",1],["行为","xíngwéi","conduct; act","",0],["，","","","",0],["根据","gēnjù","according to; under (a law)","",0],["《","","","",0],["中华人民共和国","Zhōnghuá Rénmín Gònghéguó","People's Republic of China","",0],["出口管制法","chūkǒu guǎnzhì fǎ","Export Control Law","",1],["》","","","",0],["《","","","",0],["中华人民共和国","Zhōnghuá Rénmín Gònghéguó","People's Republic of China","",0],["对外贸易法","duìwài màoyì fǎ","Foreign Trade Law","",1],["》","","","",0],["等","děng","etc.; and other","",0],["法律法规","fǎlǜ fǎguī","laws and regulations","",1],["，","","","",0],["商务部","shāngwùbù","Ministry of Commerce (MOFCOM)","",0],["决定","juédìng","to decide","",0],["进一步","jìnyībù","further","",0],["完善","wánshàn","to improve; to perfect","改进",1],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["出口管制","chūkǒu guǎnzhì","export control(s)","",1],["违法违规","wéifǎ wéiguī","breaching laws and regulations","违反规定",1],["行为","xíngwéi","conduct; act","",0],["举报","jǔbào","to report (wrongdoing to the authorities)","",1],["处理","chǔlǐ","handling; to handle","",0],["工作","gōngzuò","work (here: the process)","",0],["。","","","",0]],"bd":{"meaning":"To make full use of public oversight and crack down on export-control breaches involving dual-use strategic minerals, MOFCOM has decided, under the Export Control Law, the Foreign Trade Law and other laws and regulations, to further improve how it handles reports of such breaches.","chunks":[["为充分发挥社会监督作用","in order to make full use of public oversight (为 here = 为了)"],["打击……违法违规行为","to crack down on … breaches"],["根据《出口管制法》《对外贸易法》等法律法规","under the Export Control Law, the Foreign Trade Law and other laws and regulations"],["商务部决定进一步完善……举报处理工作","MOFCOM has decided to further improve how it handles reports of …"]],"key":"<b>Purpose first, actor last:</b> notices open with 为… (in order to) and 根据… (under), and only then say who acts. Find <span class='bd-zh-i'>商务部决定</span> and the sentence falls into place."}},{"n":2,"tok":[["现","xiàn","now (formal)","现在",1],["公告","gōnggào","public notice; to announce publicly","",1],["如下","rúxià","as follows","下面这些",1],["：","","","",0]],"bd":{"meaning":"We hereby announce the following:","chunks":[["现","now (formal for 现在)"],["公告","announce, as a public notice"],["如下","as follows (= 下面这些)"]],"key":"<b>Stock phrase:</b> <span class='bd-zh-i'>现公告如下</span> is the fixed line that means \"the rules start here\". Spoken, you'd say 现在宣布下面这些事."}}],[{"n":3,"tok":[["一","yī","one; single","",0],["、","","","",0],["任何","rènhé","any","",0],["组织","zǔzhī","organisation","",0],["和","hé","and","",0],["个人","gèrén","individual","",0],["有权","yǒuquán","to have the right to","",1],["举报","jǔbào","to report (wrongdoing to the authorities)","",1],["涉嫌","shèxián","to be suspected of","被怀疑",1],["违反","wéifǎn","to breach; violate","",0],["相关","xiāngguān","relevant; related","",0],["法律法规","fǎlǜ fǎguī","laws and regulations","",1],["出口","chūkǒu","to export; export","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["的","de","(linking particle: …'s / that …)","",0],["行为","xíngwéi","conduct; act","",0],["，","","","",0],["包括","bāokuò","to include","",0],["：","","","",0]],"bd":{"meaning":"1. Any organisation or individual has the right to report conduct suspected of exporting dual-use strategic minerals in breach of the relevant laws and regulations, including:","chunks":[["任何组织和个人","any organisation or individual"],["有权举报","has the right to report"],["涉嫌违反相关法律法规出口……的行为","conduct suspected of exporting … in breach of the relevant laws (the whole phrase describes 行为)"],["包括：","including:"]],"key":"<b>Long describer before 的:</b> everything between 举报 and <span class='bd-zh-i'>的行为</span> describes the 行为 (conduct). Find the noun after 的 first, then go back for the description."}}],[{"n":4,"tok":[["（","","","",0],["一","yī","one; single","",0],["）","","","",0],["未经许可","wèijīng xǔkě","without permission (no licence)","没有批准",1],["擅自","shànzì","without authorisation","自己随便",1],["出口","chūkǒu","to export; export","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["；","","","",0]]}],[{"n":5,"tok":[["（","","","",0],["二","èr","two; 2","",0],["）","","","",0],["超出","chāochū","to go beyond; exceed","",0],["出口","chūkǒu","to export; export","",0],["许可证件","xǔkě zhèngjiàn","licence (the licence documents)","",1],["载明","zǎimíng","to state in writing (in a document)","写明",1],["的","de","(linking particle: …'s / that …)","",0],["范围","fànwéi","scope","",0],["、","","","",0],["条件","tiáojiàn","conditions","",0],["和","hé","and","",0],["有效期","yǒuxiàoqī","validity period","",1],["出口","chūkǒu","to export; export","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["；","","","",0]],"bd":{"meaning":"(2) exporting dual-use strategic minerals beyond the scope, conditions or validity period stated in the export licence;","chunks":[["超出","going beyond"],["出口许可证件载明的","stated in the export licence (载明 = 写明)"],["范围、条件和有效期","scope, conditions and validity period"],["出口战略矿产两用物项","exporting dual-use strategic minerals"]],"key":"<b>载 = written in:</b> <span class='bd-zh-i'>载明</span> (zǎimíng) means \"set out in a document\". It's zǎi, not the zài of 载货 (to carry cargo)."}}],[{"n":6,"tok":[["（","","","",0],["三","sān","three; 3","",0],["）","","","",0],["出口","chūkǒu","to export; export","",0],["禁止","jìnzhǐ","to prohibit","",0],["出口","chūkǒu","to export; export","",0],["的","de","(linking particle: …'s / that …)","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["；","","","",0]]}],[{"n":7,"tok":[["（","","","",0],["四","sì","four; 4","",0],["）","","","",0],["以","yǐ","by means of (formal)","用",1],["改造","gǎizào","to modify; convert","",0],["、","","","",0],["拆分","chāifēn","to split up; break down","",1],["为","wéi","into (as in 'split into')","成",1],["部件","bùjiàn","part; component","",0],["或者","huòzhě","or","",0],["组件","zǔjiàn","component; assembly","",0],["等","děng","etc.; and other","",0],["方式","fāngshì","means; method","办法",0],["规避","guībì","to evade; circumvent","躲开",1],["许可","xǔkě","licence; permission","",1],["出口","chūkǒu","to export; export","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["相关","xiāngguān","relevant; related","",0],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["；","","","",0]],"bd":{"meaning":"(4) evading licensing when exporting dual-use items related to strategic minerals, for example by modifying them or breaking them down into parts or components;","chunks":[["以……等方式","by means such as … (以 = 用, 方式 = 办法)"],["改造、拆分为部件或者组件","modifying them, or splitting them into parts or components"],["规避许可","evading the licence requirement"],["出口战略矿产相关两用物项","to export dual-use items related to strategic minerals"]],"key":"<b>The 以…方式 frame:</b> <span class='bd-zh-i'>以 X 等方式 + verb</span> = \"do [verb] by means such as X\". Spoken: 用 X 这些办法来…"}}],[{"n":8,"tok":[["（","","","",0],["五","wǔ","five; 5","",0],["）","","","",0],["通过","tōngguò","through; by means of","",0],["绕道","ràodào","to route via; take a detour through","",1],["第三国","dì-sān guó","third country","",1],["（","","","",0],["地区","dìqū","region","",0],["）","","","",0],["规避","guībì","to evade; circumvent","躲开",1],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["出口管制","chūkǒu guǎnzhì","export control(s)","",1],["有关规定","yǒuguān guīdìng","relevant provisions; applicable rules","",1],["；","","","",0]]}],[{"n":9,"tok":[["（","","","",0],["六","liù","six; 6","",0],["）","","","",0],["通过","tōngguò","through; by means of","",0],["贸易性","màoyìxìng","trade-related; commercial","",1],["出口","chūkǒu","to export; export","",0],["及","jí","and (formal)","和",1],["知识产权","zhīshi chǎnquán","intellectual property","",1],["许可","xǔkě","licence; permission","",1],["、","","","",0],["投资","tóuzī","investment","",0],["、","","","",0],["交流","jiāoliú","exchanges","",0],["、","","","",0],["赠送","zèngsòng","gifting","",0],["、","","","",0],["展览","zhǎnlǎn","exhibitions","",0],["、","","","",0],["展示","zhǎnshì","displays; demonstrations","",0],["、","","","",0],["检测","jiǎncè","inspection; testing","",0],["、","","","",0],["测试","cèshì","testing","",0],["、","","","",0],["援助","yuánzhù","aid","",0],["、","","","",0],["传授","chuánshòu","teaching; passing on (know-how)","",1],["、","","","",0],["联合","liánhé","joint","",0],["研发","yánfā","R&D","",0],["、","","","",0],["受雇","shòugù","being employed (by)","",1],["或","huò","or (formal)","或者",1],["雇佣","gùyōng","employing; hiring","",0],["、","","","",0],["咨询","zīxún","consulting","",0],["等","děng","etc.; and other","",0],["方式","fāngshì","means; method","办法",0],["非法","fēifǎ","illegally","",0],["对外","duìwài","abroad; to foreign parties","",0],["转移","zhuǎnyí","to transfer","",0],["受","shòu","to be subject to","被",1],["管制","guǎnzhì","control","",1],["的","de","(linking particle: …'s / that …)","",0],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["相关","xiāngguān","relevant; related","",0],["技术","jìshù","technology","",0],["；","","","",0]],"bd":{"meaning":"(6) illegally transferring controlled strategic-mineral technology abroad through trade exports or through IP licensing, investment, exchanges, gifts, exhibitions, demonstrations, inspection, testing, aid, teaching, joint R&D, employment, consulting or similar means;","chunks":[["通过贸易性出口及……等方式","through trade exports and … similar means (及 = 和)"],["知识产权许可、投资、……咨询","the channels: IP licensing, investment, … consulting"],["非法对外转移","illegally transferring abroad"],["受管制的战略矿产相关技术","controlled technology related to strategic minerals (受管制的 = 被管着的)"]],"key":"<b>The list is a catalogue:</b> the 、-separated list just names every channel. Skim it and jump to the verb <span class='bd-zh-i'>非法对外转移</span> to see what is banned."}}],[{"n":10,"tok":[["（","","","",0],["七","qī","seven; 7","",0],["）","","","",0],["明知","míngzhī","knowing full well","明明知道",1],["出口经营者","chūkǒu jīngyíngzhě","exporter (export operator)","",1],["从事","cóngshì","to engage in","做",1],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["出口","chūkǒu","to export; export","",0],["违法行为","wéifǎ xíngwéi","unlawful act","",1],["仍","réng","still (formal)","还是",1],["为","wèi","for; to (formal)","给",1],["其","qí","him / her / them / it (formal)","他 / 他们",1],["提供","tígōng","to provide","",0],["代理","dàilǐ","agency (acting as agent)","",0],["、","","","",0],["货运","huòyùn","freight","",0],["、","","","",0],["寄递","jìdì","postal and courier delivery","快递",1],["、","","","",0],["报关","bàoguān","customs declaration","",1],["、","","","",0],["第三方","dì-sān fāng","third-party","",0],["电子商务","diànzǐ shāngwù","e-commerce","",0],["交易平台","jiāoyì píngtái","trading platform","",0],["和","hé","and","",0],["金融","jīnróng","financial","",0],["等","děng","etc.; and other","",0],["服务","fúwù","services","",0],["；","","","",0]],"bd":{"meaning":"(7) knowingly providing agency, freight, delivery, customs-declaration, third-party e-commerce platform, financial or similar services to an exporter engaged in unlawful exports of dual-use strategic minerals;","chunks":[["明知","knowing full well (that)"],["出口经营者从事……出口违法行为","an exporter is engaged in unlawful exports of …"],["仍为其提供","still provides them with (仍 = 还是, 为其 = 给他们)"],["代理、货运、……金融等服务","agency, freight, … financial and similar services"]],"key":"<b>为其 = 给他:</b> <span class='bd-zh-i'>为其提供</span> (wèi qí tígōng) is the formal way to say 给他/他们提供. 其 is the written him/her/it/them."}}],[{"n":11,"tok":[["（","","","",0],["八","bā","eight;  8","",0],["）","","","",0],["教唆","jiàosuō","to incite; abet","怂恿",1],["、","","","",0],["帮助","bāngzhù","to help","",0],["出口经营者","chūkǒu jīngyíngzhě","exporter (export operator)","",1],["、","","","",0],["进口商","jìnkǒushāng","importer","",1],["、","","","",0],["最终用户","zuìzhōng yònghù","end user","",1],["规避","guībì","to evade; circumvent","躲开",1],["战略矿产","zhànlüè kuàngchǎn","strategic minerals","",1],["两用物项","liǎngyòng wùxiàng","dual-use items (civil and military use)","",1],["出口管制","chūkǒu guǎnzhì","export control(s)","",1],["有关规定","yǒuguān guīdìng","relevant provisions; applicable rules","",1],["实施","shíshī","to carry out; commit (an act)","做",1],["违法行为","wéifǎ xíngwéi","unlawful act","",1],["；","","","",0]]}]]},{"id":"us-tariffs-section-301","num":2,"chip":"301 关税","kicker":"BBC中文 · 中美贸易","kind":"news","register":"新闻","gist":"The US has proposed new tariffs on 14 trading partners, including China, the EU, Japan, South Korea and Taiwan, after a Section 301 investigation into 'structural overcapacity'. China faces the highest cap (40%), but most Chinese goods would be capped at 20%. Nothing takes effect before January, after hearings, and analysts read the move as leverage ahead of US–China talks, with the trade truce expiring on 10 January. Beijing calls it political manipulation and still holds the critical-minerals card. Experts think these tariffs will stand up in court better than the 'Liberation Day' tariffs the Supreme Court struck down. The EU rejects them, and pressure is building inside the US.","source":{"name":"BBC中文"},"flag":"News article (BBC中文): 12 of 55 sentences have breakdowns, chosen for the formal patterns they teach (news gets a selection, never every sentence). The rest is glossed word by word. The text comes from your RTF via the intake script; it was already simplified (0 characters converted). No link or date was supplied, so the source line cites BBC中文 and the article's headline. Pinyin fixes: 为 read wéi in S4, S22, S48 and wèi in S26; 只 zhī; 得 de; 重整 chóngzhěng; 卡特勒 Kǎtèlè. Name transliterations follow the article; pinyin for foreign names is a guide only. 'Casual' equivalents are approximate.","quiz":{"q":"新关税最早什么时候生效？","a":"最早明年1月。(January next year at the earliest.)"},"register_notes":[{"formal":"拟","casual":"打算","en":"plan to"},{"formal":"须","casual":"必须 / 要","en":"must"},{"formal":"若","casual":"如果","en":"if"},{"formal":"则","casual":"却 / 就","en":"however; then"},{"formal":"由 X 支付","casual":"让 X 来付","en":"paid by X"},{"formal":"其","casual":"他的 / 它们的","en":"his, its, their"},{"formal":"仅","casual":"只","en":"only"},{"formal":"数日","casual":"几天","en":"a few days"},{"formal":"于","casual":"在","en":"on, at, in"},{"formal":"称","casual":"说","en":"to say"},{"formal":"未能","casual":"没能","en":"failed to"},{"formal":"低于","casual":"比 … 低","en":"lower than"},{"formal":"至","casual":"到","en":"to, until"},{"formal":"据称","casual":"据说","en":"allegedly"},{"formal":"鲜有","casual":"很少有","en":"rarely"},{"formal":"随即","casual":"马上就","en":"immediately"},{"formal":"尽管","casual":"虽然","en":"although"}],"title":{"text":"特朗普深圳会晤一周后再挥关税大棒 对华税率可达40%","tok":[["特朗普","Tèlǎngpǔ","Trump","",0],["深圳","shēnzhèn","Shenzhen subprovincial city in Guangdong, special economic zone close to Hong Ko","",0],["会晤","huìwù","a (high-level) meeting; to meet","见面",1],["一周","yīzhōu","one week; all the way around","",0],["后","hòu","back; behind","",0],["再挥","zài huī","to wield again","",0],["关税","guānshuì","customs duty; tariff","",0],["大棒","dàbàng","big stick (here: the threat of tariffs)","",0],[" ","","","",0],["对华","duìhuá","towards China (formal)","对中国",1],["税率","shuìlǜ","tax rate","",0],["可达","kědá","can reach; up to","",0],["40%","","","",0]]},"paras":[[{"n":1,"tok":[["美国","měiguó","United States; USA","",0],["周三","zhōusān","Wednesday","",0],["宣布","xuānbù","to declare; to announce","",0],["，","","","",0],["拟","nǐ","to plan to; to propose (formal)","打算",1],["对","duì","on; towards; to","",0],["包括","bāokuò","to comprise; to include","",0],["中国","zhōngguó","China","",0],["、","","","",0],["欧盟","ōuméng","European Union; EU","",0],["、","","","",0],["日本","rìběn","Japan","",0],["、","","","",0],["韩国","hánguó","South Korea (Republic of Korea); Han, one of the Seven Hero States of the Warrin","",0],["和","hé","and","",0],["台湾","táiwān","Taiwan","",0],["在内","zàinèi","(included) in it; among them","",0],["的","de","(linking particle: …'s / that …)","",0],["14","","","",0],["个","gè","variant of 個|个[ge4]","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["加征","jiāzhēng","to impose additional (tariffs)","",1],["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["，","","","",0],["总统","zǒngtǒng","president (of a country); CL:個|个[ge4],位[wei4],名[ming2],屆|届[jie4]","",0],["特朗普","Tèlǎngpǔ","Trump","",0],["（","","","",0],["Donald","","","",0],[" ","","","",0],["Trump","","","",0],["）","","","",0],["继续","jìxù","to continue; to proceed with","",0],["推进","tuījìn","to impel; to carry forward","",0],["其","qí","its / his / their (formal)","他的 / 它们的",1],["标志性","biāozhìxìng","signature; landmark","",1],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["政策","zhèngcè","policy; CL:個|个[ge4]","",0],["。","","","",0]],"bd":{"meaning":"On Wednesday the US announced plans to impose new tariffs on 14 trading partners, including China, the EU, Japan, South Korea and Taiwan, as President Trump keeps pushing his signature trade policy.","chunks":[["美国周三宣布","the US announced on Wednesday"],["拟对……14个贸易伙伴加征新关税","plans to impose new tariffs on … 14 trading partners (拟 = 打算)"],["包括……在内","including … (the 包括 … 在内 frame wraps the list)"],["继续推进其标志性贸易政策","keeps pushing his signature trade policy (其 = 他的)"]],"key":"<b>拟 = plans to:</b> news writes <span class='bd-zh-i'>拟</span> where you'd say 打算 or 准备. It signals a proposal, not a done deal."}}],[{"n":2,"tok":[["中国","zhōngguó","China","",0],["面对","miànduì","to face;  to confront","",0],["的","de","(linking particle: …'s / that …)","",0],["税率","shuìlǜ","tax rate","",0],["上限","shàngxiàn","upper limit; cap","",1],["最高","zuìgāo","tallest; highest","",0],["，","","","",0],["达","dá","to attain; to reach","",0],["40%","","","",0],["；","","","",0]]},{"n":3,"tok":[["越南","yuènán","Vietnam; Vietnamese","",0],["其次","qícì","next; secondly","",0],["，","","","",0],["最高","zuìgāo","tallest; highest","",0],["35%","","","",0],["；","","","",0]]},{"n":4,"tok":[["其余","qíyú","the rest; the others","",0],["经济体","jīngjìtǐ","an economy;  a country (or region etc) viewed as an economic entity","",0],["为","wéi","to be (formal)","是",1],["20%","","","",0],["或","huò","maybe; perhaps","",0],["25%","","","",0],["。","","","",0]]},{"n":5,"tok":[["不过","bùguò","only; merely","",0],["，","","","",0],["由于","yóuyú","due to; as a result of","",0],["特朗普","Tèlǎngpǔ","Trump","",0],["此前","cǐqián","previously (formal)","之前",1],["在","zài","to exist;  to be alive","",0],["多项","duōxiàng","several (agreements, items)","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["协议","xiéyì","agreement; pact","",0],["中","zhōng","in; among","",0],["同意","tóngyì","to agree; to consent","",0],["设定","shèdìng","to set; to set up","",0],["关税","guānshuì","customs duty; tariff","",0],["上限","shàngxiàn","upper limit; cap","",1],["，","","","",0],["实际","shíjì","reality; practice","",0],["缴纳","jiǎonà","to pay (tax, a fee)","交",1],["的","de","(linking particle: …'s / that …)","",0],["税率","shuìlǜ","tax rate","",0],["将","jiāng","will (formal)","会 / 要",0],["低于","dīyú","to be lower than","",0],["公布","gōngbù","to announce;  to make public","",0],["税率","shuìlǜ","tax rate","",0],["。","","","",0]],"bd":{"meaning":"But because Trump had earlier agreed to tariff caps in several trade deals, the rates actually paid will be lower than the announced ones.","chunks":[["由于特朗普此前在多项贸易协议中同意设定关税上限","because Trump had earlier agreed to tariff caps in several trade deals (此前 = 之前)"],["实际缴纳的税率","the rate actually paid (缴纳 = 交)"],["将低于公布税率","will be lower than the announced rate (低于 = 比 … 低)"]],"key":"<b>X 于 Y = compared with Y:</b> <span class='bd-zh-i'>低于 / 高于</span> are the written way to say 比 … 低 / 比 … 高."}}],[{"n":6,"tok":[["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["须","xū","must (formal)","必须 / 要",1],["经","jīng","to go through; after (formal)","经过",1],["多轮","duōlún","several rounds","",0],["公众","gōngzhòng","public","",0],["咨询","zīxún","to consult; to seek advice","",0],["，","","","",0],["并","bìng","and also (formal)","而且",0],["将","jiāng","will (formal)","会 / 要",0],["举行","jǔxíng","to hold (a meeting, ceremony etc)","",0],["听证会","tīngzhènghuì","hearing (formal public hearing)","",1],["，","","","",0],["最早","zuìzǎo","at the earliest","",0],["明年","míngnián","next year","",0],["1","","","",0],["月","yuè","moon; month","",0],["才","cái","only then; not until","",0],["会","huì","to balance an account; accounting","",0],["生效","shēngxiào","to take effect","",1],["。","","","",0]],"bd":{"meaning":"The new tariffs must go through several rounds of public consultation and hearings, and won't take effect until January at the earliest.","chunks":[["须经多轮公众咨询","must go through several rounds of public consultation (须经 = 必须经过)"],["并将举行听证会","and hearings will also be held"],["最早明年1月才会生效","won't take effect until next January at the earliest"]],"key":"<b>One-character formal verbs:</b> written Chinese shortens two-character words: <span class='bd-zh-i'>须</span> = 必须, <span class='bd-zh-i'>经</span> = 经过. Expand them in your head."}},{"n":7,"tok":[["此时","cǐshí","now; this moment","",0],["距离","jùlí","distance; CL:個|个[ge4]","",0],["特朗普","Tèlǎngpǔ","Trump","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["中国","zhōngguó","China","",0],["国家","guójiā","country;  nation","",0],["主席","zhǔxí","chairperson; premier","",0],["习近平","Xí Jìnpíng","Xi Jinping","",0],["会晤","huìwù","a (high-level) meeting; to meet","见面",1],["仅","jǐn","only (formal)","只",1],["隔","gé","to separate; to partition","",0],["数日","shùrì","a few days (formal)","几天",1],["，","","","",0],["中美","zhōngměi","China-USA","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["休战","xiūzhàn","truce","",1],["协议","xiéyì","agreement; pact","",0],["又","yòu","again; and also","",0],["将","jiāng","will (formal)","会 / 要",0],["于","yú","on; at; in (formal)","在",1],["1","","","",0],["月","yuè","moon; month","",0],["10","","","",0],["日","rì","sun; day","",0],["到期","dàoqī","to expire","",0],["，","","","",0],["分析","fēnxī","to analyze; analysis","",0],["人士","rénshì","people (in a field: analysts, officials)","",1],["认为","rènwéi","to believe;  to think","",0],["，","","","",0],["这轮","zhèlún","this round","",0],["关税","guānshuì","customs duty; tariff","",0],["是","shì","variant of 是[shi4]","",0],["华盛顿","huáshèngdùn","Washington (name); George Washington (1732-1799), first US president","",0],["在","zài","to exist;  to be alive","",0],["谈判桌","tánpànzhuō","negotiating table","",0],["上","shàng","(bound form) up;  upper","",0],["的","de","(linking particle: …'s / that …)","",0],["新","xīn","new; newly","",0],["筹码","chóumǎ","bargaining chip","",1],["。","","","",0]],"bd":{"meaning":"It comes only days after Trump met Chinese President Xi Jinping, and with the US–China trade truce due to expire on 10 January, analysts see this round of tariffs as Washington's new bargaining chip.","chunks":[["此时距离","at this point, the gap since"],["特朗普与中国国家主席习近平会晤","Trump's meeting with President Xi Jinping"],["仅隔数日","is only a few days (仅 = 只, 数日 = 几天)"],["中美贸易休战协议又将于1月10日到期","and the US–China trade truce expires on 10 January (于 = 在)"],["分析人士认为……新筹码","analysts see it as … a new bargaining chip"]],"key":"<b>于 + date:</b> <span class='bd-zh-i'>将于1月10日到期</span> = 会在1月10日到期. 于 is the written 在 before times and places."}}],[{"n":8,"tok":[["白宫","báigōng","White House","",0],["称","chēng","to state; to say (formal)","说",1],["，","","","",0],["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["针对","zhēnduì","to target; aimed at","",1],["的","de","(linking particle: …'s / that …)","",0],["是","shì","variant of 是[shi4]","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["的","de","(linking particle: …'s / that …)","",0],["“","","","",0],["结构性","jiégòuxìng","structural","",1],["产能","chǎnnéng","production capacity","",1],["过剩","guòshèng","excess; surplus","",1],["”","","","",0],["。","","","",0]]},{"n":9,"tok":[["经济学家","jīngjìxuéjiā","economist","",0],["则","zé","however; meanwhile (formal contrast)","却 / 就",1],["警告","jǐnggào","to warn; to admonish","",0],["，","","","",0],["关税","guānshuì","customs duty; tariff","",0],["由","yóu","by (who does it)","让 … 来",1],["进口","jìnkǒu","to import; imported","",0],["商品","shāngpǐn","commodity; goods","",0],["的","de","(linking particle: …'s / that …)","",0],["美国","měiguó","United States; USA","",0],["企业","qǐyè","company;  firm","",0],["支付","zhīfù","to pay (money)","",0],["，","","","",0],["成本","chéngběn","(manufacturing, production etc) costs","",0],["若","ruò","if (formal)","如果",1],["转嫁","zhuǎnjià","to pass on (costs) to","",1],["给","gěi","to supply; to provide","",0],["消费者","xiāofèizhě","consumer","",0],["，","","","",0],["可能","kěnéng","might (happen); possible","",0],["推高","tuīgāo","to push up","",0],["物价","wùjià","(commodity) prices; CL:個|个[ge4]","",0],["并","bìng","and also (formal)","而且",0],["抑制","yìzhì","to curb; to suppress","",1],["全球","quánqiú","entire; total","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["。","","","",0]],"bd":{"meaning":"Economists warn that tariffs are paid by the American companies importing the goods, and if costs are passed on to consumers they could push up prices and hold back global trade.","chunks":[["经济学家则警告","economists, however, warn (则 = contrast)"],["关税由进口商品的美国企业支付","tariffs are paid by the US firms that import the goods (由 = who pays)"],["成本若转嫁给消费者","if costs are passed on to consumers (若 = 如果)"],["可能推高物价并抑制全球贸易","could push up prices and curb global trade"]],"key":"<b>由 marks who does it:</b> <span class='bd-zh-i'>由 X 支付</span> = \"paid by X\". Spoken: 让 X 来付."}}],[{"n":10,"tok":[["中美","zhōngměi","China-USA","",0],["博弈","bóyì","contest; strategic game","",1],["的","de","(linking particle: …'s / that …)","",0],["下","xià","down; downwards","",0],["一步","yībù","step","",0]]}],[{"n":11,"tok":[["几天","jǐtiān","several days","",0],["前","qián","front; forward","",0],["，","","","",0],["特朗普","Tèlǎngpǔ","Trump","",0],["结束","jiéshù","termination; to finish","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["习近平","Xí Jìnpíng","Xi Jinping","",0],["和","hé","and","",0],["俄罗斯","éluósī","Russia","",0],["总统","zǒngtǒng","president (of a country); CL:個|个[ge4],位[wei4],名[ming2],屆|届[jie4]","",0],["普京","Pǔjīng","Putin","",0],["（","","","",0],["Vladimir","","","",0],[" ","","","",0],["Putin","","","",0],["）","","","",0],["的","de","(linking particle: …'s / that …)","",0],["会晤","huìwù","a (high-level) meeting; to meet","见面",1],["后","hòu","back; behind","",0],["表示","biǎoshì","(of sb) to express;  to state","",0],["：","","","",0],["“","","","",0],["我","wǒ","I;  me","",0],["和","hé","and","",0],["这","zhè","(pronoun) this;  these","",0],["两个","liǎnggè","two (of them)","",0],["人","rén","person;  people","",0],["相处","xiāngchǔ","to be in contact (with sb); to associate","",0],["得","de","(particle linking a verb to how it went)","",0],["非常","fēicháng","very;  really","",0],["好","hǎo","to be fond of;  to have a tendency to","",0],["，","","","",0],["我们","wǒmen","we;  us","",0],["会","huì","to balance an account; accounting","",0],["化解","huàjiě","to resolve; to defuse","",1],["彼此之间","bǐcǐzhījiān","between each other","",0],["的","de","(linking particle: …'s / that …)","",0],["分歧","fēnqí","differences; disagreements","",1],["。","","","",0],["”","","","",0]]}],[{"n":12,"tok":[["特朗普","Tèlǎngpǔ","Trump","",0],["第二","dì'èr","second; number two","",0],["任期","rènqī","term of office","",1],["内","nèi","inside; inner","",0],["，","","","",0],["中美","zhōngměi","China-USA","",0],["关税","guānshuì","customs duty; tariff","",0],["战","zhàn","to fight; fight","",0],["几度","jǐdù","several times","",1],["升级","shēngjí","to go up by one grade;  to be promoted","",0],["又","yòu","again; and also","",0],["降温","jiàngwēn","to become cooler; to lower the temperature","",0],["。","","","",0]]},{"n":13,"tok":[["去年","qùnián","last year","",0],["4","","","",0],["月","yuè","moon; month","",0],["，","","","",0],["特朗普","Tèlǎngpǔ","Trump","",0],["提高","tígāo","to raise; to increase","",0],["对华","duìhuá","towards China (formal)","对中国",1],["关税","guānshuì","customs duty; tariff","",0],["后","hòu","back; behind","",0],["，","","","",0],["双方","shuāngfāng","bilateral; both sides","",0],["相继","xiāngjì","one after another","",1],["加码","jiāmǎ","to raise the stakes","",1],["，","","","",0],["其后","qíhòu","after that (formal)","后来",1],["局势","júshì","situation","",1],["降温","jiàngwēn","to become cooler; to lower the temperature","",0],["，","","","",0],["两","liǎng","two; both","",0],["国","guó","country;  nation","",0],["转向","zhuǎnxiàng","to get lost; to lose one's way","",0],["谈判","tánpàn","to negotiate; negotiation","",0],["。","","","",0]]},{"n":14,"tok":[["本月","běnyuè","this month; the current month","",0],["稍早","shāozǎo","earlier (this month / year)","",1],["，","","","",0],["双方","shuāngfāng","bilateral; both sides","",0],["再","zài","again; then","",0],["把","bǎ","(marks the object before the verb)","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["休战","xiūzhàn","truce","",1],["延长","yáncháng","to prolong; to extend","",0],["至","zhì","to; until (formal)","到",0],["明年","míngnián","next year","",0],["1","","","",0],["月","yuè","moon; month","",0],["。","","","",0]]}],[{"n":15,"tok":[["中国外交部","Zhōngguó Wàijiāobù","China's Ministry of Foreign Affairs","",0],["发言人","fāyánrén","spokesperson","",0],["郭嘉昆","Guō Jiākūn","Guo Jiakun (Chinese foreign ministry spokesman)","",0],["称","chēng","to state; to say (formal)","说",1],["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["是","shì","variant of 是[shi4]","",0],["“","","","",0],["政治","zhèngzhì","politics; political","",0],["操弄","cāonòng","manipulation","",1],["”","","","",0],["，","","","",0],["并","bìng","and also (formal)","而且",0],["说","shuō","variant of 說|说[shuo1]","",0],["美方","měifāng","the US side","",0],["关于","guānyú","pertaining to; concerning","",0],["中国","zhōngguó","China","",0],["生产","shēngchǎn","to produce;  to manufacture","",0],["超过","chāoguò","to surpass; to exceed","",0],["其","qí","its / his / their (formal)","他的 / 它们的",1],["消化","xiāohuà","to digest (food); (fig.) to absorb (information etc)","",0],["能力","nénglì","capability; ability","",0],["的","de","(linking particle: …'s / that …)","",0],["指称","zhǐchēng","allegation","",1],["“","","","",0],["伪","wěi","false; pseudo-","",1],["命题","mìngtí","proposition (伪命题 = a false premise)","",1],["”","","","",0],["。","","","",0]]},{"n":16,"tok":[["中国","zhōngguó","China","",0],["驻美","zhùměi","stationed in the US","",1],["大使馆","dàshǐguǎn","embassy; CL:座[zuo4],個|个[ge4]","",0],["发言人","fāyánrén","spokesperson","",0],["对","duì","on; towards; to","",0],["BBC","","","",0],["表示","biǎoshì","(of sb) to express;  to state","",0],["，","","","",0],["“","","","",0],["关税","guānshuì","customs duty; tariff","",0],["战","zhàn","to fight; fight","",0],["、","","","",0],["贸易战","màoyìzhàn","trade war","",0],["不","bù","no;  not so","",0],["符合","fúhé","in keeping with; in accordance with","",0],["任何人","rènhérén","anyone","",0],["的","de","(linking particle: …'s / that …)","",0],["利益","lìyì","benefit; (in sb's) interest","",0],["”","","","",0],["，","","","",0],["所谓","suǒwèi","so-called","",1],["“","","","",0],["产业","chǎnyè","industry; estate","",0],["产能","chǎnnéng","production capacity","",1],["过剩","guòshèng","excess; surplus","",1],["”","","","",0],["并","bìng","and also (formal)","而且",0],["不","bù","no;  not so","",0],["真实","zhēnshí","true;  real","",0],["存在","cúnzài","to exist; to be","",0],["，","","","",0],["分歧","fēnqí","differences; disagreements","",1],["应","yīng","to answer; to respond","",0],["通过","tōngguò","to pass through;  to get through","",0],["谈判","tánpàn","to negotiate; negotiation","",0],["解决","jiějué","to solve;  to resolve","",0],["。","","","",0]]},{"n":17,"tok":[["两","liǎng","two; both","",0],["国","guó","country;  nation","",0],["元首","yuánshǒu","head of state","",1],["下","xià","down; downwards","",0],["月","yuè","moon; month","",0],["将","jiāng","will (formal)","会 / 要",0],["在","zài","to exist;  to be alive","",0],["迈阿密","mài'āmì","Miami (Florida)","",0],["的","de","(linking particle: …'s / that …)","",0],["二十国集团","Èrshí Guó Jítuán","the G20","",0],["（","","","",0],["G20","","","",0],["）","","","",0],["峰会","fēnghuì","summit meeting","",0],["再度","zàidù","once again (formal)","又一次",1],["会面","huìmiàn","to meet with; meeting","",0],["。","","","",0]]}],[{"n":18,"tok":[["北京","běijīng","Beijing, capital of the People's Republic of China","",0],["手里","shǒulǐ","in hand; (a situation is) in sb's hands","",0],["也","yě","(adverb) also;  both ... and ... (before predicates only)","",0],["有","yǒu","to have;  there is","",0],["牌","pái","mahjong tile; playing card","",0],["。","","","",0]]},{"n":19,"tok":[["周二","zhōu'èr","Tuesday","",0],["，","","","",0],["中国","zhōngguó","China","",0],["商务部","shāngwùbù","Department of Trade; Department of Commerce","",0],["宣布","xuānbù","to declare; to announce","",0],["，","","","",0],["把","bǎ","(marks the object before the verb)","",0],["锑","tī","antimony","",1],["、","","","",0],["镓","jiā","gallium","",1],["、","","","",0],["锗","zhě","germanium","",1],["等","děng","etc.; and other","",0],["关键","guānjiàn","crucial point; crux","",0],["矿产","kuàngchǎn","minerals","",0],["对美","duìměi","towards the US (formal)","对美国",1],["出口管制","chūkǒu guǎnzhì","export controls","",1],["的","de","(linking particle: …'s / that …)","",0],["暂停期","zàntíngqī","suspension period","",1],["延长","yáncháng","to prolong; to extend","",0],["至","zhì","to; until (formal)","到",0],["1","","","",0],["月","yuè","moon; month","",0],["27","","","",0],["日","rì","sun; day","",0],["。","","","",0]]},{"n":20,"tok":[["锑","tī","antimony","",1],["用于","yòngyú","to use in;  to use on","",0],["军用","jūnyòng","(for) military use; military application","",0],["弹药","dànyào","ammunition","",1],["和","hé","and","",0],["电池","diànchí","battery; CL:節|节[jie2],組|组[zu3]","",0],["，","","","",0],["镓","jiā","gallium","",1],["和","hé","and","",0],["锗","zhě","germanium","",1],["用于","yòngyú","to use in;  to use on","",0],["电信","diànxìn","telecommunications","",0],["和","hé","and","",0],["半导体","bàndǎotǐ","semiconductor","",0],["。","","","",0]]},{"n":21,"tok":[["中国","zhōngguó","China","",0],["在","zài","to exist;  to be alive","",0],["关键","guānjiàn","crucial point; crux","",0],["矿产","kuàngchǎn","minerals","",0],["精炼","jīngliàn","refining","",1],["领域","lǐngyù","domain; sphere","",0],["控制","kòngzhì","to control","",0],["着","zhe","(particle: ongoing state)","",0],["全球","quánqiú","entire; total","",0],["约","yuē","about; roughly","",0],["70%","","","",0],["的","de","(linking particle: …'s / that …)","",0],["市场","shìchǎng","marketplace; market (also in abstract)","",0],["，","","","",0],["预计","yùjì","to forecast; to predict","",0],["北京","běijīng","Beijing, capital of the People's Republic of China","",0],["会","huì","to balance an account; accounting","",0],["在","zài","to exist;  to be alive","",0],["谈判","tánpàn","to negotiate; negotiation","",0],["中","zhōng","in; among","",0],["运用","yùnyòng","to use; to put to use","",0],["这一","zhèyī","this (formal)","这个",0],["筹码","chóumǎ","bargaining chip","",1],["。","","","",0]]}],[{"n":22,"tok":[["根据","gēnjù","according to; based on","",0],["美方","měifāng","the US side","",0],["公布","gōngbù","to announce;  to make public","",0],["的","de","(linking particle: …'s / that …)","",0],["信息","xìnxī","information; news","",0],["，","","","",0],["对","duì","on; towards; to","",0],["中国","zhōngguó","China","",0],["的","de","(linking particle: …'s / that …)","",0],["多数","duōshù","majority;  most","",0],["商品","shāngpǐn","commodity; goods","",0],["的","de","(linking particle: …'s / that …)","",0],["拟议","nǐyì","proposed","",1],["税率","shuìlǜ","tax rate","",0],["最高","zuìgāo","tallest; highest","",0],["为","wéi","to be (formal)","是",1],["20%","","","",0],["，","","","",0],["部分","bùfèn","part; share","",0],["商品","shāngpǐn","commodity; goods","",0],["上限","shàngxiàn","upper limit; cap","",1],["为","wéi","to be (formal)","是",1],["10%","","","",0],["，","","","",0],["另有","lìngyǒu","to have some other (reason etc)","",0],["部分","bùfèn","part; share","",0],["商品","shāngpǐn","commodity; goods","",0],["获","huò","(bound form) to reap;  to harvest","",0],["豁免","huòmiǎn","exemption; exempted","",1],["。","","","",0]]},{"n":23,"tok":[["但","dàn","but;  yet","",0],["若","ruò","if (formal)","如果",1],["美方","měifāng","the US side","",0],["认定","rèndìng","to determine; to conclude","",1],["与","yǔ","with; and (formal)","跟 / 和",0],["中方","zhōngfāng","the Chinese side","",0],["的","de","(linking particle: …'s / that …)","",0],["磋商","cuōshāng","consultations; talks","商量",1],["未能","wèinéng","failed to (formal)","没能",1],["充分","chōngfèn","ample; sufficient","",0],["解决","jiějué","to solve;  to resolve","",0],["调查","diàochá","investigation; inquiry","",0],["所指","suǒzhǐ","referred to (by)","",1],["问题","wèntí","question; problem","",0],["，","","","",0],["才","cái","only then; not until","",0],["会","huì","to balance an account; accounting","",0],["考虑","kǎolǜ","to think over; to consider","",0],["把","bǎ","(marks the object before the verb)","",0],["对","duì","on; towards; to","",0],["所有","suǒyǒu","all; to have","",0],["中国","zhōngguó","China","",0],["商品","shāngpǐn","commodity; goods","",0],["的","de","(linking particle: …'s / that …)","",0],["拟议","nǐyì","proposed","",1],["税率","shuìlǜ","tax rate","",0],["上限","shàngxiàn","upper limit; cap","",1],["提高","tígāo","to raise; to increase","",0],["至","zhì","to; until (formal)","到",0],["40%","","","",0],["。","","","",0]],"bd":{"meaning":"Only if the US decides that talks with China haven't adequately resolved the issues raised by the investigation would it consider raising the cap on all Chinese goods to 40%.","chunks":[["但若美方认定","but if the US side concludes"],["与中方的磋商未能充分解决调查所指问题","talks with China failed to fully resolve the issues the investigation raised (未能 = 没能)"],["才会考虑","only then would it consider"],["把……拟议税率上限提高至40%","raising the … proposed rate cap to 40% (至 = 到)"]],"key":"<b>若 … 才 … = only if:</b> <span class='bd-zh-i'>若 X，才会 Y</span> means Y happens only when X does. Spoken: 只有 … 才 …"}}],[{"n":24,"tok":[["亚洲协会","Yàzhōu Xiéhuì","Asia Society","",0],["政策","zhèngcè","policy; CL:個|个[ge4]","",0],["研究所","yánjiūsuǒ","research institute; graduate studies","",0],["（","","","",0],["Asia","","","",0],[" ","","","",0],["Society","","","",0],[" ","","","",0],["Policy","","","",0],[" ","","","",0],["Institute","","","",0],["）","","","",0],["高级","gāojí","high level; high grade","",0],["副总裁","fùzǒngcái","vice-president","",0],["温迪","Wēndí","Wendy","",0],["·","","","",0],["卡特勒","Kǎtèlè","Cutler (Wendy Cutler)","",0],["（","","","",0],["Wendy","","","",0],[" ","","","",0],["Cutler","","","",0],["）","","","",0],["在","zài","to exist;  to be alive","",0],["发给","fāgěi","to issue; to grant","",0],["BBC","","","",0],["中文","zhōngwén","Chinese language","",0],["的","de","(linking particle: …'s / that …)","",0],["邮件","yóujiàn","mail; post","",0],["中","zhōng","in; among","",0],["说","shuō","variant of 說|说[shuo1]","",0],["，","","","",0],["北京","běijīng","Beijing, capital of the People's Republic of China","",0],["虽然","suīrán","although;  even though (often used correlatively with 可是[ke3 shi4] or 但是[dan4 sh","",0],["不满","bùmǎn","resentful; discontented","",0],["，","","","",0],["但","dàn","but;  yet","",0],["只要","zhǐyào","if only; so long as","",0],["新","xīn","new; newly","",0],["税率","shuìlǜ","tax rate","",0],["不","bù","no;  not so","",0],["超过","chāoguò","to surpass; to exceed","",0],["20%","","","",0],["，","","","",0],["似乎","sìhū","it seems;  seemingly","",0],["准备","zhǔnbèi","preparation; to prepare","",0],["接受","jiēshòu","to accept (a suggestion, punishment, bribe etc);  to acquiesce","",0],["。","","","",0]]}],[{"n":25,"tok":[["她","tā","she","",0],["指出","zhǐchū","to indicate; to point out","",0],["，","","","",0],["美方","měifāng","the US side","",0],["保留","bǎoliú","to keep; to retain","",0],["在","zài","to exist;  to be alive","",0],["谈判","tánpàn","to negotiate; negotiation","",0],["破裂","pòliè","to burst;  to rupture","",0],["或","huò","maybe; perhaps","",0],["中方","zhōngfāng","the Chinese side","",0],["未","wèi","not (yet) (formal)","没",1],["履行","lǚxíng","to fulfil (a promise, duty)","",1],["承诺","chéngnuò","commitment; promise","",0],["时","shí","o'clock; time","",0],["提高","tígāo","to raise; to increase","",0],["关税","guānshuì","customs duty; tariff","",0],["的","de","(linking particle: …'s / that …)","",0],["空间","kōngjiān","space;  room","",0],["，","","","",0],["目的","mùdì","purpose;  aim","",0],["是","shì","variant of 是[shi4]","",0],["确保","quèbǎo","to ensure;  to guarantee","",0],["关键","guānjiàn","crucial point; crux","",0],["矿产","kuàngchǎn","minerals","",0],["和","hé","and","",0],["稀土","xītǔ","rare earth (chemistry)","",0],["如期","rúqī","on schedule","按时",1],["供应","gōngyìng","to supply; to provide","",0],["，","","","",0],["并","bìng","and also (formal)","而且",0],["促使","cùshǐ","to push (someone) to","",1],["中方","zhōngfāng","the Chinese side","",0],["增购","zēnggòu","to buy more","多买",1],["美国","měiguó","United States; USA","",0],["农产品","nóngchǎnpǐn","agricultural produce","",0],["。","","","",0]],"bd":{"meaning":"She noted that the US is keeping room to raise tariffs if talks break down or China fails to keep its promises, to make sure critical minerals and rare earths arrive on schedule and to push China to buy more US farm goods.","chunks":[["美方保留","the US keeps (reserves)"],["在谈判破裂或中方未履行承诺时","for when talks collapse or China fails to keep its commitments (未 = 没)"],["提高关税的空间","room to raise tariffs (the object of 保留, held to the end)"],["目的是确保关键矿产和稀土如期供应","the aim is to secure critical minerals and rare earths on schedule (如期 = 按时)"],["并促使中方增购美国农产品","and to push China to buy more US farm produce"]],"key":"<b>Verb … long middle … object:</b> in <span class='bd-zh-i'>保留……的空间</span> the verb 保留 waits for its object 空间 at the end; everything in between says what the room is for."}},{"n":26,"tok":[["她","tā","she","",0],["还","hái","to pay back; to return","",0],["说","shuō","variant of 說|说[shuo1]","",0],["，","","","",0],["华盛顿","huáshèngdùn","Washington (name); George Washington (1732-1799), first US president","",0],["特意","tèyì","deliberately; specially","",0],["等到","děngdào","to wait until; by the time when (sth is ready etc)","",0],["中期","zhōngqī","mid-term (中期选举 = midterm elections)","",0],["选举","xuǎnjǔ","to elect; election","",0],["和","hé","and","",0],["特习会","tèxíhuì","Trump–Xi summit","",1],["之后","zhīhòu","after;  behind","",0],["才","cái","only then; not until","",0],["宣布","xuānbù","to declare; to announce","",0],["，","","","",0],["为","wèi","for (formal)","给",1],["G20","","","",0],["峰会","fēnghuì","summit meeting","",0],["留出","liúchū","to leave (time, space)","",0],["约","yuē","about; roughly","",0],["三周","sānzhōu","three weeks","",0],["缓冲","huǎnchōng","buffer","",1],["。","","","",0]]}],[{"n":27,"tok":[["“","","","",0],["301","","","",0],["调查","diàochá","investigation; inquiry","",0],["”","","","",0],["卷土重来","juǎntǔchónglái","to make a comeback (idiom)","",1]]}],[{"n":28,"tok":[["去年","qùnián","last year","",0],["4","","","",0],["月","yuè","moon; month","",0],["，","","","",0],["特朗普","Tèlǎngpǔ","Trump","",0],["援引","yuányǐn","to invoke; to cite","",1],["总统","zǒngtǒng","president (of a country); CL:個|个[ge4],位[wei4],名[ming2],屆|届[jie4]","",0],["紧急","jǐnjí","urgent; emergency","",0],["权力","quánlì","power; authority","",0],["，","","","",0],["对","duì","on; towards; to","",0],["全球","quánqiú","entire; total","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["征收","zhēngshōu","to levy; to collect (tax)","",1],["“","","","",0],["对等关税","duìděngguānshuì","reciprocal tariffs","",1],["”","","","",0],["。","","","",0]]},{"n":29,"tok":[["今年","jīnnián","this year","",0],["稍早","shāozǎo","earlier (this month / year)","",1],["，","","","",0],["美国最高法院","měiguózuìgāofǎyuàn","Supreme Court of the United States","",0],["裁定","cáidìng","to rule (of a court)","",1],["这批","zhèpī","this batch (of)","",0],["“","","","",0],["解放日","jiěfàngrì","Liberation Day","",0],["关税","guānshuì","customs duty; tariff","",0],["”","","","",0],["（","","","",0],["Liberation","","","",0],[" ","","","",0],["Day","","","",0],[" ","","","",0],["tariffs","","","",0],["）","","","",0],["违法","wéifǎ","illegal; to break the law","",0],["。","","","",0]]},{"n":30,"tok":[["特朗普","Tèlǎngpǔ","Trump","",0],["随即","suíjí","immediately afterwards (formal)","马上就",1],["表示","biǎoshì","(of sb) to express;  to state","",0],["将","jiāng","will (formal)","会 / 要",0],["寻求","xúnqiú","to seek;  to look for","",0],["其他","qítā","other; (sth or sb) else","",0],["法律","fǎlǜ","law; CL:條|条[tiao2], 套[tao4], 個|个[ge4]","",0],["途径","tújìng","route; channel","",1],["，","","","",0],["白宫","báigōng","White House","",0],["今年","jīnnián","this year","",0],["3","","","",0],["月","yuè","moon; month","",0],["启动","qǐdòng","to launch; to start","",0],["“","","","",0],["301","","","",0],["条款","tiáokuǎn","clause; section (of a law)","",1],["”","","","",0],["（","","","",0],["Section","","","",0],[" ","","","",0],["301","","","",0],["）","","","",0],["调查","diàochá","investigation; inquiry","",0],["，","","","",0],["瞄准","miáozhǔn","to aim at; to target","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["是否","shìfǒu","whether (or not); if","",0],["采取","cǎiqǔ","to adopt or carry out (measures, policies, course of action); to take","",0],["“","","","",0],["不合理","bùhélǐ","unreasonable","",0],["或","huò","maybe; perhaps","",0],["具有","jùyǒu","to have;  to possess","",0],["歧视性","qíshìxìng","discriminatory","",1],["，","","","",0],["并","bìng","and also (formal)","而且",0],["对","duì","on; towards; to","",0],["美国","měiguó","United States; USA","",0],["商业","shāngyè","business; trade","",0],["造成","zàochéng","to bring about; to create","",0],["负担","fùdān","to bear (an expense, a responsibility etc); burden","",0],["或","huò","maybe; perhaps","",0],["限制","xiànzhì","to restrict; to limit","",0],["”","","","",0],["的","de","(linking particle: …'s / that …)","",0],["做法","zuòfǎ","way of handling sth; method for making","",0],["。","","","",0]]},{"n":31,"tok":[["该","gāi","should; ought to","",0],["条款","tiáokuǎn","clause; section (of a law)","",1],["允许","yǔnxǔ","to permit; to allow","",0],["美国","měiguó","United States; USA","",0],["调查","diàochá","investigation; inquiry","",0],["并","bìng","and also (formal)","而且",0],["报复","bàofù","to retaliate","",1],["外国","wàiguó","foreign (country); CL:個|个[ge4]","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["行为","xíngwéi","action; conduct","",0],["。","","","",0]]}],[{"n":32,"tok":[["美国","měiguó","United States; USA","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["代表","dàibiǎo","representative; delegate","",0],["贾米森","Jiǎmǐsēn","Jamieson","",0],["·","","","",0],["格里尔","Gélǐ'ěr","Greer (Jamieson Greer, US Trade Representative)","",0],["（","","","",0],["Jamieson","","","",0],[" ","","","",0],["Greer","","","",0],["）","","","",0],["当时","dāngshí","at once; right away","",0],["说","shuō","variant of 說|说[shuo1]","",0],["，","","","",0],["美国","měiguó","United States; USA","",0],["“","","","",0],["将","jiāng","will (formal)","会 / 要",0],["不再","bùzài","no more; no longer","",0],["为了","wèile","for;  for the purpose of","",0],["那些","nàxiē","those","",0],["可能","kěnéng","might (happen); possible","",0],["把","bǎ","(marks the object before the verb)","",0],["自身","zìshēn","itself; oneself","",0],["产能","chǎnnéng","production capacity","",1],["过剩","guòshèng","excess; surplus","",1],["和","hé","and","",0],["生产过剩","shēngchǎnguòshèng","overproduction","",1],["问题","wèntí","question; problem","",0],["输出","shūchū","to export; to output","",0],["给","gěi","to supply; to provide","",0],["我们","wǒmen","we;  us","",0],["的","de","(linking particle: …'s / that …)","",0],["国家","guójiā","country;  nation","",0],["，","","","",0],["而","ér","and; but; and so (formal link word)","",1],["牺牲","xīshēng","to sacrifice","",0],["自己","zìjǐ","oneself; one's own","",0],["的","de","(linking particle: …'s / that …)","",0],["工业","gōngyè","industry","",0],["基础","jīchǔ","base;  foundation","",0],["”","","","",0],["。","","","",0]]},{"n":33,"tok":[["美国","měiguó","United States; USA","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["代表","dàibiǎo","representative; delegate","",0],["办公室","bàngōngshì","office; business premises","",0],["（","","","",0],["USTR","","","",0],["）","","","",0],["这次","zhècì","this time","",0],["连同","liántóng","together with","",1],["详尽","xiángjìn","detailed; exhaustive","",1],["报告","bàogào","to inform; to report","",0],["一并","yībìng","together; at the same time (formal)","一起",1],["公布","gōngbù","to announce;  to make public","",0],["拟议","nǐyì","proposed","",1],["关税","guānshuì","customs duty; tariff","",0],["，","","","",0],["说明","shuōmíng","to explain; to illustrate","",0],["各","gè","each; every","",0],["经济体","jīngjìtǐ","an economy;  a country (or region etc) viewed as an economic entity","",0],["的","de","(linking particle: …'s / that …)","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["行为","xíngwéi","action; conduct","",0],["据称","jùchēng","allegedly; reportedly","据说",1],["如何","rúhé","how; what way","",0],["影响","yǐngxiǎng","influence; effect","",0],["美国","měiguó","United States; USA","",0],["商业","shāngyè","business; trade","",0],["。","","","",0]],"bd":{"meaning":"This time the USTR published the proposed tariffs together with a detailed report explaining how each economy's trade practices allegedly affect US business.","chunks":[["这次连同详尽报告一并公布拟议关税","this time published the proposed tariffs together with a detailed report (连同 … 一并 = 跟 … 一起)"],["说明各经济体的贸易行为","explaining each economy's trade practices"],["据称如何影响美国商业","how they allegedly affect US business"]],"key":"<b>据称 keeps distance:</b> <span class='bd-zh-i'>据称</span> (\"allegedly\") tells you the reporter isn't vouching for the claim. 据说 is the everyday version."}}],[{"n":34,"tok":[["新加坡","xīnjiāpō","Singapore","",0],["尤索夫","Yóusuǒfū","Yusof","",0],["伊萨","Yīsà","Ishak","",0],["东南亚","dōngnányà","Southeast Asia","",0],["研究所","yánjiūsuǒ","research institute; graduate studies","",0],["（","","","",0],["ISEAS","","","",0],["-","","","",0],["Yusof","","","",0],[" ","","","",0],["Ishak","","","",0],[" ","","","",0],["Institute","","","",0],["）","","","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["专家","zhuānjiā","expert;  specialist","",0],["贾扬特","Jiǎyángtè","Jayant","",0],["·","","","",0],["梅农","Méinóng","Menon","",0],["（","","","",0],["Jayant","","","",0],[" ","","","",0],["Menon","","","",0],["）","","","",0],["认为","rènwéi","to believe;  to think","",0],["，","","","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["“","","","",0],["解放日","jiěfàngrì","Liberation Day","",0],["关税","guānshuì","customs duty; tariff","",0],["”","","","",0],["相比","xiāngbǐ","to compare","",0],["，","","","",0],["新","xīn","new; newly","",0],["税率","shuìlǜ","tax rate","",0],["涉及","shèjí","to involve; to cover","",1],["的","de","(linking particle: …'s / that …)","",0],["经济体","jīngjìtǐ","an economy;  a country (or region etc) viewed as an economic entity","",0],["更","gèng","more; even more","",0],["少","shǎo","young","",0],["、","","","",0],["水平","shuǐpíng","level (of achievement etc); standard","",0],["更","gèng","more; even more","",0],["低","dī","low; beneath","",0],["也","yě","(adverb) also;  both ... and ... (before predicates only)","",0],["更","gèng","more; even more","",0],["统一","tǒngyī","to unify;  to integrate","",0],["，","","","",0],["并","bìng","and also (formal)","而且",0],["基于","jīyú","based on","",1],["白宫","báigōng","White House","",0],["委托","wěituō","to commission","",1],["的","de","(linking particle: …'s / that …)","",0],["数月","shùyuè","several months (formal)","几个月",1],["调查","diàochá","investigation; inquiry","",0],["，","","","",0],["因此","yīncǐ","thus;  consequently","",0],["很","hěn","(adverb of degree); quite","",0],["可能","kěnéng","might (happen); possible","",0],["经得起","jīngdéqǐ","able to withstand","",1],["法律","fǎlǜ","law; CL:條|条[tiao2], 套[tao4], 個|个[ge4]","",0],["挑战","tiǎozhàn","to challenge; challenge","",0],["。","","","",0]]}],[{"n":35,"tok":[["凯投宏观","Kǎitóu Hóngguān","Capital Economics","",0],["（","","","",0],["Capital","","","",0],[" ","","","",0],["Economics","","","",0],["）","","","",0],["首席","shǒuxí","chief (e.g. chief economist)","",0],["北美","běiměi","North America","",0],["经济学家","jīngjìxuéjiā","economist","",0],["斯蒂芬","Sīdìfēn","Stephen","",0],["·","","","",0],["布朗","Bùlǎng","Brown","",0],["（","","","",0],["Stephen","","","",0],[" ","","","",0],["Brown","","","",0],["）","","","",0],["则","zé","however; meanwhile (formal contrast)","却 / 就",1],["说","shuō","variant of 說|说[shuo1]","",0],["，","","","",0],["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["“","","","",0],["不像","bùxiàng","not as … as","",0],["表面","biǎomiàn","surface; face","",0],["上","shàng","(bound form) up;  upper","",0],["看起来","kànqǐlái","seemingly; apparently","",0],["那么","nàme","like that; in that way","",0],["令人担忧","lìngréndānyōu","worrying","",0],["”","","","",0],["，","","","",0],["因为","yīnwèi","because; owing to","",0],["这些","zhèxiē","these","",0],["税项","shuìxiàng","taxes; tax items","",1],["“","","","",0],["本质","běnzhì","essence; nature","",0],["上","shàng","(bound form) up;  upper","",0],["是","shì","variant of 是[shi4]","",0],["在","zài","to exist;  to be alive","",0],["取代","qǔdài","to replace","",0],["”","","","",0],["今年夏天","jīnniánxiàtiān","this summer","",0],["宣布","xuānbù","to declare; to announce","",0],["的","de","(linking particle: …'s / that …)","",0],["关税","guānshuì","customs duty; tariff","",0],["，","","","",0],["受","shòu","to receive; to accept","",0],["影响","yǐngxiǎng","influence; effect","",0],["的","de","(linking particle: …'s / that …)","",0],["商品","shāngpǐn","commodity; goods","",0],["也","yě","(adverb) also;  both ... and ... (before predicates only)","",0],["有限","yǒuxiàn","limited; finite","",0],["。","","","",0]]}],[{"n":36,"tok":[["不过","bùguò","only; merely","",0],["，","","","",0],["BBC","","","",0],["驻","zhù","to halt; to stay","",0],["华盛顿","huáshèngdùn","Washington (name); George Washington (1732-1799), first US president","",0],["北美","běiměi","North America","",0],["记者","jìzhě","reporter;  journalist","",0],["安东尼","Āndōngní","Anthony","",0],["·","","","",0],["泽彻","Zéchè","Zurcher (Anthony Zurcher, BBC)","",0],["（","","","",0],["Anthony","","","",0],[" ","","","",0],["Zurcher","","","",0],["）","","","",0],["指出","zhǐchū","to indicate; to point out","",0],["，","","","",0],["诉讼","sùsòng","lawsuit; litigation","",1],["难以避免","nányǐbìmiǎn","hard to avoid","",0],["，","","","",0],["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["能否","néngfǒu","whether or not; can it or can't it","",0],["站得住脚","zhàndezhùjiǎo","to hold up; to stand (as an argument)","",1],["，","","","",0],["还","hái","to pay back; to return","",0],["有待","yǒudài","remains to be (seen, done)","",1],["观察","guānchá","to observe;  to watch","",0],["。","","","",0]]}],[{"n":37,"tok":[["美国","měiguó","United States; USA","",0],["的","de","(linking particle: …'s / that …)","",0],["理由","lǐyóu","reason; grounds","",0],["：","","","",0],["“","","","",0],["结构性","jiégòuxìng","structural","",1],["产能","chǎnnéng","production capacity","",1],["过剩","guòshèng","excess; surplus","",1],["”","","","",0]]}],[{"n":38,"tok":[["美方","měifāng","the US side","",0],["的","de","(linking particle: …'s / that …)","",0],["论点","lùndiǎn","argument; contention","",1],["是","shì","variant of 是[shi4]","",0],["，","","","",0],["一些","yīxiē","some; a few","",0],["经济体","jīngjìtǐ","an economy;  a country (or region etc) viewed as an economic entity","",0],["生产","shēngchǎn","to produce;  to manufacture","",0],["的","de","(linking particle: …'s / that …)","",0],["商品","shāngpǐn","commodity; goods","",0],["超过","chāoguò","to surpass; to exceed","",0],["自身","zìshēn","itself; oneself","",0],["需求","xūqiú","requirement; to require","",0],["，","","","",0],["再","zài","again; then","",0],["以","yǐ","by; with; as (formal)","用",1],["低价","dījià","low price","",0],["销往","xiāowǎng","to be sold to (a market)","",1],["美国","měiguó","United States; USA","",0],["，","","","",0],["美国","měiguó","United States; USA","",0],["企业","qǐyè","company;  firm","",0],["无法","wúfǎ","unable to;  incapable of","",0],["在","zài","to exist;  to be alive","",0],["价格","jiàgé","price; CL:個|个[ge4]","",0],["上","shàng","(bound form) up;  upper","",0],["竞争","jìngzhēng","to compete; competition","",0],["，","","","",0],["因而","yīn'ér","as a result (formal)","所以",1],["流失","liúshī","to lose; to drain away","",1],["就业","jiùyè","to get a job; employment","",0],["，","","","",0],["部分","bùfèn","part; share","",0],["企业","qǐyè","company;  firm","",0],["倒闭","dǎobì","to go bankrupt; to close down","",0],["。","","","",0]],"bd":{"meaning":"The US argues that some economies produce more than they need and sell the surplus cheaply to the US, so American firms can't compete on price, jobs are lost and some companies go under.","chunks":[["美方的论点是","the US argument is"],["一些经济体生产的商品超过自身需求","some economies make more goods than they themselves need (自身 = 自己)"],["再以低价销往美国","and then sell them to the US at low prices"],["美国企业无法在价格上竞争","US firms can't compete on price"],["因而流失就业，部分企业倒闭","as a result jobs are lost and some firms close (因而 = 所以)"]],"key":"<b>以 + manner, 往 + destination:</b> <span class='bd-zh-i'>以低价销往美国</span> = 用低价格卖到美国. 以 says how; 往 says where to."}}],[{"n":39,"tok":[["格里尔","Gélǐ'ěr","Greer (Jamieson Greer, US Trade Representative)","",0],["说","shuō","variant of 說|说[shuo1]","",0],["，","","","",0],["这些","zhèxiē","these","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["“","","","",0],["数十年","shùshínián","several decades","几十年",1],["来","lái","to come; (used as a substitute for a more specific verb)","",0],["”","","","",0],["采取","cǎiqǔ","to adopt or carry out (measures, policies, course of action); to take","",0],["包括","bāokuò","to comprise; to include","",0],["“","","","",0],["针对","zhēnduì","to target; aimed at","",1],["制造业","zhìzàoyè","manufacturing industry","",0],["、","","","",0],["压低","yādī","to lower (one's voice)","",0],["工资","gōngzī","wages;  pay","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["劳工","láogōng","labor; laborer","",0],["成本","chéngběn","(manufacturing, production etc) costs","",0],["”","","","",0],["在内","zàinèi","(included) in it; among them","",0],["的","de","(linking particle: …'s / that …)","",0],["产业","chǎnyè","industry; estate","",0],["战略","zhànlüè","strategy","",0],["，","","","",0],["还","hái","to pay back; to return","",0],["采用","cǎiyòng","to adopt; to employ","",0],["“","","","",0],["其他","qítā","other; (sth or sb) else","",0],["扭曲","niǔqū","to distort","",1],["市场","shìchǎng","marketplace; market (also in abstract)","",0],["的","de","(linking particle: …'s / that …)","",0],["做法","zuòfǎ","way of handling sth; method for making","",0],["，","","","",0],["使","shǐ","to make; to cause","让",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["天平","tiānpíng","scales (balance)","",0],["向","xiàng","to; towards","",0],["其","qí","its / his / their (formal)","他的 / 它们的",1],["倾斜","qīngxié","to tilt","",1],["，","","","",0],["同时","tóngshí","at the same time; simultaneously","",0],["侵蚀","qīnshí","to erode","",1],["美国","měiguó","United States; USA","",0],["的","de","(linking particle: …'s / that …)","",0],["制造业","zhìzàoyè","manufacturing industry","",0],["基础","jīchǔ","base;  foundation","",0],["”","","","",0],["。","","","",0]]},{"n":40,"tok":[["其他","qítā","other; (sth or sb) else","",0],["国家","guójiā","country;  nation","",0],["也","yě","(adverb) also;  both ... and ... (before predicates only)","",0],["承认","chéngrèn","to admit; to concede","",0],["这些","zhèxiē","these","",0],["做法","zuòfǎ","way of handling sth; method for making","",0],["存在","cúnzài","to exist; to be","",0],["问题","wèntí","question; problem","",0],["，","","","",0],["但","dàn","but;  yet","",0],["多年","duōnián","many years; for many years","",0],["来","lái","to come; (used as a substitute for a more specific verb)","",0],["解决","jiějué","to solve;  to resolve","",0],["起来","qǐlái","(after a verb) indicating the beginning and continuation of an action or a state","",0],["复杂","fùzá","complicated;  complex","",0],["，","","","",0],["各方","gèfāng","all parties (in a dispute etc); all sides","",0],["鲜有","xiǎnyǒu","rarely have (formal)","很少有",1],["行动","xíngdòng","operation; action","",0],["。","","","",0]],"bd":{"meaning":"Other countries also acknowledge these practices are a problem, but they have been complicated to tackle for years and few have acted.","chunks":[["其他国家也承认这些做法存在问题","other countries also admit these practices are a problem"],["但多年来解决起来复杂","but for years they've been complicated to fix"],["各方鲜有行动","and few parties have acted (鲜有 = 很少有)"]],"key":"<b>鲜 = rarely:</b> in <span class='bd-zh-i'>鲜有</span>, 鲜 is read xiǎn and means \"rarely\", not xiān (fresh). It's a classical leftover in modern news."}}],[{"n":41,"tok":[["“","","","",0],["中国","zhōngguó","China","",0],["无法","wúfǎ","unable to;  incapable of","",0],["完成","wánchéng","to complete;  to accomplish","",0],["经济","jīngjì","economy; economic","",0],["结构","jiégòu","structure; composition","",0],["重整","chóngzhěng","restructuring","",1],["，","","","",0],["将","jiāng","will (formal)","会 / 要",0],["比","bǐ","to compare; (followed by a noun and adjective) more {adj.} than {noun}","",0],["美国","měiguó","United States; USA","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["政策","zhèngcè","policy; CL:個|个[ge4]","",0],["反复无常","fǎnfùwúcháng","erratic; changeable","",1],["带来","dàilái","to bring; (fig.) to bring about","",0],["的","de","(linking particle: …'s / that …)","",0],["冲击","chōngjī","to attack; to batter","",0],["，","","","",0],["更能","gèngnéng","even more able to","",0],["推高","tuīgāo","to push up","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["紧张局势","jǐnzhāngjúshì","tensions","",0],["。","","","",0],["”","","","",0]]},{"n":42,"tok":[["麦格理资本","Màigélǐ Zīběn","Macquarie Capital","",0],["（","","","",0],["Macquarie","","","",0],[" ","","","",0],["Capital","","","",0],["）","","","",0],["全球","quánqiú","entire; total","",0],["交易台","jiāoyìtái","trading desk","",0],["策略","cèlüè","strategy;  tactics","",0],["主管","zhǔguǎn","in charge; responsible for","",0],["史维兹","Shǐ Wéizī","Shvets (Viktor Shvets)","",0],["（","","","",0],["Viktor","","","",0],[" ","","","",0],["Shvets","","","",0],["）","","","",0],["向","xiàng","to; towards","",0],["BBC","","","",0],["中文","zhōngwén","Chinese language","",0],["表示","biǎoshì","(of sb) to express;  to state","",0],["，","","","",0],["“","","","",0],["中国","zhōngguó","China","",0],["冲击","chōngjī","to attack; to batter","",0],["2.0","","","",0],["”","","","",0],["很","hěn","(adverb of degree); quite","",0],["可能","kěnéng","might (happen); possible","",0],["比","bǐ","to compare; (followed by a noun and adjective) more {adj.} than {noun}","",0],["“","","","",0],["中国","zhōngguó","China","",0],["冲击","chōngjī","to attack; to batter","",0],["1.0","","","",0],["”","","","",0],["（","","","",0],["即","jí","namely; that is (formal)","就是",1],["2001","","","",0],["至","zhì","to; until (formal)","到",0],["2007","","","",0],["年","nián","grain; harvest (old)","",0],["）","","","",0],["更为","gèngwéi","even more","",0],["剧烈","jùliè","severe; violent","",0],["，","","","",0],["因为","yīnwèi","because; owing to","",0],["它","tā","it","",0],["涵盖","hángài","to cover; to span","",1],["的","de","(linking particle: …'s / that …)","",0],["产品","chǎnpǐn","goods; merchandise","",0],["范围","fànwéi","range; scope","",0],["更广","gèngguǎng","broader","",0],["，","","","",0],["也","yě","(adverb) also;  both ... and ... (before predicates only)","",0],["复杂","fùzá","complicated;  complex","",0],["得","de","(particle linking a verb to how it went)","",0],["多","duō","many;  much","",0],["。","","","",0]]},{"n":43,"tok":[["它","tā","it","",0],["不仅","bùjǐn","not just;  not limited to","",0],["限于","xiànyú","to be limited to; to be confined to","",0],["电气化","diànqìhuà","electrification","",0],["产业链","chǎnyèliàn","industry value chain","",0],["（","","","",0],["例如","lìrú","for example;  for instance","",0],["电动车","diàndòngchē","electric vehicle (scooter, bicycle, car etc)","",0],["、","","","",0],["电池","diànchí","battery; CL:節|节[jie2],組|组[zu3]","",0],["、","","","",0],["太阳能","tàiyángnéng","solar energy","",0],["）","","","",0],["，","","","",0],["还","hái","to pay back; to return","",0],["延伸","yánshēn","to extend; to spread","",0],["至","zhì","to; until (formal)","到",0],["从","cóng","from; through","",0],["大宗","dàzōng","bulk; commodity","",1],["化学品","huàxuépǐn","chemicals","",0],["、","","","",0],["机械","jīxiè","machine; machinery","",0],["到","dào","to reach;  to arrive","",0],["电子产品","diànzǐ chǎnpǐn","electronics","",0],["等","děng","etc.; and other","",0],["一系列","yīxìliè","a series of; a string of","",0],["工业品","gōngyèpǐn","manufactured goods","",0],["。","","","",0]]},{"n":44,"tok":[["按","àn","according to; by","",0],["产量","chǎnliàng","output","",0],["计算","jìsuàn","to count; to calculate","",0],["，","","","",0],["中国","zhōngguó","China","",0],["在","zài","to exist;  to be alive","",0],["全球","quánqiú","entire; total","",0],["制造业","zhìzàoyè","manufacturing industry","",0],["中","zhōng","in; among","",0],["的","de","(linking particle: …'s / that …)","",0],["占比","zhànbǐ","share (proportion)","",1],["有望","yǒuwàng","is expected to; on track to","",1],["达到","dádào","to reach;  to achieve","",0],["40%","","","",0],["，","","","",0],["在","zài","to exist;  to be alive","",0],["出口","chūkǒu","an exit; CL:個|个[ge4]","",0],["中","zhōng","in; among","",0],["的","de","(linking particle: …'s / that …)","",0],["占比","zhànbǐ","share (proportion)","",1],["更","gèng","more; even more","",0],["可能","kěnéng","might (happen); possible","",0],["高达","gāodá","to attain; to reach up to","",0],["25%","","","",0],["。","","","",0]]}],[{"n":45,"tok":[["“","","","",0],["如果","rúguǒ","if; in case","",0],["我们","wǒmen","we;  us","",0],["的","de","(linking particle: …'s / that …)","",0],["判断","pànduàn","to judge; to determine","",0],["没错","méicuò","that's right; sure!","",0],["，","","","",0],["经济","jīngjì","economy; economic","",0],["结构调整","jiégòutiáozhěng","structural adjustment","",1],["的","de","(linking particle: …'s / that …)","",0],["时机","shíjī","opportunity;  opportune moment","",0],["已经","yǐjīng","already","",0],["错过","cuòguò","to miss (train, opportunity etc)","",0],["，","","","",0],["那么","nàme","like that; in that way","",0],["，","","","",0],["中国","zhōngguó","China","",0],["继续","jìxù","to continue; to proceed with","",0],["投资","tóuzī","investment; to invest","",0],["、","","","",0],["靠","kào","relying on","",0],["出口","chūkǒu","an exit; CL:個|个[ge4]","",0],["消化","xiāohuà","to digest (food); (fig.) to absorb (information etc)","",0],["日益","rìyì","increasingly (formal)","越来越",1],["增加","zēngjiā","to raise; to increase","",0],["的","de","(linking particle: …'s / that …)","",0],["过剩","guòshèng","excess; surplus","",1],["产能","chǎnnéng","production capacity","",1],["的","de","(linking particle: …'s / that …)","",0],["压力","yālì","pressure","",0],["，","","","",0],["将","jiāng","will (formal)","会 / 要",0],["进一步","jìnyíbù","to go a step further; (develop, understand, improve etc) more","",0],["加大","jiādà","to increase (e.g. one's effort)","",0],["。","","","",0],["”","","","",0]]},{"n":46,"tok":[["史维兹","Shǐ Wéizī","Shvets (Viktor Shvets)","",0],["判断","pànduàn","to judge; to determine","",0],["。","","","",0]]}],[{"n":47,"tok":[["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["不满","bùmǎn","resentful; discontented","",0],["，","","","",0],["美国","měiguó","United States; USA","",0],["国内","guónèi","domestic; internal (to a country)","",0],["承压","chéngyā","under pressure","",1]]}],[{"n":48,"tok":[["欧盟委员会","ōuméngwěiyuánhuì","Commission of European Union","",0],["（","","","",0],["European","","","",0],[" ","","","",0],["Commission","","","",0],["）","","","",0],["拒绝接受","jùjuéjiēshòu","to refuse to accept","",0],["新","xīn","new; newly","",0],["关税","guānshuì","customs duty; tariff","",0],["，","","","",0],["表示","biǎoshì","(of sb) to express;  to state","",0],["将","jiāng","will (formal)","会 / 要",0],["调查","diàochá","investigation; inquiry","",0],["美方","měifāng","the US side","",0],["出台","chūtái","to introduce (a policy)","",1],["关税","guānshuì","customs duty; tariff","",0],["的","de","(linking particle: …'s / that …)","",0],["原因","yuányīn","cause; origin","",0],["，","","","",0],["并","bìng","and also (formal)","而且",0],["指出","zhǐchū","to indicate; to point out","",0],["关税","guānshuì","customs duty; tariff","",0],["以","yǐ","by; with; as (formal)","用",1],["委员会","wěiyuánhuì","committee","",0],["主席","zhǔxí","chairperson; premier","",0],["乌尔苏拉","Wū'ěrsūlā","Ursula","",0],["·","","","",0],["冯德莱恩","Féngdéláiēn","von der Leyen","",0],["（","","","",0],["Ursula","","","",0],[" ","","","",0],["von","","","",0],[" ","","","",0],["der","","","",0],[" ","","","",0],["Leyen","","","",0],["）","","","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["特朗普","Tèlǎngpǔ","Trump","",0],["去年","qùnián","last year","",0],["达成","dáchéng","to reach (an agreement); to accomplish","",0],["的","de","(linking particle: …'s / that …)","",0],["15%","","","",0],["为","wéi","as (以 … 为 … = taking … as …)","",1],["上限","shàngxiàn","upper limit; cap","",1],["。","","","",0]]}],[{"n":49,"tok":[["卡特勒","Kǎtèlè","Cutler (Wendy Cutler)","",0],["说","shuō","variant of 說|说[shuo1]","",0],["，","","","",0],["各","gè","each; every","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["伙伴","huǒbàn","partner; companion","",0],["“","","","",0],["等待","děngdài","to wait;  to wait for","",0],["这","zhè","(pronoun) this;  these","",0],["只","zhī","(measure word for one of a pair, e.g. a boot)","",0],["靴子","xuēzi","boots","",0],["落地","luòdì","to fall to the ground; to be set on the ground","",0],["”","","","",0],["已有","yǐyǒu","has already been (a while)","",0],["时日","shírì","time; auspicious time","",0],["，","","","",0],["强调","qiángdiào","to emphasize (a statement); to stress","",0],["自己","zìjǐ","oneself; one's own","",0],["被","bèi","(passive marker)","",0],["错误","cuòwù","mistaken;  false","",0],["指控","zhǐkòng","to accuse","",1],["生产过剩","shēngchǎnguòshèng","overproduction","",1],["，","","","",0],["“","","","",0],["许多","xǔduō","many; a lot of","",0],["国家","guójiā","country;  nation","",0],["认为","rènwéi","to believe;  to think","",0],["，","","","",0],["美国","měiguó","United States; USA","",0],["行动","xíngdòng","operation; action","",0],["的","de","(linking particle: …'s / that …)","",0],["目标","mùbiāo","target; goal","",0],["应该","yīnggāi","ought to; should","",0],["是","shì","variant of 是[shi4]","",0],["中国","zhōngguó","China","",0],["，","","","",0],["而","ér","and; but; and so (formal link word)","",1],["不是","búshì","no; is not","",0],["他们","tāmen","they","",0],["”","","","",0],["。","","","",0]]},{"n":50,"tok":[["她","tā","she","",0],["认为","rènwéi","to believe;  to think","",0],["，","","","",0],["印度","yìndù","India","",0],["和","hé","and","",0],["越南","yuènán","Vietnam; Vietnamese","",0],["有","yǒu","to have;  there is","",0],["强烈","qiángliè","strong;  intense","",0],["动机","dòngjī","motive;  motivation","",0],["尽快","jǐnkuài","see 儘快|尽快[jin3 kuai4]","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["美国","měiguó","United States; USA","",0],["达成协议","dáchéngxiéyì","to reach agreement","",0],["，","","","",0],["把","bǎ","(marks the object before the verb)","",0],["税率","shuìlǜ","tax rate","",0],["锁定","suǒdìng","to lock in","",0],["在","zài","to exist;  to be alive","",0],["较低","jiàodī","relatively low (formal)","比较低",0],["水平","shuǐpíng","level (of achievement etc); standard","",0],["，","","","",0],["这些","zhèxiē","these","",0],["关税","guānshuì","customs duty; tariff","",0],["也","yě","(adverb) also;  both ... and ... (before predicates only)","",0],["将","jiāng","will (formal)","会 / 要",0],["加速","jiāsù","to speed up; to expedite","",0],["各国","gèguó","each country; every country","",0],["的","de","(linking particle: …'s / that …)","",0],["贸易","màoyì","(commercial) trade; CL:個|个[ge4]","",0],["多元化","duōyuánhuà","diversification","",1],["。","","","",0]]}],[{"n":51,"tok":[["一位","yīwèi","one (person, polite)","",0],["美国","měiguó","United States; USA","",0],["高级官员","gāojíguānyuán","senior official","",0],["则","zé","however; meanwhile (formal contrast)","却 / 就",1],["表示","biǎoshì","(of sb) to express;  to state","",0],["，","","","",0],["预计","yùjì","to forecast; to predict","",0],["这一","zhèyī","this (formal)","这个",0],["宣布","xuānbù","to declare; to announce","",0],["不会","búhuì","improbable; unlikely","",0],["在","zài","to exist;  to be alive","",0],["G20","","","",0],["峰会","fēnghuì","summit meeting","",0],["造成","zàochéng","to bring about; to create","",0],["紧张","jǐnzhāng","nervous; keyed up","",0],["：","","","",0],["“","","","",0],["我们","wǒmen","we;  us","",0],["实际上","shíjìshàng","in fact; in reality","",0],["预计","yùjì","to forecast; to predict","",0],["，","","","",0],["在","zài","to exist;  to be alive","",0],["这些","zhèxiē","these","",0],["宣布","xuānbù","to declare; to announce","",0],["之后","zhīhòu","after;  behind","",0],["，","","","",0],["我们","wǒmen","we;  us","",0],["可能","kěnéng","might (happen); possible","",0],["会","huì","to balance an account; accounting","",0],["在","zài","to exist;  to be alive","",0],["G20","","","",0],["上","shàng","(bound form) up;  upper","",0],["签署","qiānshǔ","to sign (an agreement)","",0],["更","gèng","more; even more","",0],["多","duō","many;  much","",0],["协议","xiéyì","agreement; pact","",0],["。","","","",0],["”","","","",0]]}],[{"n":52,"tok":[["在","zài","to exist;  to be alive","",0],["美国","měiguó","United States; USA","",0],["国内","guónèi","domestic; internal (to a country)","",0],["，","","","",0],["泽彻","Zéchè","Zurcher (Anthony Zurcher, BBC)","",0],["观察","guānchá","to observe;  to watch","",0],["到","dào","to reach;  to arrive","",0],["，","","","",0],["这次","zhècì","this time","",0],["没有","méiyǒu","haven't; hasn't","",0],["了","le","(particle: completed action / change)","",0],["“","","","",0],["解放日","jiěfàngrì","Liberation Day","",0],["”","","","",0],["式","shì","type; form","",0],["的","de","(linking particle: …'s / that …)","",0],["修辞","xiūcí","rhetoric","",1],["和","hé","and","",0],["玫瑰园","Méiguī Yuán","the Rose Garden (White House)","",0],["宣布","xuānbù","to declare; to announce","",0],["仪式","yíshì","ceremony","",0],["，","","","",0],["但","dàn","but;  yet","",0],["政治","zhèngzhì","politics; political","",0],["和","hé","and","",0],["经济","jīngjì","economy; economic","",0],["影响","yǐngxiǎng","influence; effect","",0],["可能","kěnéng","might (happen); possible","",0],["相似","xiāngsì","similar;  alike","",0],["：","","","",0],["本","běn","originally; already (formal)","本来",0],["已","yǐ","already (formal)","已经",0],["因","yīn","because of (formal)","因为",0],["人工智能","réngōngzhìnéng","artificial intelligence (AI)","",0],["行业","hángyè","trade;  profession","",0],["隐忧","yǐnyōu","underlying worries","",1],["而","ér","and; but; and so (formal link word)","",1],["动荡","dòngdàng","turbulent","",1],["的","de","(linking particle: …'s / that …)","",0],["股市","gǔshì","stock market","",0],["看来","kànlái","apparently; it seems that","",0],["将","jiāng","will (formal)","会 / 要",0],["下挫","xiàcuò","to fall (markets)","",1],["；","","","",0]]},{"n":53,"tok":[["在","zài","to exist;  to be alive","",0],["中期","zhōngqī","mid-term (中期选举 = midterm elections)","",0],["选举","xuǎnjǔ","to elect; election","",0],["中","zhōng","in; among","",0],["受挫","shòucuò","to suffer a setback","",1],["的","de","(linking particle: …'s / that …)","",0],["国会","guóhuì","Parliament (UK); Congress (US)","",0],["共和党人","gònghédǎngrén","a Republican party member","",0],["，","","","",0],["明年","míngnián","next year","",0],["1","","","",0],["月","yuè","moon; month","",0],["新一届","xīnyījiè","the new (session of)","",0],["国会","guóhuì","Parliament (UK); Congress (US)","",0],["复会","fùhuì","to reconvene","",1],["时","shí","o'clock; time","",0],["，","","","",0],["可能","kěnéng","might (happen); possible","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["民主党人","mínzhǔdǎngrén","Democrat (Democratic Party member or supporter)","",0],["联手","liánshǒu","to join forces","",0],["，","","","",0],["就","jiù","on; regarding (a matter)","",0],["关税","guānshuì","customs duty; tariff","",0],["与","yǔ","with; and (formal)","跟 / 和",0],["总统","zǒngtǒng","president (of a country); CL:個|个[ge4],位[wei4],名[ming2],屆|届[jie4]","",0],["摊牌","tānpái","to have a showdown","",1],["。","","","",0]],"bd":{"meaning":"Congressional Republicans, who took a beating in the midterms, may team up with Democrats to confront the president over tariffs when the new Congress convenes in January.","chunks":[["在中期选举中受挫的国会共和党人","congressional Republicans who suffered setbacks in the midterms (all of it describes 共和党人)"],["明年1月新一届国会复会时","when the new Congress reconvenes next January"],["可能与民主党人联手","may join forces with the Democrats (与 = 跟)"],["就关税与总统摊牌","have a showdown with the president over tariffs"]],"key":"<b>就 = on the subject of:</b> in <span class='bd-zh-i'>就关税与总统摊牌</span>, 就 X introduces the topic, like 关于 X. Not the everyday 'then'."}}],[{"n":54,"tok":[["特朗普","Tèlǎngpǔ","Trump","",0],["声称","shēngchēng","to claim","",1],["关税","guānshuì","customs duty; tariff","",0],["将","jiāng","will (formal)","会 / 要",0],["提振","tízhèn","to boost","",1],["美国","měiguó","United States; USA","",0],["制造业","zhìzàoyè","manufacturing industry","",0],["、","","","",0],["创造","chuàngzào","to create; to bring about","",0],["就业","jiùyè","to get a job; employment","",0],["并","bìng","and also (formal)","而且",0],["缩小","suōxiǎo","to reduce; to decrease","",0],["贸易逆差","màoyìnìchā","trade deficit","",1],["。","","","",0]]},{"n":55,"tok":[["数十年","shùshínián","several decades","几十年",1],["来","lái","to come; (used as a substitute for a more specific verb)","",0],["，","","","",0],["他","tā","he;  him (used for either sex when the sex is unknown or unimportant)","",0],["一直","yìzhí","straight (in a straight line); continuously","",0],["是","shì","variant of 是[shi4]","",0],["关税","guānshuì","customs duty; tariff","",0],["的","de","(linking particle: …'s / that …)","",0],["公开","gōngkāi","open;  overt","",0],["倡导者","chàngdǎozhě","advocate","",1],["，","","","",0],["尽管","jǐnguǎn","despite; although","",0],["民调","míndiào","opinion poll","",1],["显示","xiǎnshì","to show; to illustrate","",0],["许多","xǔduō","many; a lot of","",0],["选民","xuǎnmín","voter; constituency","",0],["不满","bùmǎn","resentful; discontented","",0],["关税","guānshuì","customs duty; tariff","",0],["推高","tuīgāo","to push up","",0],["成本","chéngběn","(manufacturing, production etc) costs","",0],["，","","","",0],["政治","zhèngzhì","politics; political","",0],["风向","fēngxiàng","wind direction; the way the wind is blowing","",0],["和","hé","and","",0],["选票","xuǎnpiào","a vote;  ballot","",0],["结果","jiéguǒ","outcome; result","",0],["似乎","sìhū","it seems;  seemingly","",0],["都","dōu","capital city; metropolis","",0],["没能","méinéng","failed to","",0],["让","ràng","to yield; to permit","",0],["他","tā","he;  him (used for either sex when the sex is unknown or unimportant)","",0],["改弦易辙","gǎixiányìzhé","to change course (idiom)","改变做法",1],["。","","","",0]],"bd":{"meaning":"He has openly championed tariffs for decades, and although polls show many voters unhappy that tariffs raise costs, neither the political mood nor election results seem to have changed his course.","chunks":[["数十年来，他一直是关税的公开倡导者","for decades he has been an open advocate of tariffs"],["尽管民调显示","although polls show (尽管 = 虽然)"],["政治风向和选票结果似乎都没能","neither the political wind nor the election results seem to have managed to"],["让他改弦易辙","make him change course (idiom: change the strings, switch the ruts)"]],"key":"<b>Four-character idioms:</b> news likes to close on a 成语. <span class='bd-zh-i'>改弦易辙</span> = 改变做法; <span class='bd-zh-i'>卷土重来</span> (in a subheading) = make a comeback."}}]]}];
+
+/* ---- storage keys: separate from the French reader ---- */
+var READ_KEY = 'enclairzh:read:v1';
+var MEM_KEY = 'enclairzh:mem:v1';
+var PY_KEY = 'enclairzh:py:v1';
+var M1_URL = 'progress/m1-zh.json';
+
+var readSet = {}, m1Set = {}, m1Loaded = false, m1Failed = false;
+var mem = 'M2';
+var pyMode = 'hard';
+
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+(function loadPrefs() {
+  var v = lsGet(MEM_KEY);
+  if (v === 'M1' || v === 'M2') mem = v;
+  var p = lsGet(PY_KEY);
+  if (p === 'off' || p === 'hard' || p === 'all') pyMode = p;
+  var raw = lsGet(READ_KEY);
+  if (raw) {
+    try {
+      var arr = JSON.parse(raw);
+      for (var i = 0; i < arr.length; i++) readSet[arr[i]] = true;
+    } catch (e) {}
+  }
+})();
+function saveRead() {
+  var arr = [];
+  for (var k in readSet) { if (readSet.hasOwnProperty(k)) arr.push(k); }
+  lsSet(READ_KEY, JSON.stringify(arr));
+}
+function loadM1(cb) {
+  if (m1Loaded || m1Failed) { if (cb) cb(); return; }
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', M1_URL, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) return;
+      var parsed = null;
+      if ((xhr.status === 200 || xhr.status === 0) && xhr.responseText) {
+        try { parsed = JSON.parse(xhr.responseText); } catch (e) { parsed = null; }
+      }
+      if (parsed) {
+        var list = parsed.read ? parsed.read : (parsed.length ? parsed : []);
+        m1Set = {};
+        for (var i = 0; i < list.length; i++) m1Set[list[i]] = true;
+        m1Loaded = true;
+      } else { m1Failed = true; }
+      if (cb) cb();
+    };
+    xhr.onerror = function () { m1Failed = true; if (cb) cb(); };
+    xhr.send();
+  } catch (e) { m1Failed = true; if (cb) cb(); }
+}
+function activeSet() { return mem === 'M1' ? m1Set : readSet; }
+function isRead(id) { return !!activeSet()[id]; }
+function setRead(id, val) {
+  if (mem === 'M1') return; /* M1 is read-only */
+  if (val) readSet[id] = true; else delete readSet[id];
+  saveRead();
+}
+
+var $ = function (id) { return document.getElementById(id); };
+var cardsEl = $('cards'), readCardsEl = $('readCards'), readSection = $('readSection'), readCount = $('readCount');
+var memToggle = $('memToggle'), memHint = $('memHint');
+var viewIndex = $('view-index'), viewStory = $('view-story'), article = $('article');
+var toggleGistBtn = $('toggleGist'), toggleReadBtn = $('toggleRead'), pySeg = $('pySeg');
+var sheet = $('wordSheet');
+var gistShown = true, currentId = null, activeWord = null;
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/* ---------- word card ---------- */
+function hideWord() {
+  if (activeWord) activeWord.className = activeWord.className.replace(/\s?\bon\b/, '');
+  activeWord = null;
+  sheet.className = 'sheet';
+  document.body.className = document.body.className.replace(/\s?\bsheet-open\b/, '');
+}
+function showWord(t, el) {
+  if (activeWord === el) { hideWord(); return; }
+  if (activeWord) activeWord.className = activeWord.className.replace(/\s?\bon\b/, '');
+  activeWord = el;
+  el.className += ' on';
+  $('sheetZh').textContent = t[0];
+  $('sheetPy').textContent = t[1];
+  $('sheetEn').textContent = t[2] || '(no gloss yet)';
+  $('sheetCasual').innerHTML = t[3] ? '口语 · everyday:<b>' + esc(t[3]) + '</b>' : '';
+  sheet.className = 'sheet open';
+  if (!/\bsheet-open\b/.test(document.body.className)) document.body.className += ' sheet-open';
+}
+addTap($('sheetX'), function () { hideWord(); });
+
+/* ---------- rendering ---------- */
+/* Each word sits in its own inline-block box (.wb), so lines break between
+   words, never inside one. Closing punctuation joins the word before it and
+   opening punctuation the word after it, so neither starts or ends a line on
+   its own. Returns the last box, so the breakdown marker can be attached to it. */
+var CLOSE_P = '，。；：、）》」』”’！？,.;:)%';
+var OPEN_P = '（《「『“‘(';
+function renderTokens(tok, container) {
+  var last = null, pending = '';
+  function newBox() {
+    var b = document.createElement('span');
+    b.className = 'wb';
+    if (pending) { b.appendChild(document.createTextNode(pending)); pending = ''; }
+    container.appendChild(b);
+    last = b;
+    return b;
+  }
+  for (var i = 0; i < tok.length; i++) {
+    (function (t) {
+      if (!t[1]) {
+        var txt = t[0];
+        if (last && CLOSE_P.indexOf(txt.charAt(0)) >= 0) { last.appendChild(document.createTextNode(txt)); return; }
+        if (OPEN_P.indexOf(txt.charAt(txt.length - 1)) >= 0) { pending += txt; return; }
+        /* numbers (40%, 2026) stick to the word before them: 可达40% never splits */
+        if (/^[0-9.%]+$/.test(txt) && last && last.className === 'wb') {
+          last.appendChild(document.createTextNode(pending + txt));
+          pending = '';
+          return;
+        }
+        /* Latin words, numbers, spaces: ordinary inline text, so "Donald Trump"
+           keeps its space and wraps like normal English */
+        if (!last || last.className !== 'lat') {
+          var lat = document.createElement('span');
+          lat.className = 'lat';
+          container.appendChild(lat);
+          last = lat;
+        }
+        last.appendChild(document.createTextNode(pending + txt));
+        pending = '';
+        return;
+      }
+      var r = document.createElement('ruby');
+      r.className = 'w' + (t[4] ? ' hard' : '');
+      r.setAttribute('tabindex', '0');
+      r.setAttribute('role', 'button');
+      r.setAttribute('aria-label', t[0] + ' ' + t[1] + (t[2] ? ', ' + t[2] : ''));
+      r.appendChild(document.createTextNode(t[0]));
+      var rt = document.createElement('rt');
+      rt.textContent = t[1];
+      r.appendChild(rt);
+      addTap(r, function (e) { if (e && e.stopPropagation) e.stopPropagation(); showWord(t, r); });
+      onKey(r, function () { showWord(t, r); });
+      /* a one-character unit after a number (1月, 10日, 14个) joins the number's box */
+      if (last && last.className === 'wb' && t[0].length === 1 && !pending && /[0-9]$/.test(last.lastChild && last.lastChild.nodeType === 3 ? last.lastChild.nodeValue : '')) {
+        last.appendChild(r);
+        return;
+      }
+      newBox().appendChild(r);
+    })(tok[i]);
+  }
+  if (pending) newBox();
+  return last;
+}
+function buildBreakdown(bd) {
+  var box = document.createElement('div');
+  box.className = 'breakdown';
+  var html = '<div class="bd-meaning">' + bd.meaning + '</div>';
+  if (bd.chunks && bd.chunks.length) {
+    html += '<div class="bd-chunks">';
+    for (var i = 0; i < bd.chunks.length; i++) {
+      html += '<div class="bd-row"><span class="bd-zh">' + bd.chunks[i][0] + '</span><span class="bd-en">' + bd.chunks[i][1] + '</span></div>';
+    }
+    html += '</div>';
+  }
+  if (bd.key) html += '<div class="bd-key"><span class="bd-key-label">Key</span>' + bd.key + '</div>';
+  box.innerHTML = html;
+  return box;
+}
+function renderBody(paras) {
+  var frag = document.createDocumentFragment();
+  for (var p = 0; p < paras.length; p++) {
+    var pe = document.createElement('div');
+    pe.className = 'para';
+    /* a one-sentence line with no full stop and short = a subheading */
+    if (paras[p].length === 1) {
+      var joined = '';
+      for (var j = 0; j < paras[p][0].tok.length; j++) joined += paras[p][0].tok[j][0];
+      if (joined.length <= 24 && !/[。！？]/.test(joined)) pe.className = 'para sub';
+    }
+    for (var s = 0; s < paras[p].length; s++) {
+      (function (sent) {
+        var se = document.createElement('span');
+        se.className = 'sentence';
+        pe.appendChild(se);
+        var lastBox = renderTokens(sent.tok, se);
+        if (sent.bd) {
+          var mk = document.createElement('button');
+          mk.className = 'bd-mark';
+          mk.setAttribute('type', 'button');
+          mk.setAttribute('aria-label', 'Breakdown of sentence ' + sent.n);
+          mk.setAttribute('aria-expanded', 'false');
+          mk.textContent = '▸';
+          var box = buildBreakdown(sent.bd);
+          var toggle = function (e) {
+            if (e && e.stopPropagation) e.stopPropagation();
+            var open = !/\bopen\b/.test(box.className);
+            box.className = open ? 'breakdown open' : 'breakdown';
+            mk.className = open ? 'bd-mark open' : 'bd-mark';
+            se.className = open ? 'sentence active' : 'sentence';
+            mk.setAttribute('aria-expanded', open ? 'true' : 'false');
+          };
+          addTap(mk, toggle);
+          (lastBox || se).appendChild(mk); /* glued to the last word: never wraps alone */
+          pe.appendChild(box);
+        }
+      })(paras[p][s]);
+    }
+    frag.appendChild(pe);
+  }
+  return frag;
+}
+function applyPy() {
+  article.className = 'py-' + pyMode;
+  var opts = pySeg.getElementsByTagName('button');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].setAttribute('aria-pressed', opts[i].getAttribute('data-py') === pyMode ? 'true' : 'false');
+  }
+}
+function addSection(title, open, fill) {
+  var sec = document.createElement('div');
+  sec.className = 'section';
+  var det = document.createElement('details');
+  det.open = open;
+  det.innerHTML = "<summary><span class='chev'>▶</span>" + title + "</summary>";
+  fill(det);
+  sec.appendChild(det);
+  article.appendChild(sec);
+}
+function buildArticle(a) {
+  article.innerHTML = '';
+  hideWord();
+  var kicker = document.createElement('div');
+  kicker.className = 'kicker';
+  kicker.textContent = a.kicker || '';
+  article.appendChild(kicker);
+
+  var trow = document.createElement('div');
+  trow.className = 'title-row';
+  var h1 = document.createElement('h1');
+  h1.className = 'title';
+  h1.appendChild(document.createTextNode(a.num + '. '));
+  renderTokens(a.title.tok, h1);
+  var lvl = document.createElement('span');
+  lvl.className = 'story-lvl';
+  lvl.textContent = a.register || '';
+  trow.appendChild(h1);
+  trow.appendChild(lvl);
+  article.appendChild(trow);
+
+  var gist = document.createElement('div');
+  gist.className = 'gist' + (gistShown ? '' : ' hidden');
+  gist.id = 'gistBox';
+  gist.innerHTML = "<span class='gist-label'>The gist, in English</span>" + a.gist;
+  article.appendChild(gist);
+
+  var body = document.createElement('div');
+  body.className = 'body';
+  body.appendChild(renderBody(a.paras));
+  article.appendChild(body);
+
+  if (a.register_notes && a.register_notes.length) {
+    addSection('正式 → 口语 · Formal → everyday', true, function (det) {
+      for (var i = 0; i < a.register_notes.length; i++) {
+        var n = a.register_notes[i];
+        var row = document.createElement('div');
+        row.className = 'reg-row';
+        row.innerHTML = "<span class='reg-f'>" + esc(n.formal) + "</span><span class='reg-arrow'>→</span><span class='reg-c'>" + esc(n.casual) + "</span><span class='reg-en'>" + esc(n.en) + "</span>";
+        det.appendChild(row);
+      }
+    });
+  }
+  if (a.quiz) {
+    addSection('小问题 · Quick question', false, function (det) {
+      var quiz = document.createElement('div');
+      quiz.className = 'quiz';
+      quiz.innerHTML = "<p class='q'>" + a.quiz.q + "</p><button class='reveal-btn' type='button'>看答案</button><p class='answer'>" + a.quiz.a + "</p>";
+      var btn = quiz.getElementsByTagName('button')[0], ans = quiz.getElementsByTagName('p')[1];
+      addTap(btn, function () { ans.className = 'answer show'; btn.style.display = 'none'; });
+      det.appendChild(quiz);
+    });
+  }
+  if (a.flag) {
+    var flag = document.createElement('div');
+    flag.className = 'flag';
+    flag.innerHTML = '<b>注意 · Note</b> · ' + a.flag;
+    article.appendChild(flag);
+  }
+  if (a.source) {
+    var src = document.createElement('div');
+    src.className = 'source';
+    /* always: source name + the article's headline; link and date only if given */
+    var nm = esc(a.source.name);
+    if (a.source.url) nm = '<a href="' + esc(a.source.url) + '" target="_blank" rel="noopener">' + nm + '</a>';
+    src.innerHTML = '来源 · Source: ' + nm + ' ·《' + esc(a.title.text) + '》' + (a.source.date ? ' · ' + esc(a.source.date) : '');
+    article.appendChild(src);
+  }
+  applyPy();
+}
+
+/* ---------- index ---------- */
+function makeCard(a) {
+  var read = isRead(a.id);
+  var card = document.createElement('div');
+  card.className = 'card' + (read ? ' read' : '');
+  var open = document.createElement('button');
+  open.className = 'card-open';
+  open.innerHTML = "<span class='k'>" + esc(a.kicker || '') + "</span><span class='ttl'>" + esc(a.num + '. ' + a.title.text) + "</span><span class='meta'><span class='lvl'>" + esc(a.register || '') + "</span><span class='tag'>" + esc(a.chip || '') + "</span></span><span class='go'>" + (read ? '再读 →' : '阅读 →') + "</span>";
+  addTap(open, function () { location.hash = '#/' + encodeURIComponent(a.id); showStory(a.id); });
+  var mark = document.createElement('button');
+  mark.className = 'card-mark';
+  mark.textContent = '✓';
+  mark.setAttribute('aria-label', read ? 'Mark unread' : 'Mark read');
+  addTap(mark, function (e) { if (e && e.stopPropagation) e.stopPropagation(); setRead(a.id, !isRead(a.id)); renderCards(); });
+  card.appendChild(open);
+  card.appendChild(mark);
+  return card;
+}
+function renderCards() {
+  cardsEl.innerHTML = '';
+  readCardsEl.innerHTML = '';
+  var nRead = 0, nUnread = 0;
+  for (var i = 0; i < ARTICLES.length; i++) {
+    if (isRead(ARTICLES[i].id)) { readCardsEl.appendChild(makeCard(ARTICLES[i])); nRead++; }
+    else { cardsEl.appendChild(makeCard(ARTICLES[i])); nUnread++; }
+  }
+  if (!nUnread) {
+    var e = document.createElement('p');
+    e.className = 'empty';
+    e.textContent = '全部读完了 🎉';
+    cardsEl.appendChild(e);
+  }
+  readCount.textContent = nRead;
+  readSection.style.display = nRead ? 'block' : 'none';
+}
+
+/* ---------- routing ---------- */
+function syncReadBtn() {
+  var r = currentId && isRead(currentId);
+  toggleReadBtn.setAttribute('aria-pressed', r ? 'true' : 'false');
+  toggleReadBtn.textContent = r ? '已读 ✓' : '标为已读';
+}
+function showIndex() {
+  currentId = null;
+  hideWord();
+  renderCards();
+  viewStory.className = 'view';
+  viewIndex.className = 'view active';
+  window.scrollTo(0, 0);
+}
+function showStory(id) {
+  var a = null;
+  for (var i = 0; i < ARTICLES.length; i++) { if (ARTICLES[i].id === id) { a = ARTICLES[i]; break; } }
+  if (!a) { showIndex(); return; }
+  currentId = id;
+  gistShown = true;
+  toggleGistBtn.setAttribute('aria-pressed', 'true');
+  buildArticle(a);
+  syncReadBtn();
+  viewIndex.className = 'view';
+  viewStory.className = 'view active';
+  window.scrollTo(0, 0);
+}
+function route() {
+  var m = location.hash.match(/^#\/(.+)$/);
+  if (m) showStory(decodeURIComponent(m[1])); else showIndex();
+}
+window.addEventListener('hashchange', route);
+addTap($('backBtn'), function () { location.hash = '#/'; showIndex(); });
+addTap($('brand'), function () { location.hash = '#/'; showIndex(); });
+onKey($('brand'), function () { location.hash = '#/'; });
+addTap(toggleGistBtn, function () {
+  gistShown = !gistShown;
+  toggleGistBtn.setAttribute('aria-pressed', gistShown ? 'true' : 'false');
+  var b = $('gistBox');
+  if (b) b.className = gistShown ? 'gist' : 'gist hidden';
+});
+addTap(toggleReadBtn, function () {
+  if (!currentId) return;
+  setRead(currentId, !isRead(currentId));
+  syncReadBtn();
+});
+(function wirePy() {
+  var opts = pySeg.getElementsByTagName('button');
+  for (var i = 0; i < opts.length; i++) {
+    (function (btn) {
+      addTap(btn, function () { pyMode = btn.getAttribute('data-py'); lsSet(PY_KEY, pyMode); applyPy(); });
+    })(opts[i]);
+  }
+})();
+function renderMem() {
+  var opts = memToggle.getElementsByTagName('button');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].setAttribute('aria-pressed', opts[i].getAttribute('data-mem') === mem ? 'true' : 'false');
+  }
+  if (mem === 'M1') {
+    memHint.textContent = m1Failed ? 'M1 · 共享记录（仅在线可用，本地文件不可用）' : 'M1 · 共享记录，只读';
+  } else {
+    memHint.textContent = 'M2 · 本设备的记录';
+  }
+}
+function setMem(v) {
+  if (v !== 'M1' && v !== 'M2') return;
+  mem = v;
+  lsSet(MEM_KEY, mem);
+  renderMem();
+  if (mem === 'M1' && !m1Loaded && !m1Failed) {
+    loadM1(function () { renderMem(); renderCards(); if (currentId) syncReadBtn(); });
+  } else { renderCards(); if (currentId) syncReadBtn(); }
+}
+(function wireMem() {
+  var opts = memToggle.getElementsByTagName('button');
+  for (var i = 0; i < opts.length; i++) {
+    (function (btn) { addTap(btn, function () { setMem(btn.getAttribute('data-mem')); }); })(opts[i]);
+  }
+})();
+
+renderMem();
+if (mem === 'M1') { loadM1(function () { renderMem(); renderCards(); route(); }); }
+else { renderCards(); route(); }
+</script>
+</body>
+</html>

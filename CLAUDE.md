@@ -4,6 +4,9 @@ A French A1/A2 reader that turns real English news into simplified French with
 per-sentence breakdowns. Read on desktop, phone, and **a Kobo e-reader** (this
 last one drives most of the hard constraints below).
 
+The repo also hosts **En Clair 中文** (`zh.html`), a reader for original
+Chinese articles. Its workflow and rules are in the Chinese section below.
+
 ## The one-paragraph model
 
 `index.html` is **generated**. `build.py` builds it from `shell.html` (the
@@ -18,11 +21,17 @@ stories/NN-id.json  one story per file. This is what grows.
 progress/m1.json    shared "read" list for M1 memory (see below).
 build.py            shell + stories -> index.html  (validates, guards ES5)
 index.html          GENERATED. Never hand-edit.
+
+shell-zh.html       the Chinese reader (CSS + ES5 JS). Same rules as shell.html.
+articles-zh/        NN-id.txt (text, by script) + .auto.json (generated) + .notes.json (Claude)
+tools/              zh_prepare.py (intake) + zh_userdict.txt / zh_split.txt (word splits)
+progress/m1-zh.json shared "read" list for the Chinese reader.
+zh.html             GENERATED. Never hand-edit.
 ```
 
 ## Hard rules
 
-1. **Never hand-edit `index.html`.** It is overwritten by every build. Edits go
+1. **Never hand-edit `index.html` or `zh.html`.** It is overwritten by every build. Edits go
    to `shell.html` or `stories/*.json`.
 2. **Always run `python3 build.py` after changing a story or the shell**, and
    commit the regenerated `index.html` with the source change. The committed
@@ -143,6 +152,117 @@ conjugation drills, easy material over hard, grammar in plain language, standard
 French. **Always be honest about French you're unsure of** — every story's
 `flag` should say what was compressed and name any phrasing a native might say
 differently. Never present AI French as guaranteed-perfect.
+
+## En Clair 中文 — the Chinese reader (`zh.html`)
+
+A second reader in the same repo, linked by the round top-right buttons (中 on
+En Clair, FR on the Chinese page). It shows **original simplified-Chinese
+articles, unchanged** (no rewriting, no CEFR level), with:
+
+- a pinyin toggle: 关 off / 难词 hard words only / 全部 all (HTML `<ruby>`);
+- a tap-for-meaning card on every word: pinyin, English, and the everyday
+  equivalent of formal words (载明 → 写明);
+- breakdowns (▸) on selected sentences, in the En Clair format;
+- register notes (正式 → 口语), a quiz, an honesty flag, and the source line.
+
+Same hard rules as French: `zh.html` is generated (never hand-edit), ES5 only
+in `shell-zh.html` (build.py checks both shells), article ids are permanent,
+and the data sentinel `/*ARTICLES_DATA_SENTINEL*/[]` appears exactly once.
+
+### The learner (Chinese)
+
+Native speaker of casual Mandarin who reads only everyday characters (texting
+level). The gap is **written / formal register**: news, official notices,
+business and legal Chinese. Pinyin unlocks words he already knows by ear;
+`casual` equivalents bridge formal words (其 → 他的, 若 → 如果). Simplified
+characters only. Flag anything uncertain (pinyin of polyphonic characters,
+glosses that are judgement calls) — never present it as guaranteed-perfect.
+
+### Copyright rules (hard)
+
+1. **Claude never writes article text.** `articles-zh/NN-id.txt` is produced
+   only by `tools/zh_prepare.py` from Jack's file. Don't retype it, paste it
+   into chat, or write it into notes.
+2. **Breakdown chunks point at word positions** (`[from, to]`, or a list of
+   ranges shown as 甲……乙). The page shows the article's own words. For news,
+   build.py rejects typed Chinese in chunks.
+3. **No fixed number of breakdowns.** Government documents (`kind: "gov"`:
+   laws, regulations, notices of state organs — PRC Copyright Law Art. 5) may
+   have every sentence broken down. Copyrighted news (`kind: "news"`) gets a
+   *selection* chosen for the formal patterns it teaches, never every
+   sentence, so the English meanings don't add up to a translation. build.py
+   warns above about a third. Any other sentence can be explained in chat.
+4. **Attribution is always shown.** `source.name` is required (e.g. "BBC中文").
+   `url` and `date` only when Jack gives them — don't go looking. The page
+   cites the source and the article's headline.
+
+### Adding a Chinese article (the workflow)
+
+1. Jack drops a `.docx`, `.rtf` or `.txt` in his inbox folder
+   (`French Learning/En Clair Chinese/Chinese Articles/`, outside this repo —
+   the source file itself is not committed) and names the source.
+2. Run `python3 tools/zh_prepare.py "<source file>" articles-zh/NN-id`
+   (next NN). It extracts the text, converts traditional → simplified (OpenCC
+   t2s, character-level; reports the count; `--keep-traditional` skips it),
+   splits sentences and words (jieba), adds pinyin (pypinyin) and CC-CEDICT
+   glosses, and prints every sentence split into words.
+3. Fix bad word splits **at intake**, then re-run step 2: add to
+   `tools/zh_userdict.txt` (keep together: `二十国集团 5000 nt`) or
+   `tools/zh_split.txt` (keep apart: `还 有待`). Never hand-edit `.txt` or
+   `.auto.json`.
+4. Write `articles-zh/NN-id.notes.json` (schema below). References:
+   `01-…notes.json` (gov) and `02-…notes.json` (news).
+5. Run `python3 build.py`. It checks the .txt ↔ .auto.json alignment, that
+   every word note and breakdown points at a real word / sentence / range,
+   and ES5.
+6. Commit the `.txt`, `.auto.json`, `.notes.json` and rebuilt `zh.html` together
+   (`add article: <id>`).
+
+Intake needs `pip install jieba pypinyin pycccedict opencc-python-reimplemented`
+(pycccedict bundles CC-CEDICT, CC BY-SA 4.0). `build.py` needs nothing.
+
+### `notes.json` schema
+
+```jsonc
+{
+  "id": "kebab-case-stable-forever",      // must equal the id in NN-id
+  "chip": "Short label",
+  "kicker": "来源 · 话题",
+  "kind": "gov",                          // "gov" | "news"
+  "register": "官方公告",                  // 官方公告 / 新闻 / 社论 …
+  "gist": "2-4 English sentences.",
+  "source": { "name": "BBC中文", "url": "optional", "date": "optional" },
+  "words": [                              // article-wide, or one sentence with "s"
+    { "w": "载明", "py": "zǎimíng", "en": "to state in writing", "casual": "写明", "hard": true },
+    { "s": 7, "w": "为", "py": "wéi", "en": "into", "casual": "成" }
+  ],
+  "breakdowns": [
+    { "s": 9,
+      "meaning": "ONE natural-English sentence for the whole line.",
+      "chunks": [ [[4, 11], "gloss (+ micro-note)"],
+                  [[[18, 18], [24, 29]], "two ranges, shown as 甲……乙"] ],
+      "key": "<b>Pattern name:</b> one plain sentence, Chinese in <span class='bd-zh-i'>…</span>." }
+  ],
+  "register_notes": [ { "formal": "若", "casual": "如果", "en": "if" } ],
+  "quiz": { "q": "中文问题？", "a": "中文答案。(English.)" },
+  "flag": "Honesty note: pinyin fixes, judgement calls, what is unchecked."
+}
+```
+
+- The title number comes from the file name; the headline is the .txt's first line.
+- Positions are 0-based word indices within the sentence, as printed by
+  zh_prepare.py (punctuation tokens count).
+- `hard: true` = formal / written-register word (gets pinyin in 难词 mode).
+  Give `casual` wherever an everyday equivalent exists.
+- Check polyphonic characters (为 wèi/wéi, 得, 只, 还, 载, 重, 行 …) and add `py` fixes.
+- Breakdown keys: one register or structure takeaway (formal → casual,
+  于 = 在, 由 X 支付, 若 … 才 …). Same tone as the French recipe.
+- `kind: "gov"` may use typed Chinese strings in chunks; `news` may not.
+
+### Memory (Chinese)
+
+M1/M2 work as in French but are separate: browser keys `enclairzh:*`, and the
+shared M1 list is `progress/m1-zh.json` (same format as `progress/m1.json`).
 
 ## Git conventions
 
