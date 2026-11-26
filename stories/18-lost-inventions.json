@@ -1,0 +1,526 @@
+{
+  "id": "lost-inventions",
+  "chip": "Inventions perdues",
+  "kicker": "Histoire · Science",
+  "title": "18. Sept inventions perdues",
+  "level": "A1",
+  "gist": "People in the past invented remarkable things, and some of these inventions are now lost: researchers are still trying to work out how they were made or how they worked. Seven examples, from the Byzantines' Greek fire and the ancient Greek Antikythera mechanism to the Inca knotted cords (quipus), a Persian weapon that shot five arrows, a luxury plant that vanished, Viking tablet weaving and the unread script of Easter Island.",
+  "body": [
+    [
+      {
+        "fr": "Aujourd'hui, nous avons Internet, des {{avions|planes}} et des satellites.",
+        "bd": {
+          "meaning": "Today we have the internet, planes and satellites.",
+          "chunks": [
+            ["Aujourd'hui", "today"],
+            ["nous avons", "we have (from avoir)"],
+            ["Internet, des avions et des satellites", "the internet, planes and satellites (des = some, plural)"]
+          ],
+          "key": "<b>The little word “des”:</b> it's the plural of <span class='bd-fr-i'>un/une</span>. English often drops it: <span class='bd-fr-i'>des avions</span> = just “planes.”"
+        }
+      },
+      {
+        "fr": "Mais les gens {{du passé|of the past}} ont aussi inventé des choses {{incroyables|amazing}}.",
+        "bd": {
+          "meaning": "But people in the past also invented amazing things.",
+          "chunks": [
+            ["Mais les gens du passé", "but the people of the past (du = de + le)"],
+            ["ont aussi inventé", "also invented — 'aussi' sits between the helper and the past form"],
+            ["des choses incroyables", "amazing things — adjective after the noun"]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>ont inventé</span> = “invented.” Little words like <span class='bd-fr-i'>aussi</span> slip in between the two parts."
+        }
+      },
+      {
+        "fr": "Certaines de ces inventions sont {{perdues|lost}}.",
+        "bd": {
+          "meaning": "Some of these inventions are lost.",
+          "chunks": [
+            ["Certaines", "some (feminine, to match 'inventions')"],
+            ["de ces inventions", "of these inventions"],
+            ["sont perdues", "are lost — 'perdues' takes -es to match"]
+          ],
+          "key": "<b>Words agree with the noun:</b> <span class='bd-fr-i'>inventions</span> is feminine plural, so both <span class='bd-fr-i'>certaines</span> and <span class='bd-fr-i'>perdues</span> take <b>-es</b>."
+        }
+      },
+      {
+        "fr": "Les {{chercheurs|researchers}} {{essaient encore de|are still trying to}} les comprendre.",
+        "bd": {
+          "meaning": "Researchers are still trying to understand them.",
+          "chunks": [
+            ["Les chercheurs", "researchers (chercher = to look for)"],
+            ["essaient encore de", "are still trying to (essayer de + plain verb)"],
+            ["les comprendre", "to understand them — 'les' (them) comes BEFORE the verb"]
+          ],
+          "key": "<b>“them” goes before the verb:</b> <span class='bd-fr-i'>les comprendre</span> = “understand them.” French puts le/la/les in front of the verb, not after."
+        }
+      },
+      {
+        "fr": "{{Voici|here are}} sept exemples.",
+        "bd": {
+          "meaning": "Here are seven examples.",
+          "chunks": [
+            ["Voici", "here is / here are — one fixed word"],
+            ["sept exemples", "seven examples"]
+          ],
+          "key": "<b>“voici” = “here is / here are.”</b> It never changes, singular or plural."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Les Byzantins ont inventé le {{feu grégeois|Greek fire}} au {{septième siècle|seventh century}}.",
+        "bd": {
+          "meaning": "The Byzantines invented Greek fire in the seventh century.",
+          "chunks": [
+            ["Les Byzantins", "the Byzantines"],
+            ["ont inventé", "invented (avoir + past form)"],
+            ["le feu grégeois", "Greek fire — the set French name; 'grégeois' is an old word for 'Greek'"],
+            ["au septième siècle", "in the seventh century (au = à + le)"]
+          ],
+          "key": "<b>Centuries use “au”:</b> <span class='bd-fr-i'>au septième siècle</span> = “in the seventh century.” <span class='bd-fr-i'>-ième</span> turns a number into “-th.”"
+        }
+      },
+      {
+        "fr": "C'est une {{arme|weapon}} {{terrible|fearsome}} contre les bateaux {{ennemis|enemy}}.",
+        "bd": {
+          "meaning": "It's a fearsome weapon against enemy ships.",
+          "chunks": [
+            ["C'est", "it is"],
+            ["une arme terrible", "a fearsome weapon — 'terrible' often means 'fearsome', not just 'very bad'"],
+            ["contre les bateaux ennemis", "against enemy ships — 'ennemis' after the noun"]
+          ],
+          "key": "<b>Adjective after the noun:</b> <span class='bd-fr-i'>les bateaux ennemis</span> = “the enemy ships,” word order flipped from English."
+        }
+      },
+      {
+        "fr": "{{Selon la légende|according to legend}}, ce feu {{brûle|burns}} même sur l'eau.",
+        "bd": {
+          "meaning": "According to legend, this fire burns even on water.",
+          "chunks": [
+            ["Selon la légende", "according to legend"],
+            ["ce feu", "this fire (ce = this, before a masculine noun)"],
+            ["brûle", "burns"],
+            ["même sur l'eau", "even on water"]
+          ],
+          "key": "<b>“selon” = “according to.”</b> A handy word in news: <span class='bd-fr-i'>selon la légende</span>, <span class='bd-fr-i'>selon les chercheurs</span>."
+        }
+      },
+      {
+        "fr": "Les Byzantins l'ont utilisé {{pendant|for (a length of time)}} plus de 500 ans.",
+        "bd": {
+          "meaning": "The Byzantines used it for more than 500 years.",
+          "chunks": [
+            ["Les Byzantins", "the Byzantines"],
+            ["l'ont utilisé", "used it — l' (= le, 'it') sits before the helper 'ont'"],
+            ["pendant plus de 500 ans", "for more than 500 years"]
+          ],
+          "key": "<b>“it” before the helper:</b> in the past, <span class='bd-fr-i'>le</span> goes in front of <span class='bd-fr-i'>ont</span>: <span class='bd-fr-i'>l'ont utilisé</span> = “used it.”"
+        }
+      },
+      {
+        "fr": "Mais aujourd'hui, {{personne ne connaît|nobody knows}} la {{recette|recipe}}.",
+        "bd": {
+          "meaning": "But today nobody knows the recipe.",
+          "chunks": [
+            ["Mais aujourd'hui", "but today"],
+            ["personne ne connaît", "nobody knows — personne + ne, no 'pas'"],
+            ["la recette", "the recipe"]
+          ],
+          "key": "<b>“personne ne …” = “nobody …”:</b> <span class='bd-fr-i'>personne</span> takes the place of <span class='bd-fr-i'>pas</span> in the sandwich. Don't add <span class='bd-fr-i'>pas</span> as well."
+        }
+      },
+      {
+        "fr": "{{Il y avait|there was}} peut-être du {{pétrole|oil (petroleum)}} {{dedans|in it}}.",
+        "bd": {
+          "meaning": "There may have been oil in it.",
+          "chunks": [
+            ["Il y avait", "there was / there were — the past of 'il y a'"],
+            ["peut-être", "maybe"],
+            ["du pétrole", "(some) oil — du = de + le, 'some'"],
+            ["dedans", "inside, in it"]
+          ],
+          "key": "<b>il y a → il y avait:</b> “there is” becomes “there was.” Same set phrase, only the middle changes."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En 1901, des {{plongeurs|divers}} ont trouvé un objet {{au fond de la mer|at the bottom of the sea}}, près d'une île grecque.",
+        "bd": {
+          "meaning": "In 1901, divers found an object at the bottom of the sea, near a Greek island.",
+          "chunks": [
+            ["En 1901", "in 1901 (years take 'en')"],
+            ["des plongeurs ont trouvé", "divers found (avoir + past form)"],
+            ["un objet au fond de la mer", "an object at the bottom of the sea"],
+            ["près d'une île grecque", "near a Greek island — 'grecque' is the feminine of 'grec'"]
+          ],
+          "key": "<b>“en” + year:</b> <span class='bd-fr-i'>en 1901</span> = “in 1901.” Years take <span class='bd-fr-i'>en</span>; centuries take <span class='bd-fr-i'>au</span>."
+        }
+      },
+      {
+        "fr": "C'est le {{mécanisme d'Anticythère|the Antikythera mechanism}}.",
+        "bd": {
+          "meaning": "It's the Antikythera mechanism.",
+          "chunks": [
+            ["C'est", "it is / this is"],
+            ["le mécanisme", "the mechanism"],
+            ["d'Anticythère", "of Antikythera — the island's French spelling"]
+          ],
+          "key": "<b>Place names change spelling in French:</b> Antikythera becomes <span class='bd-fr-i'>Anticythère</span>, just as London becomes <span class='bd-fr-i'>Londres</span>."
+        }
+      },
+      {
+        "fr": "Il a plus de 2 000 ans et il a des {{dizaines|dozens}} de {{roues dentées|gears}} en bronze.",
+        "bd": {
+          "meaning": "It is more than 2,000 years old and it has dozens of bronze gears.",
+          "chunks": [
+            ["Il a plus de 2 000 ans", "it is more than 2,000 years old — literally 'it has' the years"],
+            ["et il a", "and it has"],
+            ["des dizaines de", "dozens of (une dizaine = about ten)"],
+            ["roues dentées en bronze", "bronze gears — literally 'toothed wheels in bronze'"]
+          ],
+          "key": "<b>Age uses “avoir”:</b> French says a thing <i>has</i> its years: <span class='bd-fr-i'>il a 2 000 ans</span> = “it is 2,000 years old.”"
+        }
+      },
+      {
+        "fr": "Selon les chercheurs, il {{peut prédire|can predict}} les {{mouvements|movements}} de la lune et les {{éclipses de soleil|solar eclipses}}.",
+        "bd": {
+          "meaning": "According to researchers, it can predict the movements of the moon and solar eclipses.",
+          "chunks": [
+            ["Selon les chercheurs", "according to the researchers"],
+            ["il peut prédire", "it can predict (pouvoir + plain verb)"],
+            ["les mouvements de la lune", "the movements of the moon"],
+            ["et les éclipses de soleil", "and solar eclipses — literally 'eclipses of sun'"]
+          ],
+          "key": "<b>Helper + plain verb:</b> <span class='bd-fr-i'>peut prédire</span> = “can predict.” Only <span class='bd-fr-i'>peut</span> changes."
+        }
+      },
+      {
+        "fr": "Pour les experts, c'est le {{plus vieil|oldest}} {{ordinateur|computer}} du monde.",
+        "bd": {
+          "meaning": "Experts say it is the oldest computer in the world.",
+          "chunks": [
+            ["Pour les experts", "for the experts / in the experts' view"],
+            ["c'est", "it is"],
+            ["le plus vieil ordinateur", "the oldest computer (le plus + adjective = the most …)"],
+            ["du monde", "in the world — French says 'of the world'"]
+          ],
+          "key": "<b>“vieux” becomes “vieil” before a vowel:</b> <span class='bd-fr-i'>vieil ordinateur</span>, so the words flow. It also sits <i>before</i> the noun, like <span class='bd-fr-i'>vrai</span> and <span class='bd-fr-i'>grand</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En Amérique du Sud, il y a les {{quipus|quipus (knotted cords)}} : des {{cordes|cords}} avec beaucoup de petits {{nœuds|knots}}.",
+        "bd": {
+          "meaning": "In South America there are quipus: cords with lots of little knots.",
+          "chunks": [
+            ["En Amérique du Sud", "in South America (en before a continent)"],
+            ["il y a les quipus", "there are the quipus"],
+            ["des cordes", "cords / strings"],
+            ["avec beaucoup de petits nœuds", "with lots of little knots — 'beaucoup de', never 'beaucoup des'"]
+          ],
+          "key": "<b>“beaucoup de” stays “de”:</b> <span class='bd-fr-i'>beaucoup de nœuds</span>, not <span class='bd-fr-i'>des</span>. Same as <span class='bd-fr-i'>beaucoup de gens</span>."
+        }
+      },
+      {
+        "fr": "Des {{peuples|peoples}} anciens, comme les Incas, ont utilisé ces cordes pour {{noter|record, write down}} des informations.",
+        "bd": {
+          "meaning": "Ancient peoples, like the Incas, used these cords to record information.",
+          "chunks": [
+            ["Des peuples anciens", "ancient peoples"],
+            ["comme les Incas", "like the Incas"],
+            ["ont utilisé ces cordes", "used these cords"],
+            ["pour noter des informations", "to record information — 'informations' is plural in French"]
+          ],
+          "key": "<b>pour + plain verb = “in order to”:</b> <span class='bd-fr-i'>pour noter</span> = “to record.” The verb after <span class='bd-fr-i'>pour</span> stays plain."
+        }
+      },
+      {
+        "fr": "Mais les chercheurs {{ne savent pas encore|don't yet know how to}} lire les plus vieux quipus.",
+        "bd": {
+          "meaning": "But researchers can't yet read the oldest quipus.",
+          "chunks": [
+            ["Mais les chercheurs", "but researchers"],
+            ["ne savent pas encore", "don't yet know (how to) — the ne…pas sandwich plus 'encore' (yet)"],
+            ["lire", "read (plain verb after savoir)"],
+            ["les plus vieux quipus", "the oldest quipus"]
+          ],
+          "key": "<b>“savoir” + plain verb = “know how to”:</b> <span class='bd-fr-i'>ils ne savent pas lire</span> = “they can't read (don't know how).”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le {{panjagan|panjagan}} est une arme {{perse|Persian}} très ancienne.",
+        "bd": {
+          "meaning": "The panjagan is a very old Persian weapon.",
+          "chunks": [
+            ["Le panjagan", "the panjagan (a name, not translated)"],
+            ["est une arme perse", "is a Persian weapon"],
+            ["très ancienne", "very old — feminine, to match 'arme'"]
+          ],
+          "key": "<b>“arme” is feminine</b>, so <span class='bd-fr-i'>ancien</span> becomes <span class='bd-fr-i'>ancienne</span>, even though the panjagan itself is <span class='bd-fr-i'>le</span>."
+        }
+      },
+      {
+        "fr": "Selon des textes anciens, avec cette arme, les soldats {{tirent|shoot}} cinq {{flèches|arrows}} {{en même temps|at the same time}}.",
+        "bd": {
+          "meaning": "According to old texts, with this weapon soldiers shoot five arrows at once.",
+          "chunks": [
+            ["Selon des textes anciens", "according to old texts"],
+            ["avec cette arme", "with this weapon (cette = this, feminine)"],
+            ["les soldats tirent", "the soldiers shoot (tirer = to shoot / to pull)"],
+            ["cinq flèches en même temps", "five arrows at the same time"]
+          ],
+          "key": "<b>“en même temps” = “at the same time.”</b> A ready-made phrase worth keeping whole."
+        }
+      },
+      {
+        "fr": "Le mot {{vient de|comes from}} « panj », qui {{veut dire|means}} « cinq » en persan.",
+        "bd": {
+          "meaning": "The word comes from “panj,” which means “five” in Persian.",
+          "chunks": [
+            ["Le mot vient de « panj »", "the word comes from 'panj' (venir de = come from)"],
+            ["qui veut dire", "which means — literally 'which wants to say'"],
+            ["« cinq » en persan", "'five' in Persian (en + language)"]
+          ],
+          "key": "<b>“vouloir dire” = “to mean.”</b> <span class='bd-fr-i'>Ça veut dire…</span> = “that means…” — very common in speech."
+        }
+      },
+      {
+        "fr": "Mais {{on ne sait pas|we don't know}} comment il {{marche|works}}.",
+        "bd": {
+          "meaning": "But nobody knows how it works.",
+          "chunks": [
+            ["Mais", "but"],
+            ["on ne sait pas", "we / people don't know (on = people in general)"],
+            ["comment il marche", "how it works — 'marcher' = to walk, but also 'to work' for machines"]
+          ],
+          "key": "<b>“on” = people / we in general:</b> <span class='bd-fr-i'>on ne sait pas</span> = “nobody knows / we don't know.”"
+        }
+      },
+      {
+        "fr": "Un historien pense que c'est peut-être une {{sorte de|kind of}} {{arbalète|crossbow}}.",
+        "bd": {
+          "meaning": "One historian thinks it may be a kind of crossbow.",
+          "chunks": [
+            ["Un historien pense que", "a historian thinks that"],
+            ["c'est peut-être", "it is maybe / it may be"],
+            ["une sorte d'arbalète", "a kind of crossbow (de → d' before a vowel)"]
+          ],
+          "key": "<b>“penser que” = “to think that”:</b> French keeps the <span class='bd-fr-i'>que</span>; English can drop “that.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Le {{silphium|silphium}} est une {{plante|plant}} {{sauvage|wild}} d'Afrique du Nord.",
+        "bd": {
+          "meaning": "Silphium is a wild plant from North Africa.",
+          "chunks": [
+            ["Le silphium", "silphium (the name stays the same)"],
+            ["est une plante sauvage", "is a wild plant — adjective after the noun"],
+            ["d'Afrique du Nord", "from North Africa"]
+          ],
+          "key": "<b>Adjective after the noun:</b> <span class='bd-fr-i'>une plante sauvage</span> = “a wild plant.”"
+        }
+      },
+      {
+        "fr": "Les Grecs et les Romains la {{mangent|eat}} et l'utilisent comme {{médicament|medicine}}.",
+        "bd": {
+          "meaning": "The Greeks and Romans eat it and use it as medicine.",
+          "chunks": [
+            ["Les Grecs et les Romains", "the Greeks and the Romans"],
+            ["la mangent", "eat it (la = it, for the feminine 'plante')"],
+            ["et l'utilisent", "and use it (la → l' before a vowel)"],
+            ["comme médicament", "as medicine (comme = as / like)"]
+          ],
+          "key": "<b>“la” = “it” for a feminine thing</b>, and it goes before the verb: <span class='bd-fr-i'>la mangent</span> = “eat it.”"
+        }
+      },
+      {
+        "fr": "Elle coûte très cher : son {{poids|weight}} en {{argent|silver}} !",
+        "bd": {
+          "meaning": "It's very expensive: its weight in silver!",
+          "chunks": [
+            ["Elle coûte très cher", "it costs a lot (elle = the plant)"],
+            ["son poids", "its weight"],
+            ["en argent", "in silver"]
+          ],
+          "key": "<b>“argent” = silver AND money.</b> Context tells you which; here it's the metal."
+        }
+      },
+      {
+        "fr": "Mais au premier siècle, la plante {{disparaît|disappears}}.",
+        "bd": {
+          "meaning": "But in the first century, the plant disappears.",
+          "chunks": [
+            ["Mais au premier siècle", "but in the first century (premier = first)"],
+            ["la plante", "the plant"],
+            ["disparaît", "disappears"]
+          ],
+          "key": "<b>Present for history:</b> French news often tells past events in the present to make them vivid. Here <span class='bd-fr-i'>disparaît</span> = “disappeared.”"
+        }
+      },
+      {
+        "fr": "Pourquoi ? Les chercheurs {{ne sont pas d'accord|don't agree}}.",
+        "bd": {
+          "meaning": "Why? Researchers don't agree.",
+          "chunks": [
+            ["Pourquoi ?", "why? (note the space before ? in French)"],
+            ["Les chercheurs", "researchers"],
+            ["ne sont pas d'accord", "don't agree — literally 'are not in agreement'"]
+          ],
+          "key": "<b>“être d'accord” = “to agree”:</b> French uses <span class='bd-fr-i'>être</span>, not a verb “to agree.” <span class='bd-fr-i'>D'accord !</span> alone = “OK!”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "À l'{{époque|time, era}} des Vikings, on {{tisse|weaves}} de belles {{bandes de tissu|strips of cloth}} avec des {{tablettes|tablets (small flat cards)}}.",
+        "bd": {
+          "meaning": "In Viking times, people weave beautiful strips of cloth using tablets.",
+          "chunks": [
+            ["À l'époque des Vikings", "in the time of the Vikings"],
+            ["on tisse", "people weave (tisser = to weave)"],
+            ["de belles bandes de tissu", "beautiful strips of cloth — 'des' becomes 'de' before 'belles'"],
+            ["avec des tablettes", "with tablets"]
+          ],
+          "key": "<b>“des” → “de” before an adjective:</b> <span class='bd-fr-i'>des bandes</span> but <span class='bd-fr-i'>de belles bandes</span>. In casual speech you'll also hear <span class='bd-fr-i'>des belles</span>."
+        }
+      },
+      {
+        "fr": "Certains {{motifs|patterns, designs}} sont très {{compliqués|complicated}}.",
+        "bd": {
+          "meaning": "Some patterns are very complicated.",
+          "chunks": [
+            ["Certains motifs", "some patterns (masculine plural: certains, not certaines)"],
+            ["sont très compliqués", "are very complicated — -s to match 'motifs'"]
+          ],
+          "key": "<b>Words agree with the noun:</b> <span class='bd-fr-i'>motifs</span> is masculine plural, so <span class='bd-fr-i'>certains</span> and <span class='bd-fr-i'>compliqués</span> take <b>-s</b>, not <b>-es</b>."
+        }
+      },
+      {
+        "fr": "Une {{historienne|historian (female)}} les {{étudie depuis|has been studying for}} des dizaines d'années.",
+        "bd": {
+          "meaning": "One historian has been studying them for decades.",
+          "chunks": [
+            ["Une historienne", "a (female) historian — the -ne ending marks a woman"],
+            ["les étudie", "studies them (les = the patterns, before the verb)"],
+            ["depuis des dizaines d'années", "for decades — literally 'since tens of years'"]
+          ],
+          "key": "<b>depuis + present = “has been … for”:</b> <span class='bd-fr-i'>elle les étudie depuis…</span> = “she has been studying them for…” French uses the present because it's still going on."
+        }
+      },
+      {
+        "fr": "Mais pour beaucoup de motifs, personne ne sait encore comment les {{refaire|remake, make again}}.",
+        "bd": {
+          "meaning": "But for many patterns, nobody yet knows how to make them again.",
+          "chunks": [
+            ["Mais pour beaucoup de motifs", "but for many patterns"],
+            ["personne ne sait encore", "nobody knows yet"],
+            ["comment les refaire", "how to make them again (re- = again, like English)"]
+          ],
+          "key": "<b>“re-” = “again”:</b> <span class='bd-fr-i'>faire</span> → <span class='bd-fr-i'>refaire</span>, just like make → remake."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Sur l'{{île de Pâques|Easter Island}}, il y a 27 vieilles {{tablettes en bois|wooden tablets}} avec des {{symboles|symbols}}.",
+        "bd": {
+          "meaning": "On Easter Island there are 27 old wooden tablets with symbols.",
+          "chunks": [
+            ["Sur l'île de Pâques", "on Easter Island (Pâques = Easter)"],
+            ["il y a 27 vieilles", "there are 27 old (vieilles = feminine plural of vieux)"],
+            ["tablettes en bois", "wooden tablets — 'en bois' = made of wood"],
+            ["avec des symboles", "with symbols"]
+          ],
+          "key": "<b>“en” + material = “made of”:</b> <span class='bd-fr-i'>en bois</span> = wooden, <span class='bd-fr-i'>en bronze</span> = bronze."
+        }
+      },
+      {
+        "fr": "Cette {{écriture|script, writing}} {{s'appelle|is called}} le rongorongo.",
+        "bd": {
+          "meaning": "This script is called rongorongo.",
+          "chunks": [
+            ["Cette écriture", "this script / this writing"],
+            ["s'appelle", "is called — literally 'calls itself'"],
+            ["le rongorongo", "rongorongo (a Rapa Nui word)"]
+          ],
+          "key": "<b>“s'appeler” = “to be called”:</b> the same verb as <span class='bd-fr-i'>je m'appelle…</span> (“my name is…”)."
+        }
+      },
+      {
+        "fr": "Personne ne sait encore la lire.",
+        "bd": {
+          "meaning": "Nobody can read it yet.",
+          "chunks": [
+            ["Personne ne sait", "nobody knows (how to)"],
+            ["encore", "yet / still"],
+            ["la lire", "to read it (la = the script, before the verb)"]
+          ],
+          "key": "<b>“personne ne …” again:</b> <span class='bd-fr-i'>personne</span> replaces <span class='bd-fr-i'>pas</span>. Nobody has cracked it."
+        }
+      },
+      {
+        "fr": "Est-ce une vraie {{langue écrite|written language}} ? On ne sait pas.",
+        "bd": {
+          "meaning": "Is it a real written language? We don't know.",
+          "chunks": [
+            ["Est-ce", "is it — question by swapping 'c'est' around"],
+            ["une vraie langue écrite", "a real written language ('vraie' before, 'écrite' after the noun)"],
+            ["On ne sait pas", "we / people don't know"]
+          ],
+          "key": "<b>Question by flipping:</b> <span class='bd-fr-i'>c'est</span> → <span class='bd-fr-i'>est-ce ?</span> = “is it?” One of the three ways to ask a question."
+        }
+      },
+      {
+        "fr": "Une chercheuse en Italie fait des {{modèles en 3D|3D models}} de presque toutes ces tablettes.",
+        "bd": {
+          "meaning": "A researcher in Italy is making 3D models of almost all these tablets.",
+          "chunks": [
+            ["Une chercheuse en Italie", "a (female) researcher in Italy (en + feminine country)"],
+            ["fait des modèles en 3D", "makes 3D models (faire = to make / do)"],
+            ["de presque toutes ces tablettes", "of almost all these tablets"]
+          ],
+          "key": "<b>“-eur” → “-euse” for a woman:</b> <span class='bd-fr-i'>chercheur</span> → <span class='bd-fr-i'>chercheuse</span>."
+        }
+      },
+      {
+        "fr": "Selon elle, si c'est une vraie écriture, on {{va bientôt la lire|is soon going to read it}}.",
+        "bd": {
+          "meaning": "In her view, if it is a real script, people will soon be able to read it.",
+          "chunks": [
+            ["Selon elle", "according to her"],
+            ["si c'est une vraie écriture", "if it's a real script"],
+            ["on va", "we / people are going to"],
+            ["bientôt la lire", "soon read it ('la' still sits right before 'lire')"]
+          ],
+          "key": "<b>Future = aller + plain verb:</b> <span class='bd-fr-i'>on va lire</span> = “we're going to read.” Small words like <span class='bd-fr-i'>bientôt</span> and <span class='bd-fr-i'>la</span> squeeze in between."
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Personne ne connaît la recette",
+      "en": "<b>personne ne … = nobody.</b> It's the <span class='fr'>ne … pas</span> sandwich with <span class='fr'>personne</span> in place of <span class='fr'>pas</span>. It turns up three times here: <span class='fr'>personne ne connaît</span>, and twice <span class='fr'>personne ne sait encore</span>."
+    },
+    {
+      "fr": "Les Grecs la mangent",
+      "en": "<b>le / la / les = it / them, BEFORE the verb.</b> <span class='fr'>la mangent</span> = “eat it,” <span class='fr'>les comprendre</span> = “understand them,” <span class='fr'>l'ont utilisé</span> = “used it.” In the past, they sit before the helper."
+    },
+    {
+      "fr": "Elle les étudie depuis des dizaines d'années",
+      "en": "<b>depuis + present = “has been … for.”</b> French uses the present for something that started in the past and is still going on."
+    }
+  ],
+  "quiz": {
+    "q": "Combien de flèches le panjagan tire-t-il en même temps ?",
+    "a": "Cinq — « panj » veut dire « cinq » en persan. (Five — “panj” means “five” in Persian.)"
+  },
+  "flag": "Big compression: the long New York Times piece (9 Nov 2026) is cut to a few lines per invention, and I dropped the intro examples, most names and quotes, and side details (Caesar's silphium stock, the Wari before the Incas, the Viking band replication). Several past events are told in the present (<span class='fr'>la plante disparaît</span>, <span class='fr'>les soldats tirent</span>, <span class='fr'>il peut prédire</span>) to keep tenses simple; a native would usually say <span class='fr'>il pouvait</span>, <span class='fr'>tiraient</span>, etc. <span class='fr'>feu grégeois</span> and <span class='fr'>mécanisme d'Anticythère</span> are the standard French names. The article says “oldest <i>known</i> computer”; I dropped “known.” <span class='fr'>Bandes de tissu</span> is my plain wording; a textile specialist would say <span class='fr'>galons</span> or <span class='fr'>tissage aux tablettes</span>. The source doesn't give the researcher in Italy's nationality, so I wrote <span class='fr'>en Italie</span> (she is at the University of Bologna)."
+}
