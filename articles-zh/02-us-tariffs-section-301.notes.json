@@ -1,0 +1,1720 @@
+{
+ "id": "us-tariffs-section-301",
+ "chip": "301 关税",
+ "kicker": "BBC中文 · 中美贸易",
+ "kind": "news",
+ "register": "新闻",
+ "gist": "The US has proposed new tariffs on 14 trading partners, including China, the EU, Japan, South Korea and Taiwan, after a Section 301 investigation into 'structural overcapacity'. China faces the highest cap (40%), but most Chinese goods would be capped at 20%. Nothing takes effect before January, after hearings, and analysts read the move as leverage ahead of US–China talks, with the trade truce expiring on 10 January. Beijing calls it political manipulation and still holds the critical-minerals card. Experts think these tariffs will stand up in court better than the 'Liberation Day' tariffs the Supreme Court struck down. The EU rejects them, and pressure is building inside the US.",
+ "source": {
+  "name": "BBC中文"
+ },
+ "words": [
+  {
+   "w": "特朗普",
+   "py": "Tèlǎngpǔ",
+   "en": "Trump"
+  },
+  {
+   "w": "习近平",
+   "py": "Xí Jìnpíng",
+   "en": "Xi Jinping"
+  },
+  {
+   "w": "普京",
+   "py": "Pǔjīng",
+   "en": "Putin"
+  },
+  {
+   "w": "郭嘉昆",
+   "py": "Guō Jiākūn",
+   "en": "Guo Jiakun (Chinese foreign ministry spokesman)"
+  },
+  {
+   "w": "温迪",
+   "py": "Wēndí",
+   "en": "Wendy"
+  },
+  {
+   "w": "卡特勒",
+   "py": "Kǎtèlè",
+   "en": "Cutler (Wendy Cutler)"
+  },
+  {
+   "w": "贾米森",
+   "py": "Jiǎmǐsēn",
+   "en": "Jamieson"
+  },
+  {
+   "w": "格里尔",
+   "py": "Gélǐ'ěr",
+   "en": "Greer (Jamieson Greer, US Trade Representative)"
+  },
+  {
+   "w": "尤索夫",
+   "py": "Yóusuǒfū",
+   "en": "Yusof"
+  },
+  {
+   "w": "伊萨",
+   "py": "Yīsà",
+   "en": "Ishak"
+  },
+  {
+   "w": "贾扬特",
+   "py": "Jiǎyángtè",
+   "en": "Jayant"
+  },
+  {
+   "w": "梅农",
+   "py": "Méinóng",
+   "en": "Menon"
+  },
+  {
+   "w": "斯蒂芬",
+   "py": "Sīdìfēn",
+   "en": "Stephen"
+  },
+  {
+   "w": "布朗",
+   "py": "Bùlǎng",
+   "en": "Brown"
+  },
+  {
+   "w": "安东尼",
+   "py": "Āndōngní",
+   "en": "Anthony"
+  },
+  {
+   "w": "泽彻",
+   "py": "Zéchè",
+   "en": "Zurcher (Anthony Zurcher, BBC)"
+  },
+  {
+   "w": "史维兹",
+   "py": "Shǐ Wéizī",
+   "en": "Shvets (Viktor Shvets)"
+  },
+  {
+   "w": "乌尔苏拉",
+   "py": "Wū'ěrsūlā",
+   "en": "Ursula"
+  },
+  {
+   "w": "冯德莱恩",
+   "py": "Féngdéláiēn",
+   "en": "von der Leyen"
+  },
+  {
+   "w": "凯投宏观",
+   "py": "Kǎitóu Hóngguān",
+   "en": "Capital Economics"
+  },
+  {
+   "w": "麦格理资本",
+   "py": "Màigélǐ Zīběn",
+   "en": "Macquarie Capital"
+  },
+  {
+   "w": "亚洲协会",
+   "py": "Yàzhōu Xiéhuì",
+   "en": "Asia Society"
+  },
+  {
+   "w": "中国外交部",
+   "py": "Zhōngguó Wàijiāobù",
+   "en": "China's Ministry of Foreign Affairs"
+  },
+  {
+   "w": "二十国集团",
+   "py": "Èrshí Guó Jítuán",
+   "en": "the G20"
+  },
+  {
+   "w": "玫瑰园",
+   "py": "Méiguī Yuán",
+   "en": "the Rose Garden (White House)"
+  },
+  {
+   "w": "的",
+   "en": "(linking particle: …'s / that …)"
+  },
+  {
+   "w": "和",
+   "en": "and"
+  },
+  {
+   "w": "等",
+   "en": "etc.; and other"
+  },
+  {
+   "w": "将",
+   "en": "will (formal)",
+   "casual": "会 / 要"
+  },
+  {
+   "w": "对",
+   "en": "on; towards; to"
+  },
+  {
+   "w": "了",
+   "en": "(particle: completed action / change)"
+  },
+  {
+   "w": "着",
+   "en": "(particle: ongoing state)"
+  },
+  {
+   "w": "得",
+   "py": "de",
+   "en": "(particle linking a verb to how it went)"
+  },
+  {
+   "w": "只",
+   "py": "zhī",
+   "en": "(measure word for one of a pair, e.g. a boot)"
+  },
+  {
+   "w": "中",
+   "en": "in; among"
+  },
+  {
+   "w": "与",
+   "en": "with; and (formal)",
+   "casual": "跟 / 和"
+  },
+  {
+   "w": "并",
+   "en": "and also (formal)",
+   "casual": "而且"
+  },
+  {
+   "w": "其",
+   "en": "its / his / their (formal)",
+   "casual": "他的 / 它们的",
+   "hard": true
+  },
+  {
+   "w": "于",
+   "en": "on; at; in (formal)",
+   "casual": "在",
+   "hard": true
+  },
+  {
+   "w": "至",
+   "en": "to; until (formal)",
+   "casual": "到"
+  },
+  {
+   "w": "约",
+   "en": "about; roughly"
+  },
+  {
+   "w": "各",
+   "en": "each; every"
+  },
+  {
+   "w": "向",
+   "en": "to; towards"
+  },
+  {
+   "w": "把",
+   "en": "(marks the object before the verb)"
+  },
+  {
+   "w": "被",
+   "en": "(passive marker)"
+  },
+  {
+   "w": "才",
+   "en": "only then; not until"
+  },
+  {
+   "w": "再",
+   "en": "again; then"
+  },
+  {
+   "w": "又",
+   "en": "again; and also"
+  },
+  {
+   "w": "已",
+   "en": "already (formal)",
+   "casual": "已经"
+  },
+  {
+   "w": "本",
+   "en": "originally; already (formal)",
+   "casual": "本来"
+  },
+  {
+   "w": "未",
+   "en": "not (yet) (formal)",
+   "casual": "没",
+   "hard": true
+  },
+  {
+   "w": "因",
+   "en": "because of (formal)",
+   "casual": "因为"
+  },
+  {
+   "w": "而",
+   "en": "and; but; and so (formal link word)",
+   "hard": true
+  },
+  {
+   "w": "就",
+   "en": "on; regarding (a matter)"
+  },
+  {
+   "w": "按",
+   "en": "according to; by"
+  },
+  {
+   "w": "即",
+   "en": "namely; that is (formal)",
+   "casual": "就是",
+   "hard": true
+  },
+  {
+   "w": "使",
+   "en": "to make; to cause",
+   "casual": "让"
+  },
+  {
+   "w": "靠",
+   "en": "relying on"
+  },
+  {
+   "w": "以",
+   "en": "by; with; as (formal)",
+   "casual": "用",
+   "hard": true
+  },
+  {
+   "s": 4,
+   "w": "为",
+   "py": "wéi",
+   "en": "to be (formal)",
+   "casual": "是",
+   "hard": true
+  },
+  {
+   "s": 22,
+   "w": "为",
+   "py": "wéi",
+   "en": "to be (formal)",
+   "casual": "是",
+   "hard": true
+  },
+  {
+   "s": 26,
+   "w": "为",
+   "py": "wèi",
+   "en": "for (formal)",
+   "casual": "给",
+   "hard": true
+  },
+  {
+   "s": 48,
+   "w": "为",
+   "py": "wéi",
+   "en": "as (以 … 为 … = taking … as …)",
+   "hard": true
+  },
+  {
+   "w": "再挥",
+   "py": "zài huī",
+   "en": "to wield again"
+  },
+  {
+   "w": "大棒",
+   "en": "big stick (here: the threat of tariffs)"
+  },
+  {
+   "w": "会晤",
+   "en": "a (high-level) meeting; to meet",
+   "casual": "见面",
+   "hard": true
+  },
+  {
+   "w": "对华",
+   "en": "towards China (formal)",
+   "casual": "对中国",
+   "hard": true
+  },
+  {
+   "w": "对美",
+   "en": "towards the US (formal)",
+   "casual": "对美国",
+   "hard": true
+  },
+  {
+   "w": "驻美",
+   "en": "stationed in the US",
+   "hard": true
+  },
+  {
+   "w": "可达",
+   "en": "can reach; up to"
+  },
+  {
+   "w": "拟",
+   "en": "to plan to; to propose (formal)",
+   "casual": "打算",
+   "hard": true
+  },
+  {
+   "w": "加征",
+   "en": "to impose additional (tariffs)",
+   "hard": true
+  },
+  {
+   "w": "标志性",
+   "en": "signature; landmark",
+   "hard": true
+  },
+  {
+   "w": "上限",
+   "en": "upper limit; cap",
+   "hard": true
+  },
+  {
+   "w": "此前",
+   "en": "previously (formal)",
+   "casual": "之前",
+   "hard": true
+  },
+  {
+   "w": "多项",
+   "en": "several (agreements, items)"
+  },
+  {
+   "w": "缴纳",
+   "en": "to pay (tax, a fee)",
+   "casual": "交",
+   "hard": true
+  },
+  {
+   "w": "须",
+   "en": "must (formal)",
+   "casual": "必须 / 要",
+   "hard": true
+  },
+  {
+   "w": "经",
+   "en": "to go through; after (formal)",
+   "casual": "经过",
+   "hard": true
+  },
+  {
+   "w": "多轮",
+   "en": "several rounds"
+  },
+  {
+   "w": "听证会",
+   "en": "hearing (formal public hearing)",
+   "hard": true
+  },
+  {
+   "w": "生效",
+   "en": "to take effect",
+   "hard": true
+  },
+  {
+   "w": "仅",
+   "en": "only (formal)",
+   "casual": "只",
+   "hard": true
+  },
+  {
+   "w": "数日",
+   "en": "a few days (formal)",
+   "casual": "几天",
+   "hard": true
+  },
+  {
+   "w": "数月",
+   "en": "several months (formal)",
+   "casual": "几个月",
+   "hard": true
+  },
+  {
+   "w": "数十年",
+   "en": "several decades",
+   "casual": "几十年",
+   "hard": true
+  },
+  {
+   "w": "休战",
+   "en": "truce",
+   "hard": true
+  },
+  {
+   "w": "到期",
+   "en": "to expire"
+  },
+  {
+   "w": "人士",
+   "en": "people (in a field: analysts, officials)",
+   "hard": true
+  },
+  {
+   "w": "这轮",
+   "en": "this round"
+  },
+  {
+   "w": "谈判桌",
+   "en": "negotiating table"
+  },
+  {
+   "w": "筹码",
+   "en": "bargaining chip",
+   "hard": true
+  },
+  {
+   "w": "称",
+   "en": "to state; to say (formal)",
+   "casual": "说",
+   "hard": true
+  },
+  {
+   "w": "针对",
+   "en": "to target; aimed at",
+   "hard": true
+  },
+  {
+   "w": "结构性",
+   "en": "structural",
+   "hard": true
+  },
+  {
+   "w": "产能",
+   "en": "production capacity",
+   "hard": true
+  },
+  {
+   "w": "过剩",
+   "en": "excess; surplus",
+   "hard": true
+  },
+  {
+   "w": "则",
+   "en": "however; meanwhile (formal contrast)",
+   "casual": "却 / 就",
+   "hard": true
+  },
+  {
+   "w": "由",
+   "en": "by (who does it)",
+   "casual": "让 … 来",
+   "hard": true
+  },
+  {
+   "w": "若",
+   "en": "if (formal)",
+   "casual": "如果",
+   "hard": true
+  },
+  {
+   "w": "转嫁",
+   "en": "to pass on (costs) to",
+   "hard": true
+  },
+  {
+   "w": "推高",
+   "en": "to push up"
+  },
+  {
+   "w": "抑制",
+   "en": "to curb; to suppress",
+   "hard": true
+  },
+  {
+   "w": "博弈",
+   "en": "contest; strategic game",
+   "hard": true
+  },
+  {
+   "w": "化解",
+   "en": "to resolve; to defuse",
+   "hard": true
+  },
+  {
+   "w": "分歧",
+   "en": "differences; disagreements",
+   "hard": true
+  },
+  {
+   "w": "任期",
+   "en": "term of office",
+   "hard": true
+  },
+  {
+   "w": "几度",
+   "en": "several times",
+   "hard": true
+  },
+  {
+   "w": "相继",
+   "en": "one after another",
+   "hard": true
+  },
+  {
+   "w": "加码",
+   "en": "to raise the stakes",
+   "hard": true
+  },
+  {
+   "w": "其后",
+   "en": "after that (formal)",
+   "casual": "后来",
+   "hard": true
+  },
+  {
+   "w": "局势",
+   "en": "situation",
+   "hard": true
+  },
+  {
+   "w": "稍早",
+   "en": "earlier (this month / year)",
+   "hard": true
+  },
+  {
+   "w": "美方",
+   "en": "the US side"
+  },
+  {
+   "w": "中方",
+   "en": "the Chinese side"
+  },
+  {
+   "w": "操弄",
+   "en": "manipulation",
+   "hard": true
+  },
+  {
+   "w": "指称",
+   "en": "allegation",
+   "hard": true
+  },
+  {
+   "w": "伪",
+   "en": "false; pseudo-",
+   "hard": true
+  },
+  {
+   "w": "命题",
+   "en": "proposition (伪命题 = a false premise)",
+   "hard": true
+  },
+  {
+   "w": "所谓",
+   "en": "so-called",
+   "hard": true
+  },
+  {
+   "w": "元首",
+   "en": "head of state",
+   "hard": true
+  },
+  {
+   "w": "再度",
+   "en": "once again (formal)",
+   "casual": "又一次",
+   "hard": true
+  },
+  {
+   "w": "锑",
+   "en": "antimony",
+   "hard": true
+  },
+  {
+   "w": "镓",
+   "en": "gallium",
+   "hard": true
+  },
+  {
+   "w": "锗",
+   "en": "germanium",
+   "hard": true
+  },
+  {
+   "w": "矿产",
+   "en": "minerals"
+  },
+  {
+   "w": "出口管制",
+   "py": "chūkǒu guǎnzhì",
+   "en": "export controls",
+   "hard": true
+  },
+  {
+   "w": "暂停期",
+   "en": "suspension period",
+   "hard": true
+  },
+  {
+   "w": "弹药",
+   "en": "ammunition",
+   "hard": true
+  },
+  {
+   "w": "精炼",
+   "en": "refining",
+   "hard": true
+  },
+  {
+   "w": "拟议",
+   "en": "proposed",
+   "hard": true
+  },
+  {
+   "w": "豁免",
+   "en": "exemption; exempted",
+   "hard": true
+  },
+  {
+   "w": "认定",
+   "en": "to determine; to conclude",
+   "hard": true
+  },
+  {
+   "w": "磋商",
+   "en": "consultations; talks",
+   "casual": "商量",
+   "hard": true
+  },
+  {
+   "w": "未能",
+   "en": "failed to (formal)",
+   "casual": "没能",
+   "hard": true
+  },
+  {
+   "w": "所指",
+   "en": "referred to (by)",
+   "hard": true
+  },
+  {
+   "w": "副总裁",
+   "en": "vice-president"
+  },
+  {
+   "w": "履行",
+   "en": "to fulfil (a promise, duty)",
+   "hard": true
+  },
+  {
+   "w": "承诺",
+   "en": "commitment; promise"
+  },
+  {
+   "w": "如期",
+   "en": "on schedule",
+   "casual": "按时",
+   "hard": true
+  },
+  {
+   "w": "促使",
+   "en": "to push (someone) to",
+   "hard": true
+  },
+  {
+   "w": "增购",
+   "en": "to buy more",
+   "casual": "多买",
+   "hard": true
+  },
+  {
+   "w": "特意",
+   "en": "deliberately; specially"
+  },
+  {
+   "w": "中期",
+   "en": "mid-term (中期选举 = midterm elections)"
+  },
+  {
+   "w": "特习会",
+   "en": "Trump–Xi summit",
+   "hard": true
+  },
+  {
+   "w": "缓冲",
+   "en": "buffer",
+   "hard": true
+  },
+  {
+   "w": "卷土重来",
+   "en": "to make a comeback (idiom)",
+   "hard": true
+  },
+  {
+   "w": "援引",
+   "en": "to invoke; to cite",
+   "hard": true
+  },
+  {
+   "w": "征收",
+   "en": "to levy; to collect (tax)",
+   "hard": true
+  },
+  {
+   "w": "对等关税",
+   "en": "reciprocal tariffs",
+   "hard": true
+  },
+  {
+   "w": "裁定",
+   "en": "to rule (of a court)",
+   "hard": true
+  },
+  {
+   "w": "解放日",
+   "en": "Liberation Day"
+  },
+  {
+   "w": "随即",
+   "en": "immediately afterwards (formal)",
+   "casual": "马上就",
+   "hard": true
+  },
+  {
+   "w": "途径",
+   "en": "route; channel",
+   "hard": true
+  },
+  {
+   "w": "启动",
+   "en": "to launch; to start"
+  },
+  {
+   "w": "条款",
+   "en": "clause; section (of a law)",
+   "hard": true
+  },
+  {
+   "w": "瞄准",
+   "en": "to aim at; to target"
+  },
+  {
+   "w": "歧视性",
+   "en": "discriminatory",
+   "hard": true
+  },
+  {
+   "w": "报复",
+   "en": "to retaliate",
+   "hard": true
+  },
+  {
+   "w": "牺牲",
+   "en": "to sacrifice"
+  },
+  {
+   "w": "连同",
+   "en": "together with",
+   "hard": true
+  },
+  {
+   "w": "详尽",
+   "en": "detailed; exhaustive",
+   "hard": true
+  },
+  {
+   "w": "一并",
+   "en": "together; at the same time (formal)",
+   "casual": "一起",
+   "hard": true
+  },
+  {
+   "w": "据称",
+   "en": "allegedly; reportedly",
+   "casual": "据说",
+   "hard": true
+  },
+  {
+   "w": "涉及",
+   "en": "to involve; to cover",
+   "hard": true
+  },
+  {
+   "w": "基于",
+   "en": "based on",
+   "hard": true
+  },
+  {
+   "w": "委托",
+   "en": "to commission",
+   "hard": true
+  },
+  {
+   "w": "经得起",
+   "en": "able to withstand",
+   "hard": true
+  },
+  {
+   "w": "首席",
+   "en": "chief (e.g. chief economist)"
+  },
+  {
+   "w": "税项",
+   "en": "taxes; tax items",
+   "hard": true
+  },
+  {
+   "w": "取代",
+   "en": "to replace"
+  },
+  {
+   "w": "诉讼",
+   "en": "lawsuit; litigation",
+   "hard": true
+  },
+  {
+   "w": "难以避免",
+   "en": "hard to avoid"
+  },
+  {
+   "w": "站得住脚",
+   "py": "zhàndezhùjiǎo",
+   "en": "to hold up; to stand (as an argument)",
+   "hard": true
+  },
+  {
+   "w": "有待",
+   "en": "remains to be (seen, done)",
+   "hard": true
+  },
+  {
+   "w": "论点",
+   "en": "argument; contention",
+   "hard": true
+  },
+  {
+   "w": "销往",
+   "en": "to be sold to (a market)",
+   "hard": true
+  },
+  {
+   "w": "因而",
+   "en": "as a result (formal)",
+   "casual": "所以",
+   "hard": true
+  },
+  {
+   "w": "流失",
+   "en": "to lose; to drain away",
+   "hard": true
+  },
+  {
+   "w": "扭曲",
+   "en": "to distort",
+   "hard": true
+  },
+  {
+   "w": "天平",
+   "en": "scales (balance)"
+  },
+  {
+   "w": "倾斜",
+   "en": "to tilt",
+   "hard": true
+  },
+  {
+   "w": "侵蚀",
+   "en": "to erode",
+   "hard": true
+  },
+  {
+   "w": "鲜有",
+   "en": "rarely have (formal)",
+   "casual": "很少有",
+   "hard": true
+  },
+  {
+   "w": "重整",
+   "py": "chóngzhěng",
+   "en": "restructuring",
+   "hard": true
+  },
+  {
+   "w": "反复无常",
+   "en": "erratic; changeable",
+   "hard": true
+  },
+  {
+   "w": "交易台",
+   "en": "trading desk"
+  },
+  {
+   "w": "剧烈",
+   "en": "severe; violent"
+  },
+  {
+   "w": "涵盖",
+   "en": "to cover; to span",
+   "hard": true
+  },
+  {
+   "w": "电子产品",
+   "py": "diànzǐ chǎnpǐn",
+   "en": "electronics"
+  },
+  {
+   "w": "大宗",
+   "en": "bulk; commodity",
+   "hard": true
+  },
+  {
+   "w": "占比",
+   "en": "share (proportion)",
+   "hard": true
+  },
+  {
+   "w": "有望",
+   "en": "is expected to; on track to",
+   "hard": true
+  },
+  {
+   "w": "日益",
+   "en": "increasingly (formal)",
+   "casual": "越来越",
+   "hard": true
+  },
+  {
+   "w": "承压",
+   "en": "under pressure",
+   "hard": true
+  },
+  {
+   "w": "出台",
+   "en": "to introduce (a policy)",
+   "hard": true
+  },
+  {
+   "w": "指控",
+   "en": "to accuse",
+   "hard": true
+  },
+  {
+   "w": "锁定",
+   "en": "to lock in"
+  },
+  {
+   "w": "多元化",
+   "en": "diversification",
+   "hard": true
+  },
+  {
+   "w": "修辞",
+   "en": "rhetoric",
+   "hard": true
+  },
+  {
+   "w": "隐忧",
+   "en": "underlying worries",
+   "hard": true
+  },
+  {
+   "w": "动荡",
+   "en": "turbulent",
+   "hard": true
+  },
+  {
+   "w": "下挫",
+   "en": "to fall (markets)",
+   "hard": true
+  },
+  {
+   "w": "受挫",
+   "en": "to suffer a setback",
+   "hard": true
+  },
+  {
+   "w": "复会",
+   "en": "to reconvene",
+   "hard": true
+  },
+  {
+   "w": "联手",
+   "en": "to join forces"
+  },
+  {
+   "w": "摊牌",
+   "en": "to have a showdown",
+   "hard": true
+  },
+  {
+   "w": "声称",
+   "en": "to claim",
+   "hard": true
+  },
+  {
+   "w": "提振",
+   "en": "to boost",
+   "hard": true
+  },
+  {
+   "w": "贸易逆差",
+   "en": "trade deficit",
+   "hard": true
+  },
+  {
+   "w": "倡导者",
+   "en": "advocate",
+   "hard": true
+  },
+  {
+   "w": "民调",
+   "en": "opinion poll",
+   "hard": true
+  },
+  {
+   "w": "改弦易辙",
+   "en": "to change course (idiom)",
+   "casual": "改变做法",
+   "hard": true
+  },
+  {
+   "w": "最早",
+   "en": "at the earliest"
+  },
+  {
+   "w": "推高",
+   "en": "to push up"
+  },
+  {
+   "w": "一步",
+   "en": "step"
+  },
+  {
+   "w": "两个",
+   "en": "two (of them)"
+  },
+  {
+   "w": "彼此之间",
+   "en": "between each other"
+  },
+  {
+   "w": "任何人",
+   "en": "anyone"
+  },
+  {
+   "w": "这一",
+   "en": "this (formal)",
+   "casual": "这个"
+  },
+  {
+   "w": "留出",
+   "en": "to leave (time, space)"
+  },
+  {
+   "w": "三周",
+   "en": "three weeks"
+  },
+  {
+   "w": "这批",
+   "en": "this batch (of)"
+  },
+  {
+   "w": "生产过剩",
+   "en": "overproduction",
+   "hard": true
+  },
+  {
+   "w": "这次",
+   "en": "this time"
+  },
+  {
+   "w": "不像",
+   "en": "not as … as"
+  },
+  {
+   "w": "令人担忧",
+   "en": "worrying"
+  },
+  {
+   "w": "今年夏天",
+   "en": "this summer"
+  },
+  {
+   "w": "更能",
+   "en": "even more able to"
+  },
+  {
+   "w": "紧张局势",
+   "en": "tensions"
+  },
+  {
+   "w": "更广",
+   "en": "broader"
+  },
+  {
+   "w": "结构调整",
+   "en": "structural adjustment",
+   "hard": true
+  },
+  {
+   "w": "拒绝接受",
+   "en": "to refuse to accept"
+  },
+  {
+   "w": "已有",
+   "en": "has already been (a while)"
+  },
+  {
+   "w": "较低",
+   "en": "relatively low (formal)",
+   "casual": "比较低"
+  },
+  {
+   "w": "一位",
+   "en": "one (person, polite)"
+  },
+  {
+   "w": "高级官员",
+   "en": "senior official"
+  },
+  {
+   "w": "新一届",
+   "en": "the new (session of)"
+  },
+  {
+   "w": "没能",
+   "en": "failed to"
+  }
+ ],
+ "breakdowns": [
+  {
+   "s": 1,
+   "meaning": "On Wednesday the US announced plans to impose new tariffs on 14 trading partners, including China, the EU, Japan, South Korea and Taiwan, as President Trump keeps pushing his signature trade policy.",
+   "chunks": [
+    [
+     [
+      0,
+      2
+     ],
+     "the US announced on Wednesday"
+    ],
+    [
+     [
+      [
+       4,
+       5
+      ],
+      [
+       18,
+       24
+      ]
+     ],
+     "plans to impose new tariffs on … 14 trading partners (拟 = 打算)"
+    ],
+    [
+     [
+      [
+       6,
+       6
+      ],
+      [
+       16,
+       16
+      ]
+     ],
+     "including … (the 包括 … 在内 frame wraps the list)"
+    ],
+    [
+     [
+      33,
+      38
+     ],
+     "keeps pushing his signature trade policy (其 = 他的)"
+    ]
+   ],
+   "key": "<b>拟 = plans to:</b> news writes <span class='bd-zh-i'>拟</span> where you'd say 打算 or 准备. It signals a proposal, not a done deal."
+  },
+  {
+   "s": 5,
+   "meaning": "But because Trump had earlier agreed to tariff caps in several trade deals, the rates actually paid will be lower than the announced ones.",
+   "chunks": [
+    [
+     [
+      2,
+      13
+     ],
+     "because Trump had earlier agreed to tariff caps in several trade deals (此前 = 之前)"
+    ],
+    [
+     [
+      15,
+      18
+     ],
+     "the rate actually paid (缴纳 = 交)"
+    ],
+    [
+     [
+      19,
+      22
+     ],
+     "will be lower than the announced rate (低于 = 比 … 低)"
+    ]
+   ],
+   "key": "<b>X 于 Y = compared with Y:</b> <span class='bd-zh-i'>低于 / 高于</span> are the written way to say 比 … 低 / 比 … 高."
+  },
+  {
+   "s": 6,
+   "meaning": "The new tariffs must go through several rounds of public consultation and hearings, and won't take effect until January at the earliest.",
+   "chunks": [
+    [
+     [
+      2,
+      6
+     ],
+     "must go through several rounds of public consultation (须经 = 必须经过)"
+    ],
+    [
+     [
+      8,
+      11
+     ],
+     "and hearings will also be held"
+    ],
+    [
+     [
+      13,
+      19
+     ],
+     "won't take effect until next January at the earliest"
+    ]
+   ],
+   "key": "<b>One-character formal verbs:</b> written Chinese shortens two-character words: <span class='bd-zh-i'>须</span> = 必须, <span class='bd-zh-i'>经</span> = 经过. Expand them in your head."
+  },
+  {
+   "s": 7,
+   "meaning": "It comes only days after Trump met Chinese President Xi Jinping, and with the US–China trade truce due to expire on 10 January, analysts see this round of tariffs as Washington's new bargaining chip.",
+   "chunks": [
+    [
+     [
+      0,
+      1
+     ],
+     "at this point, the gap since"
+    ],
+    [
+     [
+      2,
+      8
+     ],
+     "Trump's meeting with President Xi Jinping"
+    ],
+    [
+     [
+      9,
+      11
+     ],
+     "is only a few days (仅 = 只, 数日 = 几天)"
+    ],
+    [
+     [
+      13,
+      24
+     ],
+     "and the US–China trade truce expires on 10 January (于 = 在)"
+    ],
+    [
+     [
+      [
+       26,
+       28
+      ],
+      [
+       38,
+       39
+      ]
+     ],
+     "analysts see it as … a new bargaining chip"
+    ]
+   ],
+   "key": "<b>于 + date:</b> <span class='bd-zh-i'>将于1月10日到期</span> = 会在1月10日到期. 于 is the written 在 before times and places."
+  },
+  {
+   "s": 9,
+   "meaning": "Economists warn that tariffs are paid by the American companies importing the goods, and if costs are passed on to consumers they could push up prices and hold back global trade.",
+   "chunks": [
+    [
+     [
+      0,
+      2
+     ],
+     "economists, however, warn (则 = contrast)"
+    ],
+    [
+     [
+      4,
+      11
+     ],
+     "tariffs are paid by the US firms that import the goods (由 = who pays)"
+    ],
+    [
+     [
+      13,
+      17
+     ],
+     "if costs are passed on to consumers (若 = 如果)"
+    ],
+    [
+     [
+      19,
+      25
+     ],
+     "could push up prices and curb global trade"
+    ]
+   ],
+   "key": "<b>由 marks who does it:</b> <span class='bd-zh-i'>由 X 支付</span> = \"paid by X\". Spoken: 让 X 来付."
+  },
+  {
+   "s": 23,
+   "meaning": "Only if the US decides that talks with China haven't adequately resolved the issues raised by the investigation would it consider raising the cap on all Chinese goods to 40%.",
+   "chunks": [
+    [
+     [
+      0,
+      3
+     ],
+     "but if the US side concludes"
+    ],
+    [
+     [
+      4,
+      13
+     ],
+     "talks with China failed to fully resolve the issues the investigation raised (未能 = 没能)"
+    ],
+    [
+     [
+      15,
+      17
+     ],
+     "only then would it consider"
+    ],
+    [
+     [
+      [
+       18,
+       18
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raising the … proposed rate cap to 40% (至 = 到)"
+    ]
+   ],
+   "key": "<b>若 … 才 … = only if:</b> <span class='bd-zh-i'>若 X，才会 Y</span> means Y happens only when X does. Spoken: 只有 … 才 …"
+  },
+  {
+   "s": 25,
+   "meaning": "She noted that the US is keeping room to raise tariffs if talks break down or China fails to keep its promises, to make sure critical minerals and rare earths arrive on schedule and to push China to buy more US farm goods.",
+   "chunks": [
+    [
+     [
+      3,
+      4
+     ],
+     "the US keeps (reserves)"
+    ],
+    [
+     [
+      5,
+      13
+     ],
+     "for when talks collapse or China fails to keep its commitments (未 = 没)"
+    ],
+    [
+     [
+      14,
+      17
+     ],
+     "room to raise tariffs (the object of 保留, held to the end)"
+    ],
+    [
+     [
+      19,
+      27
+     ],
+     "the aim is to secure critical minerals and rare earths on schedule (如期 = 按时)"
+    ],
+    [
+     [
+      29,
+      34
+     ],
+     "and to push China to buy more US farm produce"
+    ]
+   ],
+   "key": "<b>Verb … long middle … object:</b> in <span class='bd-zh-i'>保留……的空间</span> the verb 保留 waits for its object 空间 at the end; everything in between says what the room is for."
+  },
+  {
+   "s": 33,
+   "meaning": "This time the USTR published the proposed tariffs together with a detailed report explaining how each economy's trade practices allegedly affect US business.",
+   "chunks": [
+    [
+     [
+      7,
+      14
+     ],
+     "this time published the proposed tariffs together with a detailed report (连同 … 一并 = 跟 … 一起)"
+    ],
+    [
+     [
+      16,
+      21
+     ],
+     "explaining each economy's trade practices"
+    ],
+    [
+     [
+      22,
+      26
+     ],
+     "how they allegedly affect US business"
+    ]
+   ],
+   "key": "<b>据称 keeps distance:</b> <span class='bd-zh-i'>据称</span> (\"allegedly\") tells you the reporter isn't vouching for the claim. 据说 is the everyday version."
+  },
+  {
+   "s": 38,
+   "meaning": "The US argues that some economies produce more than they need and sell the surplus cheaply to the US, so American firms can't compete on price, jobs are lost and some companies go under.",
+   "chunks": [
+    [
+     [
+      0,
+      3
+     ],
+     "the US argument is"
+    ],
+    [
+     [
+      5,
+      12
+     ],
+     "some economies make more goods than they themselves need (自身 = 自己)"
+    ],
+    [
+     [
+      14,
+      18
+     ],
+     "and then sell them to the US at low prices"
+    ],
+    [
+     [
+      20,
+      26
+     ],
+     "US firms can't compete on price"
+    ],
+    [
+     [
+      28,
+      34
+     ],
+     "as a result jobs are lost and some firms close (因而 = 所以)"
+    ]
+   ],
+   "key": "<b>以 + manner, 往 + destination:</b> <span class='bd-zh-i'>以低价销往美国</span> = 用低价格卖到美国. 以 says how; 往 says where to."
+  },
+  {
+   "s": 40,
+   "meaning": "Other countries also acknowledge these practices are a problem, but they have been complicated to tackle for years and few have acted.",
+   "chunks": [
+    [
+     [
+      0,
+      7
+     ],
+     "other countries also admit these practices are a problem"
+    ],
+    [
+     [
+      9,
+      14
+     ],
+     "but for years they've been complicated to fix"
+    ],
+    [
+     [
+      16,
+      18
+     ],
+     "and few parties have acted (鲜有 = 很少有)"
+    ]
+   ],
+   "key": "<b>鲜 = rarely:</b> in <span class='bd-zh-i'>鲜有</span>, 鲜 is read xiǎn and means \"rarely\", not xiān (fresh). It's a classical leftover in modern news."
+  },
+  {
+   "s": 53,
+   "meaning": "Congressional Republicans, who took a beating in the midterms, may team up with Democrats to confront the president over tariffs when the new Congress convenes in January.",
+   "chunks": [
+    [
+     [
+      0,
+      7
+     ],
+     "congressional Republicans who suffered setbacks in the midterms (all of it describes 共和党人)"
+    ],
+    [
+     [
+      9,
+      15
+     ],
+     "when the new Congress reconvenes next January"
+    ],
+    [
+     [
+      17,
+      20
+     ],
+     "may join forces with the Democrats (与 = 跟)"
+    ],
+    [
+     [
+      22,
+      26
+     ],
+     "have a showdown with the president over tariffs"
+    ]
+   ],
+   "key": "<b>就 = on the subject of:</b> in <span class='bd-zh-i'>就关税与总统摊牌</span>, 就 X introduces the topic, like 关于 X. Not the everyday 'then'."
+  },
+  {
+   "s": 55,
+   "meaning": "He has openly championed tariffs for decades, and although polls show many voters unhappy that tariffs raise costs, neither the political mood nor election results seem to have changed his course.",
+   "chunks": [
+    [
+     [
+      0,
+      9
+     ],
+     "for decades he has been an open advocate of tariffs"
+    ],
+    [
+     [
+      11,
+      13
+     ],
+     "although polls show (尽管 = 虽然)"
+    ],
+    [
+     [
+      21,
+      28
+     ],
+     "neither the political wind nor the election results seem to have managed to"
+    ],
+    [
+     [
+      29,
+      31
+     ],
+     "make him change course (idiom: change the strings, switch the ruts)"
+    ]
+   ],
+   "key": "<b>Four-character idioms:</b> news likes to close on a 成语. <span class='bd-zh-i'>改弦易辙</span> = 改变做法; <span class='bd-zh-i'>卷土重来</span> (in a subheading) = make a comeback."
+  }
+ ],
+ "register_notes": [
+  {
+   "formal": "拟",
+   "casual": "打算",
+   "en": "plan to"
+  },
+  {
+   "formal": "须",
+   "casual": "必须 / 要",
+   "en": "must"
+  },
+  {
+   "formal": "若",
+   "casual": "如果",
+   "en": "if"
+  },
+  {
+   "formal": "则",
+   "casual": "却 / 就",
+   "en": "however; then"
+  },
+  {
+   "formal": "由 X 支付",
+   "casual": "让 X 来付",
+   "en": "paid by X"
+  },
+  {
+   "formal": "其",
+   "casual": "他的 / 它们的",
+   "en": "his, its, their"
+  },
+  {
+   "formal": "仅",
+   "casual": "只",
+   "en": "only"
+  },
+  {
+   "formal": "数日",
+   "casual": "几天",
+   "en": "a few days"
+  },
+  {
+   "formal": "于",
+   "casual": "在",
+   "en": "on, at, in"
+  },
+  {
+   "formal": "称",
+   "casual": "说",
+   "en": "to say"
+  },
+  {
+   "formal": "未能",
+   "casual": "没能",
+   "en": "failed to"
+  },
+  {
+   "formal": "低于",
+   "casual": "比 … 低",
+   "en": "lower than"
+  },
+  {
+   "formal": "至",
+   "casual": "到",
+   "en": "to, until"
+  },
+  {
+   "formal": "据称",
+   "casual": "据说",
+   "en": "allegedly"
+  },
+  {
+   "formal": "鲜有",
+   "casual": "很少有",
+   "en": "rarely"
+  },
+  {
+   "formal": "随即",
+   "casual": "马上就",
+   "en": "immediately"
+  },
+  {
+   "formal": "尽管",
+   "casual": "虽然",
+   "en": "although"
+  }
+ ],
+ "quiz": {
+  "q": "新关税最早什么时候生效？",
+  "a": "最早明年1月。(January next year at the earliest.)"
+ },
+ "flag": "News article (BBC中文): 12 of 55 sentences have breakdowns, chosen for the formal patterns they teach (news gets a selection, never every sentence). The rest is glossed word by word. The text comes from your RTF via the intake script; it was already simplified (0 characters converted). No link or date was supplied, so the source line cites BBC中文 and the article's headline. Pinyin fixes: 为 read wéi in S4, S22, S48 and wèi in S26; 只 zhī; 得 de; 重整 chóngzhěng; 卡特勒 Kǎtèlè. Name transliterations follow the article; pinyin for foreign names is a guide only. 'Casual' equivalents are approximate."
+}
