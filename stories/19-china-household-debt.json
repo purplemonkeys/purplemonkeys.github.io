@@ -1,0 +1,374 @@
+{
+  "id": "china-household-debt",
+  "chip": "Les dettes en Chine",
+  "kicker": "Économie · Chine",
+  "title": "19. En Chine, les familles remboursent leurs dettes",
+  "level": "A1",
+  "gist": "Chinese households are paying down debt at the fastest pace in decades: their consumer loans, including mortgages, fell by 1.6 trillion yuan in the first nine months of the year. Economists say people are spending less and using the money to repay loans, because property prices are falling and jobs are hard to find. Beijing has not launched a big stimulus to boost spending.",
+  "body": [
+    [
+      {
+        "fr": "En Chine, les familles {{remboursent|pay back (from rembourser)}} leurs {{dettes|debts}}.",
+        "bd": {
+          "meaning": "In China, families are paying back their debts.",
+          "chunks": [
+            ["En Chine", "in China (en before a feminine country)"],
+            ["les familles", "families / households"],
+            ["remboursent", "pay back — the -ent ending marks a plural subject"],
+            ["leurs dettes", "their debts (leurs = their, plural)"]
+          ],
+          "key": "<b>The present covers “are doing”:</b> <span class='bd-fr-i'>remboursent</span> = “pay back” or “are paying back.” French has no separate -ing form."
+        }
+      },
+      {
+        "fr": "C'est le {{rythme|pace, speed}} {{le plus rapide|the fastest}} {{depuis des dizaines d'années|in decades}}.",
+        "bd": {
+          "meaning": "It's the fastest pace in decades.",
+          "chunks": [
+            ["C'est", "it is — the set phrase c'est"],
+            ["le rythme", "the pace"],
+            ["le plus rapide", "the fastest (le plus = the most)"],
+            ["depuis des dizaines d'années", "in decades (literally: since tens of years)"]
+          ],
+          "key": "<b>le plus + adjective = “the most ___ / the ___-est.”</b> <span class='bd-fr-i'>le plus rapide</span> = “the fastest,” and it comes after the noun."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "{{Entre janvier et septembre|between January and September}}, leurs {{prêts|loans}} {{ont baissé|went down}} de 1 600 {{milliards|billions}} de yuans.",
+        "bd": {
+          "meaning": "Between January and September, their loans fell by 1.6 trillion yuan.",
+          "chunks": [
+            ["Entre janvier et septembre", "between January and September (months take no capital letter)"],
+            ["leurs prêts", "their loans — this total includes home loans"],
+            ["ont baissé de", "went down by (ont + baissé = past)"],
+            ["1 600 milliards de yuans", "1,600 billion yuan = 1.6 trillion"]
+          ],
+          "key": "<b>milliard = billion.</b> Careful: the French word <span class='bd-fr-i'>billion</span> means a <b>trillion</b>, so news writes big sums in <span class='bd-fr-i'>milliards</span>."
+        }
+      },
+      {
+        "fr": "{{L'année dernière|last year}}, ils ont baissé de 500 milliards de yuans {{sur toute l'année|over the whole year}}.",
+        "bd": {
+          "meaning": "Last year, they fell by 500 billion yuan over the whole year.",
+          "chunks": [
+            ["L'année dernière", "last year (dernière comes after the noun)"],
+            ["ils ont baissé", "they went down ('ils' = the loans, masculine)"],
+            ["de 500 milliards de yuans", "by 500 billion yuan"],
+            ["sur toute l'année", "over the whole year"]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>ont baissé</span> = “went down.” Only <span class='bd-fr-i'>ont</span> changes with the subject."
+        }
+      },
+      {
+        "fr": "Les {{statistiques|statistics, records}} {{commencent|start}} en 2005.",
+        "bd": {
+          "meaning": "The records start in 2005.",
+          "chunks": [
+            ["Les statistiques", "the statistics / the records"],
+            ["commencent", "start (plural -ent ending)"],
+            ["en 2005", "in 2005 (en before a year)"]
+          ],
+          "key": "<b>“en” before a year = “in”:</b> <span class='bd-fr-i'>en 2005</span>, <span class='bd-fr-i'>en 2025</span>."
+        }
+      },
+      {
+        "fr": "{{C'était|it was}} la {{première baisse|first drop}}.",
+        "bd": {
+          "meaning": "It was the first drop.",
+          "chunks": [
+            ["C'était", "it was — the past of c'est"],
+            ["la première baisse", "the first drop (baisse = a fall, from baisser)"]
+          ],
+          "key": "<b>c'est → c'était:</b> “it is” becomes “it was.” The <span class='bd-fr-i'>-ait</span> ending is the past used for describing."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "{{Depuis des années|for years}}, le {{marché immobilier|housing market}} {{va mal|is doing badly}}.",
+        "bd": {
+          "meaning": "For years, the housing market has been doing badly.",
+          "chunks": [
+            ["Depuis des années", "for years (and still now)"],
+            ["le marché immobilier", "the housing / property market ('immobilier' after the noun)"],
+            ["va mal", "is doing badly (aller mal = to be in a bad way)"]
+          ],
+          "key": "<b>depuis + present = “has been … for”:</b> French keeps the verb in the present (<span class='bd-fr-i'>va mal</span>) because it's still going on."
+        }
+      },
+      {
+        "fr": "Les familles remboursent donc leurs {{prêts immobiliers|mortgages (home loans)}}.",
+        "bd": {
+          "meaning": "So families are paying back their mortgages.",
+          "chunks": [
+            ["Les familles remboursent", "families pay back"],
+            ["donc", "so / therefore — it sits after the verb here"],
+            ["leurs prêts immobiliers", "their mortgages (literally: property loans)"]
+          ],
+          "key": "<b>Adjective after the noun, and agreeing:</b> <span class='bd-fr-i'>prêts immobiliers</span> — plural noun, so the adjective takes an -s too."
+        }
+      },
+      {
+        "fr": "Maintenant, les {{autres|other}} dettes baissent aussi, {{comme|like}} les {{cartes de crédit|credit cards}} et les prêts pour les voitures.",
+        "bd": {
+          "meaning": "Now other debts are falling too, like credit cards and car loans.",
+          "chunks": [
+            ["Maintenant", "now"],
+            ["les autres dettes", "the other debts"],
+            ["baissent aussi", "are going down too"],
+            ["comme les cartes de crédit", "like credit cards"],
+            ["et les prêts pour les voitures", "and car loans (literally: loans for cars)"]
+          ],
+          "key": "<b>French builds compound nouns with “de / pour”:</b> <span class='bd-fr-i'>cartes de crédit</span>, <span class='bd-fr-i'>prêts pour les voitures</span> — English just stacks the words (“car loans”)."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Robin Xing est {{économiste|economist}} {{chez|at (a company)}} Morgan Stanley, une grande banque.",
+        "bd": {
+          "meaning": "Robin Xing is an economist at Morgan Stanley, a big bank.",
+          "chunks": [
+            ["Robin Xing est économiste", "Robin Xing is an economist — no 'un' before a job"],
+            ["chez Morgan Stanley", "at Morgan Stanley (chez = at someone's place / company)"],
+            ["une grande banque", "a big bank ('grande' before the noun)"]
+          ],
+          "key": "<b>No “a” before a job after être:</b> <span class='bd-fr-i'>il est économiste</span> = “he is an economist.”"
+        }
+      },
+      {
+        "fr": "{{Selon lui|according to him}}, les gens {{dépensent moins|spend less}} et utilisent leur argent pour rembourser leurs dettes.",
+        "bd": {
+          "meaning": "According to him, people are spending less and using their money to pay back their debts.",
+          "chunks": [
+            ["Selon lui", "according to him"],
+            ["les gens dépensent moins", "people spend less"],
+            ["et utilisent leur argent", "and use their money (leur = their, one thing)"],
+            ["pour rembourser leurs dettes", "to pay back their debts"]
+          ],
+          "key": "<b>pour + plain verb = “in order to”:</b> <span class='bd-fr-i'>pour rembourser</span> — the verb after <span class='bd-fr-i'>pour</span> stays plain."
+        }
+      },
+      {
+        "fr": "Il dit que, dans la Chine {{moderne|modern}}, la dette {{n'a jamais baissé|has never fallen}} {{si vite|so fast}}.",
+        "bd": {
+          "meaning": "He says that in modern China, debt has never fallen so fast.",
+          "chunks": [
+            ["Il dit que", "he says that"],
+            ["dans la Chine moderne", "in modern China"],
+            ["la dette", "debt"],
+            ["n'a jamais baissé", "has never gone down — ne…jamais wraps the helper 'a'"],
+            ["si vite", "so fast"]
+          ],
+          "key": "<b>ne … jamais = “never”:</b> same sandwich as <span class='bd-fr-i'>ne … pas</span>. In the past it wraps the helper: <span class='bd-fr-i'>n'a jamais baissé</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Dans les {{magasins|shops}}, les {{ventes|sales}} {{augmentent très peu|are barely growing}}.",
+        "bd": {
+          "meaning": "In shops, sales are barely growing.",
+          "chunks": [
+            ["Dans les magasins", "in shops"],
+            ["les ventes", "sales (from vendre = to sell)"],
+            ["augmentent très peu", "go up very little"]
+          ],
+          "key": "<b>très peu = “very little”:</b> it sits right after the verb (<span class='bd-fr-i'>augmentent très peu</span>)."
+        }
+      },
+      {
+        "fr": "En octobre, elles ont augmenté de {{seulement|only}} 0,4 %.",
+        "bd": {
+          "meaning": "In October, they went up by only 0.4%.",
+          "chunks": [
+            ["En octobre", "in October"],
+            ["elles ont augmenté", "they went up ('elles' = les ventes, feminine)"],
+            ["de seulement 0,4 %", "by only 0.4% — French uses a comma for the decimal point"]
+          ],
+          "key": "<b>Decimal comma:</b> <span class='bd-fr-i'>0,4 %</span> = 0.4%. French also puts a space before the % sign."
+        }
+      },
+      {
+        "fr": "En 2025, c'était 3,8 % {{en moyenne|on average}}.",
+        "bd": {
+          "meaning": "In 2025, it was 3.8% on average.",
+          "chunks": [
+            ["En 2025", "in 2025"],
+            ["c'était", "it was"],
+            ["3,8 % en moyenne", "3.8% on average"]
+          ],
+          "key": "<b>c'était again:</b> the past of <span class='bd-fr-i'>c'est</span>, for describing how things were."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Une {{autre|other}} économiste, Sheana Yue, {{explique pourquoi|explains why}}.",
+        "bd": {
+          "meaning": "Another economist, Sheana Yue, explains why.",
+          "chunks": [
+            ["Une autre économiste", "another (female) economist — 'une' tells you she's a woman"],
+            ["Sheana Yue", "she works at Oxford Economics"],
+            ["explique pourquoi", "explains why"]
+          ],
+          "key": "<b>The little word shows gender:</b> <span class='bd-fr-i'>économiste</span> is the same word for men and women; <span class='bd-fr-i'>une</span> tells you it's a woman."
+        }
+      },
+      {
+        "fr": "Les maisons {{perdent de la valeur|lose value}}, donc les familles sont {{moins riches|less rich}}.",
+        "bd": {
+          "meaning": "Homes are losing value, so families are less wealthy.",
+          "chunks": [
+            ["Les maisons", "homes / houses"],
+            ["perdent de la valeur", "lose value (de la = some)"],
+            ["donc", "so"],
+            ["les familles sont moins riches", "families are less rich"]
+          ],
+          "key": "<b>moins + adjective = “less ___”:</b> <span class='bd-fr-i'>moins riches</span> = “less rich / poorer.”"
+        }
+      },
+      {
+        "fr": "Elles {{ne savent pas|don't know}} {{ce qui va arriver|what is going to happen}} aux prix.",
+        "bd": {
+          "meaning": "They don't know what's going to happen to prices.",
+          "chunks": [
+            ["Elles ne savent pas", "they don't know (elles = the families)"],
+            ["ce qui", "what (as the subject of the next verb)"],
+            ["va arriver", "is going to happen (aller + plain verb)"],
+            ["aux prix", "to prices (aux = à + les)"]
+          ],
+          "key": "<b>aller + plain verb = near future:</b> <span class='bd-fr-i'>va arriver</span> = “is going to happen.” Only <span class='bd-fr-i'>va</span> changes."
+        }
+      },
+      {
+        "fr": "{{Alors|so}} elles remboursent leurs dettes et {{attendent pour acheter|wait before buying}}.",
+        "bd": {
+          "meaning": "So they pay back their debts and hold off on buying.",
+          "chunks": [
+            ["Alors", "so / then"],
+            ["elles remboursent leurs dettes", "they pay back their debts"],
+            ["et attendent", "and wait"],
+            ["pour acheter", "to buy (plain verb after pour)"]
+          ],
+          "key": "<b>One subject, two verbs:</b> <span class='bd-fr-i'>elles remboursent … et attendent</span> — both take the plural -ent, no need to repeat <span class='bd-fr-i'>elles</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "En 2026, le {{gouvernement|government}} chinois {{n'a pas lancé|has not launched}} de grand {{plan de relance|stimulus plan}}.",
+        "bd": {
+          "meaning": "In 2026, the Chinese government has not launched a big stimulus plan.",
+          "chunks": [
+            ["En 2026", "in 2026"],
+            ["le gouvernement chinois", "the Chinese government ('chinois' after the noun, no capital)"],
+            ["n'a pas lancé", "has not launched — ne…pas around the helper 'a'"],
+            ["de grand plan de relance", "a big stimulus plan (un → de after a negative; relance = a boost, restart)"]
+          ],
+          "key": "<b>After a negative, un/une → de:</b> <span class='bd-fr-i'>un grand plan</span> becomes <span class='bd-fr-i'>de grand plan</span>."
+        }
+      },
+      {
+        "fr": "Mais 17 % des {{jeunes|young people}} n'ont pas de {{travail|work, a job}}.",
+        "bd": {
+          "meaning": "But 17% of young people don't have a job.",
+          "chunks": [
+            ["Mais", "but"],
+            ["17 % des jeunes", "17% of young people (des = de + les)"],
+            ["n'ont pas de travail", "don't have work"]
+          ],
+          "key": "<b>Negation sandwich:</b> <span class='bd-fr-i'>n'ont pas de travail</span> — <span class='bd-fr-i'>ne … pas</span> wraps <span class='bd-fr-i'>ont</span>, then <span class='bd-fr-i'>de</span>."
+        }
+      },
+      {
+        "fr": "En septembre, il {{a aidé|helped}} les familles à payer les {{intérêts|interest}} de leurs prêts immobiliers.",
+        "bd": {
+          "meaning": "In September, it helped families pay the interest on their mortgages.",
+          "chunks": [
+            ["En septembre", "in September"],
+            ["il a aidé", "it helped ('il' = the government)"],
+            ["les familles à payer", "families to pay (aider quelqu'un à + plain verb)"],
+            ["les intérêts de leurs prêts immobiliers", "the interest on their mortgages"]
+          ],
+          "key": "<b>aider … à + plain verb = “help … to do”:</b> <span class='bd-fr-i'>aider les familles à payer</span>."
+        }
+      },
+      {
+        "fr": "Mais l'{{effet|effect}} va être {{limité|limited}}.",
+        "bd": {
+          "meaning": "But the effect will be limited.",
+          "chunks": [
+            ["Mais", "but"],
+            ["l'effet", "the effect"],
+            ["va être limité", "is going to be limited (aller + être)"]
+          ],
+          "key": "<b>Future = aller + plain verb,</b> even with <span class='bd-fr-i'>être</span>: <span class='bd-fr-i'>va être</span> = “is going to be.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Pour Robin Xing, la grande {{question|question}} est : {{est-ce que|(question marker)}} {{Pékin|Beijing}} va aider beaucoup plus les {{consommateurs|consumers}} ?",
+        "bd": {
+          "meaning": "For Robin Xing, the big question is: will Beijing do much more to help consumers?",
+          "chunks": [
+            ["Pour Robin Xing", "for Robin Xing / in his view"],
+            ["la grande question est", "the big question is"],
+            ["est-ce que", "turns a statement into a yes/no question"],
+            ["Pékin", "Beijing — the capital's name standing for the government"],
+            ["va aider beaucoup plus les consommateurs", "is going to help consumers much more"]
+          ],
+          "key": "<b>est-ce que + normal sentence = a question.</b> No word-order change needed: <span class='bd-fr-i'>est-ce que Pékin va aider…?</span>"
+        }
+      },
+      {
+        "fr": "Selon Dan Wang, d'Eurasia Group, il est {{difficile|hard}} de {{trouver du travail|find work}}.",
+        "bd": {
+          "meaning": "According to Dan Wang of Eurasia Group, it's hard to find work.",
+          "chunks": [
+            ["Selon Dan Wang", "according to Dan Wang"],
+            ["d'Eurasia Group", "of / from Eurasia Group (a consultancy)"],
+            ["il est difficile de", "it is hard to (il here = 'it', no real subject)"],
+            ["trouver du travail", "find work (du = some)"]
+          ],
+          "key": "<b>il est + adjective + de + plain verb = “it is ___ to …”:</b> <span class='bd-fr-i'>il est difficile de trouver</span>."
+        }
+      },
+      {
+        "fr": "Alors les gens {{ont moins envie|feel less like, want less}} d'{{emprunter|borrow}}.",
+        "bd": {
+          "meaning": "So people are less keen to borrow.",
+          "chunks": [
+            ["Alors", "so"],
+            ["les gens", "people"],
+            ["ont moins envie d'", "feel less like / want less to (avoir envie de = to feel like)"],
+            ["emprunter", "borrow"]
+          ],
+          "key": "<b>avoir envie de + plain verb = “to feel like doing”:</b> a very common everyday way to say “want.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "C'est le rythme le plus rapide",
+      "en": "<b>le plus + adjective = the superlative (“the fastest”).</b> The adjective stays after the noun, with its own <span class='fr'>le</span>: <span class='fr'>le rythme le plus rapide</span>."
+    },
+    {
+      "fr": "Leurs prêts ont baissé",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>ont baissé</span>, <span class='fr'>ont augmenté</span>, <span class='fr'>a aidé</span>. Your “past = avoir/être + verb” key."
+    },
+    {
+      "fr": "La dette n'a jamais baissé",
+      "en": "<b>ne … jamais = never.</b> It works exactly like the <span class='fr'>ne … pas</span> sandwich, and in the past it wraps the helper <span class='fr'>a</span>, not <span class='fr'>baissé</span>."
+    }
+  ],
+  "quiz": {
+    "q": "Pourquoi est-ce que les familles chinoises dépensent moins ?",
+    "a": "Parce qu'elles utilisent leur argent pour rembourser leurs dettes. (Because they use their money to pay back their debts.)"
+  },
+  "flag": "Compressed: I left out the bank-wide credit figures (new loans turning negative, total social financing), total household debt including business loans, and the analyst Rafael Halpin, who argues saving is bad for the economy. “The first drop” is last year's full-year fall, the first in records starting in 2005. Sales growth (0.4% vs 3.8%) is yearly growth measured each month, simplified to “on average.” “17% of young people have no job” is the youth unemployment rate, i.e. 17% of young job-seekers, not of all young people. Phrasing a native might change: <span class='fr'>attendent pour acheter</span> is plain but a writer would more likely say <span class='fr'>remettent leurs achats à plus tard</span>; <span class='fr'>il est difficile de trouver du travail</span> slightly sharpens Dan Wang's “weak job prospects.” Remember: <span class='fr'>milliard</span> = billion."
+}
