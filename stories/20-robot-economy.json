@@ -1,0 +1,534 @@
+{
+  "id": "robot-economy",
+  "chip": "Robots humanoïdes",
+  "kicker": "Technologie · Économie",
+  "title": "20. Les robots vont changer l'économie",
+  "level": "A1",
+  "gist": "The Economist argues that human-shaped robots are improving fast, getting much cheaper, and will probably start in homes doing chores before moving into factories, hospitals and building sites. That could hit manual jobs too, move factories, make many goods cheap and land and rent dearer. People may still be needed to run robots, but an unequal economy is also possible.",
+  "body": [
+    [
+      {
+        "fr": "Les robots {{humanoïdes|humanoid — human-shaped}} ont un corps {{comme|like}} un humain.",
+        "bd": {
+          "meaning": "Humanoid robots have a body like a human's.",
+          "chunks": [
+            ["Les robots humanoïdes", "humanoid robots — the adjective comes after the noun"],
+            ["ont", "have (from avoir, plural)"],
+            ["un corps", "a body (corps is spelled the same in the plural)"],
+            ["comme un humain", "like a human"]
+          ],
+          "key": "<b>Adjective after the noun:</b> <span class='bd-fr-i'>robots humanoïdes</span> = “humanoid robots,” in the opposite order to English."
+        }
+      },
+      {
+        "fr": "L'IA {{a peut-être aidé|maybe helped}} à {{résoudre|solve}} un très vieux problème de maths.",
+        "bd": {
+          "meaning": "AI may have helped solve a very old maths problem.",
+          "chunks": [
+            ["L'IA", "AI"],
+            ["a peut-être aidé", "maybe helped (a … aidé = past; peut-être sits in the middle)"],
+            ["à résoudre", "to solve (aider à + plain verb)"],
+            ["un très vieux problème de maths", "a very old maths problem — 'vieux' goes before the noun"]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a aidé</span> = “helped,” and little words like <span class='bd-fr-i'>peut-être</span> slip in between the two parts."
+        }
+      },
+      {
+        "fr": "Mais les robots {{ne savent pas bien|don't know how to … well}} {{plier un drap|fold a bedsheet}}.",
+        "bd": {
+          "meaning": "But robots still can't fold a bedsheet well.",
+          "chunks": [
+            ["Mais les robots", "but robots"],
+            ["ne savent pas bien", "don't know how to … well (savoir = know how to)"],
+            ["plier un drap", "fold a sheet (plain verb after savoir)"]
+          ],
+          "key": "<b>Negation sandwich + plain verb:</b> <span class='bd-fr-i'>ne … pas</span> wraps <span class='bd-fr-i'>savent</span>, and the action <span class='bd-fr-i'>plier</span> stays plain after it."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "{{Bientôt|soon}}, ça va changer.",
+        "bd": {
+          "meaning": "Soon, that's going to change.",
+          "chunks": [
+            ["Bientôt", "soon"],
+            ["ça", "that / this"],
+            ["va changer", "is going to change (aller + plain verb)"]
+          ],
+          "key": "<b>Future = aller + plain verb:</b> <span class='bd-fr-i'>va changer</span> = “is going to change.” Only <span class='bd-fr-i'>va</span> changes with the subject."
+        }
+      },
+      {
+        "fr": "Les robots {{progressent|are improving, making progress}} vite.",
+        "bd": {
+          "meaning": "Robots are getting better fast.",
+          "chunks": [
+            ["Les robots", "robots (les = 'the,' where English drops it)"],
+            ["progressent", "are making progress — the -ent ending marks a plural subject (it's silent)"],
+            ["vite", "fast / quickly"]
+          ],
+          "key": "<b>One present for two English ones:</b> <span class='bd-fr-i'>progressent</span> covers both “improve” and “are improving.”"
+        }
+      },
+      {
+        "fr": "Les {{ingénieurs|engineers}} utilisent les {{méthodes|methods}} de l'IA pour les robots.",
+        "bd": {
+          "meaning": "Engineers are using AI's methods for robots.",
+          "chunks": [
+            ["Les ingénieurs", "engineers"],
+            ["utilisent", "use / are using"],
+            ["les méthodes de l'IA", "AI's methods (literally 'the methods of the AI')"],
+            ["pour les robots", "for robots"]
+          ],
+          "key": "<b>“de” = 's:</b> French has no apostrophe-s, so <span class='bd-fr-i'>les méthodes de l'IA</span> = “AI's methods.”"
+        }
+      },
+      {
+        "fr": "Et les prix {{baissent|are falling, going down}}.",
+        "bd": {
+          "meaning": "And prices are falling.",
+          "chunks": [
+            ["Et", "and"],
+            ["les prix", "prices (prix is spelled the same in the plural)"],
+            ["baissent", "go down / are falling (from baisser)"]
+          ],
+          "key": "<b>The little word “les” again:</b> <span class='bd-fr-i'>les prix</span> = just “prices” — French keeps “the” where English drops it."
+        }
+      },
+      {
+        "fr": "En deux ans, le {{prix moyen|average price}} des robots d'une {{entreprise|company}} chinoise {{a baissé de|has fallen by}} 72 %.",
+        "bd": {
+          "meaning": "In two years, the average price of one Chinese company's robots has fallen by 72%.",
+          "chunks": [
+            ["En deux ans", "in two years"],
+            ["le prix moyen", "the average price — 'moyen' after the noun"],
+            ["des robots d'une entreprise chinoise", "of a Chinese company's robots (des = de + les)"],
+            ["a baissé de 72 %", "has fallen by 72% (de = 'by' with numbers)"]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a baissé</span> = “has fallen / fell.” <span class='bd-fr-i'>a</span> is the helper, <span class='bd-fr-i'>baissé</span> the past form."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "La {{révolution|revolution}} des robots va {{probablement|probably}} commencer à la maison.",
+        "bd": {
+          "meaning": "The robot revolution will probably start at home.",
+          "chunks": [
+            ["La révolution des robots", "the robot revolution (literally 'the revolution of the robots')"],
+            ["va probablement commencer", "is probably going to start — 'probablement' sits between va and the plain verb"],
+            ["à la maison", "at home"]
+          ],
+          "key": "<b>aller + plain verb, with a word in the middle:</b> <span class='bd-fr-i'>va probablement commencer</span> — the little extra word goes after <span class='bd-fr-i'>va</span>."
+        }
+      },
+      {
+        "fr": "{{Selon|according to}} des experts, {{il y aura|there will be}} peut-être un million de robots humanoïdes dans les maisons américaines {{d'ici|within, by}} 5 à 15 ans.",
+        "bd": {
+          "meaning": "According to experts, there may be a million humanoid robots in American homes within 5 to 15 years.",
+          "chunks": [
+            ["Selon des experts", "according to experts"],
+            ["il y aura peut-être", "there will maybe be — il y aura = future of il y a"],
+            ["un million de robots humanoïdes", "a million humanoid robots (million + de)"],
+            ["dans les maisons américaines", "in American homes — adjective after the noun, agreeing (-es)"],
+            ["d'ici 5 à 15 ans", "within 5 to 15 years from now"]
+          ],
+          "key": "<b>il y a → il y aura:</b> “there is” becomes “there will be.” Same set phrase, just pushed into the future."
+        }
+      },
+      {
+        "fr": "Ils vont faire les {{tâches ménagères|household chores}}, comme la {{lessive|laundry}} et la {{vaisselle|dishes}}.",
+        "bd": {
+          "meaning": "They'll do household chores, like the laundry and the dishes.",
+          "chunks": [
+            ["Ils vont faire", "they're going to do (aller + faire)"],
+            ["les tâches ménagères", "household chores"],
+            ["comme", "like / such as"],
+            ["la lessive et la vaisselle", "the laundry and the dishes"]
+          ],
+          "key": "<b>faire = do / make:</b> chores use <span class='bd-fr-i'>faire</span> — <span class='bd-fr-i'>faire la vaisselle</span> = “do the dishes.”"
+        }
+      },
+      {
+        "fr": "{{Peu de gens|few people}} vont {{protester|object, protest}}.",
+        "bd": {
+          "meaning": "Few people will object.",
+          "chunks": [
+            ["Peu de gens", "few people (peu de = little / few)"],
+            ["vont protester", "are going to protest (aller + plain verb)"]
+          ],
+          "key": "<b>peu de / beaucoup de:</b> <span class='bd-fr-i'>peu de gens</span> = “few people,” the opposite of <span class='bd-fr-i'>beaucoup de gens</span>."
+        }
+      },
+      {
+        "fr": "C'est une bonne nouvelle, {{surtout|especially}} pour les femmes.",
+        "bd": {
+          "meaning": "It's good news, especially for women.",
+          "chunks": [
+            ["C'est", "it's / that's"],
+            ["une bonne nouvelle", "good news — 'bonne' goes before the noun"],
+            ["surtout", "especially / above all"],
+            ["pour les femmes", "for women"]
+          ],
+          "key": "<b>“bon” goes BEFORE the noun</b> and agrees: <span class='bd-fr-i'>nouvelle</span> is feminine, so <span class='bd-fr-i'>bon</span> becomes <span class='bd-fr-i'>bonne</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Ensuite, les robots vont arriver dans les {{usines|factories}}, dans les hôpitaux et sur les {{chantiers|building sites}}.",
+        "bd": {
+          "meaning": "Next, robots will arrive in factories, in hospitals and on building sites.",
+          "chunks": [
+            ["Ensuite", "next / then"],
+            ["les robots vont arriver", "robots are going to arrive"],
+            ["dans les usines, dans les hôpitaux", "in factories, in hospitals"],
+            ["sur les chantiers", "on building sites — French also says 'on' (sur) here"]
+          ],
+          "key": "<b>Future = aller + plain verb:</b> <span class='bd-fr-i'>vont arriver</span> = “are going to arrive.”"
+        }
+      },
+      {
+        "fr": "Aujourd'hui, beaucoup de gens pensent que l'IA change {{seulement|only}} le travail de {{bureau|office}}.",
+        "bd": {
+          "meaning": "Today, many people think AI only changes office work.",
+          "chunks": [
+            ["Aujourd'hui", "today"],
+            ["beaucoup de gens pensent", "lots of people think"],
+            ["que", "that — French never drops it, unlike English"],
+            ["l'IA change seulement", "AI only changes"],
+            ["le travail de bureau", "office work (literally 'work of office')"]
+          ],
+          "key": "<b>“que” can't be dropped:</b> English says “think AI…,” but French must say <span class='bd-fr-i'>pensent que l'IA…</span>."
+        }
+      },
+      {
+        "fr": "Avec les robots, ce n'est plus vrai.",
+        "bd": {
+          "meaning": "With robots, that's no longer true.",
+          "chunks": [
+            ["Avec les robots", "with robots"],
+            ["ce n'est plus", "it's no longer (c'est inside the ne … plus sandwich)"],
+            ["vrai", "true"]
+          ],
+          "key": "<b>ne … plus = “no longer”:</b> same sandwich shape as <span class='bd-fr-i'>ne … pas</span>, but it means “not any more.”"
+        }
+      },
+      {
+        "fr": "Un employé de bureau veut devenir {{électricien|electrician}} ou {{plombier|plumber}} ? Ce n'est peut-être pas une {{solution|solution, way out}}.",
+        "bd": {
+          "meaning": "An office worker wants to become an electrician or a plumber? That may not be a way out.",
+          "chunks": [
+            ["Un employé de bureau", "an office worker"],
+            ["veut devenir", "wants to become (vouloir + plain verb)"],
+            ["électricien ou plombier", "an electrician or a plumber — no 'un' before a job after devenir"],
+            ["Ce n'est peut-être pas une solution", "that's maybe not a solution"]
+          ],
+          "key": "<b>No article before a job:</b> <span class='bd-fr-i'>devenir électricien</span> = “become an electrician” — French drops the <span class='bd-fr-i'>un</span>."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Certains gouvernements vont peut-être {{réserver|keep, set aside}} des {{emplois|jobs}} aux humains.",
+        "bd": {
+          "meaning": "Some governments may keep certain jobs for humans.",
+          "chunks": [
+            ["Certains gouvernements", "some governments"],
+            ["vont peut-être réserver", "may be going to reserve"],
+            ["des emplois", "jobs"],
+            ["aux humains", "for humans (aux = à + les)"]
+          ],
+          "key": "<b>aux = à + les:</b> <span class='bd-fr-i'>à les</span> never appears; it always fuses into <span class='bd-fr-i'>aux</span>."
+        }
+      },
+      {
+        "fr": "Bill Gates {{a proposé|proposed}} cette idée.",
+        "bd": {
+          "meaning": "Bill Gates has suggested this idea.",
+          "chunks": [
+            ["Bill Gates", "Bill Gates"],
+            ["a proposé", "proposed / has suggested (avoir + past form)"],
+            ["cette idée", "this idea (cette = this, feminine)"]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>a proposé</span> — the <span class='bd-fr-i'>-é</span> ending marks the past form of an -er verb."
+        }
+      },
+      {
+        "fr": "Aujourd'hui, les voitures {{sans chauffeur|driverless}} arrivent {{lentement|slowly}}, parce que des chauffeurs de taxi et des {{responsables locaux|local officials}} sont {{contre|against (it)}}.",
+        "bd": {
+          "meaning": "Today, driverless cars are spreading slowly, because some taxi drivers and local officials are against them.",
+          "chunks": [
+            ["les voitures sans chauffeur", "driverless cars (literally 'cars without driver')"],
+            ["arrivent lentement", "are arriving slowly"],
+            ["parce que", "because"],
+            ["des chauffeurs de taxi et des responsables locaux", "taxi drivers and local officials"],
+            ["sont contre", "are against (it)"]
+          ],
+          "key": "<b>sans + noun, no article:</b> <span class='bd-fr-i'>sans chauffeur</span> = “without a driver,” just as <span class='bd-fr-i'>sans avocat</span> in story 1."
+        }
+      },
+      {
+        "fr": "Les robots vont peut-être avoir le même problème.",
+        "bd": {
+          "meaning": "Robots may face the same problem.",
+          "chunks": [
+            ["Les robots", "robots"],
+            ["vont peut-être avoir", "may be going to have"],
+            ["le même problème", "the same problem — 'même' before the noun = same"]
+          ],
+          "key": "<b>le même = “the same”:</b> before a noun, <span class='bd-fr-i'>même</span> means “same” (in story 1, alone at the start, it meant “even”)."
+        }
+      },
+      {
+        "fr": "Mais ça ne va probablement pas les {{arrêter|stop}}.",
+        "bd": {
+          "meaning": "But it probably won't stop them.",
+          "chunks": [
+            ["Mais ça", "but that"],
+            ["ne va probablement pas", "is probably not going to (ne … pas around va)"],
+            ["les arrêter", "stop them — 'les' (them) sits before the verb"]
+          ],
+          "key": "<b>“them” goes before the verb:</b> <span class='bd-fr-i'>les arrêter</span> = “stop them.” Here <span class='bd-fr-i'>les</span> is a pronoun, not “the.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "Aujourd'hui, les usines vont dans les pays où le travail {{coûte|costs}} moins cher.",
+        "bd": {
+          "meaning": "Today, factories move to countries where labour is cheaper.",
+          "chunks": [
+            ["les usines vont", "factories go"],
+            ["dans les pays", "to the countries"],
+            ["où", "where"],
+            ["le travail coûte moins cher", "work costs less (coûter cher = be expensive)"]
+          ],
+          "key": "<b>“où” = “where”</b> and hooks a description onto a place: <span class='bd-fr-i'>les pays où…</span> = “the countries where…”"
+        }
+      },
+      {
+        "fr": "Avec les robots, les {{salaires|wages}} vont moins {{compter|matter, count}}.",
+        "bd": {
+          "meaning": "With robots, wages will matter less.",
+          "chunks": [
+            ["Avec les robots", "with robots"],
+            ["les salaires", "wages / salaries"],
+            ["vont moins compter", "are going to count less"]
+          ],
+          "key": "<b>compter = “to matter”</b> as well as “to count.” <span class='bd-fr-i'>Ça compte</span> = “it matters.”"
+        }
+      },
+      {
+        "fr": "Le prix de la {{terre|land}} et de l'{{énergie|energy}} va compter plus.",
+        "bd": {
+          "meaning": "The price of land and energy will matter more.",
+          "chunks": [
+            ["Le prix", "the price"],
+            ["de la terre et de l'énergie", "of land and of energy — 'de' repeats before each noun"],
+            ["va compter plus", "is going to matter more"]
+          ],
+          "key": "<b>Repeat the little word:</b> French says <span class='bd-fr-i'>de la terre et de l'énergie</span>, repeating <span class='bd-fr-i'>de</span> where English says it once."
+        }
+      },
+      {
+        "fr": "Pour certains {{métiers|jobs, trades}}, rien n'a changé depuis des {{siècles|centuries}}.",
+        "bd": {
+          "meaning": "For some jobs, nothing has changed for centuries.",
+          "chunks": [
+            ["Pour certains métiers", "for some jobs"],
+            ["rien n'a changé", "nothing has changed (rien … ne sandwich + avoir + past form)"],
+            ["depuis des siècles", "for centuries (depuis = since / for)"]
+          ],
+          "key": "<b>rien ne = “nothing”:</b> when “nothing” is the subject, <span class='bd-fr-i'>rien</span> comes first and <span class='bd-fr-i'>ne</span> still goes before the verb."
+        }
+      },
+      {
+        "fr": "Par exemple, un {{quatuor|quartet}} {{a toujours besoin de|still needs}} quatre musiciens, comme à l'{{époque|time, era}} de Mozart.",
+        "bd": {
+          "meaning": "For example, a string quartet still needs four musicians, just as in Mozart's time.",
+          "chunks": [
+            ["Par exemple", "for example"],
+            ["un quatuor", "a quartet"],
+            ["a toujours besoin de", "still needs (avoir besoin de = need; toujours = still)"],
+            ["quatre musiciens", "four musicians"],
+            ["comme à l'époque de Mozart", "as in Mozart's time"]
+          ],
+          "key": "<b>avoir besoin de = “to need”:</b> literally “to have need of.” Only <span class='bd-fr-i'>avoir</span> changes: <span class='bd-fr-i'>il a besoin de</span>."
+        }
+      },
+      {
+        "fr": "{{S'occuper des|taking care of}} personnes âgées, c'est pareil.",
+        "bd": {
+          "meaning": "Caring for older people is the same.",
+          "chunks": [
+            ["S'occuper des personnes âgées", "taking care of elderly people (des = de + les)"],
+            ["c'est pareil", "it's the same — very common in speech"]
+          ],
+          "key": "<b>Plain verb as a subject, then c'est:</b> <span class='bd-fr-i'>S'occuper de…, c'est…</span> = “Taking care of… is…”"
+        }
+      },
+      {
+        "fr": "Les robots peuvent changer ça.",
+        "bd": {
+          "meaning": "Robots could change that.",
+          "chunks": [
+            ["Les robots", "robots"],
+            ["peuvent changer", "can change (pouvoir + plain verb)"],
+            ["ça", "that"]
+          ],
+          "key": "<b>Helper + plain verb:</b> <span class='bd-fr-i'>peuvent changer</span> — only <span class='bd-fr-i'>peuvent</span> conjugates."
+        }
+      },
+      {
+        "fr": "Beaucoup de choses vont devenir {{bon marché|cheap}}, comme les T-shirts.",
+        "bd": {
+          "meaning": "Lots of things will become cheap, like T-shirts.",
+          "chunks": [
+            ["Beaucoup de choses", "lots of things"],
+            ["vont devenir", "are going to become"],
+            ["bon marché", "cheap — a fixed phrase that never changes form"],
+            ["comme les T-shirts", "like T-shirts"]
+          ],
+          "key": "<b>bon marché never agrees:</b> it stays the same with plural or feminine nouns — <span class='bd-fr-i'>des choses bon marché</span>."
+        }
+      },
+      {
+        "fr": "Mais la terre et les {{ressources naturelles|natural resources}} vont rester {{rares|scarce}} et chères.",
+        "bd": {
+          "meaning": "But land and natural resources will stay scarce and expensive.",
+          "chunks": [
+            ["la terre et les ressources naturelles", "land and natural resources"],
+            ["vont rester", "are going to stay"],
+            ["rares et chères", "scarce and expensive — 'chères' agrees (feminine plural)"]
+          ],
+          "key": "<b>Adjectives agree with the noun:</b> <span class='bd-fr-i'>ressources</span> is feminine plural, so <span class='bd-fr-i'>cher</span> becomes <span class='bd-fr-i'>chères</span>."
+        }
+      },
+      {
+        "fr": "Les {{loyers|rents}} vont peut-être devenir {{encore plus|even more}} chers.",
+        "bd": {
+          "meaning": "Rents may get even more expensive.",
+          "chunks": [
+            ["Les loyers", "rents"],
+            ["vont peut-être devenir", "may be going to become"],
+            ["encore plus chers", "even more expensive (encore plus = even more)"]
+          ],
+          "key": "<b>plus + adjective = “more ___”:</b> <span class='bd-fr-i'>plus chers</span> = “more expensive,” and <span class='bd-fr-i'>encore</span> adds “even.”"
+        }
+      }
+    ],
+    [
+      {
+        "fr": "{{Peut-être que|maybe}} les humains vont encore travailler : ils vont {{gérer|manage}} et {{réparer|repair}} les robots.",
+        "bd": {
+          "meaning": "Maybe humans will still work: they'll manage and repair the robots.",
+          "chunks": [
+            ["Peut-être que", "maybe — at the start of a sentence, add 'que'"],
+            ["les humains vont encore travailler", "humans are still going to work (encore = still)"],
+            ["ils vont gérer et réparer", "they're going to manage and repair — one 'vont' covers both verbs"],
+            ["les robots", "the robots"]
+          ],
+          "key": "<b>One aller, two plain verbs:</b> <span class='bd-fr-i'>vont gérer et réparer</span> — the helper isn't repeated."
+        }
+      },
+      {
+        "fr": "Et qui veut payer pour écouter un {{orchestre|orchestra}} de robots ?",
+        "bd": {
+          "meaning": "And who wants to pay to listen to a robot orchestra?",
+          "chunks": [
+            ["Et qui veut", "and who wants"],
+            ["payer", "to pay (plain verb after vouloir)"],
+            ["pour écouter", "to listen to — écouter already includes 'to'"],
+            ["un orchestre de robots", "a robot orchestra (literally 'an orchestra of robots')"]
+          ],
+          "key": "<b>écouter = “listen to”:</b> no extra word needed — <span class='bd-fr-i'>écouter un orchestre</span>, not “écouter à.”"
+        }
+      },
+      {
+        "fr": "L'autre possibilité : les robots travaillent pour les gens qui les {{possèdent|own}}.",
+        "bd": {
+          "meaning": "The other possibility: robots work for the people who own them.",
+          "chunks": [
+            ["L'autre possibilité", "the other possibility"],
+            ["les robots travaillent", "robots work"],
+            ["pour les gens", "for the people"],
+            ["qui les possèdent", "who own them — 'les' (them) before the verb"]
+          ],
+          "key": "<b>Two different “les”:</b> <span class='bd-fr-i'>les gens</span> = “the people,” but in <span class='bd-fr-i'>les possèdent</span> it means “them,” sitting before the verb."
+        }
+      },
+      {
+        "fr": "Les autres sont en {{concurrence|competition}} avec les robots pour la terre et l'énergie.",
+        "bd": {
+          "meaning": "Everyone else competes with the robots for land and energy.",
+          "chunks": [
+            ["Les autres", "the others / everyone else"],
+            ["sont en concurrence avec", "are in competition with"],
+            ["les robots", "the robots"],
+            ["pour la terre et l'énergie", "for land and energy"]
+          ],
+          "key": "<b>être en + noun:</b> <span class='bd-fr-i'>être en concurrence</span> = “to be competing,” a handy set shape."
+        }
+      }
+    ],
+    [
+      {
+        "fr": "L'IA a {{surpris|surprised}} le monde.",
+        "bd": {
+          "meaning": "AI took the world by surprise.",
+          "chunks": [
+            ["L'IA", "AI"],
+            ["a surpris", "surprised (avoir + past form of surprendre)"],
+            ["le monde", "the world"]
+          ],
+          "key": "<b>Past = avoir + past form:</b> <span class='bd-fr-i'>surprendre</span> has an irregular past form, <span class='bd-fr-i'>surpris</span>."
+        }
+      },
+      {
+        "fr": "Les robots vont peut-être nous surprendre aussi.",
+        "bd": {
+          "meaning": "Robots may surprise us too.",
+          "chunks": [
+            ["Les robots", "robots"],
+            ["vont peut-être", "may be going to"],
+            ["nous surprendre", "surprise us — 'nous' before the verb"],
+            ["aussi", "too / also"]
+          ],
+          "key": "<b>“us” before the verb:</b> <span class='bd-fr-i'>nous surprendre</span> = “surprise us,” the same position as <span class='bd-fr-i'>les</span> earlier."
+        }
+      },
+      {
+        "fr": "{{Il faut|we need to, it's necessary to}} {{se préparer|get ready}}.",
+        "bd": {
+          "meaning": "We need to get ready.",
+          "chunks": [
+            ["Il faut", "it's necessary / we need to — a fixed phrase"],
+            ["se préparer", "get ready (literally 'prepare oneself')"]
+          ],
+          "key": "<b>il faut + plain verb = “we / you need to.”</b> A fixed phrase: the <span class='bd-fr-i'>il</span> doesn't mean “he.”"
+        }
+      }
+    ]
+  ],
+  "grammar": [
+    {
+      "fr": "Ça va changer",
+      "en": "<b>aller + plain verb = the near future.</b> It runs through this whole story: <span class='fr'>va commencer</span>, <span class='fr'>vont arriver</span>, <span class='fr'>vont rester</span>. Small words like <span class='fr'>peut-être</span> or <span class='fr'>probablement</span> slot in after <span class='fr'>aller</span>."
+    },
+    {
+      "fr": "Le prix a baissé",
+      "en": "<b>avoir + past participle = the past (passé composé).</b> <span class='fr'>a baissé</span>, <span class='fr'>a proposé</span>, <span class='fr'>a surpris</span>. Your “past = avoir/être + verb” key."
+    },
+    {
+      "fr": "Ça ne va pas les arrêter",
+      "en": "<b>Object pronouns go before the verb.</b> <span class='fr'>les</span> (them) and <span class='fr'>nous</span> (us) sit in front of the plain verb: <span class='fr'>les arrêter</span>, <span class='fr'>nous surprendre</span>. Don't confuse this <span class='fr'>les</span> with “the.”"
+    }
+  ],
+  "quiz": {
+    "q": "Où la révolution des robots va-t-elle probablement commencer ?",
+    "a": "À la maison — les robots vont faire la lessive et la vaisselle. (At home — robots will do the laundry and the dishes.)"
+  },
+  "flag": "Heavily compressed: this is an Economist opinion piece (“leader”), retold neutrally. I dropped the C-3PO and Marvin references, the Riemann hypothesis by name, the “doubling every two months” metric, migration and NIMBY points, Baumol by name, capital in the last point and most hedging nuance. Some “could” claims became <span class='fr'>va peut-être</span> to stay at A1 (a native would often use the conditional <span class='fr'>pourrait</span>). <span class='fr'>Ce n'est peut-être pas une solution</span> loosely renders “might be out of luck”; <span class='fr'>responsables locaux</span> is my choice for “local officials.”"
+}
